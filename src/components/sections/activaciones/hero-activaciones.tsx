@@ -1,0 +1,45 @@
+"use client";
+
+import { motion } from "motion/react";
+import Image from "next/image";
+import { SectionHeading } from "@/components/ui/section-heading";
+
+export function HeroActivaciones() {
+  return (
+    <section className="bg-black">
+      {/* Hero photo — full width */}
+      <div className="relative h-[360px] md:h-[480px] lg:h-[560px] overflow-hidden">
+        <Image
+          src="/images/activations/activation-1.jpg"
+          alt="Activaciones y Experiencias"
+          fill
+          className="object-cover object-top"
+          sizes="100vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/40 to-transparent" />
+      </div>
+
+      {/* Heading */}
+      <div className="px-5 lg:px-16 xl:px-24 -mt-16 lg:-mt-24 relative z-10 pb-8 lg:pb-12">
+        <div className="max-w-[1728px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionHeading
+              label="SOMOS"
+              title={<>Activaciones<br />y experiencias</>}
+              titleClassName="lg:text-6xl xl:text-7xl"
+            />
+            <p className="text-white/70 text-sm lg:text-base leading-relaxed mt-3 max-w-lg">
+              Unimos el mundo OFF con el ON generando activaciones y experiencias para usuarios y partners.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
