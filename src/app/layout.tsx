@@ -20,6 +20,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://mediamoob.com'),
   title: 'Media Moob — Contenido, Tecnología y Experiencias',
   description:
     'Somos creativos, somos curiosos, somos Media Moob. Contenido, tecnología y experiencias en más de 30 países.',

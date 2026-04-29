@@ -9,8 +9,8 @@ const nextConfig: NextConfig = {
         pathname: "/api/mcp/asset/**",
       },
     ],
-    // Allow local images to fail gracefully
-    unoptimized: false,
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
   },
 };
 
