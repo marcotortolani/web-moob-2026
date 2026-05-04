@@ -1,9 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { motion, type Variants } from 'motion/react'
 import { Play } from 'lucide-react'
 import Image from 'next/image'
 import { LazyDottedGlobe } from '@/components/ui/dotted-globe-lazy'
+import Link from 'next/link'
 
 const heroLines = [
   { prefix: 'somos', word: 'CREATIVOS', highlight: false },
@@ -27,17 +29,33 @@ const lineVariants: Variants = {
 }
 
 export function HeroSection() {
+  const [videoReady, setVideoReady] = useState(false)
+
   return (
     <section className="relative min-h-screen overflow-hidden bg-black">
       {/* Background image & video */}
       <div className="absolute inset-0 h-1/2 lg:h-full ">
+        {/* Fallback image — always mounted, acts as placeholder and error fallback */}
         <Image
           src="/images/hero-bg.webp"
           alt="Media Moob hero"
           fill
-          className="h-full object-cover object-left lg:object-center pb-0.5 "
+          className="h-full object-cover object-left lg:object-center pb-0.5"
           priority
-          sizes="25vw"
+          sizes="100vw"
+        />
+        {/* Background video — fades in once ready */}
+        <video
+          src="/videos/home-hero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/images/hero-bg.webp"
+          aria-hidden="true"
+          onCanPlay={() => setVideoReady(true)}
+          className={`absolute inset-0 h-full w-full object-cover object-left lg:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
         />
         <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/20 to-black" />
         <div className="absolute inset-0 bg-linear-to-r from-black via-black/50 to-transparent" />
@@ -129,22 +147,27 @@ function NavCategories() {
     {
       label: 'contenido exclusivo',
       image: '/images/contenido-exclusivo-icon.webp',
+      link: '#contenido',
     },
     {
       label: 'tecnología',
       image: '/images/tecnologia-icon.webp',
+      link: '#tecnologia',
     },
     {
       label: 'eventos y experiencias',
       image: '/images/eventos-experiencias-icon.webp',
+      link: '#eventos',
     },
     {
       label: 'producciones propias',
       image: '/images/producciones-propias-icon.webp',
+      link: '#activaciones',
     },
     {
       label: 'artistas e influencers',
       image: '/images/artistas-influencers-icon.webp',
+      link: '#artistas',
     },
   ]
 
@@ -155,9 +178,10 @@ function NavCategories() {
       transition={{ delay: 1.6, duration: 0.6 }}
       className="w-full flex justify-between mx-auto lg:gap-8 mt-8 overflow-x-auto pb-1 scrollbar-none bg-sky-800/0"
     >
-      {items.map(({ label, image }, i) => (
-        <button
+      {items.map(({ label, image, link }, i) => (
+        <Link
           key={label}
+          href={link}
           className={`
           ${i === 0 && 'mt-20 lg:mt-0'}
           ${i === 1 && 'mt-8 lg:mt-0'}
@@ -179,7 +203,7 @@ function NavCategories() {
           <span className="text-[12px] lg:text-[14px] text-mint font-display font-medium1 uppercase text-center leading-tight max-w-16 lg:max-w-20 group-hover:text-white transition-colors">
             {label}
           </span>
-        </button>
+        </Link>
       ))}
     </motion.div>
   )

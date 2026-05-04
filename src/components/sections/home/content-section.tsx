@@ -1,82 +1,136 @@
-"use client";
+'use client'
 
-import { motion } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { contentCategories } from "@/lib/data/content";
+import { motion } from 'motion/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, FreeMode } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import 'swiper/css/autoplay'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { contentCategories } from '@/lib/data/content'
+import { BannerGridVideo } from '@/components/BannerGridVideo'
+import { DemoButton } from '@/components/ui/demo-button'
 
 const categoryImages: Record<string, string> = {
-  cocina: "/images/categories/cocina.jpg",
-  musica: "/images/categories/musica.jpg",
-  lifestyle: "/images/categories/lifestyle.jpg",
-  fitness: "/images/categories/fitness.jpg",
-  viajes: "/images/categories/viajes.jpg",
-  gaming: "/images/categories/gaming.jpg",
-};
+  cocina: '/images/home/slider-contenido/carrousel-cat-cocina.webp',
+  musica: '/images/home/slider-contenido/carrousel-cat-musica.webp',
+  lifestyle: '/images/home/slider-contenido/carrousel-cat-lifestyle.webp',
+  fitness: '/images/home/slider-contenido/carrousel-cat-fitness.webp',
+  viajes: '/images/home/slider-contenido/carrousel-cat-viajes.webp',
+  gaming: '/images/home/slider-contenido/carrousel-cat-gaming.webp',
+}
+
+const GRID_ITEMS = {
+  video: 'https://vimeo.com/1164796788',
+  videoFrame:
+    '/images/grid/contenido/home-somoscontenido-grilla-horizontal02.webp',
+  imageH: '/images/grid/contenido/home-somoscontenido-grilla-horizontal01.webp',
+  imageV: '/images/grid/contenido/home-somoscontenido-grilla-vertical02.webp',
+}
 
 export function ContentSection() {
   return (
-    <section className="bg-black py-8 lg:py-20 px-5 lg:px-16 xl:px-24" id="contenido">
-      <div className="max-w-[1728px] mx-auto">
-        {/* Desktop: heading left + description right */}
+    <section
+      className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20 "
+      id="contenido"
+    >
+      {/* Desktop: heading left + description right */}
+      {/* <div className=" z-50! translate-y-5 bg-red-800 "></div> */}
+      <div className=" relative w-full ">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="mb-6 lg:mb-10"
+          className=" absolute top-0 w-full py-4 z-50 -translate-y-10 bg-linear-to-b from-black via-black to-transparent "
         >
-          <div className="lg:flex lg:items-start lg:justify-between lg:gap-12">
-            <SectionHeading
-              label="SOMOS"
-              title="Contenido"
-              className="lg:min-w-[300px]"
-              titleClassName="lg:text-6xl xl:text-7xl"
-            />
-            <p className="text-white/80 text-sm lg:text-base leading-relaxed mt-3 lg:mt-6 max-w-xl">
-              <span className="font-bold text-mint">
-                Creamos contenido en todos los formatos, desde experiencias en vivo hasta producciones de larga, mediana y corta duración.
-              </span>
-              {" "}Incluyendo películas y documentales.
-            </p>
-          </div>
+          <SectionHeading
+            label="SOMOS"
+            title="Contenido"
+            align="center"
+            className="flex-row justify-center lg:min-w-[300px]"
+            titleClassName="text-5xl lg:text-6xl xl:text-7xl"
+          />
         </motion.div>
+        <BannerGridVideo items={GRID_ITEMS} videoPosition="bottom-right" />
 
-        {/* Categories Grid: 3 cols mobile → 6 cols desktop */}
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 lg:gap-3">
-          {contentCategories.map(({ label, id }, i) => (
-            <motion.div
-              key={id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-            >
+        <div className="z-50 absolute -bottom-5 translate-y-4 w-full mx-auto px-5 lg:px-16 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
+          <p className="text-white/80 text-center text-pretty text-sm lg:text-base leading-4 mt-3 lg:mt-6 max-w-xl">
+            <span className="font-bold text-mint">Creamos contenido</span> en
+            todos los formatos, desde experiencias en vivo hasta producciones de
+            larga, mediana y corta duración. Incluyendo películas y
+            documentales.
+          </p>
+        </div>
+      </div>
+
+      <div className="relative mt-20 ">
+        <div className=" absolute w-full h-1/4 z-50 bg-linear-to-b from-black via-black/60 to-transparent"></div>
+        <Swiper
+          modules={[Autoplay, FreeMode]}
+          speed={8000}
+          autoplay={{
+            delay: 100,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: false,
+          }}
+          onReachEnd={(swiper) => {
+            if (typeof swiper.params.autoplay === 'object') {
+              swiper.params.autoplay.reverseDirection = true
+            }
+            swiper.autoplay.start()
+          }}
+          onReachBeginning={(swiper) => {
+            if (typeof swiper.params.autoplay === 'object') {
+              swiper.params.autoplay.reverseDirection = false
+            }
+            swiper.autoplay.start()
+          }}
+          allowTouchMove={true}
+          freeMode={{ enabled: true, momentum: true }}
+          slidesPerView={4.2}
+          spaceBetween={4}
+          breakpoints={{
+            768: { slidesPerView: 3.2, spaceBetween: 10 },
+            1024: { slidesPerView: 4.5, spaceBetween: 12 },
+            1280: { slidesPerView: 5.2, spaceBetween: 12 },
+          }}
+          className="[&_.swiper-wrapper]:ease-linear! px-1 md:px-2 lg:px-4 xl:px-6"
+        >
+          {contentCategories.map(({ label, id }) => (
+            <SwiperSlide key={id}>
               <Link
                 href={`/somos-${id}`}
-                className="block relative aspect-[3/4] lg:aspect-[4/5] rounded-lg overflow-hidden group cursor-pointer"
+                className="block relative aspect-square rounded-xs overflow-hidden group cursor-pointer"
               >
-                <div className="absolute inset-0 bg-surface-light">
-                  <Image
-                    src={categoryImages[id]}
-                    alt={label}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width: 768px) 33vw, 16vw"
-                  />
-                </div>
+                <Image
+                  src={categoryImages[id]}
+                  alt={label}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 60vw, 20vw"
+                />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
-                {/* Colored bottom bar on hover */}
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-mint scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                <span className="absolute bottom-3 lg:bottom-4 left-0 right-0 text-center text-white text-[11px] lg:text-sm font-semibold tracking-wide uppercase px-1 group-hover:text-mint transition-colors">
+                <span className="absolute bottom-0 left-0 right-0 text-white text-lg lg:text-xl font-display text-center tracking-wide uppercase group-hover:text-mint transition-colors">
                   {label}
                 </span>
               </Link>
-            </motion.div>
+            </SwiperSlide>
           ))}
+        </Swiper>
+
+        <div className="mt-8 lg:mt-10 flex justify-center pr-5 lg:pr-16 xl:pr-24">
+          <DemoButton
+            href="/somos-contenido"
+            className=" text-white tracking-tight"
+          >
+            MÁS DE NUESTRO CONTENIDO
+          </DemoButton>
         </div>
       </div>
     </section>
-  );
+  )
 }
