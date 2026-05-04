@@ -1,21 +1,18 @@
-import { Metadata } from "next";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { HeroMusica } from "@/components/sections/musica/hero-musica";
-import { ProductShowcase } from "@/components/sections/musica/product-showcase";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Play } from "lucide-react";
+import { Metadata } from 'next'
+import { HeroMusica } from '@/components/sections/musica/hero-musica'
+import { ProductShowcase } from '@/components/sections/musica/product-showcase'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Play } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: "SOMOS Música",
+  title: 'SOMOS Música',
   description:
-    "Te acercamos a la música, a los artistas, a sus recitales y mucho más. Contenido exclusivo de corta, mediana y larga duración.",
-};
+    'Te acercamos a la música, a los artistas, a sus recitales y mucho más. Contenido exclusivo de corta, mediana y larga duración.',
+}
 
 export default function SomosMusicaPage() {
   return (
     <main className="bg-black min-h-screen">
-      <Header />
       <HeroMusica />
 
       {/* Section heading + description */}
@@ -29,8 +26,11 @@ export default function SomosMusicaPage() {
             />
             <div className="mt-4 lg:mt-0 max-w-lg">
               <p className="text-white/70 text-sm lg:text-base leading-relaxed">
-                Te acercamos a la música, a los artistas, a sus recitales y mucho más.{" "}
-                <strong className="text-mint font-semibold">¡Llená tu vida de música!</strong>
+                Te acercamos a la música, a los artistas, a sus recitales y
+                mucho más.{' '}
+                <strong className="text-mint font-semibold">
+                  ¡Llená tu vida de música!
+                </strong>
               </p>
             </div>
           </div>
@@ -42,8 +42,12 @@ export default function SomosMusicaPage() {
                 <Play size={18} className="text-mint ml-0.5" />
               </span>
               <div className="flex items-baseline gap-2">
-                <span className="font-display text-5xl lg:text-6xl text-white leading-none">1200</span>
-                <span className="font-display text-3xl lg:text-4xl text-mint leading-none">HS</span>
+                <span className="font-display text-5xl lg:text-6xl text-white leading-none">
+                  1200
+                </span>
+                <span className="font-display text-3xl lg:text-4xl text-mint leading-none">
+                  HS
+                </span>
               </div>
             </div>
             <div className="sm:ml-4 lg:ml-8">
@@ -66,7 +70,6 @@ export default function SomosMusicaPage() {
       </section>
 
       <ProductShowcase />
-      <Footer />
     </main>
-  );
+  )
 }

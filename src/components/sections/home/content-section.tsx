@@ -17,7 +17,7 @@ const categoryImages: Record<string, string> = {
 
 export function ContentSection() {
   return (
-    <section className="bg-black py-12 lg:py-20 px-5 lg:px-16 xl:px-24" id="contenido">
+    <section className="bg-black py-8 lg:py-20 px-5 lg:px-16 xl:px-24" id="contenido">
       <div className="max-w-[1728px] mx-auto">
         {/* Desktop: heading left + description right */}
         <motion.div

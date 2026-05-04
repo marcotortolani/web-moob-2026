@@ -1,28 +1,38 @@
-"use client";
+'use client'
 
-import { motion } from "motion/react";
-import Link from "next/link";
-import Image from "next/image";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Bell, MessageSquare, BarChart2, Package, Gift, ArrowRight } from "lucide-react";
+import { motion } from 'motion/react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { SectionHeading } from '@/components/ui/section-heading'
+import {
+  Bell,
+  MessageSquare,
+  BarChart2,
+  Package,
+  Gift,
+  ArrowRight,
+} from 'lucide-react'
 
 const services = [
-  { id: "sat-push", label: "Sat Push", Icon: Bell },
-  { id: "sms", label: "SMS", Icon: MessageSquare },
-  { id: "publicidad", label: "Publicidad", Icon: BarChart2 },
-  { id: "bundle", label: "Bundle", Icon: Package },
-  { id: "data-rewards", label: "Data Rewards", Icon: Gift },
-];
+  { id: 'sat-push', label: 'Sat Push', Icon: Bell },
+  { id: 'sms', label: 'SMS', Icon: MessageSquare },
+  { id: 'publicidad', label: 'Publicidad', Icon: BarChart2 },
+  { id: 'bundle', label: 'Bundle', Icon: Package },
+  { id: 'data-rewards', label: 'Data Rewards', Icon: Gift },
+]
 
 export function TechSection() {
   return (
-    <section className="bg-black py-12 lg:py-20 px-5 lg:px-16 xl:px-24" id="tecnologia">
+    <section
+      className="bg-black py-12 lg:py-20 px-5 lg:px-16 xl:px-24"
+      id="tecnologia"
+    >
       <div className="max-w-[1728px] mx-auto">
         {/* Desktop: heading left + description right */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
           className="mb-2 lg:mb-10"
         >
@@ -37,9 +47,11 @@ export function TechSection() {
             <div className="flex flex-col gap-3 mt-3 lg:mt-6 max-w-xl">
               <p className="text-white/80 text-sm lg:text-base leading-relaxed">
                 <span className="font-bold text-mint">
-                  Aplicamos tecnología propia para amplificar su alcance e impacto.
-                </span>
-                {" "}Contamos con herramientas como MCP, Publicidad Sat y Push, que optimizan la distribución y monetización de los contenidos.
+                  Aplicamos tecnología propia para amplificar su alcance e
+                  impacto.
+                </span>{' '}
+                Contamos con herramientas como MCP, Publicidad Sat y Push, que
+                optimizan la distribución y monetización de los contenidos.
               </p>
               <Link
                 href="/somos-tecnologia"
@@ -60,7 +72,7 @@ export function TechSection() {
           className="hidden lg:block relative w-full aspect-[3/1] rounded-xl overflow-hidden mb-10 bg-surface-light"
         >
           <Image
-            src="/images/hero-bg.jpg"
+            src="/images/hero-bg.webp"
             alt="Tecnología Media Moob"
             fill
             className="object-cover opacity-60"
@@ -105,5 +117,5 @@ export function TechSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

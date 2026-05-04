@@ -1,38 +1,32 @@
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { HeroSection } from "@/components/sections/home/hero-section";
-import { ContentSection } from "@/components/sections/home/content-section";
-import { BrandsBar } from "@/components/sections/home/brands-bar";
-import { StatsSection } from "@/components/sections/home/stats-section";
-import { EventsSection } from "@/components/sections/home/events-section";
-import { TechSection } from "@/components/sections/home/tech-section";
-import { ActivationsSection } from "@/components/sections/home/activations-section";
-import { GamesSection } from "@/components/sections/home/games-section";
-import { MapSection } from "@/components/sections/home/map-section";
-import type { Metadata } from "next";
+import { HeroSection } from '@/components/sections/home/hero-section'
+import { ContentSection } from '@/components/sections/home/content-section'
+import { BrandsBar } from '@/components/sections/home/brands-bar'
+import { StatsSection } from '@/components/sections/home/stats-section'
+import { EventsSection } from '@/components/sections/home/events-section'
+import { TechSection } from '@/components/sections/home/tech-section'
+import { ActivationsSection } from '@/components/sections/home/activations-section'
+import { GamesSection } from '@/components/sections/home/games-section'
+import { MapSection } from '@/components/sections/home/map-section'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Media Moob — Somos Creativos, Somos Curiosos",
+  title: 'Media Moob — Somos Creativos, Somos Curiosos',
   description:
-    "Creamos contenido, tecnología y experiencias únicas para más de 30 países. 1200 HS de contenido exclusivo, 550K suscriptores y 15 años de experiencia.",
-};
+    'Creamos contenido, tecnología y experiencias únicas para más de 30 países. 1200 HS de contenido exclusivo, 550K suscriptores y 15 años de experiencia.',
+}
 
 export default function HomePage() {
   return (
-    <>
-      <Header />
-      <main className="flex-1">
-        <HeroSection />
-        <ContentSection />
-        <BrandsBar />
-        <StatsSection />
-        <EventsSection />
-        <TechSection />
-        <ActivationsSection />
-        <GamesSection />
-        <MapSection />
-      </main>
-      <Footer />
-    </>
-  );
+    <main className="flex-1">
+      <HeroSection />
+      <ContentSection />
+      <BrandsBar />
+      <StatsSection />
+      <EventsSection />
+      <TechSection />
+      <ActivationsSection />
+      <GamesSection />
+      <MapSection />
+    </main>
+  )
 }
