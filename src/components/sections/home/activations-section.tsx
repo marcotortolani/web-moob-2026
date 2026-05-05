@@ -1,55 +1,64 @@
-"use client";
+'use client'
 
-import { motion } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { ArrowRight } from "lucide-react";
+import { motion } from 'motion/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { ArrowRight } from 'lucide-react'
 
 const activationImages = [
   {
-    src: "/images/activations/activation-1.jpg",
-    title: "ACTIVACIÓN EN CENTRO COMERCIAL CON BENJA TORRES. PERSONAL PARAGUAY",
-    slug: "benja-torres-personal-paraguay",
+    src: '/images/activations/activation-1.jpg',
+    title: 'ACTIVACIÓN EN CENTRO COMERCIAL CON BENJA TORRES. PERSONAL PARAGUAY',
+    slug: 'benja-torres-personal-paraguay',
   },
   {
-    src: "/images/activations/activation-2.jpg",
-    title: "ACCIÓN EL DÍA DE LA MUJER VODACOM MOZAMBIQUE",
-    slug: "dia-mujer-vodacom-mozambique",
+    src: '/images/activations/activation-2.jpg',
+    title: 'ACCIÓN EL DÍA DE LA MUJER VODACOM MOZAMBIQUE',
+    slug: 'dia-mujer-vodacom-mozambique',
   },
   {
-    src: "/images/activations/activation-3.jpg",
-    title: "STAND Y ACTIVACIÓN FITELVEN TEAM GAMERS",
-    slug: "fitelven-team-gamers",
+    src: '/images/activations/activation-3.jpg',
+    title: 'STAND Y ACTIVACIÓN FITELVEN TEAM GAMERS',
+    slug: 'fitelven-team-gamers',
   },
   {
-    src: "/images/activations/activation-4.jpg",
-    title: "CLÍNICA DE COCINA CON VICTOR MORENO",
-    slug: "clinica-cocina-victor-moreno",
+    src: '/images/activations/activation-4.jpg',
+    title: 'CLÍNICA DE COCINA CON VICTOR MORENO',
+    slug: 'clinica-cocina-victor-moreno',
   },
-];
+]
 
 export function ActivationsSection() {
   return (
-    <section className="bg-black py-12 lg:py-20 px-5 lg:px-16 xl:px-24" id="activaciones">
+    <section
+      className="bg-black py-12 lg:py-20 px-5 lg:px-16 xl:px-24"
+      id="activaciones"
+    >
       <div className="max-w-[1728px] mx-auto">
         {/* Desktop: heading left + description right */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
           className="mb-6 lg:mb-10"
         >
           <div className="lg:flex lg:items-end lg:justify-between lg:gap-12">
             <SectionHeading
               label="SOMOS"
-              title={<>Experiencias y<br />Activaciones</>}
+              title={
+                <>
+                  Activaciones y<br />
+                  Experiencias
+                </>
+              }
               titleClassName="lg:text-6xl xl:text-7xl"
             />
             <div className="flex flex-col gap-2 mt-3 lg:mt-0">
               <p className="text-white/80 text-sm lg:text-base leading-relaxed max-w-md">
-                Unimos el mundo OFF con el ON generando activaciones y experiencias para usuarios y partners.
+                Unimos el mundo OFF con el ON generando activaciones y
+                experiencias para usuarios y partners.
               </p>
               <Link
                 href="/somos-activaciones"
@@ -96,5 +105,5 @@ export function ActivationsSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

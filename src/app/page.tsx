@@ -1,6 +1,5 @@
 import { HeroSection } from '@/components/sections/home/hero-section'
 import { ContentSection } from '@/components/sections/home/content-section'
-import { BrandsBar } from '@/components/sections/home/brands-bar'
 import { StatsSection } from '@/components/sections/home/stats-section'
 import { EventsSection } from '@/components/sections/home/events-section'
 import { TechSection } from '@/components/sections/home/tech-section'
@@ -8,6 +7,8 @@ import { ActivationsSection } from '@/components/sections/home/activations-secti
 import { GamesSection } from '@/components/sections/home/games-section'
 import { MapSection } from '@/components/sections/home/map-section'
 import type { Metadata } from 'next'
+import { ProductsSlider } from '@/components/sections/home/products-slider'
+import { BrandsSlider } from '@/components/sections/home/brands-slider'
 
 export const metadata: Metadata = {
   title: 'Media Moob — Somos Creativos, Somos Curiosos',
@@ -20,10 +21,11 @@ export default function HomePage() {
     <main className="flex-1">
       <HeroSection />
       <ContentSection />
-      <BrandsBar />
+      <ProductsSlider />
       <StatsSection />
       <EventsSection />
       <TechSection />
+      <BrandsSlider />
       <ActivationsSection />
       <GamesSection />
       <MapSection />

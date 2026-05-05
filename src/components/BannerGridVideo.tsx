@@ -95,6 +95,7 @@ export const BannerGridVideo: React.FC<GridProps> = ({
               src={items.videoFrame}
               alt="Vista previa del video"
               fill
+              sizes="(max-width: 1280px) 66vw, 853px"
               priority
             />
           )}
@@ -148,6 +149,7 @@ export const BannerGridVideo: React.FC<GridProps> = ({
               src={items.imageH}
               alt="Horizontal Image"
               fill
+              sizes="(max-width: 1280px) 66vw, 853px"
             />
           ) : (
             <div className=" w-full h-full bg-linear-to-b from-neutral-600 to-neutral-800 animate-pulse flex items-center justify-center"></div>
@@ -183,6 +185,7 @@ export const BannerGridVideo: React.FC<GridProps> = ({
               src={items.imageV}
               alt="Vertical Image"
               fill
+              sizes="(max-width: 1280px) 33vw, 427px"
             />
           ) : (
             <div className=" w-full h-full bg-linear-to-r from-neutral-600 to-neutral-800 animate-pulse flex items-center justify-center"></div>

@@ -50,7 +50,7 @@ export function ContentSection() {
             label="SOMOS"
             title="Contenido"
             align="center"
-            className="flex-row justify-center lg:min-w-[300px]"
+            className="flex-row justify-center lg:min-w-75"
             titleClassName="text-5xl lg:text-6xl xl:text-7xl"
           />
         </motion.div>
@@ -122,7 +122,7 @@ export function ContentSection() {
           ))}
         </Swiper>
 
-        <div className="mt-8 lg:mt-10 flex justify-center pr-5 lg:pr-16 xl:pr-24">
+        <div className="mt-8 lg:mt-10 flex justify-center">
           <DemoButton
             href="/somos-contenido"
             className=" text-white tracking-tight"
