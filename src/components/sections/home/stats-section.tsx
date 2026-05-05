@@ -1,83 +1,87 @@
-"use client";
+'use client'
 
-import { motion, useInView, useMotionValue, useSpring } from "motion/react";
-import { useRef, useEffect } from "react";
-import { Play, Users, Clock } from "lucide-react";
+import { motion, useInView, useMotionValue, useSpring } from 'motion/react'
+import { useRef, useEffect } from 'react'
+import Image from 'next/image'
 
 const statsData = [
   {
     value: 1200,
-    unit: "HS",
-    label: "CONTENIDO EXCLUSIVO",
-    Icon: Play,
+    unit: ' HS',
+    label: 'CONTENIDO EXCLUSIVO',
+    icon: '/images/stats-contenido-exclusivo-icon.webp',
   },
   {
     value: 550,
-    unit: "K",
-    label: "SUSCRIPTORES EN NUESTROS PORTALES",
-    Icon: Users,
+    unit: 'K',
+    label: 'SUSCRIPTORES EN NUESTROS PORTALES',
+    icon: '/images/stats-suscriptores-icon.webp',
   },
   {
     value: 15,
-    unit: "años",
-    label: "EXPERIENCIA",
-    Icon: Clock,
+    unit: ' AÑOS',
+    label: 'EXPERIENCIA',
+    icon: '/images/stats-experiencia-icon.webp',
   },
-];
+]
 
 function AnimatedNumber({ value, unit }: { value: number; unit: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const motionValue = useMotionValue(0);
-  const springValue = useSpring(motionValue, { damping: 40, stiffness: 200 });
-  const isInView = useInView(ref, { once: true });
+  const ref = useRef<HTMLSpanElement>(null)
+  const motionValue = useMotionValue(0)
+  const springValue = useSpring(motionValue, { damping: 40, stiffness: 200 })
+  const isInView = useInView(ref, { once: true })
 
   useEffect(() => {
-    if (isInView) motionValue.set(value);
-  }, [isInView, motionValue, value]);
+    if (isInView) motionValue.set(value)
+  }, [isInView, motionValue, value])
 
   useEffect(() => {
-    return springValue.on("change", (latest) => {
+    return springValue.on('change', (latest) => {
       if (ref.current) {
-        ref.current.textContent = Math.round(latest).toString();
+        ref.current.textContent = Math.round(latest).toString()
       }
-    });
-  }, [springValue]);
+    })
+  }, [springValue])
 
   return (
-    <span className="text-4xl md:text-5xl lg:text-6xl font-black text-white">
-      <span ref={ref}>0</span>
+    <span className="flex items-baseline gap-0.5 font-display text-6xl md:text-7xl lg:text-8xl font-medium leading-none">
+      <span ref={ref} className="text-white">
+        0
+      </span>
       <span className="text-mint">{unit}</span>
     </span>
-  );
+  )
 }
 
 export function StatsSection() {
   return (
-    <section className="bg-mint/10 border-y border-mint/20 py-8 lg:py-12 px-5 lg:px-16 xl:px-24">
-      <div className="max-w-[1728px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-mint/20">
-          {statsData.map(({ value, unit, label, Icon }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex flex-col items-center gap-2 py-2 md:px-8 lg:px-16"
-            >
-              <div className="flex items-center gap-4">
-                <span className="w-10 h-10 lg:w-14 lg:h-14 rounded-full border border-mint/40 flex items-center justify-center">
-                  <Icon size={18} className="text-mint lg:w-6 lg:h-6" />
-                </span>
-                <AnimatedNumber value={value} unit={unit} />
-              </div>
-              <p className="text-white/50 text-[10px] lg:text-xs uppercase tracking-widest text-center max-w-[180px]">
+    <section className="py-10 lg:py-14 px-4 lg:px-16 xl:px-24">
+      <div className="w-fit max-w-sm md:max-w-2xl mx-auto flex flex-col items-start gap-8 lg:gap-10 pl-2 [@media(min-width:380px)]:pl-4 [@media(min-width:768px)]:pl-0">
+        {statsData.map(({ value, unit, label, icon }, i) => (
+          <motion.div
+            key={label}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.15 }}
+            className="flex items-center gap-4 lg:gap-8"
+          >
+            <Image
+              src={icon}
+              alt={label}
+              width={100}
+              height={100}
+              className="w-16 h-16 lg:w-20 lg:h-20 object-contain shrink-0"
+            />
+            <div className="flex items-center justify-between gap-4">
+              <AnimatedNumber value={value} unit={unit} />
+              <p className=" text-balance text-white font-light text-xs lg:text-sm uppercase tracking-widest max-w-40 leading-snug">
                 {label}
               </p>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
-  );
+  )
 }
