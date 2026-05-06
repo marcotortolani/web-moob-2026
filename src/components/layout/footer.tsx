@@ -1,6 +1,7 @@
-import Link from "next/link";
-import { InstagramIcon, LinkedinIcon } from "@/components/ui/social-icons";
-import { navLinks } from "@/lib/data/navigation";
+import Link from 'next/link'
+import { InstagramIcon, LinkedinIcon } from '@/components/ui/social-icons'
+import { navLinks } from '@/lib/data/navigation'
+import Image from 'next/image'
 
 export function Footer() {
   return (
@@ -9,24 +10,14 @@ export function Footer() {
         {/* Mobile: stacked centered, Desktop: horizontal columns */}
         <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <svg
-              width="44"
-              height="44"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <rect width="17" height="17" fill="#40b09d" />
-              <rect x="19" width="17" height="17" fill="#40b09d" />
-              <rect y="19" width="17" height="17" fill="#40b09d" opacity="0.6" />
-              <rect x="19" y="19" width="17" height="17" fill="#40b09d" opacity="0.3" />
-            </svg>
-            <span className="text-white font-bold text-base leading-tight tracking-wide">
-              MEDIA<br />MOOB
-            </span>
-          </div>
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/images/media-moob-logo-small.webp"
+              alt="Media Moob logo"
+              width={120}
+              height={40}
+            />
+          </Link>
 
           {/* Navigation — desktop only */}
           <nav className="hidden lg:flex flex-col gap-2">
@@ -54,7 +45,10 @@ export function Footer() {
               <br />
               República Argentina.
             </p>
-            <Link href="/#contacto" className="text-mint text-sm hover:underline">
+            <Link
+              href="/#contacto"
+              className="text-mint text-sm hover:underline"
+            >
               Hablemos!
             </Link>
           </div>
@@ -64,40 +58,43 @@ export function Footer() {
             <p className="hidden lg:block text-white/40 text-xs uppercase tracking-widest mb-1">
               Redes
             </p>
-            <div className="flex items-center gap-5">
-              <a
+            {/* Social */}
+            <div className=" flex items-center gap-3">
+              <Link
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-mint transition-colors"
-                aria-label="Instagram"
+                className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
               >
-                <InstagramIcon size={22} />
-              </a>
-              <a
+                <InstagramIcon size={28} />
+              </Link>
+              <Link
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-mint transition-colors"
-                aria-label="LinkedIn"
+                className=" bg-mint p-px rounded-xs  hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
               >
-                <LinkedinIcon size={22} />
-              </a>
+                <LinkedinIcon
+                  size={24}
+                  className="text-transparent fill-black"
+                />
+              </Link>
             </div>
           </div>
         </div>
 
         {/* Bottom row */}
-        <div className="flex flex-col items-center lg:flex-row lg:justify-between mt-8 pt-6 border-t border-white/5 gap-2">
+        <div className="flex flex-col items-center lg:flex-row lg:justify-between mt-8 pt-6 border-t border-white/5 gap-4">
           {/* Address — mobile only */}
-          <p className="text-white/40 text-sm text-center lg:hidden">
-            Guatemala 5582, Ciudad de Buenos Aires. República Argentina.
+          <p className="text-white/80 text-sm text-center lg:hidden">
+            Guatemala 5582, Ciudad de Buenos Aires. <br /> República Argentina.
           </p>
-          <p className="text-white/25 text-xs">
-            © {new Date().getFullYear()} Media Moob. Todos los derechos reservados.
+          <p className="text-white/40 text-xs">
+            © {new Date().getFullYear()} Media Moob. Todos los derechos
+            reservados.
           </p>
         </div>
       </div>
     </footer>
-  );
+  )
 }

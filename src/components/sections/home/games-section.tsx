@@ -1,86 +1,87 @@
-"use client";
+'use client'
 
-import { motion } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { ArrowRight } from "lucide-react";
-
-const games = [
-  { id: "trivia", label: "TRIVIAS", src: "/images/games/trivia.png" },
-  { id: "memotest", label: "MEMOTEST", src: "/images/games/memotest.png" },
-  { id: "puzzle", label: "PUZZLE", src: "/images/games/puzzle.png" },
-  { id: "paint", label: "PAINT", src: "/images/games/paint.png" },
-];
+import { motion } from 'motion/react'
+import Image from 'next/image'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { DemoButton } from '@/components/ui/demo-button'
 
 export function GamesSection() {
   return (
-    <section className="bg-black py-12 lg:py-20 px-5 lg:px-16 xl:px-24" id="juegos">
-      <div className="max-w-[1728px] mx-auto">
-        {/* Desktop: layout flex with description */}
+    <section
+      id="juegos"
+      className="relative w-full bg-mint py-16 lg:py-24 px-5 lg:px-16 xl:px-24 overflow-hidden"
+    >
+      <div className="z-0 absolute bottom-0 left-0 right-0 w-full h-2/3 bg-linear-to-t from-black via-black/90 to-black/0" />
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6 }}
+      >
+        <SectionHeading
+          label="SOMOS"
+          title={
+            <>
+              Juegos &amp;
+              <br />
+              Gamificación
+            </>
+          }
+          align="center"
+          className="justify-center gap-0"
+          titleClassName="text-black text-[2.5rem] leading-10 md:text-5xl lg:text-6xl xl:text-7xl"
+        />
+      </motion.div>
+      <div className="max-w-[1728px] mx-auto flex flex-col items-center -mt-10 ">
+        {/* Ruleta + phones */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="lg:flex lg:items-start lg:justify-between lg:gap-16"
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="relative w-full sm:max-w-sm md:max-w-md lg:max-w-xl "
         >
-          {/* Left: heading + games */}
-          <div className="flex-1">
-            <div className="flex items-end justify-between mb-6 lg:mb-10">
-              <SectionHeading
-                label="SOMOS"
-                title={<>Juegos &amp;<br />Gamificación</>}
-                titleClassName="lg:text-6xl xl:text-7xl"
-              />
-              <Link
-                href="/somos-juegos"
-                className="text-mint text-sm flex items-center gap-1 hover:gap-2 transition-all ml-4 shrink-0"
-              >
-                ver más <ArrowRight size={14} />
-              </Link>
-            </div>
+          <Image
+            src="/images/roullete-wheel.webp"
+            alt="Ruleta"
+            width={800}
+            height={800}
+            className="w-full mx-auto opacity-100 scale-110"
+          />
+          <Image
+            src="/images/mockups-trivias-phones.webp"
+            alt="Mockups de trivias en teléfonos"
+            width={900}
+            height={900}
+            // className="absolute inset-0 w-full h-full object-contain translate-y-[50%]"
+            className="w-full translate-y-[-0%] -mt-40 object-contain"
+          />
+        </motion.div>
 
-            {/* Games icons row */}
-            <div className="flex justify-start gap-6 lg:gap-10">
-              {games.map(({ id, label, src }, i) => (
-                <motion.div
-                  key={id}
-                  initial={{ opacity: 0, y: 20, scale: 0.85 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="flex flex-col items-center gap-2"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 3 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-16 h-16 md:w-20 md:h-20 lg:w-28 lg:h-28 rounded-2xl bg-surface-light border border-white/10 overflow-hidden relative hover:border-mint/50 transition-all cursor-pointer"
-                  >
-                    <Image src={src} alt={label} fill className="object-cover" sizes="112px" />
-                  </motion.div>
-                  <span className="text-white/60 text-[9px] md:text-xs lg:text-sm font-bold tracking-widest uppercase">
-                    {label}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="relative z-10 text-white/80 text-center text-pretty text-sm lg:text-base leading-tight mt-10 sm:mt-14 md:mt-20 lg:mt-32 max-w-md mx-auto"
+        >
+          Desarrollamos diferentes juegos en base a nuestros productos,
+          adaptados a diferentes temáticas con premios exclusivos para nuestros
+          usuarios.
+        </motion.p>
 
-          {/* Right: description — desktop only */}
-          <div className="hidden lg:flex flex-col justify-center max-w-xs xl:max-w-sm mt-0 pt-2">
-            <p className="text-white/70 text-base leading-relaxed">
-              Desarrollamos diferentes juegos en base a nuestros productos, adaptados a diferentes temáticas con premios exclusivos para nuestros usuarios.
-            </p>
-            <Link
-              href="/somos-juegos"
-              className="mt-4 text-mint text-sm flex items-center gap-1 hover:gap-2 transition-all"
-            >
-              Conocé nuestros juegos <ArrowRight size={14} />
-            </Link>
-          </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="relative z-10 mt-6"
+        >
+          <DemoButton href="/somos-juegos" className="text-white">
+            CONOCÉ NUESTROS JUEGOS
+          </DemoButton>
         </motion.div>
       </div>
     </section>
-  );
+  )
 }

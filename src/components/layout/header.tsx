@@ -62,15 +62,15 @@ export function Header() {
           <div className=" flex gap-6 items-center">
             {/* Desktop Social Icons */}
             <div className=" flex items-center gap-4">
-              <a
+              <Link
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
               >
                 <InstagramIcon size={18} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -80,7 +80,7 @@ export function Header() {
                   size={18}
                   className="text-transparent fill-black"
                 />
-              </a>
+              </Link>
             </div>
             {/* Mobile Menu Button */}
             <button
@@ -143,22 +143,22 @@ export function Header() {
 
             {/* Social */}
             <div className="flex gap-4 mt-auto">
-              <a
+              <Link
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/70 hover:text-mint"
               >
                 <InstagramIcon size={22} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/70 hover:text-mint"
               >
                 <LinkedinIcon size={22} />
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
