@@ -73,7 +73,7 @@ const slides: EventSlide[] = [
 export function ActivationsSection() {
   return (
     <section
-      className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20 mt-24"
+      className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20 mt-32"
       id="activaciones"
     >
       {/* Heading centrado + grid + párrafo encimado */}
@@ -83,7 +83,7 @@ export function ActivationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="absolute top-0 w-full py-4 z-50 -translate-y-20 bg-linear-to-b from-black via-black to-transparent"
+          className="absolute top-0 w-full py-4 z-50 -translate-y-30 bg-linear-to-b from-black via-black to-transparent"
         >
           <SectionHeading
             label="SOMOS"

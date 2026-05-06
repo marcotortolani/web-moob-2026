@@ -5,8 +5,6 @@ import { SectionHeading } from '@/components/ui/section-heading'
 import { DemoButton } from '@/components/ui/demo-button'
 import { EventsSlider, type EventSlide } from '@/components/ui/events-slider'
 
-const POSTER = '/images/home/slider-contenido/carrousel-cat-musica.webp'
-
 const events: EventSlide[] = [
   {
     id: 'cmf',
@@ -14,7 +12,7 @@ const events: EventSlide[] = [
     videoUrl: 'https://vimeo.com/1163393158',
     description:
       'Primer festival internacional que presenta a los youtubers/influencers. Más de 30 artistas en escena. 2 escenarios. Sets de música, dj set, desafios, paneles, meet & greet, desfiles, humor, belleza.',
-    posterSrc: '/images/home/slider-contenido/carrousel-cat-musica.webp',
+    posterSrc: '/images/home/slider-eventos/cmf-evento.webp',
     logoSrc: '/images/logos-eventos/evento-cmf.webp',
   },
   {
@@ -23,7 +21,7 @@ const events: EventSlide[] = [
     videoUrl: 'https://vimeo.com/1166471021',
     description:
       'Cruce de campeones reúne a los máximos exponenetes de el Freestyle en Español, en un evento donde los artistas compiten para llegar a una gran final donde puede coronarse.',
-    posterSrc: POSTER,
+    posterSrc: '/images/home/slider-eventos/cdc-evento.webp',
     logoSrc: '/images/logos-eventos/evento-cdc.webp',
   },
   {
@@ -32,7 +30,7 @@ const events: EventSlide[] = [
     videoUrl: 'https://vimeo.com/1166471396',
     description:
       'El Personal Fest fue uno de los festivales de música más importantes de Argentina, realizado principalmente en Buenos Aires desde 2004 hasta aproximadamente 2018. Organizado por la empresa de telefonía Personal, se destacó por reunir artistas internacionales de primera línea (rock, pop, electrónica) con bandas locales en múltiples escenarios.',
-    posterSrc: POSTER,
+    posterSrc: '/images/home/slider-eventos/personal-fest-evento.webp',
     logoSrc: '/images/logos-eventos/evento-personal-fest.webp',
   },
   {
@@ -41,7 +39,7 @@ const events: EventSlide[] = [
     videoUrl: 'https://vimeo.com/1167369709',
     description:
       '"Goals" es un evento vinculado al gaming amateur, y en la cual miles de chicos tuvieron la oportunidad de jugar por cumplir un sueño: el de jugar junto a sus ídolos el día del evento.',
-    posterSrc: POSTER,
+    posterSrc: '/images/home/slider-eventos/copa-goals-evento.webp',
     logoSrc: '/images/logos-eventos/evento-copa-goals.webp',
   },
   {
@@ -50,7 +48,7 @@ const events: EventSlide[] = [
     videoUrl: 'https://vimeo.com/1167497056',
     description:
       'Comic Con es la principal convención de cultura pop, que reúne a fans de cómics, anime, cine, videojuegos y cosplay en un espacio único.',
-    posterSrc: POSTER,
+    posterSrc: '/images/home/slider-eventos/comiccon-evento.webp',
     logoSrc: '/images/logos-eventos/evento-comicon.webp',
   },
   {
@@ -59,7 +57,7 @@ const events: EventSlide[] = [
     videoUrl: 'https://vimeo.com/1167462693',
     description:
       'Copa UNKLA / Team Gamers. Planificación, Desarrollo y Ejecución de Torneo de Gaming.',
-    posterSrc: POSTER,
+    posterSrc: '/images/home/slider-eventos/unklacup-evento.webp',
     logoSrc: '/images/logos-eventos/evento-copa-unkla.webp',
   },
 ]

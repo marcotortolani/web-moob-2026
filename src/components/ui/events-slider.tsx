@@ -63,14 +63,14 @@ function EventSlideContent({
         sizes="(max-width: 1024px) 90vw, 60vw"
         priority={index === 0}
       />
-      <div className="absolute top-0 w-full h-full -mt-1 bg-linear-to-b from-black via-black/30 to-black/0 pointer-events-none" />
-      <div className="absolute bottom-0 w-full h-full -mb-1 bg-linear-to-t from-black via-black/50 to-black/0 pointer-events-none" />
+      <div className="absolute top-0 w-full h-2/3 -mt-1 bg-linear-to-b from-black via-black/50 to-black/0 pointer-events-none" />
+      <div className="absolute bottom-0 w-full h-2/3 -mb-1 bg-linear-to-t from-black via-black/60 to-black/0 pointer-events-none" />
 
       <div className="z-50 relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border-white border-2">
         {isActive && event.videoUrl && (
           <ActiveVideoPlayer url={event.videoUrl} />
         )}
-        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/20 bg-white/10 pointer-events-none" />
       </div>
 
       <div className="absolute bottom-0 h-28 w-60 lg:h-44 lg:w-72">
@@ -119,7 +119,7 @@ export function EventsSlider({
     <Swiper
       modules={[Pagination, Autoplay]}
       slidesPerView={1}
-      spaceBetween={0}
+      spaceBetween={10}
       speed={1200}
       autoplay={{
         delay: 6000,
@@ -132,7 +132,11 @@ export function EventsSlider({
     >
       {events.map((event, i) => (
         <SwiperSlide key={event.id}>
-          <EventSlideContent event={event} isActive={activeIndex === i} index={i} />
+          <EventSlideContent
+            event={event}
+            isActive={activeIndex === i}
+            index={i}
+          />
         </SwiperSlide>
       ))}
     </Swiper>

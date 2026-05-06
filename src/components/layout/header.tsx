@@ -23,9 +23,9 @@ export function Header() {
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-[50] transition-all duration-200 bg-linear-to-b',
+          'fixed top-0 left-0 right-0 z-[100] transition-all duration-200 ease-in-out bg-linear-to-b',
           scrolled
-            ? 'from-black via-black/80 to-black/50 backdrop-blur-sm'
+            ? 'from-black via-black/80 to-black/50 backdrop-blur-sm backdrop-brightness-50 border-b-white/40 border-b'
             : 'from-black/80 via-black/40 to-transparent',
         )}
       >
@@ -102,7 +102,7 @@ export function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed inset-0 z-[60] bg-black flex flex-col px-8 pt-8 pb-12"
+            className="fixed inset-0 z-[1000] bg-black flex flex-col px-8 pt-8 pb-12"
           >
             {/* Close */}
             <div className="flex justify-between items-center mb-12">
