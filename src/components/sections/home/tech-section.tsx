@@ -1,89 +1,79 @@
 'use client'
 
 import { motion } from 'motion/react'
-import Link from 'next/link'
 import Image from 'next/image'
 import { SectionHeading } from '@/components/ui/section-heading'
-import {
-  Bell,
-  MessageSquare,
-  BarChart2,
-  Package,
-  Gift,
-  ArrowRight,
-} from 'lucide-react'
+import { BannerGridVideo } from '@/components/BannerGridVideo'
+import { DemoButton } from '@/components/ui/demo-button'
+
+const GRID_ITEMS = {
+  video: 'https://vimeo.com/1162197714',
+  videoFrame:
+    '/images/grid/tecnologia/home-somostecnologia-grilla-horizontal02.webp',
+  imageH:
+    '/images/grid/tecnologia/home-somostecnologia-grilla-horizontal01.webp',
+  imageV: '/images/grid/tecnologia/home-somostecnologia-grilla-vertical02.webp',
+}
 
 const services = [
-  { id: 'sat-push', label: 'Sat Push', Icon: Bell },
-  { id: 'sms', label: 'SMS', Icon: MessageSquare },
-  { id: 'publicidad', label: 'Publicidad', Icon: BarChart2 },
-  { id: 'bundle', label: 'Bundle', Icon: Package },
-  { id: 'data-rewards', label: 'Data Rewards', Icon: Gift },
+  {
+    id: 'sat-push',
+    label: 'SAT PUSH',
+    icon: '/images/tech-sat-push-icon.webp',
+  },
+  { id: 'sms', label: 'SMS', icon: '/images/tech-sms-icon.webp' },
+  {
+    id: 'publicidad',
+    label: 'PUBLICIDAD',
+    icon: '/images/tech-publicidad-icon.webp',
+  },
+  { id: 'bundle', label: 'BUNDLE', icon: '/images/tech-bundle-icon.webp' },
+  {
+    id: 'data-rewards',
+    label: 'DATA REWARDS',
+    icon: '/images/tech-data-rewards-icon.webp',
+  },
 ]
 
 export function TechSection() {
   return (
     <section
-      className="bg-black py-12 lg:py-20 px-5 lg:px-16 xl:px-24"
+      className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20"
       id="tecnologia"
     >
-      <div className="max-w-[1728px] mx-auto">
-        {/* Desktop: heading left + description right */}
+      <div className="relative w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="mb-2 lg:mb-10"
+          className="absolute top-0 w-full py-4 z-50 -translate-y-10 bg-linear-to-b from-black via-black to-transparent"
         >
-          <div className="lg:flex lg:items-start lg:justify-between lg:gap-12">
-            <div className="lg:min-w-[300px]">
-              <SectionHeading
-                label="SOMOS"
-                title="Tecnología"
-                titleClassName="lg:text-6xl xl:text-7xl"
-              />
-            </div>
-            <div className="flex flex-col gap-3 mt-3 lg:mt-6 max-w-xl">
-              <p className="text-white/80 text-sm lg:text-base leading-relaxed">
-                <span className="font-bold text-mint">
-                  Aplicamos tecnología propia para amplificar su alcance e
-                  impacto.
-                </span>{' '}
-                Contamos con herramientas como MCP, Publicidad Sat y Push, que
-                optimizan la distribución y monetización de los contenidos.
-              </p>
-              <Link
-                href="/somos-tecnologia"
-                className="hidden lg:inline-flex text-mint text-sm items-center gap-1 hover:gap-2 transition-all self-start"
-              >
-                ver más <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Tech image — desktop only */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="hidden lg:block relative w-full aspect-[3/1] rounded-xl overflow-hidden mb-10 bg-surface-light"
-        >
-          <Image
-            src="/images/hero-bg.webp"
-            alt="Tecnología Media Moob"
-            fill
-            className="object-cover opacity-60"
-            sizes="100vw"
+          <SectionHeading
+            label="SOMOS"
+            title="Tecnología"
+            align="center"
+            className="justify-center gap-0 lg:min-w-75"
+            titleClassName="text-5xl lg:text-6xl xl:text-7xl"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
         </motion.div>
 
-        {/* Services row */}
-        <div className="flex justify-between mt-8 lg:mt-0 gap-2 lg:gap-6">
-          {services.map(({ id, label, Icon }, i) => (
+        <BannerGridVideo items={GRID_ITEMS} videoPosition="bottom-left" />
+
+        <div className="z-50 absolute -bottom-5 translate-y-4 w-full mx-auto px-5 lg:px-16 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
+          <p className="text-white/80 text-pretty text-xs lg:text-sm leading-4 mt-3 lg:mt-6 max-w-xl mx-auto">
+            <span className="font-bold text-mint">
+              Aplicamos tecnología propia para amplificar su alcance e impacto.
+            </span>{' '}
+            Contamos con herramientas como MCP, Publicidad Sat y Push, que
+            optimizan la distribución y monetización de los contenidos.
+          </p>
+        </div>
+      </div>
+
+      <div className="relative mt-20 px-5 lg:px-16 xl:px-24">
+        <div className="flex justify-between gap-2 lg:gap-6">
+          {services.map(({ id, label, icon }, i) => (
             <motion.div
               key={id}
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -95,25 +85,30 @@ export function TechSection() {
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full border-2 border-mint/30 bg-mint/5 flex items-center justify-center hover:border-mint hover:bg-mint/15 transition-all cursor-pointer"
+                className="relative w-14 h-14 p-3 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-mint overflow-hidden cursor-pointer shrink-0"
               >
-                <Icon className="text-mint w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+                <Image
+                  src={icon}
+                  alt={label}
+                  className="w-full h-full"
+                  width={80}
+                  height={80}
+                />
               </motion.div>
-              <span className="text-white/70 text-[9px] md:text-xs lg:text-sm text-center font-medium uppercase tracking-wide leading-tight">
+              <span className="text-white text-sm md:text-base lg:text-lg text-center font-display font-medium uppercase tracking-wide leading-tight">
                 {label}
               </span>
             </motion.div>
           ))}
         </div>
 
-        {/* Mobile: ver más link */}
-        <div className="lg:hidden flex justify-center mt-6">
-          <Link
+        <div className="mt-8 lg:mt-10 flex justify-center">
+          <DemoButton
             href="/somos-tecnologia"
-            className="text-mint text-sm flex items-center gap-1"
+            className="text-white tracking-tight"
           >
-            Conocé nuestros servicios <ArrowRight size={14} />
-          </Link>
+            VER TODAS LAS SOLUCIONES DE TECNOLOGÍA
+          </DemoButton>
         </div>
       </div>
     </section>

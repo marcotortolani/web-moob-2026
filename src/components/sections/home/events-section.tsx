@@ -218,7 +218,7 @@ export function EventsSection() {
             speed={1200}
             autoplay={{
               delay: 6000,
-              disableOnInteraction: true,
+              disableOnInteraction: false,
               pauseOnMouseEnter: true,
             }}
             pagination={{ clickable: true }}
