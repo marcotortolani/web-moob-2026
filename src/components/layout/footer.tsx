@@ -12,7 +12,7 @@ export function Footer() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/images/media-moob-logo-small.webp"
+              src="/images/media-moob-logo-large.webp"
               alt="Media Moob logo"
               width={120}
               height={40}
