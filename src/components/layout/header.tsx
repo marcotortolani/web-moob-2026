@@ -30,15 +30,7 @@ export function Header() {
         )}
       >
         <div className="flex items-center justify-between px-5 py-4 max-w-[1728px] mx-auto">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/images/media-moob-logo-small.webp"
-              alt="Media Moob logo"
-              width={90}
-              height={34}
-            />
-          </Link>
+          <MediaMoobLogo />
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-7">
@@ -169,32 +161,13 @@ export function Header() {
 
 function MediaMoobLogo() {
   return (
-    <div className="flex items-center gap-2">
-      <svg
-        width="36"
-        height="36"
-        viewBox="0 0 36 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <rect width="17" height="17" fill="#40b09d" />
-        <rect x="19" width="17" height="17" fill="#40b09d" />
-        <rect y="19" width="17" height="17" fill="#40b09d" opacity="0.6" />
-        <rect
-          x="19"
-          y="19"
-          width="17"
-          height="17"
-          fill="#40b09d"
-          opacity="0.3"
-        />
-      </svg>
-      <span className="text-white font-bold text-sm leading-tight tracking-wide">
-        MEDIA
-        <br />
-        MOOB
-      </span>
-    </div>
+    <Link href="/">
+      <Image
+        src="/images/media-moob-logo-small.webp"
+        alt="Media Moob logo"
+        width={90}
+        height={34}
+      />
+    </Link>
   )
 }
