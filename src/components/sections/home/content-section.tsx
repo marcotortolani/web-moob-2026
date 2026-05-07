@@ -33,7 +33,7 @@ const GRID_ITEMS = {
 export function ContentSection() {
   return (
     <section
-      className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20 "
+      className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20 mt-10 "
       id="contenido"
     >
       {/* Desktop: heading left + description right */}
@@ -44,13 +44,13 @@ export function ContentSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className=" absolute top-0 w-full py-4 z-50 -translate-y-10 bg-linear-to-b from-black via-black to-transparent "
+          className=" absolute top-0 w-full py-4 z-50 -translate-y-14 bg-linear-to-b from-black via-black to-transparent "
         >
           <SectionHeading
             label="SOMOS"
             title="Contenido"
             align="center"
-            className="flex-row justify-center lg:min-w-75"
+            className="flex-col justify-center gap-0 lg:min-w-75 "
             titleClassName="text-5xl lg:text-6xl xl:text-7xl"
           />
         </motion.div>

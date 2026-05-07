@@ -25,7 +25,7 @@ export function Header() {
         className={cn(
           'fixed top-0 left-0 right-0 z-[100] transition-all duration-200 ease-in-out bg-linear-to-b',
           scrolled
-            ? 'from-black via-black/80 to-black/50 backdrop-blur-sm backdrop-brightness-50 border-b-white/40 border-b'
+            ? 'from-black via-black/80 to-black/50 backdrop-blur-sm backdrop-brightness-50 border-b-white/20 border-b'
             : 'from-black/80 via-black/40 to-transparent',
         )}
       >

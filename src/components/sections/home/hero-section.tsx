@@ -62,7 +62,7 @@ export function HeroSection() {
       </div>
 
       {/* Content — mobile: column, desktop: flex row */}
-      <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between min-h-screen px-6 pt-28 pb-0 lg:px-16 xl:px-24 max-w-[1728px] mx-auto">
+      <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between min-h-screen px-4 pt-28 pb-0 lg:px-16 xl:px-24 max-w-[1728px] mx-auto">
         {/* Left side: text + CTA + categories */}
         <div className="flex flex-col mt-auto lg:mt-0 lg:flex-1 lg:max-w-[55%]">
           {/* Hero text */}
@@ -176,7 +176,7 @@ function NavCategories() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.6, duration: 0.6 }}
-      className="w-full flex justify-between mx-auto lg:gap-8 mt-8 overflow-x-auto pb-1 scrollbar-none bg-sky-800/0"
+      className="w-full max-w-100 flex justify-between mx-auto lg:gap-8 mt-8 overflow-x-auto pb-1 scrollbar-none "
     >
       {items.map(({ label, image, link }, i) => (
         <Link
@@ -188,7 +188,7 @@ function NavCategories() {
           ${i === 2 && 'mx-2 lg:mx-0'}
           ${i === 3 && 'mt-8 lg:mt-0'}
           ${i === 4 && 'mt-20 lg:mt-0'}
-          flex flex-col items-center gap-1.5 min-w-16 shrink-0 group`}
+          flex flex-col items-center gap-1 min-w-10 shrink-0 group`}
         >
           <span className="relative w-12 h-12 lg:w-14 lg:h-14 rounded-full lg:bg-white/10 border lg:border-white/20 flex items-center justify-center group-hover:border-mint group-hover:bg-mint/10 transition-all">
             <Image
@@ -209,62 +209,64 @@ function NavCategories() {
   )
 }
 
-// Flags that orbit the globe alongside the text ring
-const ORBIT_FLAGS = [
-  '🇵🇪',
-  '🇧🇴',
-  '🇵🇾',
-  '🇨🇱',
-  '🇳🇬',
-  '🇿🇲',
-  '🇰🇪',
-  '🇦🇪',
-  '🇧🇷',
-  '🇦🇷',
-  '🇨🇴',
-  '🇻🇪',
-  '🇪🇸',
-  '🇲🇿',
-  '🇪🇨',
+// Flags that orbit the globe alongside the text ring — full set (sm+)
+// Each entry references an SVG in /public/flags/{iso}.svg (from lipis/flag-icons)
+const ORBIT_FLAGS_FULL = [
+  { iso: 'pe', name: 'Perú' },
+  { iso: 'bo', name: 'Bolivia' },
+  { iso: 'py', name: 'Paraguay' },
+  { iso: 'cl', name: 'Chile' },
+  { iso: 'zm', name: 'Zambia' },
+  { iso: 'ke', name: 'Kenia' },
+  { iso: 'gh', name: 'Ghana' },
+  { iso: 'br', name: 'Brasil' },
+  { iso: 'ar', name: 'Argentina' },
+  { iso: 'co', name: 'Colombia' },
+  { iso: 've', name: 'Venezuela' },
+  { iso: 'es', name: 'España' },
+  { iso: 'mz', name: 'Mozambique' },
+  { iso: 'ec', name: 'Ecuador' },
+]
+// Compact set shown on small screens (< sm / iPhone SE) — 9 most representative
+const ORBIT_FLAGS_COMPACT = [
+  { iso: 'mx', name: 'México' },
+  { iso: 'co', name: 'Colombia' },
+  { iso: 'pe', name: 'Perú' },
+  { iso: 'br', name: 'Brasil' },
+  { iso: 'ar', name: 'Argentina' },
+  { iso: 'cl', name: 'Chile' },
+  { iso: 'es', name: 'España' },
+  { iso: 've', name: 'Venezuela' },
+  { iso: 'mz', name: 'Mozambique' },
 ]
 
 // Positions as fraction (0-1) along the circle path (0 = 9 o'clock, clockwise)
-// Distributed in the gaps between text segments:
-//   Text occupies ~0-0.07, 0.10-0.26, 0.705-0.79, 0.83-0.97
-const FLAG_POSITIONS = [
-  // 0.685, // gap 1
-  0.27,
-  0.3,
-  0.33,
-  0.36,
-  0.39,
-  0.42,
-  0.45,
-  0.48, // gap 2
-  0.51,
-  0.54,
-  0.57,
-  0.6,
-  0.63,
+// Distributed in the gap between text segments (~0.27–0.69)
+// 14 flags, step 0.03 (igual al original) — el arco termina antes (0.66) para
+// dejar más espacio al texto que sigue
+const FLAG_POSITIONS_FULL = [
+  0.27, 0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.48, 0.51, 0.54, 0.57, 0.6, 0.63,
   0.66,
-  0.69,
-  // 0.69, // gap 2 cont
-  // 0.805, // gap 3
-  // 0.975, // gap 4
+]
+// 9 flags evenly spaced across the same arc (step = 0.05)
+const FLAG_POSITIONS_COMPACT = [
+  0.27, 0.32, 0.37, 0.42, 0.47, 0.52, 0.57, 0.62, 0.67,
 ]
 
 // Convert a position t (0-1 along SVG circle path starting at left, clockwise) to x/y %
-function orbitPosition(t: number): { x: number; y: number } {
+// `radius` matches the SVG circle path radius (170 for sm+, 185 for compact <sm)
+function orbitPosition(t: number, radius = 170): { x: number; y: number } {
   const angle = 2 * Math.PI * t
   return {
-    x: ((200 - 170 * Math.cos(angle)) / 400) * 100,
-    y: ((200 - 170 * Math.sin(angle)) / 400) * 100,
+    x: ((200 - radius * Math.cos(angle)) / 400) * 100,
+    y: ((200 - radius * Math.sin(angle)) / 400) * 100,
   }
 }
 
 function GlobeDecoration() {
   return (
-    <div className="relative w-96 h-96 lg:w-125 lg:h-125 xl:w-150 xl:h-150">
+    <div className="relative w-72 h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-108 md:h-108 lg:w-125 lg:h-125 xl:w-150 xl:h-150 2xl:w-170 2xl:h-170 mt-4">
+      <div className="hidden lg:block absolute w-full h-full rounded-full bg-radial from-white/5 to-transparent backdrop-blur-xl " />
       {/* Three.js dotted globe — fills the container */}
       <LazyDottedGlobe />
 
@@ -276,10 +278,73 @@ function GlobeDecoration() {
         className="absolute inset-0 animate-spin-slow pointer-events-none"
         style={{ animationDuration: '30s' }}
       >
-        {/* SVG text ring */}
+        {/* SVG text ring — compact (<sm): radius 185, sin "estamos en" */}
         <svg
           viewBox="0 0 400 400"
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-full h-full sm:hidden"
+          aria-hidden="true"
+        >
+          <defs>
+            {/* Path = 1.5 vueltas (540°). El tercer arco se superpone al primero
+                visualmente, pero duplica el largo de path disponible para que el
+                texto pueda extenderse sin cortarse. Offsets = original / 1.5. */}
+            <path
+              id="outerCircleCompact"
+              d="M 200,200 m -185,0 a 185,185 0 1,1 370,0 a 185,185 0 1,1 -370,0 a 185,185 0 1,1 370,0"
+            />
+          </defs>
+          <text
+            fill="#fff"
+            fontSize="14"
+            fontFamily="poppins"
+            letterSpacing="2"
+            opacity="0.9"
+          >
+            <textPath
+              href="#outerCircleCompact"
+              startOffset="4.67%"
+              className="uppercase font-bold"
+            >
+              {' '}
+              • más de 30 países •{' '}
+            </textPath>
+          </text>
+          <text
+            fill="white"
+            fontSize="13"
+            fontFamily="poppins"
+            letterSpacing="2"
+            opacity="0.95"
+          >
+            <textPath
+              href="#outerCircleCompact"
+              startOffset="48.33%"
+              className="uppercase"
+            >
+              aquí llegamos con
+            </textPath>
+          </text>
+          <text
+            fill="#40b09d"
+            fontSize="13"
+            fontFamily="poppins"
+            letterSpacing="2"
+            opacity="0.95"
+          >
+            <textPath
+              href="#outerCircleCompact"
+              startOffset="58.5%"
+              className="uppercase font-bold"
+            >
+              nuestras operaciones
+            </textPath>
+          </text>
+        </svg>
+
+        {/* SVG text ring — full (sm+): radius 170, los 4 textos */}
+        <svg
+          viewBox="0 0 400 400"
+          className="absolute inset-0 w-full h-full hidden sm:block"
           aria-hidden="true"
         >
           <defs>
@@ -295,7 +360,11 @@ function GlobeDecoration() {
             letterSpacing="3"
             opacity="0.8"
           >
-            <textPath href="#outerCircle" className="uppercase">
+            <textPath
+              href="#outerCircle"
+              className="uppercase"
+              startOffset="0.5%"
+            >
               estamos en
             </textPath>
           </text>
@@ -316,14 +385,14 @@ function GlobeDecoration() {
           </text>
           <text
             fill="white"
-            fontSize="9"
+            fontSize="11"
             fontFamily="poppins"
             letterSpacing="2"
             opacity="0.95"
           >
             <textPath
               href="#outerCircle"
-              startOffset="70.5%"
+              startOffset="68%"
               className="uppercase"
             >
               aquí llegamos con
@@ -331,14 +400,14 @@ function GlobeDecoration() {
           </text>
           <text
             fill="#40b09d"
-            fontSize="9"
+            fontSize="11"
             fontFamily="poppins"
             letterSpacing="2"
             opacity="0.95"
           >
             <textPath
               href="#outerCircle"
-              startOffset="83%"
+              startOffset="82%"
               className="uppercase font-bold"
             >
               nuestras operaciones •{' '}
@@ -346,22 +415,52 @@ function GlobeDecoration() {
           </text>
         </svg>
 
-        {/* Flag circles — counter-rotate to stay upright */}
-        {ORBIT_FLAGS.map((flag, i) => {
-          const { x, y } = orbitPosition(FLAG_POSITIONS[i])
+        {/* Compact flags — visible only on small screens (< sm), orbit radius 185 */}
+        {ORBIT_FLAGS_COMPACT.map(({ iso, name }, i) => {
+          const { x, y } = orbitPosition(FLAG_POSITIONS_COMPACT[i], 185)
           return (
             <div
-              key={`flag-${i}`}
-              className="absolute flex items-center justify-center w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/70 border border-white/20 backdrop-blur-sm"
+              key={`flag-compact-${iso}`}
+              className="sm:hidden absolute w-6 h-6 -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden border-2 border-white/60 bg-black shadow-md"
               style={{
                 left: `${x}%`,
                 top: `${y}%`,
                 animation: 'spin-slow 30s linear infinite reverse',
               }}
             >
-              <span className="text-[10px] md:text-xs lg:text-sm leading-none">
-                {flag}
-              </span>
+              <Image
+                src={`/flags/${iso}.svg`}
+                alt={name}
+                fill
+                unoptimized
+                className="object-cover"
+                sizes="28px"
+              />
+            </div>
+          )
+        })}
+
+        {/* Full flags — visible on sm+ screens */}
+        {ORBIT_FLAGS_FULL.map(({ iso, name }, i) => {
+          const { x, y } = orbitPosition(FLAG_POSITIONS_FULL[i])
+          return (
+            <div
+              key={`flag-full-${iso}`}
+              className="hidden sm:block absolute w-8 h-8 sm:w-6 sm:h-6 lg:w-8 lg:h-8 -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden border-2 border-white/60 bg-black shadow-md"
+              style={{
+                left: `${x}%`,
+                top: `${y}%`,
+                animation: 'spin-slow 30s linear infinite reverse',
+              }}
+            >
+              <Image
+                src={`/flags/${iso}.svg`}
+                alt={name}
+                fill
+                unoptimized
+                className="object-cover"
+                sizes="(min-width: 1280px) 56px, (min-width: 1024px) 48px, 32px"
+              />
             </div>
           )
         })}

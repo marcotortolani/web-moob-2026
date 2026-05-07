@@ -1,6 +1,7 @@
-"use client";
+'use client'
 
-import { motion } from "motion/react";
+import { LazyDottedGlobe } from '@/components/ui/dotted-globe-lazy'
+import { motion } from 'motion/react'
 
 export function MapSection() {
   return (
@@ -9,12 +10,12 @@ export function MapSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
           className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-10 lg:gap-20"
         >
           {/* Globe */}
-          <div className="relative w-72 h-72 md:w-105 md:h-105 lg:w-136 lg:h-136 shrink-0">
+          {/* <div className="relative w-72 h-72 md:w-105 md:h-105 lg:w-136 lg:h-136 shrink-0">
             <svg
               viewBox="0 0 400 400"
               className="w-full h-full"
@@ -47,12 +48,16 @@ export function MapSection() {
               <circle cx="200" cy="200" r="8" fill="#40b09d" opacity="0.8" />
               <circle cx="200" cy="200" r="4" fill="white" />
             </svg>
+          </div> */}
+          {/* Three.js dotted globe — fills the container */}
+          <div className="relative w-72 h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-108 md:h-108 lg:w-125 lg:h-125 xl:w-150 xl:h-150 2xl:w-170 2xl:h-170 mt-4">
+            <LazyDottedGlobe />
           </div>
 
           {/* Text */}
           <div className="text-center lg:text-left max-w-sm">
             <h3 className="text-white text-3xl lg:text-5xl xl:text-6xl font-extrabold italic leading-tight">
-              estamos en más de{" "}
+              estamos en más de{' '}
               <span className="text-mint block">30 países</span>
             </h3>
             <p className="text-white/40 text-base lg:text-lg mt-4">
@@ -60,23 +65,25 @@ export function MapSection() {
             </p>
             {/* Country grid teaser */}
             <div className="flex flex-wrap gap-2 mt-6 justify-center lg:justify-start">
-              {["🇦🇷", "🇧🇷", "🇲🇽", "🇨🇴", "🇵🇾", "🇵🇪", "🇿🇦", "🇲🇿", "🇰🇪", "🇺🇾"].map((flag, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05, duration: 0.3 }}
-                  className="text-2xl"
-                >
-                  {flag}
-                </motion.span>
-              ))}
+              {['🇦🇷', '🇧🇷', '🇲🇽', '🇨🇴', '🇵🇾', '🇵🇪', '🇿🇦', '🇲🇿', '🇰🇪', '🇺🇾'].map(
+                (flag, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05, duration: 0.3 }}
+                    className="text-2xl"
+                  >
+                    {flag}
+                  </motion.span>
+                ),
+              )}
               <span className="text-white/40 text-sm self-center">+20 más</span>
             </div>
           </div>
         </motion.div>
       </div>
     </section>
-  );
+  )
 }
