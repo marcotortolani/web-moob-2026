@@ -1,10 +1,17 @@
+export type MockupContent =
+  | { kind: "sat-push"; body: string; cancelLabel: string; confirmLabel: string }
+  | { kind: "chat"; message: string }
+  | { kind: "play"; label: string }
+  | { kind: "bundles"; items: { title: string; lines: string[]; price: string; cta: string }[] }
+  | { kind: "data-rewards"; body: string; cancelLabel: string; confirmLabel: string };
+
 export interface TechService {
   id: string;
   label: string;
-  icon: string; // lucide icon name
+  icon: string;
   title: string;
   description: string;
-  mockupLabel: string;
+  mockup: MockupContent;
 }
 
 export const techServices: TechService[] = [
@@ -15,7 +22,12 @@ export const techServices: TechService[] = [
     title: "SAT PUSH",
     description:
       "Plataforma de mensajería interactiva para enviar notificaciones push masivas y personalizadas directamente a celulares, permitiendo alertas, encuestas y enlaces directos (click-to-call, click-to-browse), impulsando la interacción y visibilidad de marcas de forma proactiva.",
-    mockupLabel: "Push Notification",
+    mockup: {
+      kind: "sat-push",
+      body: "Descubre el mundo junto a Que Guay, accede ahora para ver el mejor contenido de viajes",
+      cancelLabel: "CANCELAR",
+      confirmLabel: "ACEPTAR",
+    },
   },
   {
     id: "sms",
@@ -23,8 +35,11 @@ export const techServices: TechService[] = [
     icon: "MessageSquare",
     title: "SMS",
     description:
-      "Envío masivo de mensajes de texto personalizados con alta tasa de apertura. Campañas bidireccionales, concursos, votaciones y servicios de suscripción con cobertura en todos los operadores de la región.",
-    mockupLabel: "SMS Campaign",
+      "El uso de SMS con fines de marketing para anunciar productos o servicios, anunciar rebajas, enviar ofertas especiales o promocionar eventos. Estos mensajes se reconocen fácilmente por su clara llamada a la acción, como «Usa el código» o «Compra ahora».",
+    mockup: {
+      kind: "chat",
+      message: "Descubre el mejor contenido de gaming en: bit.ly/3yJH0vv",
+    },
   },
   {
     id: "publicidad",
@@ -32,8 +47,11 @@ export const techServices: TechService[] = [
     icon: "BarChart2",
     title: "PUBLICIDAD",
     description:
-      "Soluciones de publicidad digital integradas en nuestras plataformas de contenido. Segmentación avanzada por operadora, región y perfil de usuario para maximizar el retorno de inversión de cada campaña.",
-    mockupLabel: "Ad Platform",
+      "Anuncios diseñados específicamente para smartphones y tablets, optimizados para interactuar con usuarios en apps, redes sociales y sitios web. Incluye formatos banner, vídeo, y anuncios nativos, siendo herramientas clave para aumentar ventas.",
+    mockup: {
+      kind: "play",
+      label: "WATCH NOW!",
+    },
   },
   {
     id: "bundle",
@@ -41,8 +59,24 @@ export const techServices: TechService[] = [
     icon: "Package",
     title: "BUNDLE",
     description:
-      "Paquetes de servicios integrados que combinan contenido, datos y valor agregado para los suscriptores de operadoras móviles. Modelos flexibles de monetización adaptados a cada mercado.",
-    mockupLabel: "Bundle Service",
+      "Un bundle de datos en tecnología y móviles se refiere a un paquete o conjunto predefinido de servicios de conexión a internet (megabytes o gigabytes) que los operadores de telefonía móvil ofrecen a sus usuarios. Estos paquetes permiten acceder a internet sin depender de una red Wi-Fi, utilizando la red del proveedor.",
+    mockup: {
+      kind: "bundles",
+      items: [
+        {
+          title: "BUNDLE 50 GB",
+          lines: ["Incluye llamadas y SMS ilimitados", "youtube & instagram Free!"],
+          price: "$xxxx",
+          cta: "Contratar",
+        },
+        {
+          title: "BUNDLE 100 GB",
+          lines: ["Incluye llamadas y SMS ilimitados", "IG - Youtube y Netflix Free!"],
+          price: "$xxxx",
+          cta: "Contratar",
+        },
+      ],
+    },
   },
   {
     id: "data-rewards",
@@ -50,7 +84,12 @@ export const techServices: TechService[] = [
     icon: "Gift",
     title: "DATA REWARDS",
     description:
-      "Programa de recompensas en datos móviles para fidelizar usuarios. Los suscriptores acumulan datos al interactuar con contenido y marcas, creando un ecosistema de engagement de alto valor.",
-    mockupLabel: "Rewards Program",
+      '"Data Rewards" (recompensas de datos) es un concepto que abarca diferentes soluciones diseñadas para beneficiar a los usuarios a cambio de su interacción, visualización de publicidad o uso de datos móviles, conectando marcas con consumidores.',
+    mockup: {
+      kind: "data-rewards",
+      body: "Te quedaste sin datos, mirá una publicidad y consigue 50MB para seguir navegando",
+      cancelLabel: "CANCELAR",
+      confirmLabel: "CONTINUAR",
+    },
   },
 ];
