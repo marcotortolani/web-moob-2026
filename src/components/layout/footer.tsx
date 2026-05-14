@@ -1,9 +1,15 @@
+'use client'
+
 import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { InstagramIcon, LinkedinIcon } from '@/components/ui/social-icons'
 import { navLinks } from '@/lib/data/navigation'
-import Image from 'next/image'
 
 export function Footer() {
+  const pathname = usePathname()
+  if (pathname === '/somos-contenido') return null
+
   return (
     <footer className="bg-black border-t border-white/10 py-10 lg:py-14 px-5 lg:px-16 xl:px-24">
       <div className="max-w-[1728px] mx-auto">
@@ -58,7 +64,6 @@ export function Footer() {
             <p className="hidden lg:block text-white/40 text-xs uppercase tracking-widest mb-1">
               Redes
             </p>
-            {/* Social */}
             <div className=" flex items-center gap-3">
               <Link
                 href="https://instagram.com"

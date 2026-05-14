@@ -2,12 +2,14 @@ import { cn } from '@/lib/utils'
 
 interface DemoButtonProps {
   href?: string
+  target?: string
   className?: string
   children?: React.ReactNode
 }
 
 export function DemoButton({
   href,
+  target = '_self',
   className,
   children = 'VER DEMO',
 }: DemoButtonProps) {
@@ -16,7 +18,7 @@ export function DemoButton({
 
   if (href) {
     return (
-      <a href={href} className={cn(base, className)}>
+      <a href={href} target={target} className={cn(base, className)}>
         {children}
       </a>
     )
