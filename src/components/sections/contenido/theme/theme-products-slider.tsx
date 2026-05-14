@@ -23,11 +23,12 @@ export function ThemeProductsSlider({ products }: Props) {
         slidesPerView={1}
         spaceBetween={0}
         loop={!single}
+        speed={1200}
         autoplay={
           single
             ? false
             : {
-                delay: 3000,
+                delay: 5000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }
