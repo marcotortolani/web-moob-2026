@@ -253,7 +253,7 @@ Full: 2xl (1536px+)        → max-w-[1728px] centrado, diseño Figma 1:1
 
 | Archivo                                                      | Descripción                      |
 | ------------------------------------------------------------ | -------------------------------- |
-| `src/app/somos-activaciones/page.tsx`                        | Listado de activaciones          |
+| `src/app/somos-experiencias/page.tsx`                        | Listado de activaciones          |
 | `src/components/sections/activaciones/hero-activaciones.tsx` | Hero collage de fotos            |
 | `src/components/sections/activaciones/activations-grid.tsx`  | Grid 2×3 paginado                |
 | `src/components/ui/activation-card.tsx`                      | Card con imagen + título overlay |
@@ -295,7 +295,7 @@ Full: 2xl (1536px+)        → max-w-[1728px] centrado, diseño Figma 1:1
 
 | Archivo                                                   | Descripción                                     |
 | --------------------------------------------------------- | ----------------------------------------------- |
-| `src/app/somos-activaciones/[slug]/page.tsx`              | Detalle de activación (async params Next.js 16) |
+| `src/app/somos-experiencias/[slug]/page.tsx`              | Detalle de activación (async params Next.js 16) |
 | `src/components/sections/activaciones/detail-gallery.tsx` | Collage 3 fotos                                 |
 | `src/components/ui/video-player.tsx`                      | Video player con play button circular           |
 
@@ -311,7 +311,7 @@ Full: 2xl (1536px+)        → max-w-[1728px] centrado, diseño Figma 1:1
 
 ```tsx
 export default async function Page(
-  props: PageProps<'/somos-activaciones/[slug]'>,
+  props: PageProps<'/somos-experiencias/[slug]'>,
 ) {
   const { slug } = await props.params
   // lookup activation data by slug

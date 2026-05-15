@@ -1,7 +1,5 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
-import { Header } from '@/components/layout/header'
-import { Footer } from '@/components/layout/footer'
 import { DetailGallery } from '@/components/sections/activaciones/detail-gallery'
 import { activations } from '@/lib/data/activations'
 
@@ -23,13 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function ActivacionDetallePage({ params }: Props) {
+export default async function ExperienciaDetallePage({ params }: Props) {
   const { slug } = await params
   const activation = activations.find((a) => a.slug === slug)
   if (!activation) notFound()
 
   return (
-    <main className="bg-black min-h-screen">
+    <main className="relative bg-black min-h-screen">
       <DetailGallery activation={activation} />
     </main>
   )

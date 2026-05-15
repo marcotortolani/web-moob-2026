@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import { motion } from "motion/react";
-import Image from "next/image";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { motion } from 'motion/react'
+import Image from 'next/image'
+import { SectionHeading } from '@/components/ui/section-heading'
 
 export function HeroActivaciones() {
   return (
@@ -10,7 +10,7 @@ export function HeroActivaciones() {
       {/* Hero photo — full width */}
       <div className="relative h-[360px] md:h-[480px] lg:h-[560px] overflow-hidden">
         <Image
-          src="/images/activations/activation-1.jpg"
+          src="/images/experiencias/queguayviajes-movistar-ve/activacion-QGV-horizontal01.webp"
           alt="Activaciones y Experiencias"
           fill
           className="object-cover object-top"
@@ -31,15 +31,22 @@ export function HeroActivaciones() {
           >
             <SectionHeading
               label="SOMOS"
-              title={<>Activaciones<br />y experiencias</>}
-              titleClassName="lg:text-6xl xl:text-7xl"
+              title={
+                <>
+                  Activaciones
+                  <br />y experiencias
+                </>
+              }
+              className="gap-1"
+              titleClassName="lg:text-6xl xl:text-7xl leading-9"
             />
-            <p className="text-white/70 text-sm lg:text-base leading-relaxed mt-3 max-w-lg">
-              Unimos el mundo OFF con el ON generando activaciones y experiencias para usuarios y partners.
+            <p className="text-white/90 text-sm lg:text-base leading-tight mt-5 max-w-lg">
+              Unimos el mundo OFF con el ON generando activaciones y
+              experiencias para usuarios y partners.
             </p>
           </motion.div>
         </div>
       </div>
     </section>
-  );
+  )
 }

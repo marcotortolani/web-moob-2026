@@ -108,7 +108,7 @@ export function EventsSection() {
           className="mt-10 lg:mt-12 flex justify-center"
         >
           <DemoButton
-            href="/somos-activaciones"
+            href="/somos-experiencias"
             className="text-white tracking-tight"
           >
             MÁS DE NUESTROS EVENTOS

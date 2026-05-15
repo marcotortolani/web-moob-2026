@@ -3,95 +3,94 @@ export interface Activation {
   title: string;
   shortTitle: string;
   description: string;
-  coverImage: string;
+  coverImage: string | null;
   images: string[];
+  videoUrl: string;
   videoThumbnail?: string;
 }
 
 export const activations: Activation[] = [
   {
+    slug: "clinica-cocina-victor-moreno-movistar-venezuela",
+    title: "Clínica de cocina con Victor Moreno — Movistar Venezuela",
+    shortTitle: "CLÍNICA DE COCINA\nCON VICTOR MORENO",
+    description:
+      "Usuarios del servicio que participaron de una trivia exclusiva para sumar puntos y ganar su lugar en una clínica de cocina exclusiva a cargo de Victor Moreno.",
+    coverImage: "/images/experiencias/locoporlacocina-movistar-ve/activacion-lxc-horizontal01.webp",
+    images: [
+      "/images/experiencias/locoporlacocina-movistar-ve/activacion-lxc-horizontal01.webp",
+      "/images/experiencias/locoporlacocina-movistar-ve/activacion-lxc-horizontal02.webp",
+      "/images/experiencias/locoporlacocina-movistar-ve/activacion-lxc-vertical01.webp",
+      "/images/experiencias/locoporlacocina-movistar-ve/activacion-lxc-vertical02.webp",
+    ],
+    videoUrl: "https://vimeo.com/1167461946",
+  },
+  {
+    slug: "team-gamers-movistar-venezuela",
+    title: "Stand y activación FitelVen — Team Gamers Movistar Venezuela",
+    shortTitle: "STAND Y ACTIVACIÓN FITELVEN\nTEAM GAMERS",
+    description:
+      "Se realizó la instalación de un stand en el cual se promocionó el producto de Team Gamers. Las dos acciones principales fueron la creación de un tótem que contenía una trivia para que los participantes ganen premios y la proyección de una clínica.",
+    coverImage: "/images/experiencias/teamgamers-movistar-ve/activacion-TG-horizontal01.webp",
+    images: [
+      "/images/experiencias/teamgamers-movistar-ve/activacion-TG-horizontal01.webp",
+      "/images/experiencias/teamgamers-movistar-ve/activacion-TG-horizontal02.webp",
+      "/images/experiencias/teamgamers-movistar-ve/activacion-TG-vertical01.webp",
+      "/images/experiencias/teamgamers-movistar-ve/activacion-TG-vertical02.webp",
+    ],
+    videoUrl: "https://vimeo.com/1167444864",
+  },
+  {
+    slug: "so-pra-elas-vodacom-mozambique",
+    title: "So Pra Elas — Día de la Mujer Vodacom Mozambique",
+    shortTitle: "ACCIÓN EL DÍA DE LA MUJER\nVODACOM MOZAMBIQUE",
+    description: "",
+    coverImage: "/images/experiencias/sopraelas-vodacom-mz/activacion-SPE-horizontal01.webp",
+    images: [
+      "/images/experiencias/sopraelas-vodacom-mz/activacion-SPE-horizontal01.webp",
+      "/images/experiencias/sopraelas-vodacom-mz/activacion-SPE-horizontal02.webp",
+      "/images/experiencias/sopraelas-vodacom-mz/activacion-SPE-vertical01.webp",
+      "/images/experiencias/sopraelas-vodacom-mz/activacion-SPE-vertical02.webp",
+    ],
+    videoUrl: "https://vimeo.com/1167432366",
+  },
+  {
+    slug: "que-guay-viajes-movistar-venezuela",
+    title: "Que Guay Viajes — Movistar Venezuela",
+    shortTitle: "QUE GUAY VIAJES\nMOVISTAR VENEZUELA",
+    description: "",
+    coverImage: "/images/experiencias/queguayviajes-movistar-ve/activacion-QGV-horizontal01.webp",
+    images: [
+      "/images/experiencias/queguayviajes-movistar-ve/activacion-QGV-horizontal01.webp",
+      "/images/experiencias/queguayviajes-movistar-ve/activacion-QGV-horizontal02.webp",
+      "/images/experiencias/queguayviajes-movistar-ve/activacion-QGV-vertical01.webp",
+      "/images/experiencias/queguayviajes-movistar-ve/activacion-QGV-vertical02.webp",
+    ],
+    videoUrl: "https://vimeo.com/1167391488",
+  },
+  {
+    slug: "mundo-musica-personal-paraguay",
+    title: "Mundo Música — Personal Paraguay",
+    shortTitle: "MUNDO MÚSICA\nPERSONAL PARAGUAY",
+    description: "",
+    coverImage: null,
+    images: [],
+    videoUrl: "https://vimeo.com/1167378582",
+  },
+  {
     slug: "benja-torres-personal-paraguay",
-    title: "Benja Torres en vivo centro comercial",
-    shortTitle: "ACTIVACIÓN EN CENTRO COMERCIAL CON BENJA TORRES. PERSONAL PARAGUAY",
+    title: "Activación en centro comercial con Benja Torres — Personal Paraguay",
+    shortTitle: "ACTIVACIÓN EN CENTRO COMERCIAL\nCON BENJA TORRES",
     description:
-      "Una experiencia única donde los fans de Benja Torres pudieron disfrutar de una actuación en vivo en el centro comercial, impulsada por Personal Paraguay.",
-    coverImage: "/images/activations/activation-1.jpg",
+      "Una intervención artística inesperada y disruptiva, en la que Benja Torres se convierte en el epicentro de una experiencia emocional dentro del centro comercial. A través de sus letras y su arte, el evento humanizó las marcas asociadas, generando un vínculo cercano con el público.",
+    coverImage: "/images/experiencias/activacion-benja-torres/activacion-benja-horizontal01.webp",
     images: [
-      "/images/activations/activation-1.jpg",
-      "/images/activations/activation-2.jpg",
-      "/images/activations/activation-3.jpg",
+      "/images/experiencias/activacion-benja-torres/activacion-benja-horizontal01.webp",
+      "/images/experiencias/activacion-benja-torres/activacion-benja-horizontal02.webp",
+      "/images/experiencias/activacion-benja-torres/activacion-benja-vertical01.webp",
+      "/images/experiencias/activacion-benja-torres/activacion-benja-vertical02.webp",
     ],
-    videoThumbnail: "/images/activations/activation-1.jpg",
-  },
-  {
-    slug: "dia-mujer-vodacom-mozambique",
-    title: "Acción el Día de la Mujer Vodacom Mozambique",
-    shortTitle: "ACCIÓN EL DÍA DE LA MUJER VODACOM MOZAMBIQUE",
-    description:
-      "Celebración del Día Internacional de la Mujer con actividades y contenido exclusivo en colaboración con Vodacom Mozambique.",
-    coverImage: "/images/activations/activation-2.jpg",
-    images: [
-      "/images/activations/activation-2.jpg",
-      "/images/activations/activation-1.jpg",
-      "/images/activations/activation-3.jpg",
-    ],
-    videoThumbnail: "/images/activations/activation-2.jpg",
-  },
-  {
-    slug: "fitelven-team-gamers",
-    title: "Stand y activación Fitelven Team Gamers",
-    shortTitle: "STAND Y ACTIVACIÓN FITELVEN TEAM GAMERS",
-    description:
-      "Presencia de alto impacto en el evento Fitelven con activaciones de gaming y experiencias interactivas para la comunidad gamer.",
-    coverImage: "/images/activations/activation-3.jpg",
-    images: [
-      "/images/activations/activation-3.jpg",
-      "/images/activations/activation-4.jpg",
-      "/images/activations/activation-1.jpg",
-    ],
-    videoThumbnail: "/images/activations/activation-3.jpg",
-  },
-  {
-    slug: "clinica-cocina-victor-moreno",
-    title: "Clínica de cocina con Victor Moreno",
-    shortTitle: "CLÍNICA DE COCINA CON VICTOR MORENO",
-    description:
-      "Taller exclusivo de cocina con el reconocido chef Victor Moreno, combinando gastronomía y tecnología móvil para una experiencia única.",
-    coverImage: "/images/activations/activation-4.jpg",
-    images: [
-      "/images/activations/activation-4.jpg",
-      "/images/activations/activation-2.jpg",
-      "/images/activations/activation-3.jpg",
-    ],
-    videoThumbnail: "/images/activations/activation-4.jpg",
-  },
-  {
-    slug: "movistar-arena-show",
-    title: "Show en vivo Movistar Arena",
-    shortTitle: "SHOW EN VIVO MOVISTAR ARENA",
-    description:
-      "Gran show en vivo con artistas exclusivos, transmitido en tiempo real a suscriptores de Movistar en toda Latinoamérica.",
-    coverImage: "/images/activations/activation-1.jpg",
-    images: [
-      "/images/activations/activation-1.jpg",
-      "/images/activations/activation-3.jpg",
-      "/images/activations/activation-4.jpg",
-    ],
-    videoThumbnail: "/images/activations/activation-1.jpg",
-  },
-  {
-    slug: "gaming-summit-colombia",
-    title: "Gaming Summit Colombia",
-    shortTitle: "GAMING SUMMIT COLOMBIA",
-    description:
-      "Cumbre regional de gaming con torneos, contenido en vivo y activaciones de marca para la comunidad gamer de Colombia.",
-    coverImage: "/images/activations/activation-2.jpg",
-    images: [
-      "/images/activations/activation-2.jpg",
-      "/images/activations/activation-4.jpg",
-      "/images/activations/activation-1.jpg",
-    ],
-    videoThumbnail: "/images/activations/activation-2.jpg",
+    videoUrl: "https://vimeo.com/1167401530",
   },
 ];
 

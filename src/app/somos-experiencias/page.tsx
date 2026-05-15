@@ -3,12 +3,12 @@ import { HeroActivaciones } from '@/components/sections/activaciones/hero-activa
 import { ActivationsGrid } from '@/components/sections/activaciones/activations-grid'
 
 export const metadata: Metadata = {
-  title: 'SOMOS Activaciones y Experiencias',
+  title: 'SOMOS Experiencias',
   description:
     'Unimos el mundo OFF con el ON generando activaciones y experiencias para usuarios y partners en más de 30 países.',
 }
 
-export default function SomosActivacionesPage() {
+export default function SomosExperienciasPage() {
   return (
     <main className="bg-black min-h-screen">
       <HeroActivaciones />
