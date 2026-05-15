@@ -26,8 +26,14 @@ const GRID_ITEMS = {
   video: 'https://vimeo.com/1164796788',
   videoFrame:
     '/images/grid/contenido/home-somoscontenido-grilla-horizontal02.webp',
-  imageH: '/images/grid/contenido/home-somoscontenido-grilla-horizontal01.webp',
-  imageV: '/images/grid/contenido/home-somoscontenido-grilla-vertical02.webp',
+  imageH: [
+    '/images/grid/contenido/home-somoscontenido-grilla-horizontal01.webp',
+    '/images/grid/contenido/home-somoscontenido-grilla-horizontal02.webp',
+  ],
+  imageV: [
+    '/images/grid/contenido/home-somoscontenido-grilla-vertical01.webp',
+    '/images/grid/contenido/home-somoscontenido-grilla-vertical02.webp',
+  ],
 }
 
 export function ContentSection() {

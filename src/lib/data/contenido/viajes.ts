@@ -8,8 +8,14 @@ export const viajesContent: ThemeContent = {
     banner: {
       video: 'https://vimeo.com/1163397256',
       videoFrame: '/images/contenido/viajes/somos-viajes-horizontal02.webp',
-      imageH: '/images/contenido/viajes/somos-viajes-horizontal01.webp',
-      imageV: '/images/contenido/viajes/somos-viajes-vertical01.webp',
+      imageH: [
+        '/images/contenido/viajes/somos-viajes-horizontal01.webp',
+        '/images/contenido/viajes/somos-viajes-horizontal02.webp',
+      ],
+      imageV: [
+        '/images/contenido/viajes/somos-viajes-vertical01.webp',
+        '/images/contenido/viajes/somos-viajes-vertical02.webp',
+      ],
     },
     videoPosition: 'bottom-right',
   },

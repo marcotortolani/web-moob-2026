@@ -1,20 +1,18 @@
 'use client'
-import { useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence, useAnimate, useReducedMotion } from 'motion/react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
-// Define the possible positions for the video
 type VideoPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 
-// Props for the GridComponent
 interface GridProps {
   items: {
     video: string
     videoFrame: string
-    imageH: string
-    imageV: string
+    imageH: string | string[]
+    imageV: string | string[]
   }
   videoPosition: VideoPosition
   extraItems?: {
@@ -23,63 +21,188 @@ interface GridProps {
   }
 }
 
+// ─── Flip image panel ────────────────────────────────────────────────────────
+
+const FLIP_MS = 700
+
+interface SplitFlapProps {
+  images: string[]
+  alt: string
+  sizes: string
+  flip: boolean
+  onFlipDone: () => void
+  placeholder: React.ReactNode
+  axis?: 'x' | 'y'
+}
+
+function SplitFlapImage({
+  images,
+  alt,
+  sizes,
+  flip,
+  onFlipDone,
+  placeholder,
+  axis = 'x',
+}: SplitFlapProps) {
+  const prefersReduced = useReducedMotion()
+  const idxRef         = useRef(0)
+  const lockRef        = useRef(false)
+  const [scope, animate] = useAnimate()
+
+  const [displayIdx, setDisplayIdx] = useState(0)
+  const [nextIdx,    setNextIdx]    = useState(1)
+
+  const canAnimate   = images.length > 1
+  const rotateKey    = axis === 'y' ? 'rotateY' : 'rotateX'
+  const backTransform = axis === 'y' ? 'rotateY(180deg)' : 'rotateX(180deg)'
+
+  useEffect(() => {
+    if (!flip || !canAnimate || lockRef.current) return
+    lockRef.current = true
+
+    const next = (idxRef.current + 1) % images.length
+
+    if (prefersReduced) {
+      idxRef.current = next
+      setDisplayIdx(next)
+      setNextIdx((next + 1) % images.length)
+      lockRef.current = false
+      onFlipDone()
+      return
+    }
+
+    ;(async () => {
+      // Flip 0 → 180: back face (next image) becomes visible
+      await animate(scope.current, { [rotateKey]: 180 }, {
+        duration: FLIP_MS / 1000,
+        ease: 'easeInOut',
+      })
+      // Promote back face to front, pre-load next image for back face
+      idxRef.current = next
+      setDisplayIdx(next)
+      setNextIdx((next + 1) % images.length)
+      // Instant reset to 0 — no reverse animation, new image is now front
+      await animate(scope.current, { [rotateKey]: 0 }, { duration: 0 })
+      lockRef.current = false
+      onFlipDone()
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flip])
+
+  if (!images.length) return <>{placeholder}</>
+
+  if (!canAnimate) {
+    return (
+      <Image
+        className="w-full h-full object-cover"
+        src={images[displayIdx]}
+        alt={alt}
+        fill
+        sizes={sizes}
+      />
+    )
+  }
+
+  return (
+    <div className="relative w-full h-full" style={{ perspective: '1200px' }}>
+      <motion.div
+        ref={scope}
+        className="absolute inset-0"
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {/* Front face — imagen actual */}
+        <div className="absolute inset-0" style={{ backfaceVisibility: 'hidden' }}>
+          <Image
+            className="w-full h-full object-cover"
+            src={images[displayIdx]}
+            alt={alt}
+            fill
+            sizes={sizes}
+          />
+        </div>
+        {/* Back face — próxima imagen, pre-rotada para verse correcta al girar */}
+        <div
+          className="absolute inset-0"
+          style={{ backfaceVisibility: 'hidden', transform: backTransform }}
+        >
+          <Image
+            className="w-full h-full object-cover"
+            src={images[nextIdx]}
+            alt={alt}
+            fill
+            sizes={sizes}
+          />
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+// ─── Main grid component ──────────────────────────────────────────────────────
+
 export const BannerGridVideo: React.FC<GridProps> = ({
   items,
   videoPosition,
-  extraItems,
 }) => {
   const playerRef = useRef(null)
   const [isVideoReady, setIsVideoReady] = useState(false)
-  const [hasError, setHasError] = useState(false)
+  const [hasError,     setHasError]     = useState(false)
 
-  // Define grid positions based on videoPosition prop
+  // Normalise to arrays
+  const imagesH = Array.isArray(items.imageH)
+    ? items.imageH
+    : items.imageH ? [items.imageH] : []
+  const imagesV = Array.isArray(items.imageV)
+    ? items.imageV
+    : items.imageV ? [items.imageV] : []
+
+  // Intercalated flip triggers:
+  //   tick 0 → H flips  (t = 0, 5, 10 s …)
+  //   tick 1 → V flips  (t = 2.5, 7.5, 12.5 s …)
+  const [flipH, setFlipH] = useState(false)
+  const [flipV, setFlipV] = useState(false)
+
+  useEffect(() => {
+    if (imagesH.length < 2 && imagesV.length < 2) return
+
+    let tick = 0
+    const id = window.setInterval(() => {
+      if (tick % 2 === 0) {
+        setFlipH(true)
+      } else {
+        setFlipV(true)
+      }
+      tick++
+    }, 5000)
+
+    return () => window.clearInterval(id)
+  }, [imagesH.length, imagesV.length])
+
+  const handleFlipHDone = useCallback(() => setFlipH(false), [])
+  const handleFlipVDone = useCallback(() => setFlipV(false), [])
+
   const getGridStyles = (position: VideoPosition) => {
-    let videoGridArea = ''
-    let image1GridArea = ''
-    let image2GridArea = ''
-
     switch (position) {
-      // fila-inicio / columna-inicio / fila-fin / columna-fin
       case 'top-left':
-        videoGridArea = '1 / 1 / 3 / 3' // Top-left 2x2
-        image1GridArea = '3 / 1 / 4 / 3' // 2x1 next to video
-        image2GridArea = '1 / 3 / 4 / 4' // 1x3 below image1
-        break
+        return { videoGridArea: '1 / 1 / 3 / 3', image1GridArea: '3 / 1 / 4 / 3', image2GridArea: '1 / 3 / 4 / 4' }
       case 'top-right':
-        videoGridArea = '1 / 2 / 3 / 4' // Top-right 2x2
-        image1GridArea = '3 / 2 / 4 / 4' // 2x1 below video
-        image2GridArea = '1 / 1 / 4 / 2' // 1x3 on the left
-        break
+        return { videoGridArea: '1 / 2 / 3 / 4', image1GridArea: '3 / 2 / 4 / 4', image2GridArea: '1 / 1 / 4 / 2' }
       case 'bottom-left':
-        videoGridArea = '2 / 1 / 4 / 3' // Bottom-left 2x2
-        image1GridArea = '1 / 1 / 2 / 3' // 2x1 above video
-        image2GridArea = '1 / 3 / 4 / 4' // 1x3 on the right
-        break
+        return { videoGridArea: '2 / 1 / 4 / 3', image1GridArea: '1 / 1 / 2 / 3', image2GridArea: '1 / 3 / 4 / 4' }
       case 'bottom-right':
-        videoGridArea = '2 / 2 / 4 / 4' // Bottom-right 2x2
-        image1GridArea = '1 / 2 / 2 / 4' // 2x1 above video
-        image2GridArea = '1 / 1 / 4 / 2' // 1x3 on the left
-        break
       default:
-        videoGridArea = '1 / 1 / 3 / 3' // Default to top-left
-        image1GridArea = '3 / 1 / 4 / 3'
-        image2GridArea = '1 / 3 / 4 / 4'
+        return { videoGridArea: '2 / 2 / 4 / 4', image1GridArea: '1 / 2 / 2 / 4', image2GridArea: '1 / 1 / 4 / 2' }
     }
-
-    return { videoGridArea, image1GridArea, image2GridArea }
   }
 
-  const { videoGridArea, image1GridArea, image2GridArea } =
-    getGridStyles(videoPosition)
+  const { videoGridArea, image1GridArea, image2GridArea } = getGridStyles(videoPosition)
 
   if (!items.video) return <div></div>
 
   return (
     <AnimatePresence mode="wait">
-      {/* Grid container with 3x3 elements */}
-      <div
-        className={`relative w-full max-w-7xl mx-auto px-0 grid grid-cols-3 aspect-square lg:aspect-video grid-rows-3 gap-1 lg:gap-1.5`}
-      >
+      <div className="relative w-full max-w-7xl mx-auto px-0 grid grid-cols-3 aspect-square lg:aspect-video grid-rows-3 gap-1 lg:gap-1.5">
+
         {/* Video: 2x2 */}
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
@@ -88,7 +211,6 @@ export const BannerGridVideo: React.FC<GridProps> = ({
           className="relative flex items-center justify-center text-white overflow-hidden"
           style={{ gridArea: videoGridArea }}
         >
-          {/* Imagen de vista previa mientras el video carga o si hay error */}
           {items.videoFrame && (!isVideoReady || hasError) && (
             <Image
               className="w-full h-full object-cover transition-opacity duration-300"
@@ -99,7 +221,6 @@ export const BannerGridVideo: React.FC<GridProps> = ({
               priority
             />
           )}
-          {/* Video */}
           <div
             className={`w-full h-full aspect-square transition-opacity duration-300 ${
               isVideoReady && !hasError
@@ -123,87 +244,61 @@ export const BannerGridVideo: React.FC<GridProps> = ({
           </div>
         </motion.div>
 
-        {/* Image 1: 2x1 */}
+        {/* Image 1: 2x1 — horizontal */}
         <motion.div
-          initial={{
-            opacity: 0,
-            scale: 0,
-            transformOrigin: 'center',
-            x: '100%',
-            y: '-100%',
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            transformOrigin: 'center',
-            x: 0,
-            y: 0,
-          }}
+          initial={{ opacity: 0, scale: 0, transformOrigin: 'center', x: '100%', y: '-100%' }}
+          animate={{ opacity: 1, scale: 1, transformOrigin: 'center', x: 0, y: 0 }}
           exit={{ opacity: 0, scale: 0 }}
           className="relative flex items-center justify-center overflow-hidden"
           style={{ gridArea: image1GridArea }}
         >
-          {items.imageH ? (
-            <Image
-              className=" w-full h-full object-cover"
-              src={items.imageH}
-              alt="Horizontal Image"
-              fill
-              sizes="(max-width: 1280px) 66vw, 853px"
-            />
-          ) : (
-            <div className=" w-full h-full bg-linear-to-b from-neutral-600 to-neutral-800 animate-pulse flex items-center justify-center"></div>
-          )}
+          <SplitFlapImage
+            images={imagesH}
+            alt="Horizontal Image"
+            sizes="(max-width: 1280px) 66vw, 853px"
+            flip={flipH}
+            onFlipDone={handleFlipHDone}
+            placeholder={
+              <div className="w-full h-full bg-linear-to-b from-neutral-600 to-neutral-800 animate-pulse" />
+            }
+          />
+          {/* Vertical centre divider */}
           <div className="z-20 absolute top-0 w-full h-full">
-            <div className=" w-1/2 h-full border-black border-r-4 md:border-r-4 lg:border-r-6"></div>
+            <div className="w-1/2 h-full border-black border-r-4 md:border-r-4 lg:border-r-6" />
           </div>
         </motion.div>
 
-        {/* Image 2: 1x3 */}
+        {/* Image 2: 1x3 — vertical */}
         <motion.div
-          initial={{
-            opacity: 0,
-            scale: 0,
-            transformOrigin: 'center',
-            x: '-100%',
-            y: '100%',
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            transformOrigin: 'center',
-            x: 0,
-            y: 0,
-          }}
+          initial={{ opacity: 0, scale: 0, transformOrigin: 'center', x: '-100%', y: '100%' }}
+          animate={{ opacity: 1, scale: 1, transformOrigin: 'center', x: 0, y: 0 }}
           exit={{ opacity: 0, scale: 0 }}
-          className=" relative flex items-center justify-center overflow-hidden"
+          className="relative flex items-center justify-center overflow-hidden"
           style={{ gridArea: image2GridArea }}
         >
-          {items.imageV ? (
-            <Image
-              className=" w-full h-full object-cover"
-              src={items.imageV}
-              alt="Vertical Image"
-              fill
-              sizes="(max-width: 1280px) 33vw, 427px"
-            />
-          ) : (
-            <div className=" w-full h-full bg-linear-to-r from-neutral-600 to-neutral-800 animate-pulse flex items-center justify-center"></div>
-          )}
+          <SplitFlapImage
+            images={imagesV}
+            alt="Vertical Image"
+            sizes="(max-width: 1280px) 33vw, 427px"
+            flip={flipV}
+            onFlipDone={handleFlipVDone}
+            axis="y"
+            placeholder={
+              <div className="w-full h-full bg-linear-to-r from-neutral-600 to-neutral-800 animate-pulse" />
+            }
+          />
+          {/* Horizontal centre bars */}
           <div className="z-20 absolute top-0 w-full h-full flex flex-col items-center justify-center">
-            <div className=" w-full h-1/3 outline-black outline-2 md:outline-[5px] border-black border-y md:border-y-2 lg:outline-4 lg:border-y-2  "></div>
+            <div className="w-full h-1/3 outline-black outline-2 md:outline-[5px] border-black border-y md:border-y-2 lg:outline-4 lg:border-y-2" />
           </div>
         </motion.div>
+
         {/* Shadow borders */}
         <div className="absolute z-20 w-full h-full">
-          {/* Shadow Left */}
-          <div className=" absolute top-0 left-0 w-1/4 h-full bg-linear-to-r from-black/80 via-black/20 to-transparent" />
-          {/* Shadow Right */}
-          <div className=" absolute top-0 right-0 w-1/4 h-full bg-linear-to-l from-black/80 via-black/20 to-transparent" />
-          {/* Shadow Top */}
-          <div className=" absolute top-0 w-full h-1/4 bg-linear-to-b from-black/80 via-black/20 to-transparent" />
-          {/* Shadow Bottom */}
-          <div className=" absolute bottom-0 w-full h-1/4 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute top-0 left-0 w-1/4 h-full bg-linear-to-r from-black/80 via-black/20 to-transparent" />
+          <div className="absolute top-0 right-0 w-1/4 h-full bg-linear-to-l from-black/80 via-black/20 to-transparent" />
+          <div className="absolute top-0 w-full h-1/4 bg-linear-to-b from-black/80 via-black/20 to-transparent" />
+          <div className="absolute bottom-0 w-full h-1/4 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
         </div>
       </div>
     </AnimatePresence>

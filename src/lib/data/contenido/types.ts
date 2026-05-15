@@ -1,8 +1,8 @@
 export interface ThemeBanner {
   video: string
   videoFrame: string
-  imageH: string
-  imageV: string
+  imageH: string | string[]
+  imageV: string | string[]
 }
 
 export interface ThemeHeroData {

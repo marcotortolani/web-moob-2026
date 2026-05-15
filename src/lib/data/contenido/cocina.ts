@@ -8,8 +8,14 @@ export const cocinaContent: ThemeContent = {
     banner: {
       video: 'https://vimeo.com/1163620608',
       videoFrame: '/images/contenido/cocina/somos-cocina-horizontal02.webp',
-      imageH: '/images/contenido/cocina/somos-cocina-horizontal01.webp',
-      imageV: '/images/contenido/cocina/somos-cocina-vertical01.webp',
+      imageH: [
+        '/images/contenido/cocina/somos-cocina-horizontal01.webp',
+        '/images/contenido/cocina/somos-cocina-horizontal02.webp',
+      ],
+      imageV: [
+        '/images/contenido/cocina/somos-cocina-vertical01.webp',
+        '/images/contenido/cocina/somos-cocina-vertical02.webp',
+      ],
     },
     videoPosition: 'bottom-right',
   },

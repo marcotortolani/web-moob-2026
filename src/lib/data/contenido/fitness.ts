@@ -9,8 +9,14 @@ export const fitnessContent: ThemeContent = {
       video: 'https://vimeo.com/1164768048',
       videoFrame:
         '/images/contenido/fitness/somosfitness-grilla-horizontal02.webp',
-      imageH: '/images/contenido/fitness/somosfitness-grilla-horizontal01.webp',
-      imageV: '/images/contenido/fitness/somosfitness-grilla-vertical01.webp',
+      imageH: [
+        '/images/contenido/fitness/somosfitness-grilla-horizontal01.webp',
+        '/images/contenido/fitness/somosfitness-grilla-horizontal02.webp',
+      ],
+      imageV: [
+        '/images/contenido/fitness/somosfitness-grilla-vertical01.webp',
+        '/images/contenido/fitness/somosfitness-grilla-vertical02.webp',
+      ],
     },
     videoPosition: 'bottom-right',
   },

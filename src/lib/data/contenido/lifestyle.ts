@@ -9,8 +9,14 @@ export const lifestyleContent: ThemeContent = {
       video: 'https://vimeo.com/1164480977',
       videoFrame:
         '/images/contenido/lifestyle/somos-lifestyle-horizontal02.webp',
-      imageH: '/images/contenido/lifestyle/somos-lifestyle-horizontal01.webp',
-      imageV: '/images/contenido/lifestyle/somos-lifestyle-vertical01.webp',
+      imageH: [
+        '/images/contenido/lifestyle/somos-lifestyle-horizontal01.webp',
+        '/images/contenido/lifestyle/somos-lifestyle-horizontal02.webp',
+      ],
+      imageV: [
+        '/images/contenido/lifestyle/somos-lifestyle-vertical01.webp',
+        '/images/contenido/lifestyle/somos-lifestyle-vertical02.webp',
+      ],
     },
     videoPosition: 'bottom-right',
   },

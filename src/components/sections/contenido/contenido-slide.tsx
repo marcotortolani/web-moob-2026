@@ -33,7 +33,8 @@ export function ContenidoSlideItem({ data, isActive, isFirst }: Props) {
           src={data.frame}
           alt=""
           fill
-          sizes="100vw"
+          sizes="(max-width: 1023px) 1px, 100vw"
+          quality={40}
           className="object-cover"
         />
       </div>

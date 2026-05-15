@@ -9,8 +9,14 @@ export const educacionContent: ThemeContent = {
       video: 'https://vimeo.com/1164767378',
       videoFrame:
         '/images/contenido/educacion/somos-educacion-horizontal02.webp',
-      imageH: '/images/contenido/educacion/somos-educacion-horizontal01.webp',
-      imageV: '/images/contenido/educacion/somos-educacion-vertical01.webp',
+      imageH: [
+        '/images/contenido/educacion/somos-educacion-horizontal01.webp',
+        '/images/contenido/educacion/somos-educacion-horizontal02.webp',
+      ],
+      imageV: [
+        '/images/contenido/educacion/somos-educacion-vertical01.webp',
+        '/images/contenido/educacion/somos-educacion-vertical02.webp',
+      ],
     },
     videoPosition: 'bottom-right',
   },

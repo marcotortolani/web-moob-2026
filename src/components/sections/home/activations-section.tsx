@@ -10,10 +10,14 @@ const GRID_ITEMS = {
   video: 'https://vimeo.com/1164059473',
   videoFrame:
     '/images/grid/experiencias/home-somosexperiencias-grilla-horizontal02.webp',
-  imageH:
+  imageH: [
     '/images/grid/experiencias/home-somosexperiencias-grilla-horizontal01.webp',
-  imageV:
+    '/images/grid/experiencias/home-somosexperiencias-grilla-horizontal02.webp',
+  ],
+  imageV: [
+    '/images/grid/experiencias/home-somosexperiencias-grilla-vertical01.webp',
     '/images/grid/experiencias/home-somosexperiencias-grilla-vertical02.webp',
+  ],
 }
 
 const POSTER = '/images/home/slider-contenido/carrousel-cat-musica.webp'

@@ -8,8 +8,14 @@ export const musicaContent: ThemeContent = {
     banner: {
       video: 'https://vimeo.com/1164486647',
       videoFrame: '/images/contenido/musica/somos-musica-horizontal02.webp',
-      imageH: '/images/contenido/musica/somos-musica-horizontal01.webp',
-      imageV: '/images/contenido/musica/somos-musica-vertical01.webp',
+      imageH: [
+        '/images/contenido/musica/somos-musica-horizontal01.webp',
+        '/images/contenido/musica/somos-musica-horizontal02.webp',
+      ],
+      imageV: [
+        '/images/contenido/musica/somos-musica-vertical01.webp',
+        '/images/contenido/musica/somos-musica-vertical02.webp',
+      ],
     },
     videoPosition: 'bottom-right',
   },

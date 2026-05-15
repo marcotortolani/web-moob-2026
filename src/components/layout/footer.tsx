@@ -21,7 +21,7 @@ export function Footer() {
               src="/images/media-moob-logo-large.webp"
               alt="Media Moob logo"
               width={120}
-              height={40}
+              height={45}
             />
           </Link>
 

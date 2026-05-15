@@ -68,9 +68,10 @@ export default function RootLayout({
   return (
     <html
       lang="es"
+      data-scroll-behavior="smooth"
       className={`${poppins.variable} ${bebasNeue.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="bg-background text-foreground min-h-screen flex flex-col scroll-smooth">
+      <body className="bg-background text-foreground min-h-screen flex flex-col">
         <Header />
         {children}
         <Footer />

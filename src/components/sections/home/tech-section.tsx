@@ -10,9 +10,14 @@ const GRID_ITEMS = {
   video: 'https://vimeo.com/1162197714',
   videoFrame:
     '/images/grid/tecnologia/home-somostecnologia-grilla-horizontal02.webp',
-  imageH:
+  imageH: [
     '/images/grid/tecnologia/home-somostecnologia-grilla-horizontal01.webp',
-  imageV: '/images/grid/tecnologia/home-somostecnologia-grilla-vertical02.webp',
+    '/images/grid/tecnologia/home-somostecnologia-grilla-horizontal02.webp',
+  ],
+  imageV: [
+    '/images/grid/tecnologia/home-somostecnologia-grilla-vertical01.webp',
+    '/images/grid/tecnologia/home-somostecnologia-grilla-vertical02.webp',
+  ],
 }
 
 const services = [

@@ -8,8 +8,14 @@ export const gamingContent: ThemeContent = {
     banner: {
       video: 'https://vimeo.com/1164096962',
       videoFrame: '/images/contenido/gaming/somos-gaming-horizontal02.webp',
-      imageH: '/images/contenido/gaming/somos-gaming-horizontal01.webp',
-      imageV: '/images/contenido/gaming/somos-gaming-vertical01.webp',
+      imageH: [
+        '/images/contenido/gaming/somos-gaming-horizontal01.webp',
+        '/images/contenido/gaming/somos-gaming-horizontal02.webp',
+      ],
+      imageV: [
+        '/images/contenido/gaming/somos-gaming-vertical01.webp',
+        '/images/contenido/gaming/somos-gaming-vertical02.webp',
+      ],
     },
     videoPosition: 'bottom-right',
   },

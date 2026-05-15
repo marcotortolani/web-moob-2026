@@ -8,8 +8,14 @@ export const kidsContent: ThemeContent = {
     banner: {
       video: 'https://vimeo.com/1167365720',
       videoFrame: '/images/contenido/kids/somos-kids-horizontal02.webp',
-      imageH: '/images/contenido/kids/somos-kids-horizontal01.webp',
-      imageV: '/images/contenido/kids/somos-kids-vertical01.webp',
+      imageH: [
+        '/images/contenido/kids/somos-kids-horizontal01.webp',
+        '/images/contenido/kids/somos-kids-horizontal02.webp',
+      ],
+      imageV: [
+        '/images/contenido/kids/somos-kids-vertical01.webp',
+        '/images/contenido/kids/somos-kids-vertical02.webp',
+      ],
     },
     videoPosition: 'bottom-right',
   },
