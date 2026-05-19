@@ -29,7 +29,7 @@ export function GamesSection() {
           }
           align="center"
           className="justify-center gap-0"
-          titleClassName="text-black text-[2.5rem] leading-10 md:text-5xl lg:text-6xl xl:text-7xl"
+          titleClassName="text-black text-[2.5rem] leading-[2.8rem] md:text-5xl lg:text-6xl xl:text-7xl"
         />
       </motion.div>
       <div className="max-w-[1728px] mx-auto flex flex-col items-center -mt-10 ">

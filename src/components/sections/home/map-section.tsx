@@ -15,40 +15,6 @@ export function MapSection() {
           className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-10 lg:gap-20"
         >
           {/* Globe */}
-          {/* <div className="relative w-72 h-72 md:w-105 md:h-105 lg:w-136 lg:h-136 shrink-0">
-            <svg
-              viewBox="0 0 400 400"
-              className="w-full h-full"
-              aria-hidden="true"
-              style={{ animation: "spin 40s linear infinite" }}
-            >
-              <defs>
-                <path
-                  id="mapTextPath"
-                  d="M 200,200 m -160,0 a 160,160 0 1,1 320,0 a 160,160 0 1,1 -320,0"
-                />
-                <path
-                  id="mapTextPath2"
-                  d="M 200,200 m -130,0 a 130,130 0 1,0 260,0 a 130,130 0 1,0 -260,0"
-                />
-              </defs>
-              <circle cx="200" cy="200" r="160" fill="none" stroke="#40b09d" strokeWidth="0.5" opacity="0.3" />
-              <circle cx="200" cy="200" r="140" fill="none" stroke="#40b09d" strokeWidth="0.3" opacity="0.2" />
-              <circle cx="200" cy="200" r="120" fill="none" stroke="#40b09d" strokeWidth="0.3" opacity="0.15" />
-              <text fill="white" fontSize="12" letterSpacing="4" opacity="0.8" fontFamily="var(--font-poppins), sans-serif">
-                <textPath href="#mapTextPath">
-                  estamos en más de 30 países • estamos en más de 30 países •
-                </textPath>
-              </text>
-              <text fill="#40b09d" fontSize="9" letterSpacing="2" opacity="0.6" fontFamily="var(--font-poppins), sans-serif">
-                <textPath href="#mapTextPath2" startOffset="30%">
-                  aquí llegamos con nuestras operaciones •
-                </textPath>
-              </text>
-              <circle cx="200" cy="200" r="8" fill="#40b09d" opacity="0.8" />
-              <circle cx="200" cy="200" r="4" fill="white" />
-            </svg>
-          </div> */}
           {/* Three.js dotted globe — fills the container */}
           <div className="relative w-72 h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-108 md:h-108 lg:w-125 lg:h-125 xl:w-150 xl:h-150 2xl:w-170 2xl:h-170 mt-4">
             <LazyDottedGlobe />
@@ -57,11 +23,11 @@ export function MapSection() {
           {/* Text */}
           <div className="text-center lg:text-left max-w-sm">
             <h3 className="text-white text-3xl lg:text-5xl xl:text-6xl font-extrabold italic leading-tight">
-              estamos en más de{' '}
+              Estamos en más de{' '}
               <span className="text-mint block">30 países</span>
             </h3>
             <p className="text-white/40 text-base lg:text-lg mt-4">
-              aquí llegamos con nuestras operaciones
+              Aquí llegamos con nuestras operaciones
             </p>
             {/* Country grid teaser */}
             <div className="flex flex-wrap gap-2 mt-6 justify-center lg:justify-start">
