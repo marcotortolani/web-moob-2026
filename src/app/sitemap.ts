@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/somos-contenido`,
+      url: `${baseUrl}/we-are-content`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -39,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   const contenidoRoutes: MetadataRoute.Sitemap = contenidoSlides.map((s) => ({
-    url: `${baseUrl}/somos-contenido/${s.slug}`,
+    url: `${baseUrl}/we-are-content/${s.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.6,

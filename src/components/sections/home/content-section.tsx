@@ -43,7 +43,6 @@ export function ContentSection() {
       id="contenido"
     >
       {/* Desktop: heading left + description right */}
-      {/* <div className=" z-50! translate-y-5 bg-red-800 "></div> */}
       <div className=" relative w-full ">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -108,7 +107,7 @@ export function ContentSection() {
           {contentCategories.map(({ label, id }) => (
             <SwiperSlide key={id}>
               <Link
-                href={`/somos-${id}`}
+                href={`/we-are-content/${id}`}
                 className="block relative aspect-square rounded-xs overflow-hidden group cursor-pointer"
               >
                 <Image
@@ -130,7 +129,7 @@ export function ContentSection() {
 
         <div className="mt-8 lg:mt-10 flex justify-center">
           <DemoButton
-            href="/somos-contenido"
+            href="/we-are-content"
             className=" text-white tracking-tight"
           >
             MÁS DE NUESTRO CONTENIDO

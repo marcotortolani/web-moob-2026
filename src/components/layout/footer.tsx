@@ -5,10 +5,11 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { InstagramIcon, LinkedinIcon } from '@/components/ui/social-icons'
 import { navLinks } from '@/lib/data/navigation'
+import { MapHoverPreview } from '@/components/ui/map-hover-preview'
 
 export function Footer() {
   const pathname = usePathname()
-  if (pathname === '/somos-contenido') return null
+  if (pathname === '/we-are-content') return null
 
   return (
     <footer className="bg-black border-t border-white/10 py-10 lg:py-14 px-5 lg:px-16 xl:px-24">
@@ -46,16 +47,28 @@ export function Footer() {
             <p className="text-white/40 text-xs uppercase tracking-widest mb-1">
               Contacto
             </p>
-            <p className="text-white/60 text-sm">
+            <MapHoverPreview
+              href="https://maps.app.goo.gl/cSKNi51Jtf57y7388"
+              query="Guatemala 5582, Ciudad de Buenos Aires, Argentina"
+              className="text-white/60 text-sm hover:text-mint transition-colors"
+              side="top"
+              align="start"
+            >
               Guatemala 5582, Ciudad de Buenos Aires.
               <br />
               República Argentina.
-            </p>
+            </MapHoverPreview>
             <Link
-              href="/#contacto"
+              href="/#contact"
               className="text-mint text-sm hover:underline"
             >
               Hablemos!
+            </Link>
+            <Link
+              href="/join-us"
+              className="text-mint text-sm hover:underline"
+            >
+              Trabaja con nosotros
             </Link>
           </div>
 
@@ -91,9 +104,15 @@ export function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col items-center lg:flex-row lg:justify-between mt-8 pt-6 border-t border-white/5 gap-4">
           {/* Address — mobile only */}
-          <p className="text-white/80 text-sm text-center lg:hidden">
+          <a
+            href="https://maps.app.goo.gl/cSKNi51Jtf57y7388"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver ubicación en Google Maps"
+            className="text-white/80 text-sm text-center lg:hidden hover:text-mint transition-colors"
+          >
             Guatemala 5582, Ciudad de Buenos Aires. <br /> República Argentina.
-          </p>
+          </a>
           <p className="text-white/40 text-xs">
             © {new Date().getFullYear()} Media Moob. Todos los derechos
             reservados.
