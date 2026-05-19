@@ -1,11 +1,19 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, type Variants } from 'motion/react'
-import { Play } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { motion, AnimatePresence, type Variants } from 'motion/react'
+import { Play, X } from 'lucide-react'
 import Image from 'next/image'
 import { LazyDottedGlobe } from '@/components/ui/dotted-globe-lazy'
 import Link from 'next/link'
+
+type Locale = 'es' | 'en' | 'pt'
+
+const REEL_BY_LOCALE: Record<Locale, string> = {
+  es: '/videos/reel-es-argentino.mp4',
+  en: '/videos/reel-en.mp4',
+  pt: '/videos/reel-pt.mp4',
+}
 
 const heroLines = [
   { prefix: 'somos', word: 'CREATIVOS', highlight: false },
@@ -28,8 +36,9 @@ const lineVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 }
 
-export function HeroSection() {
+export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
   const [videoReady, setVideoReady] = useState(false)
+  const [reelOpen, setReelOpen] = useState(false)
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-black">
@@ -100,6 +109,7 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 1.4 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
+            onClick={() => setReelOpen(true)}
             className="flex items-center gap-3 mt-10 self-start group"
             aria-label="Mira nuestro reel"
           >
@@ -125,6 +135,8 @@ export function HeroSection() {
           <GlobeDecoration />
         </motion.div>
       </div>
+      <ReelModal open={reelOpen} onClose={() => setReelOpen(false)} locale={locale} />
+
       {/* Background image Earth Space */}
       <div className="absolute bottom-0 inset-x-0 h-1/4 bg-sky-500 ">
         <Image
@@ -139,6 +151,72 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-black/60" />
       </div>
     </section>
+  )
+}
+
+function ReelModal({
+  open,
+  onClose,
+  locale,
+}: {
+  open: boolean
+  onClose: () => void
+  locale: Locale
+}) {
+  useEffect(() => {
+    if (!open) return
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open, onClose])
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[1100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+          onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Reel Media Moob"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.25 }}
+            className="relative w-full max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={onClose}
+              className="absolute -top-10 right-0 text-white/70 hover:text-white transition-colors"
+              aria-label="Cerrar"
+            >
+              <X size={28} />
+            </button>
+            <video
+              key={locale}
+              src={REEL_BY_LOCALE[locale]}
+              controls
+              autoPlay
+              playsInline
+              className="w-full h-auto max-h-[85vh] rounded-lg"
+            />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 
