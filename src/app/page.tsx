@@ -6,6 +6,7 @@ import { TechSection } from '@/components/sections/home/tech-section'
 import { ActivationsSection } from '@/components/sections/home/activations-section'
 import { GamesSection } from '@/components/sections/home/games-section'
 import { MapSection } from '@/components/sections/home/map-section'
+import { ContactSection } from '@/components/sections/home/contact-section'
 import type { Metadata } from 'next'
 import { ProductsSlider } from '@/components/sections/home/products-slider'
 import { BrandsSlider } from '@/components/sections/home/brands-slider'
@@ -29,6 +30,7 @@ export default function HomePage() {
       <ActivationsSection />
       <GamesSection />
       <MapSection />
+      <ContactSection />
     </main>
   )
 }

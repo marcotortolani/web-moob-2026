@@ -3,6 +3,7 @@ import { Geist_Mono, Poppins, Bebas_Neue } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
+import { Toaster } from '@/components/ui/sonner'
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -75,6 +76,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Toaster theme="dark" position="bottom-right" richColors />
       </body>
     </html>
   )
