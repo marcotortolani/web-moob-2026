@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer'
 import { getResend } from './resend'
+import { sendViaBrevo } from './brevo'
 
 interface EmailOptions {
   from: string
@@ -10,17 +10,17 @@ interface EmailOptions {
   attachments?: Array<{ filename: string; content: Buffer }>
 }
 
-function getNodemailerTransport() {
-  return nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  })
-}
-
 const isDev = process.env.NODE_ENV !== 'production'
+
+export function getFromAddress(): string {
+  if (process.env.RESEND_API_KEY) {
+    return process.env.RESEND_FROM_EMAIL ?? 'Web Moob <onboarding@resend.dev>'
+  }
+  if (process.env.BREVO_API_KEY) {
+    return process.env.BREVO_FROM_EMAIL ?? 'Web Moob <hola@memoob.com>'
+  }
+  return 'Web Moob <web@memoob.com>'
+}
 
 export async function sendEmail(opts: EmailOptions): Promise<void> {
   if (process.env.RESEND_API_KEY) {
@@ -37,20 +37,11 @@ export async function sendEmail(opts: EmailOptions): Promise<void> {
     return
   }
 
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    throw new Error(
-      'No email provider configured: set RESEND_API_KEY or GMAIL_USER + GMAIL_APP_PASSWORD'
-    )
+  if (process.env.BREVO_API_KEY) {
+    if (isDev) console.log('[email] using brevo')
+    await sendViaBrevo(opts)
+    return
   }
 
-  if (isDev) console.log('[email] using nodemailer gmail')
-
-  await getNodemailerTransport().sendMail({
-    from: `Moob Web <${process.env.GMAIL_USER}>`,
-    to: opts.to,
-    replyTo: opts.replyTo ?? opts.from,
-    subject: opts.subject,
-    html: opts.html,
-    attachments: opts.attachments,
-  })
+  throw new Error('No email provider configured: set RESEND_API_KEY or BREVO_API_KEY')
 }

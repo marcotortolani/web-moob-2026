@@ -1,8 +1,7 @@
-import { sendEmail } from '@/lib/email/sender'
+import { getFromAddress, sendEmail } from '@/lib/email/sender'
 import { joinUsServerSchema } from '@/lib/schemas/join-us'
 import { renderConfirmation, renderNotification } from './render-emails'
 
-const FROM = 'Web Moob <web@memoob.com>'
 const CV_MAX_SIZE = 5 * 1024 * 1024
 
 export async function POST(request: Request) {
@@ -38,10 +37,11 @@ export async function POST(request: Request) {
   const { name, email, country, linkedin, portfolio } = parsed.data
   const cvBuffer = Buffer.from(await cvFile.arrayBuffer())
   const cvFilename = cvFile.name || 'cv.pdf'
+  const from = getFromAddress()
 
   try {
     await sendEmail({
-      from: FROM,
+      from,
       to: process.env.JOIN_US_TO_EMAIL ?? 'hola@memoob.com',
       replyTo: email,
       subject: 'Nueva postulación Website Moob',
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
   renderConfirmation(name)
     .then((html) =>
       sendEmail({
-        from: FROM,
+        from,
         to: email,
         subject: 'Recibimos tu postulación — Moob',
         html,

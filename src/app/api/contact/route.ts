@@ -1,8 +1,6 @@
-import { sendEmail } from '@/lib/email/sender'
+import { getFromAddress, sendEmail } from '@/lib/email/sender'
 import { contactSchema } from '@/lib/schemas/contact'
 import { renderConfirmation, renderNotification } from './render-emails'
-
-const FROM = 'Web Moob <web@memoob.com>'
 
 export async function POST(request: Request) {
   let body: unknown
@@ -21,10 +19,11 @@ export async function POST(request: Request) {
   }
 
   const { name, email, message, country } = parsed.data
+  const from = getFromAddress()
 
   try {
     await sendEmail({
-      from: FROM,
+      from,
       to: process.env.CONTACT_TO_EMAIL ?? 'hola@memoob.com',
       replyTo: email,
       subject: 'Formulario Contacto Website Moob',
@@ -45,7 +44,7 @@ export async function POST(request: Request) {
   renderConfirmation(name)
     .then((html) =>
       sendEmail({
-        from: FROM,
+        from,
         to: email,
         subject: 'Recibimos tu mensaje — Moob',
         html,
