@@ -10,9 +10,9 @@ import Link from 'next/link'
 type Locale = 'es' | 'en' | 'pt'
 
 const REEL_BY_LOCALE: Record<Locale, string> = {
-  es: '/videos/reel-es-argentino.mp4',
-  en: '/videos/reel-en.mp4',
-  pt: '/videos/reel-pt.mp4',
+  es: 'https://dkbzmqzjgfwxoqoe.public.blob.vercel-storage.com/videos/reel-es-argentino.mp4',
+  en: 'https://dkbzmqzjgfwxoqoe.public.blob.vercel-storage.com/videos/reel-en.mp4',
+  pt: 'https://dkbzmqzjgfwxoqoe.public.blob.vercel-storage.com/videos/reel-pt.mp4',
 }
 
 const heroLines = [
