@@ -107,7 +107,7 @@ export function ContentSection() {
           {contentCategories.map(({ label, id }) => (
             <SwiperSlide key={id}>
               <Link
-                href={`/we-are-content/${id}`}
+                href={`/somos-contenido/${id}`}
                 className="block relative aspect-square rounded-xs overflow-hidden group cursor-pointer"
               >
                 <Image
@@ -129,7 +129,7 @@ export function ContentSection() {
 
         <div className="mt-8 lg:mt-10 flex justify-center">
           <DemoButton
-            href="/we-are-content"
+            href="/somos-contenido"
             className=" text-white tracking-tight"
           >
             MÁS DE NUESTRO CONTENIDO

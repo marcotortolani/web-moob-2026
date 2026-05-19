@@ -14,7 +14,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
-  const isContenidoHub = pathname === '/we-are-content'
+  const isContenidoHub = pathname === '/somos-contenido'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)

@@ -1,5 +1,5 @@
 export const navLinks = [
-  { label: 'Contenido', href: '/we-are-content' },
+  { label: 'Contenido', href: '/somos-contenido' },
   { label: 'Tecnología', href: '/somos-tecnologia' },
   { label: 'Eventos', href: '/#eventos' },
   { label: 'Experiencias', href: '/somos-experiencias' },

@@ -111,7 +111,7 @@ export function ContenidoSlideItem({ data, isActive, isFirst }: Props) {
             {data.description}
           </p>
           <Link
-            href={`/we-are-content/${data.slug}`}
+            href={`/somos-contenido/${data.slug}`}
             className="inline-flex items-center gap-2 mt-6 bg-mint text-white font-display uppercase tracking-wider text-base rounded-full px-6 py-2 hover:bg-mint-dark transition-colors"
           >
             Más {data.title} aquí

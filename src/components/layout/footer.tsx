@@ -9,7 +9,7 @@ import { MapHoverPreview } from '@/components/ui/map-hover-preview'
 
 export function Footer() {
   const pathname = usePathname()
-  if (pathname === '/we-are-content') return null
+  if (pathname === '/somos-contenido') return null
 
   return (
     <footer className="bg-black border-t border-white/10 py-10 lg:py-14 px-5 lg:px-16 xl:px-24">
@@ -64,10 +64,7 @@ export function Footer() {
             >
               Hablemos!
             </Link>
-            <Link
-              href="/join-us"
-              className="text-mint text-sm hover:underline"
-            >
+            <Link href="/join-us" className="text-mint text-sm hover:underline">
               Trabaja con nosotros
             </Link>
           </div>
