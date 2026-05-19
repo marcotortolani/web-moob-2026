@@ -1,34 +1,34 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
-import { DetailGallery } from '@/components/sections/activaciones/detail-gallery'
-import { activations } from '@/lib/data/activations'
+import { DetailGallery } from '@/components/sections/eventos/detail-gallery'
+import { events } from '@/lib/data/events'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  return activations.map((a) => ({ slug: a.slug }))
+  return events.map((e) => ({ slug: e.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const activation = activations.find((a) => a.slug === slug)
-  if (!activation) return {}
+  const event = events.find((e) => e.slug === slug)
+  if (!event) return {}
   return {
-    title: activation.title,
-    description: activation.description,
+    title: event.title,
+    description: event.description,
   }
 }
 
-export default async function ExperienciaDetallePage({ params }: Props) {
+export default async function EventoDetallePage({ params }: Props) {
   const { slug } = await params
-  const activation = activations.find((a) => a.slug === slug)
-  if (!activation) notFound()
+  const event = events.find((e) => e.slug === slug)
+  if (!event) notFound()
 
   return (
     <main className="relative bg-black min-h-screen">
-      <DetailGallery activation={activation} />
+      <DetailGallery event={event} />
     </main>
   )
 }

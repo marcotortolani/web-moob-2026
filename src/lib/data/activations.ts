@@ -6,6 +6,7 @@ export interface Activation {
   coverImage: string | null;
   images: string[];
   videoUrl: string;
+  detailVideoUrl: string;
   videoThumbnail?: string;
 }
 
@@ -24,6 +25,7 @@ export const activations: Activation[] = [
       "/images/experiencias/locoporlacocina-movistar-ve/activacion-lxc-vertical02.webp",
     ],
     videoUrl: "https://vimeo.com/1167461946",
+    detailVideoUrl: "https://vimeo.com/1051941178",
   },
   {
     slug: "team-gamers-movistar-venezuela",
@@ -39,6 +41,7 @@ export const activations: Activation[] = [
       "/images/experiencias/teamgamers-movistar-ve/activacion-TG-vertical02.webp",
     ],
     videoUrl: "https://vimeo.com/1167444864",
+    detailVideoUrl: "https://vimeo.com/1069269568",
   },
   {
     slug: "so-pra-elas-vodacom-mozambique",
@@ -53,6 +56,7 @@ export const activations: Activation[] = [
       "/images/experiencias/sopraelas-vodacom-mz/activacion-SPE-vertical02.webp",
     ],
     videoUrl: "https://vimeo.com/1167432366",
+    detailVideoUrl: "https://vimeo.com/718443032",
   },
   {
     slug: "que-guay-viajes-movistar-venezuela",
@@ -67,6 +71,7 @@ export const activations: Activation[] = [
       "/images/experiencias/queguayviajes-movistar-ve/activacion-QGV-vertical02.webp",
     ],
     videoUrl: "https://vimeo.com/1167391488",
+    detailVideoUrl: "https://vimeo.com/1136465203",
   },
   {
     slug: "mundo-musica-personal-paraguay",
@@ -76,6 +81,7 @@ export const activations: Activation[] = [
     coverImage: null,
     images: [],
     videoUrl: "https://vimeo.com/1167378582",
+    detailVideoUrl: "https://vimeo.com/295657891",
   },
   {
     slug: "benja-torres-personal-paraguay",
@@ -91,6 +97,7 @@ export const activations: Activation[] = [
       "/images/experiencias/activacion-benja-torres/activacion-benja-vertical02.webp",
     ],
     videoUrl: "https://vimeo.com/1167401530",
+    detailVideoUrl: "https://vimeo.com/1193648086",
   },
 ];
 

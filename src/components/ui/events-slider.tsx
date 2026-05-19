@@ -23,6 +23,7 @@ export type EventSlide = {
 type ActiveVideoPlayerProps = {
   url: string
   controllable?: boolean
+  controls?: boolean
   muted?: boolean
   loop?: boolean
 }
@@ -30,34 +31,49 @@ type ActiveVideoPlayerProps = {
 export function ActiveVideoPlayer({
   url,
   controllable = false,
+  controls = false,
   muted = true,
   loop = true,
 }: ActiveVideoPlayerProps) {
   const [ready, setReady] = useState(false)
   const [error, setError] = useState(false)
-  const [playing, setPlaying] = useState(true)
+  const [playing, setPlaying] = useState(!controls)
 
   return (
     <div
       className={`absolute inset-0 transition-opacity duration-500 ${
         ready && !error ? 'opacity-100' : 'opacity-0'
       }`}
-      onClick={controllable ? () => setPlaying((p) => !p) : undefined}
-      style={controllable ? { cursor: 'pointer' } : undefined}
+      onClick={controllable && !controls ? () => setPlaying((p) => !p) : undefined}
+      style={controllable && !controls ? { cursor: 'pointer' } : undefined}
     >
       <ReactPlayer
         url={url}
         width="100%"
         height="100%"
-        playing={controllable ? playing : true}
+        playing={controls ? playing : controllable ? playing : true}
         muted={muted}
         loop={loop}
         playsinline
-        controls={false}
+        controls={controls}
         onReady={() => setReady(true)}
         onError={() => setError(true)}
+        onPlay={() => controls && setPlaying(true)}
+        onPause={() => controls && setPlaying(false)}
       />
-      {controllable && (
+      {controls && !playing && (
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          className="absolute inset-0 flex items-center justify-center bg-black/60 cursor-pointer"
+          aria-label="Reproducir video"
+        >
+          <span className="w-16 h-16 rounded-full border-2 border-white/80 flex items-center justify-center bg-black/40">
+            <Play size={24} className="text-white ml-1" />
+          </span>
+        </button>
+      )}
+      {controllable && !controls && (
         <div
           className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
             playing ? 'opacity-0 hover:opacity-100' : 'opacity-100'
