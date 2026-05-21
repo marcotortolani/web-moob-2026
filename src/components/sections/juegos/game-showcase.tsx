@@ -135,7 +135,7 @@ export function GameShowcase() {
                 <p className="text-black text-xs lg:text-sm leading-relaxed text-center">
                   {game.description}
                 </p>
-                {game.demoUrl && (
+                {game.demoUrl && game.demoUrl.length > 0 && (
                   <DemoButton
                     href={game.demoUrl}
                     target="_blank"

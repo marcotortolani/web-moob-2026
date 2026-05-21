@@ -27,6 +27,6 @@ export const games: Game[] = [
     icon: 'Grid2X2',
     color: '#40b09d',
     mockupImage: '/images/games/memotest-qgv.png',
-    demoUrl: 'https://trivia-v3-tg-movistar-ven-pwa.vercel.app/',
+    demoUrl: '',
   },
 ]
