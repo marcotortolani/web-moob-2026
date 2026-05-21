@@ -8,5 +8,13 @@ export const metadata: Metadata = {
 }
 
 export default function SomosContenidoPage() {
-  return <ContenidoReels />
+  return (
+    <>
+      <link rel="preconnect" href="https://player.vimeo.com" />
+      <link rel="preconnect" href="https://i.vimeocdn.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://f.vimeocdn.com" crossOrigin="anonymous" />
+      <link rel="dns-prefetch" href="https://fresnel.vimeocdn.com" />
+      <ContenidoReels />
+    </>
+  )
 }

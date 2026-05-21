@@ -14,12 +14,13 @@ interface Props {
   data: ContenidoSlide
   isActive: boolean
   isFirst: boolean
+  isNear: boolean
 }
 
-export function ContenidoSlideItem({ data, isActive, isFirst }: Props) {
+export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [videoError, setVideoError] = useState(false)
-  const showVideo = isActive && !videoError
+  const showVideo = (isActive || isNear) && !videoError
 
   return (
     <div className="relative h-dvh w-full overflow-hidden bg-black">
@@ -63,7 +64,7 @@ export function ContenidoSlideItem({ data, isActive, isFirst }: Props) {
                 src={data.frame}
                 alt={data.title}
                 fill
-                className="object-cover grayscale-50 blur-[3px]"
+                className="object-cover blur-[2px]"
                 priority={isFirst}
                 sizes="(max-width: 1024px) 100vw, 420px"
               />

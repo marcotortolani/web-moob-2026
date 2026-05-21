@@ -14,6 +14,8 @@ export function ContenidoReels() {
   useEffect(() => {
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
+    // Prefetch react-player bundle so it's ready when the first slide mounts
+    void import('react-player')
     return () => {
       document.body.style.overflow = prev
     }
@@ -58,15 +60,24 @@ export function ContenidoReels() {
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         style={{ height: '100dvh', width: '100%' } as React.CSSProperties}
       >
-        {contenidoSlides.map((slide, i) => (
-          <SwiperSlide key={slide.slug}>
-            <ContenidoSlideItem
-              data={slide}
-              isActive={activeIndex === i}
-              isFirst={i === 0}
-            />
-          </SwiperSlide>
-        ))}
+        {contenidoSlides.map((slide, i) => {
+          const total = contenidoSlides.length
+          const dist = Math.min(
+            Math.abs(i - activeIndex),
+            Math.abs(i - activeIndex + total),
+            Math.abs(i - activeIndex - total),
+          )
+          return (
+            <SwiperSlide key={slide.slug}>
+              <ContenidoSlideItem
+                data={slide}
+                isActive={activeIndex === i}
+                isFirst={i === 0}
+                isNear={dist === 1}
+              />
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
     </div>
   )
