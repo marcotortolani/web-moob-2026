@@ -198,6 +198,7 @@ function MediaMoobLogo() {
         alt="Media Moob logo"
         width={90}
         height={34}
+        priority
       />
     </Link>
   )

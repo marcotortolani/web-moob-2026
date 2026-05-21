@@ -33,6 +33,7 @@ interface SplitFlapProps {
   onFlipDone: () => void
   placeholder: React.ReactNode
   axis?: 'x' | 'y'
+  priority?: boolean
 }
 
 function SplitFlapImage({
@@ -43,6 +44,7 @@ function SplitFlapImage({
   onFlipDone,
   placeholder,
   axis = 'x',
+  priority = false,
 }: SplitFlapProps) {
   const prefersReduced = useReducedMotion()
   const idxRef         = useRef(0)
@@ -99,6 +101,7 @@ function SplitFlapImage({
         alt={alt}
         fill
         sizes={sizes}
+        priority={priority}
       />
     )
   }
@@ -118,6 +121,7 @@ function SplitFlapImage({
             alt={alt}
             fill
             sizes={sizes}
+            priority={priority}
           />
         </div>
         {/* Back face — próxima imagen, pre-rotada para verse correcta al girar */}
@@ -131,6 +135,7 @@ function SplitFlapImage({
             alt={alt}
             fill
             sizes={sizes}
+            priority={priority}
           />
         </div>
       </motion.div>
@@ -258,6 +263,7 @@ export const BannerGridVideo: React.FC<GridProps> = ({
             sizes="(max-width: 1280px) 66vw, 853px"
             flip={flipH}
             onFlipDone={handleFlipHDone}
+            priority
             placeholder={
               <div className="w-full h-full bg-linear-to-b from-neutral-600 to-neutral-800 animate-pulse" />
             }
@@ -283,6 +289,7 @@ export const BannerGridVideo: React.FC<GridProps> = ({
             flip={flipV}
             onFlipDone={handleFlipVDone}
             axis="y"
+            priority
             placeholder={
               <div className="w-full h-full bg-linear-to-r from-neutral-600 to-neutral-800 animate-pulse" />
             }
