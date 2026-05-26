@@ -39,29 +39,35 @@ const GRID_ITEMS = {
 export function ContentSection() {
   return (
     <section
-      className="w-full max-w-[1728px] mx-auto bg-black py-8 md:py-12 lg:py-20 mt-10"
+      className="w-full max-w-[1930px] mx-auto bg-black py-8 md:py-12 lg:py-20 mt-10"
       id="contenido"
     >
       {/* Desktop: heading left + description right */}
-      <div className=" relative w-full ">
+      <div className=" relative w-full xl:max-w-6xl xl:mx-auto ">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className=" absolute top-0 w-full py-4 z-50 -translate-y-14 bg-linear-to-b from-black via-black to-transparent "
+          className=" absolute top-0 xl:top-[unset] xl:bottom-0 xl:flex xl:items-end xl:justify-around xl:px-0 w-full py-4 2xl:py-10 z-50 -translate-y-14 bg-linear-to-b from-black via-black to-transparent xl:bg-linear-to-t xl:translate-y-10"
         >
           <SectionHeading
             label="SOMOS"
             title="Contenido"
             align="center"
-            className="flex-col justify-center gap-0 lg:min-w-75 "
-            titleClassName="text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+            className="flex-col justify-center gap-0 lg:min-w-75 xl:items-start "
+            titleClassName="text-5xl md:text-6xl xl:text-5xl 2xl:text-6xl"
           />
+          <p className=" hidden xl:block text-white/80 text-left text-pretty text-sm md:text-base xl:text-lg leading-4 xl:leading-5 max-w-2xl ">
+            <span className="font-bold text-mint">Creamos contenido</span> en
+            todos los formatos, desde experiencias en vivo hasta producciones de
+            larga, mediana y corta duración. Incluyendo películas y
+            documentales.
+          </p>
         </motion.div>
         <BannerGridVideo items={GRID_ITEMS} videoPosition="bottom-right" />
 
-        <div className="z-50 absolute -bottom-5 translate-y-4 w-full mx-auto px-5 md:px-10 lg:px-0 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
+        <div className="z-50 xl:hidden absolute -bottom-5 translate-y-4 w-full mx-auto px-5 md:px-10 lg:px-0 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
           <p className="mx-auto text-white/80 text-center text-pretty text-sm md:text-base xl:text-lg leading-4 xl:leading-5 mt-3 lg:mt-6 max-w-xl md:max-w-2xl xl:max-w-3xl">
             <span className="font-bold text-mint">Creamos contenido</span> en
             todos los formatos, desde experiencias en vivo hasta producciones de
