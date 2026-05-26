@@ -38,7 +38,7 @@ const brands = [
 
 export function BrandsSlider() {
   return (
-    <section className="bg-mint py-6 lg:py-8 overflow-hidden border-y border-white/5 mt-2.5">
+    <section className="bg-mint py-6 md:py-7 lg:py-8 overflow-hidden border-y border-white/5 mt-2.5">
       <p className="font-sans text-center text-white text-xs lg:text-sm uppercase tracking-widest mb-4 lg:mb-6 px-5">
         Marcas que confían en nosotros
       </p>
@@ -68,7 +68,7 @@ export function BrandsSlider() {
               width={120}
               height={60}
               draggable={false}
-              className="h-8 lg:h-10 w-auto object-contain select-none"
+              className="h-8 md:h-9 lg:h-10 xl:h-12 w-auto object-contain select-none"
             />
           </SwiperSlide>
         ))}

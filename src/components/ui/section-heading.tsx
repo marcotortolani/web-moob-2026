@@ -27,13 +27,13 @@ export function SectionHeading({
       )}
     >
       {label && (
-        <span className="text-white text-2xl font-normal tracking-widest uppercase">
+        <span className="text-white text-2xl md:text-3xl lg:text-4xl font-normal tracking-widest uppercase">
           {label}
         </span>
       )}
       <h2
         className={cn(
-          'text-[40px] leading-tight font-extrabold text-mint',
+          'text-[40px] md:text-5xl lg:text-6xl xl:text-7xl leading-tight font-extrabold text-mint',
           titleClassName,
         )}
       >

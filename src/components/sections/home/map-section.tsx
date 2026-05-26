@@ -5,14 +5,14 @@ import { motion } from 'motion/react'
 
 export function MapSection() {
   return (
-    <section className="bg-surface py-14 lg:py-24 px-5 lg:px-16 xl:px-24 overflow-hidden">
+    <section className="bg-surface py-14 md:py-18 lg:py-24 px-5 md:px-8 lg:px-16 xl:px-24 overflow-hidden">
       <div className="max-w-[1728px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
-          className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-10 lg:gap-20"
+          className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-12 lg:gap-20"
         >
           {/* Globe */}
           {/* Three.js dotted globe — fills the container */}
@@ -21,7 +21,7 @@ export function MapSection() {
           </div>
 
           {/* Text */}
-          <div className="text-center lg:text-left max-w-sm">
+          <div className="text-center md:text-left max-w-sm md:max-w-md lg:max-w-lg">
             <h3 className="text-white text-3xl lg:text-5xl xl:text-6xl font-extrabold italic leading-tight">
               Estamos en más de{' '}
               <span className="text-mint block">30 países</span>
@@ -30,7 +30,7 @@ export function MapSection() {
               Aquí llegamos con nuestras operaciones
             </p>
             {/* Country grid teaser */}
-            <div className="flex flex-wrap gap-2 mt-6 justify-center lg:justify-start">
+            <div className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
               {['🇦🇷', '🇧🇷', '🇲🇽', '🇨🇴', '🇵🇾', '🇵🇪', '🇿🇦', '🇲🇿', '🇰🇪', '🇺🇾'].map(
                 (flag, i) => (
                   <motion.span

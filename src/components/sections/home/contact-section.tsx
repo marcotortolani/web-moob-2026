@@ -66,11 +66,11 @@ export function ContactSection() {
 
   return (
     <section
-      className="bg-background pt-24 pb-14 lg:py-24 px-5 lg:px-16 xl:px-24 overflow-hidden"
+      className="bg-background pt-20 pb-14 md:py-20 lg:py-24 px-5 md:px-8 lg:px-16 xl:px-24 overflow-hidden"
       id="contact"
     >
       <div className="max-w-[1728px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-start">
           {/* Left: heading + info */}
           <motion.div {...fadeUp(0)} className="flex flex-col gap-8">
             <SectionHeading

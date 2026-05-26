@@ -118,7 +118,7 @@ export function ActivationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="z-0 max-w-xl lg:max-w-2xl xl:max-w-3xl mx-auto"
+          className="z-0 max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-5xl mx-auto"
         >
           <EventsSlider events={slides} />
         </motion.div>

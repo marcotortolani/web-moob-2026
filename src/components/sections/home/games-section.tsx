@@ -39,7 +39,7 @@ export function GamesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="relative w-full sm:max-w-sm md:max-w-md lg:max-w-xl "
+          className="relative w-full sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl"
         >
           <Image
             src="/images/roullete-wheel.webp"
@@ -54,7 +54,7 @@ export function GamesSection() {
             width={900}
             height={900}
             // className="absolute inset-0 w-full h-full object-contain translate-y-[50%]"
-            className="w-full translate-y-[-0%] -mt-40 object-contain"
+            className="w-full -mt-40 md:-mt-52 lg:-mt-64 xl:-mt-80 object-contain"
           />
         </motion.div>
 
@@ -63,7 +63,7 @@ export function GamesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="relative z-10 text-white/80 text-center text-pretty text-sm lg:text-base leading-tight mt-10 sm:mt-14 md:mt-20 lg:mt-32 max-w-md mx-auto"
+          className="relative z-10 text-white/80 text-center text-pretty text-sm lg:text-base leading-tight mt-10 sm:mt-14 md:mt-24 lg:mt-40 xl:mt-52 max-w-md mx-auto"
         >
           Desarrollamos diferentes juegos en base a nuestros productos,
           adaptados a diferentes temáticas con premios exclusivos para nuestros

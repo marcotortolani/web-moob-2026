@@ -39,7 +39,7 @@ const GRID_ITEMS = {
 export function ContentSection() {
   return (
     <section
-      className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20 mt-10 "
+      className="w-full max-w-[1728px] mx-auto bg-black py-8 md:py-12 lg:py-20 mt-10"
       id="contenido"
     >
       {/* Desktop: heading left + description right */}
@@ -56,13 +56,13 @@ export function ContentSection() {
             title="Contenido"
             align="center"
             className="flex-col justify-center gap-0 lg:min-w-75 "
-            titleClassName="text-5xl lg:text-6xl xl:text-7xl"
+            titleClassName="text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
           />
         </motion.div>
         <BannerGridVideo items={GRID_ITEMS} videoPosition="bottom-right" />
 
-        <div className="z-50 absolute -bottom-5 translate-y-4 w-full mx-auto px-5 lg:px-16 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
-          <p className="text-white/80 text-center text-pretty text-sm lg:text-base leading-4 mt-3 lg:mt-6 max-w-xl">
+        <div className="z-50 absolute -bottom-5 translate-y-4 w-full mx-auto px-5 md:px-10 lg:px-0 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
+          <p className="mx-auto text-white/80 text-center text-pretty text-sm md:text-base xl:text-lg leading-4 xl:leading-5 mt-3 lg:mt-6 max-w-xl md:max-w-2xl xl:max-w-3xl">
             <span className="font-bold text-mint">Creamos contenido</span> en
             todos los formatos, desde experiencias en vivo hasta producciones de
             larga, mediana y corta duración. Incluyendo películas y

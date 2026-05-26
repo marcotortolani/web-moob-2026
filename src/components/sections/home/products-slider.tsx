@@ -36,7 +36,7 @@ const products = [
 
 export function ProductsSlider() {
   return (
-    <section className="bg-mint py-6 lg:py-8 overflow-hidden border-y border-white/10">
+    <section className="bg-mint py-6 md:py-7 lg:py-8 overflow-hidden border-y border-white/10">
       <Swiper
         modules={[Autoplay, FreeMode]}
         slidesPerView="auto"
@@ -50,20 +50,25 @@ export function ProductsSlider() {
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
+        breakpoints={{
+          620: { spaceBetween: 80 },
+          1024: { spaceBetween: 100 },
+          1250: { spaceBetween: 120 },
+        }}
         allowTouchMove
         grabCursor
         onTouchEnd={(swiper) => swiper.autoplay?.start()}
         className="!overflow-visible [&_.swiper-wrapper]:!ease-linear cursor-grab active:cursor-grabbing"
       >
         {[...products, ...products, ...products].map((product, i) => (
-          <SwiperSlide key={i} className="!w-auto">
+          <SwiperSlide key={i} className="w-auto!">
             <Image
               src={product.src}
               alt={product.alt}
               width={120}
               height={60}
               draggable={false}
-              className="h-8 lg:h-10 w-auto object-contain select-none"
+              className="h-8 scale-125 md:h-9 md:scale-150 lg:h-10 lg:scale-[130%] xl:h-12 xl:max-w-[150px] w-auto object-contain select-none"
             />
           </SwiperSlide>
         ))}

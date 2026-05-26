@@ -66,7 +66,7 @@ export function TechSection() {
         <BannerGridVideo items={GRID_ITEMS} videoPosition="bottom-left" />
 
         <div className="z-50 absolute -bottom-5 translate-y-4 w-full mx-auto px-5 lg:px-16 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
-          <p className="text-white/80 text-pretty text-xs lg:text-sm leading-4 mt-3 lg:mt-6 max-w-xl mx-auto">
+          <p className="text-white/80 text-pretty text-xs lg:text-sm leading-4 mt-3 lg:mt-6 max-w-xl md:max-w-2xl xl:max-w-3xl mx-auto">
             <span className="font-bold text-mint">
               Aplicamos tecnología propia para amplificar su alcance e impacto.
             </span>{' '}
@@ -77,7 +77,7 @@ export function TechSection() {
       </div>
 
       <div className="relative mt-20 px-5 lg:px-16 xl:px-24">
-        <div className="flex justify-between gap-2 lg:gap-6">
+        <div className="flex justify-between gap-2 md:gap-4 lg:gap-6">
           {services.map(({ id, label, icon }, i) => (
             <motion.div
               key={id}

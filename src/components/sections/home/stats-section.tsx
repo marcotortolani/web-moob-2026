@@ -55,8 +55,8 @@ function AnimatedNumber({ value, unit }: { value: number; unit: string }) {
 
 export function StatsSection() {
   return (
-    <section className="py-10 lg:py-14 px-4 lg:px-16 xl:px-24">
-      <div className="w-fit max-w-sm md:max-w-2xl mx-auto flex flex-col items-start gap-8 lg:gap-10 pl-2 [@media(min-width:380px)]:pl-4 [@media(min-width:768px)]:pl-0">
+    <section className="py-10 md:py-14 lg:py-20 px-4 md:px-8 lg:px-16 xl:px-24">
+      <div className="mx-auto flex flex-col items-center gap-8 md:gap-10 lg:flex-row lg:justify-center lg:items-start lg:gap-16 xl:gap-24">
         {statsData.map(({ value, unit, label, icon }, i) => (
           <motion.div
             key={label}
@@ -64,7 +64,7 @@ export function StatsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.15 }}
-            className="flex items-center gap-4 lg:gap-8"
+            className="flex items-center gap-4 lg:gap-6 lg:flex-col lg:items-center lg:text-center"
           >
             <Image
               src={icon}
@@ -73,9 +73,9 @@ export function StatsSection() {
               height={100}
               className="w-16 h-16 lg:w-20 lg:h-20 object-contain shrink-0"
             />
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between gap-4 lg:flex-col lg:items-center lg:gap-2">
               <AnimatedNumber value={value} unit={unit} />
-              <p className=" text-balance text-white font-light text-xs lg:text-sm uppercase tracking-widest max-w-40 leading-snug">
+              <p className="text-balance text-white font-light text-xs lg:text-sm uppercase tracking-widest max-w-40 lg:text-center leading-snug">
                 {label}
               </p>
             </div>

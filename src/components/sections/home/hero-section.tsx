@@ -41,116 +41,123 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
   const [reelOpen, setReelOpen] = useState(false)
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black">
-      {/* Background image & video */}
-      <div className="absolute inset-0 h-1/2 lg:h-full ">
-        {/* Fallback image — always mounted, acts as placeholder and error fallback */}
-        <Image
-          src="/images/hero-bg.webp"
-          alt="Media Moob hero"
-          fill
-          className="h-full object-cover object-left lg:object-center pb-0.5"
-          priority
-          sizes="100vw"
-        />
-        {/* Background video — fades in once ready */}
-        <video
-          src="/videos/home-hero.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster="/images/hero-bg.webp"
-          aria-hidden="true"
-          onCanPlay={() => setVideoReady(true)}
-          className={`absolute inset-0 h-full w-full object-cover object-left lg:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
-        />
-        <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/20 to-black" />
-        <div className="absolute inset-0 bg-linear-to-r from-black via-black/50 to-transparent" />
-      </div>
-
-      {/* Content — mobile: column, desktop: flex row */}
-      <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between min-h-screen px-4 pt-28 pb-0 lg:px-16 xl:px-24 max-w-[1728px] mx-auto">
-        {/* Left side: text + CTA + categories */}
-        <div className="flex flex-col mt-auto lg:mt-0 lg:flex-1 lg:max-w-[55%]">
-          {/* Hero text */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {heroLines.map(({ prefix, word, highlight }) => (
-              <motion.div
-                key={word}
-                variants={lineVariants}
-                className="leading-none"
-              >
-                <span className="text-white/80 text-3xl lg:text-4xl xl:text-5xl font-light block">
-                  {prefix}
-                </span>
-                <span
-                  className={
-                    highlight
-                      ? 'text-mint text-[2.6rem] md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black italic block leading-none'
-                      : 'text-white text-[2.6rem] md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black italic block leading-none'
-                  }
-                >
-                  {word}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* CTA "mira nuestro reel" */}
-          <motion.button
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.4 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => setReelOpen(true)}
-            className="flex items-center gap-3 mt-10 self-start group"
-            aria-label="Mira nuestro reel"
-          >
-            <span className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white/60 flex items-center justify-center group-hover:border-mint group-hover:bg-mint/10 transition-all">
-              <Play size={14} className="text-white ml-0.5" fill="white" />
-            </span>
-            <span className="font-display text-white text-lg lg:text-xl tracking-widest uppercase group-hover:text-mint transition-colors">
-              mira nuestro reel
-            </span>
-          </motion.button>
-
-          {/* Category icons row */}
-          <NavCategories />
+    <>
+      <section className="relative min-h-screen 3xl:h-screen overflow-hidden bg-black xl:pb-40 ">
+        {/* Background image & video */}
+        <div className="absolute inset-0 h-1/2 md:h-full xl:h-screen">
+          {/* Fallback image — always mounted, acts as placeholder and error fallback */}
+          <Image
+            src="/images/hero-bg.webp"
+            alt="Media Moob hero"
+            fill
+            className="h-full object-cover object-left lg:object-center pb-0.5"
+            priority
+            sizes="100vw"
+          />
+          {/* Background video — fades in once ready */}
+          <video
+            src="/videos/home-hero.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/images/hero-bg.webp"
+            aria-hidden="true"
+            onCanPlay={() => setVideoReady(true)}
+            className={`absolute inset-0 h-full w-full object-cover object-left lg:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+          />
+          <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/20 to-black" />
+          <div className="absolute inset-0 bg-linear-to-r from-black via-black/50 to-transparent" />
         </div>
 
-        {/* Globe — mobile below text, desktop right side */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex items-center justify-center -translate-y-14 lg:translate-y-20 lg:translate-x-20"
-        >
-          <GlobeDecoration />
-        </motion.div>
-      </div>
-      <ReelModal open={reelOpen} onClose={() => setReelOpen(false)} locale={locale} />
+        {/* Content — mobile: column, desktop: flex row */}
+        <div className="relative z-50 flex flex-col xl:flex-row xl:items-center xl:justify-between min-h-screen xl:h-full px-4 md:px-8 pt-28 pb-0 xl:pt-20 xl:px-10 2xl:px-20 max-w-[1728px] mx-auto ">
+          {/* Left side: text + CTA + categories */}
+          <div className="flex flex-col mt-auto md:mt-10 xl:mt-32 lg:flex-1 xl:max-w-[65%] ">
+            {/* Hero text */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              {heroLines.map(({ prefix, word, highlight }) => (
+                <motion.div
+                  key={word}
+                  variants={lineVariants}
+                  className="leading-none"
+                >
+                  <span className="text-white/80 text-3xl lg:text-4xl xl:text-5xl font-light block">
+                    {prefix}
+                  </span>
+                  <span
+                    className={
+                      highlight
+                        ? 'text-mint text-[2.6rem] md:text-6xl lg:text-7xl 2xl:text-8xl font-black italic block leading-none'
+                        : 'text-white text-[2.6rem] md:text-6xl lg:text-7xl 2xl:text-8xl font-black italic block leading-none'
+                    }
+                  >
+                    {word}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
 
-      {/* Background image Earth Space */}
-      <div className="absolute bottom-0 inset-x-0 h-1/4 bg-sky-500 ">
-        <Image
-          src="/images/earth-space-bg.webp"
-          alt="Earth Space Background"
-          fill
-          className=" object-cover object-center lg:object-center py-1 "
-          priority
-          sizes="25vw"
+            {/* CTA "mira nuestro reel" */}
+            <motion.button
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.4 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setReelOpen(true)}
+              className="flex items-center gap-3 mt-10 self-start group"
+              aria-label="Mira nuestro reel"
+            >
+              <span className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white/60 flex items-center justify-center group-hover:border-mint group-hover:bg-mint/10 transition-all">
+                <Play size={14} className="text-white ml-0.5" fill="white" />
+              </span>
+              <span className="font-display text-white text-lg lg:text-xl tracking-widest uppercase group-hover:text-mint transition-colors">
+                mira nuestro reel
+              </span>
+            </motion.button>
+
+            {/* Category icons row */}
+            <NavCategories />
+          </div>
+
+          {/* Globe — mobile below text, desktop right side */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="z-50 flex items-center justify-center -translate-y-14 md:translate-y-0 xl:translate-y-60 xl:translate-x-10 2xl:translate-y-48 2xl:translate-x-36"
+          >
+            <GlobeDecoration />
+          </motion.div>
+        </div>
+        <ReelModal
+          open={reelOpen}
+          onClose={() => setReelOpen(false)}
+          locale={locale}
         />
-        <div className="absolute inset-0 bg-linear-to-b from-black via-black/20 to-black" />
-        <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-black/60" />
-      </div>
-    </section>
+
+        {/* Background image Earth Space — mobile/tablet overlay only */}
+        <div className="3xl:hidden absolute bottom-0 inset-x-0 h-1/4 xl:h-[300px] ">
+          <Image
+            src="/images/earth-space-bg.webp"
+            alt="Earth Space Background"
+            fill
+            className="object-cover object-center py-1"
+            priority
+            sizes="25vw"
+          />
+          <div className="absolute inset-0 bg-linear-to-b from-black via-black/20 to-black" />
+          <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-black/60" />
+        </div>
+      </section>
+      {/* <EarthSpaceBand /> */}
+    </>
   )
 }
 
@@ -254,26 +261,26 @@ function NavCategories() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.6, duration: 0.6 }}
-      className="w-full max-w-100 flex justify-between mx-auto lg:gap-8 mt-8 overflow-x-auto pb-1 scrollbar-none "
+      className="w-full max-w-100 md:max-w-none flex justify-between md:justify-evenly mx-auto gap-2 md:gap-6 lg:gap-8 mt-8 md:mt-24 md:-mb-20 overflow-x-auto pb-1 scrollbar-none"
     >
       {items.map(({ label, image, link }, i) => (
         <Link
           key={label}
           href={link}
           className={`
-          ${i === 0 && 'mt-20 lg:mt-0'}
-          ${i === 1 && 'mt-8 lg:mt-0'}
-          ${i === 2 && 'mx-2 lg:mx-0'}
-          ${i === 3 && 'mt-8 lg:mt-0'}
-          ${i === 4 && 'mt-20 lg:mt-0'}
-          flex flex-col items-center gap-1 min-w-10 shrink-0 group`}
+          ${i === 0 && 'mt-20 md:mt-32'}
+          ${i === 1 && 'mt-8 md:mt-14'}
+          ${i === 2 && 'mx-2 md:mx-2'}
+          ${i === 3 && 'mt-8 md:mt-14'}
+          ${i === 4 && 'mt-20 md:mt-32'}
+          flex flex-col items-center gap-1 min-w-10 xl:mt-20 2xl:mt-40 shrink-0 group`}
         >
-          <span className="relative w-12 h-12 lg:w-14 lg:h-14 rounded-full lg:bg-white/10 border lg:border-white/20 flex items-center justify-center group-hover:border-mint group-hover:bg-mint/10 transition-all">
+          <span className="relative w-12 h-12 lg:w-14 lg:h-14 rounded-full lg:bg-white/10 lg:border lg:border-white/20 flex items-center justify-center group-hover:border-mint group-hover:bg-mint/10 transition-all">
             <Image
               src={image}
               alt=""
               fill
-              className="w-full h-full lg:p-1 object-center"
+              className="w-full h-full lg:p-2 object-center"
               priority
               sizes="25vw"
             />
@@ -343,8 +350,8 @@ function orbitPosition(t: number, radius = 170): { x: number; y: number } {
 
 function GlobeDecoration() {
   return (
-    <div className="relative w-72 h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-108 md:h-108 lg:w-125 lg:h-125 xl:w-150 xl:h-150 2xl:w-170 2xl:h-170 mt-4">
-      <div className="hidden lg:block absolute w-full h-full rounded-full bg-radial from-white/5 to-transparent backdrop-blur-xl " />
+    <div className="z-50 relative w-72 h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-[650px] md:h-[650px] lg:w-[850px] lg:h-[850px] xl:w-150 xl:h-150 2xl:w-200 2xl:h-200 mt-4">
+      <div className="hidden md:block absolute w-full h-full rounded-full bg-radial from-white/5 to-transparent backdrop-blur-xl " />
       {/* Three.js dotted globe — fills the container */}
       <LazyDottedGlobe />
 
@@ -422,7 +429,7 @@ function GlobeDecoration() {
         {/* SVG text ring — full (sm+): radius 170, los 4 textos */}
         <svg
           viewBox="0 0 400 400"
-          className="absolute inset-0 w-full h-full hidden sm:block"
+          className="absolute inset-0 w-full h-full hidden sm:block 2xl:scale-[1]"
           aria-hidden="true"
         >
           <defs>
@@ -524,7 +531,7 @@ function GlobeDecoration() {
           return (
             <div
               key={`flag-full-${iso}`}
-              className="hidden sm:block absolute w-8 h-8 sm:w-6 sm:h-6 lg:w-8 lg:h-8 -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden border-2 border-white/60 bg-black shadow-md"
+              className="hidden sm:block absolute w-8 h-8 sm:w-6 sm:h-6 lg:w-8 lg:h-8 -translate-x-1/2 -translate-y-1/2 xl:-translate-x-1/4 xl:-translate-y-3/5 2xl:translate-x-[20%] 2xl:translate-y-[-80%] rounded-full overflow-hidden border-2 border-white/60 bg-black shadow-md"
               style={{
                 left: `${x}%`,
                 top: `${y}%`,
@@ -546,3 +553,24 @@ function GlobeDecoration() {
     </div>
   )
 }
+
+// function EarthSpaceBand() {
+//   return (
+//     <motion.div
+//       initial={{ opacity: 0 }}
+//       whileInView={{ opacity: 1 }}
+//       viewport={{ once: true, margin: '-80px' }}
+//       transition={{ duration: 0.8 }}
+//       className="hidden 3xl:block z-0 relative w-full h-64 xl:h-80 overflow-hidden bg-black"
+//     >
+//       <Image
+//         src="/images/earth-space-bg.webp"
+//         alt="Earth Space Background"
+//         fill
+//         className="object-cover object-center"
+//         sizes="100vw"
+//       />
+//       <div className="absolute inset-0 bg-linear-to-b from-black via-transparent to-black" />
+//     </motion.div>
+//   )
+// }

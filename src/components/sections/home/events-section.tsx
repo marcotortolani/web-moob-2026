@@ -24,7 +24,7 @@ export function EventsSection() {
           whileInView={{ opacity: 1, y: 0, zIndex: 50 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="z-40 absolute top-0 -translate-y-20 flex flex-col items-center text-center px-4 lg:px-10"
+          className="z-40 absolute top-0 -translate-y-20 flex flex-col items-center text-center px-4 md:px-8 lg:px-10"
         >
           <SectionHeading
             label="SOMOS"
@@ -48,7 +48,7 @@ export function EventsSection() {
           whileInView={{ opacity: 1, y: 0, zIndex: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="z-0 max-w-xl lg:max-w-2xl xl:max-w-3xl mx-auto"
+          className="z-0 max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-5xl mx-auto"
         >
           <EventsSlider events={eventSlides} />
         </motion.div>

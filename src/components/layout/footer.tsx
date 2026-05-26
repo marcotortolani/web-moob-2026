@@ -12,10 +12,10 @@ export function Footer() {
   if (pathname === '/somos-contenido') return null
 
   return (
-    <footer className="bg-black border-t border-white/10 py-10 lg:py-14 px-5 lg:px-16 xl:px-24">
+    <footer className="bg-black border-t border-white/10 py-10 md:py-12 lg:py-14 px-5 md:px-8 lg:px-16 xl:px-24">
       <div className="max-w-[1728px] mx-auto">
         {/* Mobile: stacked centered, Desktop: horizontal columns */}
-        <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+        <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:justify-between md:gap-8 lg:gap-12">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -26,8 +26,8 @@ export function Footer() {
             />
           </Link>
 
-          {/* Navigation — desktop only */}
-          <nav className="hidden lg:flex flex-col gap-2">
+          {/* Navigation — tablet+ */}
+          <nav className="hidden md:flex flex-col gap-2">
             <p className="text-white/40 text-xs uppercase tracking-widest mb-1">
               Navegación
             </p>
@@ -42,8 +42,8 @@ export function Footer() {
             ))}
           </nav>
 
-          {/* Contact column — desktop */}
-          <div className="hidden lg:flex flex-col gap-2">
+          {/* Contact column — tablet+ */}
+          <div className="hidden md:flex flex-col gap-2">
             <p className="text-white/40 text-xs uppercase tracking-widest mb-1">
               Contacto
             </p>
@@ -71,7 +71,7 @@ export function Footer() {
 
           {/* Social */}
           <div className="flex flex-col items-center lg:items-start gap-3">
-            <p className="hidden lg:block text-white/40 text-xs uppercase tracking-widest mb-1">
+            <p className="hidden md:block text-white/40 text-xs uppercase tracking-widest mb-1">
               Redes
             </p>
             <div className=" flex items-center gap-3">
@@ -99,14 +99,14 @@ export function Footer() {
         </div>
 
         {/* Bottom row */}
-        <div className="flex flex-col items-center lg:flex-row lg:justify-between mt-8 pt-6 border-t border-white/5 gap-4">
+        <div className="flex flex-col items-center md:flex-row md:justify-between mt-8 pt-6 border-t border-white/5 gap-4">
           {/* Address — mobile only */}
           <a
             href="https://maps.app.goo.gl/cSKNi51Jtf57y7388"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Ver ubicación en Google Maps"
-            className="text-white/80 text-sm text-center lg:hidden hover:text-mint transition-colors"
+            className="text-white/80 text-sm text-center md:hidden hover:text-mint transition-colors"
           >
             Guatemala 5582, Ciudad de Buenos Aires. <br /> República Argentina.
           </a>
