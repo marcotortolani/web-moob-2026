@@ -41,10 +41,12 @@ export function ActiveVideoPlayer({
 
   return (
     <div
-      className={`absolute inset-0 transition-opacity duration-500 ${
+      className={`absolute inset-0 transition-opacity duration-500 z-30 ${
         ready && !error ? 'opacity-100' : 'opacity-0'
       }`}
-      onClick={controllable && !controls ? () => setPlaying((p) => !p) : undefined}
+      onClick={
+        controllable && !controls ? () => setPlaying((p) => !p) : undefined
+      }
       style={controllable && !controls ? { cursor: 'pointer' } : undefined}
     >
       <ReactPlayer
@@ -103,25 +105,24 @@ function EventSlideContent({
 }) {
   return (
     <div className="relative flex flex-col items-center gap-5 px-4 lg:px-10 pt-16 pb-28">
-      <Image
-        src={event.posterSrc}
-        alt={event.eventName}
-        fill
-        className="object-cover"
-        sizes="(max-width: 1024px) 90vw, 60vw"
-        priority={index === 0}
-      />
-      <div className="absolute top-0 w-full h-2/3 -mt-1 bg-linear-to-b from-black via-black/50 to-black/0 pointer-events-none" />
-      <div className="absolute bottom-0 w-full h-2/3 -mb-1 bg-linear-to-t from-black via-black/60 to-black/0 pointer-events-none" />
-
       <div className="z-50 relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border-white border-2">
         {isActive && event.videoUrl && (
           <ActiveVideoPlayer url={event.videoUrl} />
         )}
+        <div className="w-full h-full absolute left-0 top-0 z-10 brightness-75 grayscale-50">
+          <Image
+            src={event.posterSrc}
+            alt={event.eventName}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 90vw, 60vw"
+            priority={index === 0}
+          />
+        </div>
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/20 bg-white/10 pointer-events-none" />
       </div>
 
-      <div className="absolute bottom-0 h-28 w-60 lg:h-44 lg:w-72">
+      <div className="absolute bottom-0 h-28 w-60 lg:h-44 lg:w-72 lg:relative">
         <Image
           src={event.logoSrc}
           alt={event.eventName}
@@ -138,7 +139,7 @@ function EventSlideContent({
 const SWIPER_CLS = [
   '[&_.swiper-pagination]:!static',
   '[&_.swiper-pagination]:!mt-8',
-  'lg:[&_.swiper-pagination]:!mt-10',
+  'lg:[&_.swiper-pagination]:!mt-0',
   '[&_.swiper-pagination]:!flex',
   '[&_.swiper-pagination]:!gap-0',
   '[&_.swiper-pagination]:!items-center',
@@ -157,9 +158,11 @@ const SWIPER_CLS = [
 export function EventsSlider({
   events,
   className,
+  onActiveSlideChange,
 }: {
   events: EventSlide[]
   className?: string
+  onActiveSlideChange?: (event: EventSlide, index: number) => void
 }) {
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -168,14 +171,35 @@ export function EventsSlider({
       modules={[Pagination, Autoplay]}
       slidesPerView={1}
       spaceBetween={10}
+      centeredSlides={true}
       speed={1200}
       autoplay={{
         delay: 6000,
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       }}
+      breakpoints={{
+        768: {
+          slidesPerView: 1.5,
+          spaceBetween: 25,
+        },
+        1024: {
+          slidesPerView: 1.5,
+          spaceBetween: 30,
+        },
+        1280: {
+          slidesPerView: 1.5,
+          spaceBetween: 30,
+        },
+      }}
       pagination={{ clickable: true }}
-      onActiveIndexChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+      onSwiper={(swiper) =>
+        onActiveSlideChange?.(events[swiper.activeIndex], swiper.activeIndex)
+      }
+      onActiveIndexChange={(swiper) => {
+        setActiveIndex(swiper.activeIndex)
+        onActiveSlideChange?.(events[swiper.activeIndex], swiper.activeIndex)
+      }}
       className={`${SWIPER_CLS}${className ? ` ${className}` : ''}`}
     >
       {events.map((event, i) => (
