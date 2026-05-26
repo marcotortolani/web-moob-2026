@@ -310,7 +310,7 @@ export function JoinUsSection() {
                   <Input
                     id="linkedin"
                     type="url"
-                    placeholder="https://linkedin.com/in/..."
+                    placeholder="https://www.linkedin.com/in/..."
                     className="h-10 bg-surface-lighter border-white/10 focus-visible:border-mint focus-visible:ring-mint/30 placeholder:text-white/20"
                     aria-invalid={!!errors.linkedin}
                     {...register('linkedin')}

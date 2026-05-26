@@ -84,7 +84,7 @@ export function Header() {
             {/* Desktop Social Icons */}
             <div className=" flex items-center gap-4">
               <Link
-                href="https://instagram.com"
+                href="https://www.instagram.com/mediamoob/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
@@ -92,7 +92,7 @@ export function Header() {
                 <InstagramIcon size={18} />
               </Link>
               <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/media-moob/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" bg-mint p-px rounded-xs  hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
@@ -168,7 +168,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
 
           <div className="flex gap-4 mt-auto">
             <Link
-              href="https://instagram.com"
+              href="https://www.instagram.com/mediamoob/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/70 hover:text-mint"
@@ -176,7 +176,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
               <InstagramIcon size={22} />
             </Link>
             <Link
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/media-moob/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/70 hover:text-mint"

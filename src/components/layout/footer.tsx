@@ -76,7 +76,7 @@ export function Footer() {
             </p>
             <div className=" flex items-center gap-3">
               <Link
-                href="https://instagram.com"
+                href="https://www.instagram.com/mediamoob/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
@@ -84,7 +84,7 @@ export function Footer() {
                 <InstagramIcon size={28} />
               </Link>
               <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/media-moob/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" bg-mint p-px rounded-xs  hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
