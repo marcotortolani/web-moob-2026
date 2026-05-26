@@ -56,7 +56,7 @@ function AnimatedNumber({ value, unit }: { value: number; unit: string }) {
 export function StatsSection() {
   return (
     <section className="py-10 md:py-14 lg:py-20 px-4 md:px-8 lg:px-16 xl:px-24">
-      <div className="mx-auto flex flex-col items-center gap-8 md:gap-10 lg:flex-row lg:justify-center lg:items-start lg:gap-16 xl:gap-24">
+      <div className="mx-auto flex flex-col items-left gap-8 md:gap-10 px-4 lg:px-0 lg:flex-row lg:justify-center lg:items-start lg:gap-16 xl:gap-24">
         {statsData.map(({ value, unit, label, icon }, i) => (
           <motion.div
             key={label}
@@ -64,7 +64,7 @@ export function StatsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.15 }}
-            className="flex items-center gap-4 lg:gap-6 lg:flex-col lg:items-center lg:text-center"
+            className="flex items-center gap-4 lg:gap-6 lg:flex-col lg:items-center lg:text-center md:w-fit md:translate-x-40 lg:translate-0 "
           >
             <Image
               src={icon}
