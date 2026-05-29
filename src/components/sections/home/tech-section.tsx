@@ -46,27 +46,34 @@ export function TechSection() {
       className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20"
       id="tecnologia"
     >
-      <div className="relative w-full">
+      <div className=" relative w-full xl:max-w-6xl xl:mx-auto ">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="absolute top-0 w-full py-4 z-50 -translate-y-10 bg-linear-to-b from-black via-black to-transparent"
+          className="z-50 absolute top-0 xl:top-[unset] xl:bottom-0 xl:flex xl:items-end xl:justify-around xl:px-0 w-full py-4 2xl:py-10 -translate-y-14 bg-linear-to-b from-black via-black to-transparent xl:bg-linear-to-t xl:translate-y-10"
         >
           <SectionHeading
             label="SOMOS"
             title="Tecnología"
             align="center"
-            className="justify-center gap-0 lg:min-w-75"
-            titleClassName="text-5xl lg:text-6xl xl:text-7xl"
+            className="flex-col justify-center gap-0 lg:min-w-75 xl:items-start "
+            titleClassName="text-5xl md:text-6xl xl:text-5xl 2xl:text-6xl"
           />
+          <p className=" hidden xl:block text-white/80 text-left text-pretty text-sm md:text-base xl:text-lg leading-4 xl:leading-5 max-w-2xl ">
+            <span className="font-bold text-mint">
+              Aplicamos tecnología propia para amplificar su alcance e impacto.
+            </span>{' '}
+            Contamos con herramientas como MCP, Publicidad Sat y Push, que
+            optimizan la distribución y monetización de los contenidos.
+          </p>
         </motion.div>
 
         <BannerGridVideo items={GRID_ITEMS} videoPosition="bottom-left" />
 
-        <div className="z-50 absolute -bottom-5 translate-y-4 w-full mx-auto px-5 lg:px-16 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
-          <p className="text-white/80 text-pretty text-xs lg:text-sm leading-4 mt-3 lg:mt-6 max-w-xl md:max-w-2xl xl:max-w-3xl mx-auto">
+        <div className="xl:hidden z-50 absolute -bottom-5 translate-y-4 w-full mx-auto px-5 lg:px-16 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
+          <p className="text-white/80 text-pretty text-xs md:text-base lg:text-lg leading-4 mt-3 lg:mt-6 max-w-xl md:max-w-2xl xl:max-w-3xl mx-auto">
             <span className="font-bold text-mint">
               Aplicamos tecnología propia para amplificar su alcance e impacto.
             </span>{' '}
@@ -77,7 +84,7 @@ export function TechSection() {
       </div>
 
       <div className="relative mt-20 px-5 lg:px-16 xl:px-24">
-        <div className="flex justify-between gap-2 md:gap-4 lg:gap-6">
+        <div className="w-full xl:max-w-6xl xl:mx-auto flex justify-between gap-2 md:gap-4 lg:gap-6">
           {services.map(({ id, label, icon }, i) => (
             <motion.div
               key={id}
@@ -90,7 +97,7 @@ export function TechSection() {
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative w-14 h-14 p-3 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-mint overflow-hidden cursor-pointer shrink-0"
+                className="relative w-14 h-14 md:w-20 md:h-20 lg:w-24 lg:h-24 p-3 lg:p-4 rounded-full bg-mint overflow-hidden cursor-pointer shrink-0"
               >
                 <Image
                   src={icon}
@@ -107,7 +114,7 @@ export function TechSection() {
           ))}
         </div>
 
-        <div className="mt-8 lg:mt-10 flex justify-center">
+        <div className="mt-8 lg:mt-14 xl:mt-20 flex justify-center">
           <DemoButton
             href="/somos-tecnologia"
             className="text-white tracking-tight"

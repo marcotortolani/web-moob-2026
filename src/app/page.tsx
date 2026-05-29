@@ -24,8 +24,8 @@ export default function HomePage() {
       <ContentSection />
       <ProductsSlider />
       <StatsSection />
-      <EventsSection />
       <TechSection />
+      <EventsSection />
       <BrandsSlider />
       <ActivationsSection />
       <GamesSection />
