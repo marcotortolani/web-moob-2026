@@ -13,7 +13,7 @@ export function Footer() {
 
   return (
     <footer className="bg-black border-t border-white/10 py-10 md:py-12 lg:py-14 px-5 md:px-8 lg:px-16 xl:px-24">
-      <div className="max-w-[1728px] mx-auto">
+      <div className="max-w-[1528px] mx-auto">
         {/* Mobile: stacked centered, Desktop: horizontal columns */}
         <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:justify-between md:gap-8 lg:gap-12">
           {/* Logo */}
@@ -79,7 +79,7 @@ export function Footer() {
                 href="https://www.instagram.com/mediamoob/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
+                className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <InstagramIcon size={28} />
               </Link>
@@ -87,7 +87,7 @@ export function Footer() {
                 href="https://www.linkedin.com/company/media-moob/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" bg-mint p-px rounded-xs  hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
+                className=" bg-mint p-px rounded-xs  hover:text-white lg:text-white/70 lg:hover:text-mint hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <LinkedinIcon
                   size={24}

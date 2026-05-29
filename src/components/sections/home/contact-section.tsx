@@ -69,13 +69,13 @@ export function ContactSection() {
       className="bg-background pt-20 pb-14 md:py-20 lg:py-24 px-5 md:px-8 lg:px-16 xl:px-24 overflow-hidden"
       id="contact"
     >
-      <div className="max-w-[1728px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-start">
+      <div className="max-w-[1528px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-2 lg:gap-8 xl:gap-20 items-start">
           {/* Left: heading + info */}
           <motion.div {...fadeUp(0)} className="flex flex-col gap-8">
             <SectionHeading
               label=""
-              titleClassName="leading-10"
+              titleClassName="md:text-4xl lg:text-5xl xl:text-6xl leading-10 lg:leading-12 xl:leading-14"
               title={
                 <>
                   Hablemos.{' '}
@@ -138,7 +138,7 @@ export function ContactSection() {
           </motion.div>
 
           {/* Right: form card */}
-          <motion.div {...fadeUp(0.15)}>
+          <motion.div {...fadeUp(0.15)} className=" max-w-2xl">
             <div className="rounded-2xl border border-white/5 bg-surface p-6 lg:p-8">
               <form
                 onSubmit={handleSubmit(onSubmit)}
