@@ -28,7 +28,7 @@ export function EventsSection() {
           whileInView={{ opacity: 1, y: 0, zIndex: 50 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="z-40 absolute top-0 left-0 right-0 -translate-y-4 lg:-translate-y-14 w-full xl:max-w-6xl xl:mx-auto flex flex-col items-center justify-center xl:gap-4 text-center px-4 md:px-8 lg:px-10 "
+          className="z-40 absolute top-0 left-0 right-0 -translate-y-4 md:-translate-y-14 w-full xl:max-w-6xl xl:mx-auto flex flex-col items-center justify-center xl:gap-4 text-center px-4 md:px-8 lg:px-10 "
         >
           <SectionHeading
             label="SOMOS"
@@ -38,7 +38,7 @@ export function EventsSection() {
             titleClassName="text-5xl lg:text-6xl xl:text-7xl"
           />
           <div className=" w-fit max-w-lg lg:max-w-xl px-2 lg:px-0">
-            <p className="text-white/80 text-center 1xl:text-left text-balance text-xs md:text-base lg:text-lg leading-4 xl:leading-5 mt-3 lg:mt-6 xl:mt-0 max-w-xl">
+            <p className="text-white/80 text-center text-balance text-xs md:text-base lg:text-lg leading-4 xl:leading-5 mt-3 lg:mt-6 xl:mt-0 max-w-xl">
               <span className="font-bold text-mint">Creamos contenido</span> en
               todos los formatos, desde experiencias en vivo hasta producciones
               de larga, mediana y corta duración. Incluyendo películas y
