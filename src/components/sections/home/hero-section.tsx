@@ -50,7 +50,7 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
             src="/images/hero-bg.webp"
             alt="Media Moob hero"
             fill
-            className="h-full object-cover object-left lg:object-center pb-0.5"
+            className="h-full object-cover object-left md:object-center pb-0.5"
             priority
             sizes="100vw"
           />
@@ -65,7 +65,7 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
             poster="/images/hero-bg.webp"
             aria-hidden="true"
             onCanPlay={() => setVideoReady(true)}
-            className={`absolute inset-0 h-full w-full object-cover object-left lg:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 h-full w-full object-cover object-left md:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
           />
           <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/20 to-black" />
           <div className="absolute inset-0 bg-linear-to-r from-black via-black/50 to-transparent" />
