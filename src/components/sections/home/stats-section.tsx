@@ -44,7 +44,7 @@ function AnimatedNumber({ value, unit }: { value: number; unit: string }) {
   }, [springValue])
 
   return (
-    <span className="flex items-baseline gap-0.5 font-display text-6xl md:text-7xl lg:text-8xl font-medium leading-none">
+    <span className="flex items-baseline gap-0.5 font-display text-4xl min-[375px]:text-5xl md:text-6xl lg:text-8xl font-medium leading-none">
       <span ref={ref} className="text-white">
         0
       </span>
@@ -64,18 +64,18 @@ export function StatsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.15 }}
-            className="flex items-center gap-4 lg:gap-6 lg:flex-col lg:items-center lg:text-center md:w-fit md:translate-x-40 lg:translate-0 "
+            className="flex items-center gap-3 min-[375px]:gap-4 lg:gap-6 lg:flex-col lg:items-center lg:text-center md:w-fit md:translate-x-40 lg:translate-x-0"
           >
             <Image
               src={icon}
               alt={label}
               width={100}
               height={100}
-              className="w-16 h-16 lg:w-20 lg:h-20 object-contain shrink-0"
+              className="w-12 h-12 min-[375px]:w-16 min-[375px]:h-16 lg:w-20 lg:h-20 object-contain shrink-0"
             />
             <div className="flex items-center justify-between gap-4 lg:flex-col lg:items-center lg:gap-2">
               <AnimatedNumber value={value} unit={unit} />
-              <p className="text-balance text-white font-light text-xs lg:text-sm uppercase tracking-widest max-w-40 lg:text-center leading-snug">
+              <p className="text-balance text-white font-light text-[10px] min-[375px]:text-xs lg:text-sm uppercase tracking-widest max-w-28 min-[375px]:max-w-40 lg:text-center leading-snug">
                 {label}
               </p>
             </div>

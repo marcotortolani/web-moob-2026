@@ -114,7 +114,7 @@ function MockupScreen({ mockup }: { mockup: MockupContent }) {
 function PhoneMockup({ mockup, isActive }: { mockup: MockupContent; isActive: boolean }) {
   return (
     <div
-      className="relative w-[200px] lg:w-[260px] xl:w-[300px] aspect-[9/19] mx-auto transition-all duration-350"
+      className="relative w-[160px] min-[375px]:w-[200px] lg:w-[260px] xl:w-[300px] aspect-[9/19] mx-auto transition-all duration-350"
       style={{
         opacity: isActive ? 1 : 0.3,
         transform: isActive ? "scale(1)" : "scale(0.9)",
@@ -156,31 +156,31 @@ export function ServiceDetail() {
           <p className="text-center text-white text-[10px] lg:text-xs uppercase tracking-widest mb-6 opacity-90">
             Recorre y conoce nuestros servicios de tecnología
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 lg:gap-8">
+          <div className="flex items-center justify-center gap-2 min-[375px]:gap-4 lg:gap-8">
             {techServices.map((s, i) => {
               const NavIcon = iconMap[s.icon];
               return (
                 <button
                   key={s.id}
                   onClick={() => goTo(i)}
-                  className="flex flex-col items-center gap-2 group"
+                  className="flex flex-col items-center gap-1 min-[375px]:gap-2 group"
                 >
                   <div
-                    className={`w-12 h-12 lg:w-14 lg:h-14 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                    className={`w-9 h-9 min-[375px]:w-12 min-[375px]:h-12 lg:w-14 lg:h-14 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
                       i === activeIndex
                         ? "border-mint bg-mint/10"
                         : "border-white/20 group-hover:border-white/50"
                     }`}
                   >
                     <NavIcon
-                      size={18}
+                      size={14}
                       className={`transition-colors ${
                         i === activeIndex ? "text-mint" : "text-white/50 group-hover:text-white/80"
                       }`}
                     />
                   </div>
                   <span
-                    className={`font-display font-bold text-[11px] lg:text-xs tracking-wider transition-colors ${
+                    className={`font-display font-bold text-[9px] min-[375px]:text-[11px] lg:text-xs tracking-wider transition-colors ${
                       i === activeIndex ? "text-mint" : "text-white/85 group-hover:text-white"
                     }`}
                   >

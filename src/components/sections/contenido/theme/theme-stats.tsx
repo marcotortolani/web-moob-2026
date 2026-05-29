@@ -24,7 +24,7 @@ function AnimatedNumber({ value, unit }: { value: number; unit: string }) {
   }, [springValue])
 
   return (
-    <span className="flex items-baseline gap-0.5 font-display text-6xl md:text-7xl lg:text-8xl font-medium leading-none">
+    <span className="flex items-baseline gap-0.5 font-display text-4xl min-[375px]:text-5xl md:text-6xl lg:text-8xl font-medium leading-none">
       <span ref={ref} className="text-white">
         0
       </span>
@@ -42,28 +42,26 @@ export function ThemeStats({
 }: ThemeStatsData) {
   return (
     <section className="bg-black pt-12 lg:pt-20">
-      <div className="max-w-[1728px] mx-auto px-5 lg:px-16 xl:px-24 py-6 border-y border-white/10">
+      <div className="max-w-[1528px] mx-auto px-5 md:px-10 lg:px-16 xl:px-24 py-6 border-y border-white/10">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex items-center justify-center gap-4 lg:gap-8 "
+          className="flex items-center justify-center gap-3 min-[375px]:gap-4 lg:gap-8"
         >
           <Image
             src="/images/stats-contenido-exclusivo-icon.webp"
             alt={label}
             width={100}
             height={100}
-            className="w-16 h-16 lg:w-20 lg:h-20 object-contain shrink-0"
+            className="w-12 h-12 min-[375px]:w-16 min-[375px]:h-16 lg:w-20 lg:h-20 object-contain shrink-0"
           />
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 min-[375px]:gap-4">
             <AnimatedNumber value={value} unit={unit} />
-            <div className="max-w-40">
-              <p className="w-24 lg:w-40 text-balance text-white font-light text-xs lg:text-sm uppercase tracking-widest leading-snug">
-                {label}
-              </p>
-            </div>
+            <p className="w-20 min-[375px]:w-24 lg:w-40 text-balance text-white font-light text-[10px] min-[375px]:text-xs lg:text-sm uppercase tracking-widest leading-snug">
+              {label}
+            </p>
           </div>
         </motion.div>
         <p className="text-mint/70 text-sm lg:text-base italic text-center mt-4 leading-snug">

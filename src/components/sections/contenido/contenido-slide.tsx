@@ -55,11 +55,11 @@ export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
         {/* Vimeo video — only mounted when active */}
         {showVideo && (
           <div
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 overflow-hidden pointer-events-none"
             style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 0.6s' }}
           >
-            {/* Frame overlay */}
-            <div className=" absolute inset-0 w-full h-full">
+            {/* Frame blurred cover — always fills full width */}
+            <div className="absolute inset-0 w-full h-full">
               <Image
                 src={data.frame}
                 alt={data.title}
@@ -69,27 +69,43 @@ export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
                 sizes="(max-width: 1024px) 100vw, 420px"
               />
             </div>
-            <ReactPlayer
-              url={`https://vimeo.com/${data.vimeoId}`}
-              playing={isActive}
-              loop
-              muted
-              playsinline
-              width="100%"
-              height="100%"
-              config={{
-                vimeo: {
-                  playerOptions: {
-                    background: true,
-                    controls: false,
-                    dnt: true,
-                  },
-                },
+            {/*
+              Cover container for 9:16 vertical video:
+              - width  = max(100vw,  100dvh × 9/16)  → fills width even in landscape
+              - height = max(100dvh, 100vw  × 16/9)  → fills height in portrait
+              Centered so clipping is symmetric.
+            */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 'max(100vw, calc(100dvh * 9 / 16))',
+                height: 'max(100dvh, calc(100vw * 16 / 9))',
               }}
-              onReady={() => setVideoLoaded(true)}
-              onError={() => setVideoError(true)}
-              style={{ position: 'absolute', top: 0, left: 0 }}
-            />
+            >
+              <ReactPlayer
+                url={`https://vimeo.com/${data.vimeoId}`}
+                playing={isActive}
+                loop
+                muted
+                playsinline
+                width="100%"
+                height="100%"
+                config={{
+                  vimeo: {
+                    playerOptions: {
+                      background: true,
+                      controls: false,
+                      dnt: true,
+                    },
+                  },
+                }}
+                onReady={() => setVideoLoaded(true)}
+                onError={() => setVideoError(true)}
+              />
+            </div>
           </div>
         )}
 

@@ -43,7 +43,7 @@ export function HeroTech() {
                 title="Tecnología"
                 align="left"
                 className="flex-col justify-start gap-0 xl:min-w-64"
-                titleClassName="text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight xl:leading-none"
+                titleClassName="text-[28px] min-[375px]:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight xl:leading-none"
               />
               <p className="text-white/80 text-pretty text-sm md:text-base xl:text-lg leading-5 mt-4 xl:mt-0 xl:mb-2 max-w-sm md:max-w-lg xl:max-w-xl">
                 <span className="font-bold text-mint">

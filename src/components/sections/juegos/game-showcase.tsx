@@ -29,7 +29,7 @@ function GamePhoneMockup({
 }) {
   return (
     <div
-      className="relative w-[200px] lg:w-[260px] xl:w-[300px] aspect-[9/19] mx-auto transition-all duration-350"
+      className="relative w-[160px] min-[375px]:w-[200px] lg:w-[260px] xl:w-[300px] aspect-[9/19] mx-auto transition-all duration-350"
       style={{
         opacity: isActive ? 1 : 0.3,
         transform: isActive ? 'scale(1)' : 'scale(0.9)',

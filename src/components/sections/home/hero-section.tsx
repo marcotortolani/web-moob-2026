@@ -261,7 +261,7 @@ function NavCategories() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.6, duration: 0.6 }}
-      className="w-full max-w-100 md:max-w-none flex justify-between md:justify-evenly mx-auto gap-2 md:gap-6 lg:gap-8 mt-8 md:mt-24 md:-mb-20 overflow-x-auto pb-1 scrollbar-none"
+      className="w-full md:max-w-none flex justify-between md:justify-evenly mx-auto gap-1 min-[375px]:gap-2 md:gap-6 lg:gap-8 mt-8 md:mt-24 md:-mb-20 overflow-x-hidden pb-1 scrollbar-none"
     >
       {items.map(({ label, image, link }, i) => (
         <Link
@@ -275,7 +275,7 @@ function NavCategories() {
           ${i === 4 && 'mt-20 md:mt-32'}
           flex flex-col items-center gap-1 min-w-10 xl:mt-20 2xl:mt-40 shrink-0 group`}
         >
-          <span className="relative w-12 h-12 lg:w-14 lg:h-14 rounded-full lg:bg-white/10 lg:border lg:border-white/20 flex items-center justify-center group-hover:border-mint group-hover:bg-mint/10 transition-all">
+          <span className="relative w-10 h-10 min-[375px]:w-12 min-[375px]:h-12 lg:w-14 lg:h-14 rounded-full lg:bg-white/10 lg:border lg:border-white/20 flex items-center justify-center group-hover:border-mint group-hover:bg-mint/10 transition-all">
             <Image
               src={image}
               alt=""
@@ -285,7 +285,7 @@ function NavCategories() {
               sizes="25vw"
             />
           </span>
-          <span className="text-[12px] lg:text-[14px] text-mint font-display font-medium1 uppercase text-center leading-tight max-w-16 lg:max-w-20 group-hover:text-white transition-colors">
+          <span className="text-[9px] min-[375px]:text-[12px] lg:text-[14px] text-mint font-display font-medium1 uppercase text-center leading-tight max-w-12 min-[375px]:max-w-16 lg:max-w-20 group-hover:text-white transition-colors">
             {label}
           </span>
         </Link>
@@ -350,7 +350,7 @@ function orbitPosition(t: number, radius = 170): { x: number; y: number } {
 
 function GlobeDecoration() {
   return (
-    <div className="z-50 relative w-72 h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-[650px] md:h-[650px] lg:w-[850px] lg:h-[850px] xl:w-150 xl:h-150 2xl:w-200 2xl:h-200 mt-4">
+    <div className="z-50 relative w-56 h-56 min-[320px]:w-64 min-[320px]:h-64 min-[375px]:w-72 min-[375px]:h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-[650px] md:h-[650px] lg:w-[850px] lg:h-[850px] xl:w-150 xl:h-150 2xl:w-200 2xl:h-200 mt-4">
       <div className="hidden md:block absolute w-full h-full rounded-full bg-radial from-white/5 to-transparent backdrop-blur-xl " />
       {/* Three.js dotted globe — fills the container */}
       <LazyDottedGlobe />

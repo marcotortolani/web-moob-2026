@@ -107,7 +107,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: '100%' }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="fixed inset-0 z-[1000] bg-black flex flex-col px-8 pt-8 pb-12"
+          className="fixed inset-0 z-[1000] bg-black flex flex-col px-5 min-[375px]:px-8 pt-8 pb-12"
         >
           <div className="flex justify-between items-center mb-12">
             <MediaMoobLogo />

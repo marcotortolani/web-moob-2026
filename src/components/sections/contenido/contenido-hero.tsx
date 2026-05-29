@@ -58,35 +58,47 @@ export function ContenidoHero() {
             sizes="100vw"
             className="object-cover"
           />
+          {/* Video — cover container forces 16:9 player to fill any aspect-ratio viewport */}
           <div
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 overflow-hidden pointer-events-none"
             style={{
               opacity: videoLoaded ? 1 : 0,
               transition: 'opacity 0.8s ease',
             }}
           >
-            <ReactPlayer
-              key={activeSlug}
-              url={`https://vimeo.com/${active.heroVimeoId ?? active.vimeoId}`}
-              playing
-              loop
-              muted
-              playsinline
-              width="100%"
-              height="100%"
-              config={{
-                vimeo: {
-                  playerOptions: {
-                    background: true,
-                    controls: false,
-                    dnt: true,
-                  },
-                },
+            <div
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                /* Always at least as wide and as tall as the viewport, 16:9 */
+                width: 'max(100vw, calc(100dvh * 16 / 9))',
+                height: 'max(100dvh, calc(100vw * 9 / 16))',
               }}
-              onReady={() => setVideoLoaded(true)}
-              onError={() => setVideoLoaded(false)}
-              style={{ position: 'absolute', top: 0, left: 0 }}
-            />
+            >
+              <ReactPlayer
+                key={activeSlug}
+                url={`https://vimeo.com/${active.heroVimeoId ?? active.vimeoId}`}
+                playing
+                loop
+                muted
+                playsinline
+                width="100%"
+                height="100%"
+                config={{
+                  vimeo: {
+                    playerOptions: {
+                      background: true,
+                      controls: false,
+                      dnt: true,
+                    },
+                  },
+                }}
+                onReady={() => setVideoLoaded(true)}
+                onError={() => setVideoLoaded(false)}
+              />
+            </div>
           </div>
         </div>
 

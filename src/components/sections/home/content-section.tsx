@@ -56,7 +56,7 @@ export function ContentSection() {
             title="Contenido"
             align="center"
             className="flex-col justify-center gap-0 lg:min-w-75 xl:items-start "
-            titleClassName="text-5xl md:text-6xl xl:text-5xl 2xl:text-6xl"
+            titleClassName="text-[28px] min-[375px]:text-5xl md:text-6xl xl:text-5xl 2xl:text-6xl"
           />
           <p className=" hidden xl:block text-white/80 text-left text-pretty text-sm md:text-base xl:text-lg leading-4 xl:leading-5 max-w-2xl ">
             <span className="font-bold text-mint">Creamos contenido</span> en

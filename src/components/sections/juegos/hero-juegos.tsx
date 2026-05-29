@@ -48,7 +48,7 @@ export function HeroJuegos() {
               }
               align="left"
               className="flex-col justify-start gap-0 xl:min-w-64"
-              titleClassName="text-5xl md:text-6xl xl:text-6xl 2xl:text-7xl xl:leading-14 2xl:leading-16"
+              titleClassName="text-[28px] min-[375px]:text-5xl md:text-6xl xl:text-6xl 2xl:text-7xl xl:leading-14 2xl:leading-16"
             />
             <p className="text-white/80 text-pretty text-sm md:text-base xl:text-lg leading-5 mt-3 xl:mt-0 xl:mb-2 max-w-sm md:max-w-lg xl:max-w-xl">
               <span className="font-bold text-mint">Desarrollamos juegos</span> en

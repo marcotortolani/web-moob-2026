@@ -16,7 +16,7 @@ export function MapSection() {
         >
           {/* Globe */}
           {/* Three.js dotted globe — fills the container */}
-          <div className="relative w-72 h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-108 md:h-108 lg:w-140 lg:h-125 xl:w-140 xl:h-150 2xl:w-170 2xl:h-170 mt-4">
+          <div className="relative w-56 h-56 min-[320px]:w-64 min-[320px]:h-64 min-[375px]:w-72 min-[375px]:h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-108 md:h-108 lg:w-140 lg:h-125 xl:w-140 xl:h-150 2xl:w-170 2xl:h-170 mt-4">
             <LazyDottedGlobe />
           </div>
 

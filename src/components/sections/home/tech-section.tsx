@@ -97,7 +97,7 @@ export function TechSection() {
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative w-14 h-14 md:w-20 md:h-20 lg:w-24 lg:h-24 p-3 lg:p-4 rounded-full bg-mint overflow-hidden cursor-pointer shrink-0"
+                className="relative w-10 h-10 min-[375px]:w-14 min-[375px]:h-14 md:w-20 md:h-20 lg:w-24 lg:h-24 p-2 min-[375px]:p-3 lg:p-4 rounded-full bg-mint overflow-hidden cursor-pointer shrink-0"
               >
                 <Image
                   src={icon}
@@ -107,7 +107,7 @@ export function TechSection() {
                   height={80}
                 />
               </motion.div>
-              <span className="text-white text-sm md:text-base lg:text-lg text-center font-display font-medium uppercase tracking-wide leading-tight">
+              <span className="text-white text-[9px] min-[375px]:text-sm md:text-base lg:text-lg text-center font-display font-medium uppercase tracking-wide leading-tight">
                 {label}
               </span>
             </motion.div>

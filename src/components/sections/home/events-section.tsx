@@ -34,8 +34,8 @@ export function EventsSection() {
             label="SOMOS"
             title="Eventos"
             align="center"
-            className="flex-row justify-center "
-            titleClassName="text-5xl lg:text-6xl xl:text-7xl"
+            className="flex-col min-[375px]:flex-row items-center justify-center gap-1 min-[375px]:gap-3"
+            titleClassName="text-[28px] min-[375px]:text-5xl lg:text-6xl xl:text-7xl"
           />
           <div className=" w-fit max-w-lg lg:max-w-xl px-2 lg:px-0">
             <p className="text-white/80 text-center text-balance text-xs md:text-base lg:text-lg leading-4 xl:leading-5 mt-3 lg:mt-6 xl:mt-0 max-w-xl">
