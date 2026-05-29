@@ -148,15 +148,15 @@ export function ServiceDetail() {
   const Icon = iconMap[service.icon];
 
   return (
-    <section className="bg-black pb-16 lg:pb-24 px-5 lg:px-16 xl:px-24 overflow-hidden">
-      <div className="max-w-[1728px] mx-auto">
+    <section className="bg-black pb-16 lg:pb-24 px-5 md:px-10 lg:px-16 xl:px-24 overflow-hidden">
+      <div className="max-w-[1528px] mx-auto">
 
         {/* Services nav */}
         <div className="mb-8 lg:mb-12">
           <p className="text-center text-white text-[10px] lg:text-xs uppercase tracking-widest mb-6 opacity-90">
             Recorre y conoce nuestros servicios de tecnología
           </p>
-          <div className="flex items-center justify-center gap-4 lg:gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 lg:gap-8">
             {techServices.map((s, i) => {
               const NavIcon = iconMap[s.icon];
               return (

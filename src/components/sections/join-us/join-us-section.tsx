@@ -120,14 +120,14 @@ export function JoinUsSection() {
   }
 
   return (
-    <section className="bg-background pt-24 pb-14 xl:pt-32 lg:py-24 px-5 lg:px-16 xl:px-24 overflow-hidden">
-      <div className="max-w-[1728px] mx-auto">
+    <section className="bg-background pt-24 lg:pt-28 xl:pt-32 pb-14 lg:pb-24 px-5 md:px-10 lg:px-16 xl:px-24 overflow-hidden">
+      <div className="max-w-[1528px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left */}
           <motion.div {...fadeUp(0)} className="flex flex-col gap-8">
             <SectionHeading
               label="Carreras"
-              titleClassName="leading-10"
+              titleClassName="leading-tight md:leading-12 lg:leading-14 xl:leading-16"
               title={
                 <>
                   Sumate <span className="text-white italic">al</span>
@@ -135,7 +135,7 @@ export function JoinUsSection() {
                 </>
               }
             />
-            <p className="text-white/50 text-base lg:text-lg leading-tight max-w-md">
+            <p className="text-white/70 text-base lg:text-lg leading-relaxed max-w-md">
               Somos un equipo apasionado por el entretenimiento, el contenido y
               la tecnología. Si querés ser parte, mandanos tu postulación.
             </p>
@@ -164,12 +164,12 @@ export function JoinUsSection() {
               onDragOver={onDragOver}
               onDrop={onDrop}
               className={cn(
-                'relative rounded-2xl border bg-surface p-6 lg:p-8 transition-colors duration-200',
+                'relative rounded-xl border bg-surface p-6 lg:p-8 transition-colors duration-200',
                 isDragging ? 'border-mint/60 bg-mint/5' : 'border-white/5',
               )}
             >
               {isDragging && (
-                <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center rounded-2xl border-2 border-dashed border-mint/60 bg-background/80 backdrop-blur-sm">
+                <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center rounded-xl border-2 border-dashed border-mint/60 bg-background/80 backdrop-blur-sm">
                   <div className="flex flex-col items-center gap-2 text-mint">
                     <Paperclip className="size-8" />
                     <p className="font-display text-lg uppercase tracking-widest">

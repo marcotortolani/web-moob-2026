@@ -71,8 +71,8 @@ export function GameShowcase() {
   const Icon = iconMap[game.icon]
 
   return (
-    <section className="bg-black pb-16 lg:pb-24 px-5 lg:px-16 xl:px-24 overflow-hidden">
-      <div className="max-w-432 mx-auto">
+    <section className="bg-black pb-16 lg:pb-24 px-5 md:px-10 lg:px-16 xl:px-24 overflow-hidden">
+      <div className="max-w-[1528px] mx-auto">
         {/* Title + icon above slider */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -131,7 +131,7 @@ export function GameShowcase() {
               transition={{ duration: 0.35 }}
               className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(340px,90vw)] lg:w-[360px] xl:w-[400px] z-10"
             >
-              <div className="bg-white/95 rounded-2xl p-5 lg:p-6 shadow-xl flex flex-col items-center gap-4">
+              <div className="bg-white/95 rounded-xl p-5 lg:p-6 shadow-xl flex flex-col items-center gap-4">
                 <p className="text-black text-xs lg:text-sm leading-relaxed text-center">
                   {game.description}
                 </p>

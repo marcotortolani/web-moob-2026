@@ -17,8 +17,8 @@ export function ActivationsGrid() {
   const next = () => setPage((p) => Math.min(totalPages - 1, p + 1))
 
   return (
-    <section className="bg-black px-5 lg:px-16 xl:px-24 pb-16 lg:pb-24">
-      <div className="max-w-[1728px] mx-auto">
+    <section className="bg-black px-5 md:px-10 lg:px-16 xl:px-24 pb-16 lg:pb-24">
+      <div className="max-w-[1528px] mx-auto">
         <AnimatePresence mode="wait">
           <motion.div
             key={page}
@@ -26,33 +26,35 @@ export function ActivationsGrid() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.35 }}
-            className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4"
+            className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-5"
           >
             {current.map(({ slug, shortTitle, coverImage }, i) => (
               <motion.div
                 key={slug}
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.35, delay: i * 0.05 }}
               >
                 <Link
                   href={`/somos-experiencias/${slug}`}
-                  className="block relative aspect-square rounded-2xl overflow-hidden group border-2 border-white/60"
+                  className="block relative aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] rounded-xl overflow-hidden group"
                 >
                   {coverImage ? (
                     <Image
                       src={coverImage}
                       alt={shortTitle}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (
-                    <div className="absolute inset-0 bg-linear-to-br from-mint/30 via-surface to-surface-light" />
+                    <div className="absolute inset-0 bg-linear-to-br from-mint/30 via-neutral-900 to-neutral-800" />
                   )}
-                  <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[#151515]" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 lg:p-4">
-                    <p className="font-display text-sm md:text-base lg:text-lg text-white/85 text-center leading-tight tracking-wide uppercase whitespace-pre-line">
+                  <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-mint scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 md:px-5 md:pb-5">
+                    <p className="font-display text-sm md:text-base lg:text-lg xl:text-xl text-white text-center leading-tight tracking-wide uppercase whitespace-pre-line">
                       {shortTitle}
                     </p>
                   </div>
@@ -63,24 +65,22 @@ export function ActivationsGrid() {
         </AnimatePresence>
 
         {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-6 mt-10">
+          <div className="flex items-center justify-center gap-6 mt-10 md:mt-12">
             <button
               onClick={prev}
               disabled={page === 0}
-              className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-mint hover:text-mint transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-mint hover:text-mint transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               aria-label="Página anterior"
             >
               <ChevronLeft size={20} />
             </button>
-
-            <span className="font-display text-xl text-white tracking-widest">
+            <span className="font-display text-xl md:text-2xl text-white tracking-widest">
               {page + 1}/{totalPages}
             </span>
-
             <button
               onClick={next}
               disabled={page === totalPages - 1}
-              className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-mint hover:text-mint transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-mint hover:text-mint transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               aria-label="Página siguiente"
             >
               <ChevronRight size={20} />

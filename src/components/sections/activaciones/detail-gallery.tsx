@@ -15,50 +15,64 @@ export function DetailGallery({ activation }: DetailGalleryProps) {
 
   return (
     <>
-      {/* BannerGrid — solo si hay imágenes; para Mundo Música usa imageH/imageV vacíos → placeholder gris */}
-      <section className="z-10 relative bg-black px-5 lg:px-16 xl:px-24 pt-24 lg:pt-32 pb-4">
-        <BannerGridVideo
-          items={{
-            video: activation.videoUrl,
-            videoFrame: hasImages ? activation.images[1] : '',
-            imageH: hasImages
-              ? [activation.images[0], activation.images[1]]
-              : [],
-            imageV: hasImages
-              ? [activation.images[2], activation.images[3]]
-              : [],
-          }}
-          videoPosition="bottom-right"
-        />
-      </section>
-
-      {/* Heading */}
-      <section className="z-50 relative bg-linear-to-t from-black via-black to-transparent px-5 lg:px-16 xl:px-24 pt-0 -translate-y-20 lg:pb-6 ">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto"
-        >
-          <SectionHeading
-            label="ACTIVACIONES"
-            title={activation.title}
-            align="left"
-            className="justify-center gap-0"
-            titleClassName="text-3xl lg:text-5xl xl:text-6xl leading-8"
+      {/* ── Banner grid + heading overlay ── */}
+      <section className="relative bg-black pt-14 lg:pt-20">
+        <div className="relative max-w-[1528px] mx-auto">
+          <BannerGridVideo
+            items={{
+              video: activation.videoUrl,
+              videoFrame: hasImages ? activation.images[1] : '',
+              imageH: hasImages
+                ? [activation.images[0], activation.images[1]]
+                : [],
+              imageV: hasImages
+                ? [activation.images[2], activation.images[3]]
+                : [],
+            }}
+            videoPosition="bottom-right"
           />
-        </motion.div>
+
+          {/* Gradient overlays */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-linear-to-t from-black via-black/80 to-transparent z-10" />
+            <div className="absolute top-0 left-0 bottom-0 w-[15%] bg-linear-to-r from-black/60 via-black/20 to-transparent z-10" />
+            <div className="absolute top-0 right-0 bottom-0 w-[15%] bg-linear-to-l from-black/60 via-black/20 to-transparent z-10" />
+          </div>
+
+          {/* Title + description — z-20, siempre delante de los overlays */}
+          <div className="absolute bottom-0 left-0 right-0 z-20 px-5 md:px-10 lg:px-16 xl:px-24 pb-6 lg:pb-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col xl:flex-row xl:items-end xl:gap-12"
+            >
+              <SectionHeading
+                label="SOMOS"
+                title={activation.title}
+                align="left"
+                className="flex-col justify-start gap-0 xl:min-w-64"
+                titleClassName="text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl xl:leading-14 2xl:leading-16"
+              />
+              {activation.description && (
+                <p className="text-white/80 text-pretty text-sm md:text-base xl:text-lg leading-5 mt-3 xl:mt-0 xl:mb-2 max-w-sm md:max-w-lg xl:max-w-xl">
+                  {activation.description}
+                </p>
+              )}
+            </motion.div>
+          </div>
+        </div>
       </section>
 
-      {/* Video player + description */}
-      <section className="bg-black px-5 lg:px-16 xl:px-24 pb-20 lg:pb-28">
+      {/* ── Video ── */}
+      <section className="bg-black px-5 md:px-10 lg:px-16 xl:px-24 pt-10 pb-20 lg:pb-28">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
           >
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl">
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl">
               <ActiveVideoPlayer
                 url={activation.detailVideoUrl}
                 controls
@@ -67,17 +81,6 @@ export function DetailGallery({ activation }: DetailGalleryProps) {
               />
             </div>
           </motion.div>
-
-          {activation.description && (
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-white/75 text-sm lg:text-base leading-tight text-center mt-8 max-w-2xl mx-auto"
-            >
-              {activation.description}
-            </motion.p>
-          )}
         </div>
       </section>
     </>
