@@ -10,12 +10,18 @@ import type { ThemeProduct } from '@/lib/data/contenido/types'
 
 interface Props {
   products: ThemeProduct[]
+  heading?: string
 }
 
-export function ThemeProductsSlider({ products }: Props) {
+export function ThemeProductsSlider({ products, heading }: Props) {
   const single = products.length <= 1
   return (
-    <section className="bg-black px-4 lg:px-6 pt-16 pb-16 lg:pb-24">
+    <section className="relative bg-black px-4 lg:px-6 pt-4 pb-16 lg:pb-24 overflow-x-hidden">
+      {heading && (
+        <h2 className="text-white text-center text-xl lg:text-2xl font-sans mb-10">
+          {heading}
+        </h2>
+      )}
       <Swiper
         modules={[Pagination, Keyboard, Autoplay]}
         keyboard={{ enabled: true }}
@@ -47,10 +53,10 @@ export function ThemeProductsSlider({ products }: Props) {
         {products.map((product) => (
           <SwiperSlide key={product.id}>
             <div
-              className={`flex flex-col items-center gap-8 lg:gap-10 pt-4 ${single ? 'pb-4 lg:pb-8' : 'pb-20 lg:pb-24'}`}
+              className={`w-full flex flex-col items-center gap-6 lg:gap-8 pt-4 ${single ? 'pb-4 lg:pb-8' : 'pb-20 lg:pb-24'}`}
             >
-              {/* Product logo — double size */}
-              <div className="relative h-24 lg:h-32 w-96 lg:w-[32rem]">
+              {/* Product logo */}
+              <div className="relative h-24 lg:h-32 w-96 lg:w-[32rem] xl:h-48 z-10">
                 <Image
                   src={product.logo}
                   alt={product.alt ?? product.id}
@@ -60,29 +66,43 @@ export function ThemeProductsSlider({ products }: Props) {
                 />
               </div>
 
-              {/* Product mockup */}
-              <div className="relative w-full max-w-4xl aspect-video">
-                <Image
-                  src={product.mockup}
-                  alt={`Mockup ${product.alt ?? product.id}`}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 1024px) 95vw, 896px"
-                />
-              </div>
-
-              {/* CTA */}
+              {/* CTA — above mockup */}
               <DemoButton
                 href={product.demoUrl}
                 target="_blank"
-                className="text-white py-1"
+                className="text-white py-1 z-10"
               >
                 VER DEMO
               </DemoButton>
+
+              {/* Mockup with mint stripe behind */}
+              <div className="relative w-full">
+                {/* Mockup */}
+                <div className="relative max-w-4xl mx-auto aspect-video z-10">
+                  <Image
+                    src={product.mockup}
+                    alt={`Mockup ${product.alt ?? product.id}`}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 95vw, 896px"
+                  />
+                </div>
+              </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+      {/* Mint stripe — full viewport width, behind mockup */}
+      <div className="z-0 absolute top-0 left-0 right-0 w-full h-full bg-red-400/0 ">
+        <div className="z-0 absolute w-screen left-0 right-0 top-[47%] bottom-[28%] bg-mint" />
+      </div>
+
+      <div className="z-40 absolute top-0 left-0 right-0 w-full h-full bg-red-400/0 pointer-events-none ">
+        {/* Overlay gradient left side */}
+        <div className="z-10 absolute top-0 left-0 bottom-0 w-[20%] xl:w-[25%] bg-linear-to-r from-black via-black/60 to-transparent" />
+        {/* Overlay gradient right side */}
+        <div className="z-10 absolute top-0 right-0 bottom-0 w-[20%] xl:w-[25%] bg-linear-to-l from-black via-black/60 to-transparent" />
+      </div>
     </section>
   )
 }

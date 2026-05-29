@@ -9,10 +9,8 @@ import { MapHoverPreview } from '@/components/ui/map-hover-preview'
 
 export function Footer() {
   const pathname = usePathname()
-  if (pathname === '/somos-contenido') return null
-
   return (
-    <footer className="bg-black border-t border-white/10 py-10 md:py-12 lg:py-14 px-5 md:px-8 lg:px-16 xl:px-24">
+    <footer className={`bg-black border-t border-white/10 py-10 md:py-12 lg:py-14 px-5 md:px-8 lg:px-16 xl:px-24 ${pathname === '/somos-contenido' ? 'hidden lg:block' : ''}`}>
       <div className="max-w-[1528px] mx-auto">
         {/* Mobile: stacked centered, Desktop: horizontal columns */}
         <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:justify-between md:gap-8 lg:gap-12">

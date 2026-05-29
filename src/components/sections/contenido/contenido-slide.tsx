@@ -99,21 +99,21 @@ export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
         </div>
 
         {/* Text content */}
-        <div className="absolute bottom-14 left-5 right-5 lg:bottom-16">
+        <div className="absolute bottom-14 left-5 right-5 md:bottom-20 md:left-10 md:right-10 lg:bottom-16">
           <div className="flex flex-col gap-0">
-            <span className="text-white text-2xl font-normal tracking-widest uppercase leading-4 lg:leading-none">
+            <span className="text-white text-2xl md:text-3xl font-normal tracking-widest uppercase leading-4 lg:leading-none">
               SOMOS
             </span>
-            <h2 className="text-5xl lg:text-6xl leading-tight font-extrabold text-mint">
+            <h2 className="text-5xl md:text-6xl leading-tight font-extrabold text-mint">
               {data.title.charAt(0) + data.title.slice(1).toLowerCase()}
             </h2>
           </div>
-          <p className="mt-3 text-sm text-white leading-relaxed font-sans max-w-xs lg:max-w-sm">
+          <p className="mt-3 text-sm md:text-base text-white leading-relaxed font-sans max-w-xs md:max-w-md lg:max-w-sm">
             {data.description}
           </p>
           <Link
             href={`/somos-contenido/${data.slug}`}
-            className="inline-flex items-center gap-2 mt-6 bg-mint text-white font-display uppercase tracking-wider text-base rounded-full px-6 py-2 hover:bg-mint-dark transition-colors"
+            className="inline-flex items-center gap-2 mt-6 bg-mint text-white font-display uppercase tracking-wider text-base md:text-lg rounded-full px-6 md:px-8 py-2 md:py-3 hover:bg-mint-dark transition-colors"
           >
             Más {data.title} aquí
             <ArrowRight size={16} />

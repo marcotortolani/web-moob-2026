@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'motion/react'
-import { Menu, X, Ellipsis } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { InstagramIcon, LinkedinIcon } from '@/components/ui/social-icons'
 import { navLinks } from '@/lib/data/navigation'
 import { cn } from '@/lib/utils'
@@ -14,8 +14,6 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
-  const isContenidoHub = pathname === '/somos-contenido'
-
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -26,26 +24,6 @@ export function Header() {
   if (prevPathname !== pathname) {
     setPrevPathname(pathname)
     setMenuOpen(false)
-  }
-
-  if (isContenidoHub) {
-    return (
-      <>
-        <header className="fixed top-0 left-0 right-0 z-[100]">
-          <div className="flex items-center justify-between px-5 py-4 max-w-[1728px] mx-auto">
-            <MediaMoobLogo />
-            <button
-              onClick={() => setMenuOpen(true)}
-              className="text-mint p-1"
-              aria-label="Abrir menú"
-            >
-              <Ellipsis size={26} />
-            </button>
-          </div>
-        </header>
-        <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
-      </>
-    )
   }
 
   return (

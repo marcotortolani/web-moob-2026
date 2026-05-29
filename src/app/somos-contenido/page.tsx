@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ContenidoReels } from '@/components/sections/contenido/contenido-reels'
+import { ContenidoExperience } from '@/components/sections/contenido/contenido-experience'
 
 export const metadata: Metadata = {
   title: 'SOMOS Contenido',
@@ -14,7 +14,7 @@ export default function SomosContenidoPage() {
       <link rel="preconnect" href="https://i.vimeocdn.com" crossOrigin="anonymous" />
       <link rel="preconnect" href="https://f.vimeocdn.com" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://fresnel.vimeocdn.com" />
-      <ContenidoReels />
+      <ContenidoExperience />
     </>
   )
 }
