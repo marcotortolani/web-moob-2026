@@ -5,26 +5,25 @@ import { motion } from 'motion/react'
 
 export function MapSection() {
   return (
-    <section className="bg-surface py-14 md:py-18 lg:py-24 px-5 md:px-8 lg:px-16 xl:px-24 overflow-hidden">
-      <div className="max-w-[1728px] mx-auto">
+    <section className="bg-surface py-14 md:py-18 lg:py-24 px-5 md:px-8 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden">
+      <div className="max-w-[1528px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
-          className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-12 lg:gap-20"
+          className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-12 lg:gap-20 xl:gap-14"
         >
           {/* Globe */}
           {/* Three.js dotted globe — fills the container */}
-          <div className="relative w-72 h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-108 md:h-108 lg:w-125 lg:h-125 xl:w-150 xl:h-150 2xl:w-170 2xl:h-170 mt-4">
+          <div className="relative w-72 h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-108 md:h-108 lg:w-140 lg:h-125 xl:w-140 xl:h-150 2xl:w-170 2xl:h-170 mt-4">
             <LazyDottedGlobe />
           </div>
 
           {/* Text */}
-          <div className="text-center md:text-left max-w-sm md:max-w-md lg:max-w-lg">
-            <h3 className="text-white text-3xl lg:text-5xl xl:text-6xl font-extrabold italic leading-tight">
-              Estamos en más de{' '}
-              <span className="text-mint block">30 países</span>
+          <div className="text-center md:text-left max-w-sm md:max-w-md lg:max-w-lg 2xl:max-w-xl">
+            <h3 className="text-white text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-extrabold italic leading-tight text-balance">
+              Estamos en más de <span className="text-mint ">30 países</span>
             </h3>
             <p className="text-white/40 text-base lg:text-lg mt-4">
               Aquí llegamos con nuestras operaciones
