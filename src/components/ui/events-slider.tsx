@@ -104,7 +104,7 @@ function EventSlideContent({
   index: number
 }) {
   return (
-    <div className="relative flex flex-col items-center gap-5 px-4 lg:px-10 pt-16 pb-28">
+    <div className="relative flex flex-col items-center gap-5 px-4 lg:px-10 pt-16 pb-28 lg:pb-20">
       <div className="z-50 relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border-white border-2">
         {isActive && event.videoUrl && (
           <ActiveVideoPlayer url={event.videoUrl} />
@@ -139,7 +139,8 @@ function EventSlideContent({
 const SWIPER_CLS = [
   '[&_.swiper-pagination]:!static',
   '[&_.swiper-pagination]:!mt-8',
-  'lg:[&_.swiper-pagination]:!mt-0',
+  'lg:[&_.swiper-pagination]:!-mt-8',
+  'xl:[&_.swiper-pagination]:!-mt-10',
   '[&_.swiper-pagination]:!flex',
   '[&_.swiper-pagination]:!gap-0',
   '[&_.swiper-pagination]:!items-center',

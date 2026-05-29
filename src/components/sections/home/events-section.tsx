@@ -22,13 +22,13 @@ export function EventsSection() {
 
   return (
     <section className="bg-black mt-10 py-12 lg:py-20 " id="eventos">
-      <div className="relative max-w-[1728px] mx-auto">
+      <div className="relative max-w-[1528px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30, zIndex: 50 }}
           whileInView={{ opacity: 1, y: 0, zIndex: 50 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="z-40 absolute top-0 left-0 right-0 -translate-y-10 xl:translate-y-0 flex flex-col items-center justify-center xl:flex-row xl:items-center xl:justify-evenly text-center px-4 md:px-8 lg:px-10 "
+          className="z-40 absolute top-0 left-0 right-0 -translate-y-4 lg:-translate-y-14 w-full xl:max-w-6xl xl:mx-auto flex flex-col items-center justify-center xl:gap-4 text-center px-4 md:px-8 lg:px-10 "
         >
           <SectionHeading
             label="SOMOS"
@@ -37,8 +37,8 @@ export function EventsSection() {
             className="flex-row justify-center "
             titleClassName="text-5xl lg:text-6xl xl:text-7xl"
           />
-          <div className=" w-fit max-w-lg 2xl:max-w-xl px-2 lg:px-0">
-            <p className="text-white/80 text-center xl:text-left text-balance text-xs lg:text-sm xl:text-base 2xl:text-lg leading-4 mt-3 lg:mt-6 xl:mt-0 max-w-xl">
+          <div className=" w-fit max-w-lg lg:max-w-xl px-2 lg:px-0">
+            <p className="text-white/80 text-center 1xl:text-left text-balance text-xs md:text-base lg:text-lg leading-4 xl:leading-5 mt-3 lg:mt-6 xl:mt-0 max-w-xl">
               <span className="font-bold text-mint">Creamos contenido</span> en
               todos los formatos, desde experiencias en vivo hasta producciones
               de larga, mediana y corta duración. Incluyendo películas y
@@ -52,7 +52,7 @@ export function EventsSection() {
           whileInView={{ opacity: 1, y: 0, zIndex: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="relative z-0 pb-4 pt-20 md:pt-14 mx-auto overflow-hidden bg-red-500/0"
+          className="relative z-0 pb-4 pt-20 md:pt-14 mx-auto overflow-hidden bg-black"
         >
           {/* Background image for current slide — full width, cross-fade on change */}
           <AnimatePresence mode="sync">
@@ -62,7 +62,7 @@ export function EventsSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="absolute inset-0 z-0 pointer-events-none pt-20"
+              className="absolute inset-0 z-0 pointer-events-auto"
             >
               {activeSlide.posterSrc && (
                 <Image
@@ -74,9 +74,9 @@ export function EventsSection() {
                   priority
                 />
               )}
-              <div className="absolute inset-0 bg-black/10" />
-              <div className="absolute inset-0 bg-linear-to-b from-black via-black/20 to-black/0" />
-              <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-black/0" />
+              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute top-0 inset-x-0 h-1/2 bg-linear-to-b from-black via-black/20 to-black/0" />
+              <div className="absolute bottom-0 inset-x-0 h-1/2 bg-linear-to-t from-black via-black/20 to-black/0" />
             </motion.div>
           </AnimatePresence>
           <EventsSlider
