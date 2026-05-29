@@ -240,7 +240,7 @@ export function ServiceDetail() {
               transition={{ duration: 0.35 }}
               className="absolute bottom-10 lg:bottom-0 left-1/2 -translate-x-1/2 w-[min(340px,90vw)] lg:w-[360px] xl:w-[400px] z-10"
             >
-              <div className="bg-white/95 rounded-2xl p-5 lg:p-6 shadow-xl">
+              <div className="bg-white/95 rounded-xl p-5 lg:p-6 shadow-xl">
                 <p className="text-black text-xs lg:text-sm leading-relaxed text-center">
                   {service.description}
                 </p>

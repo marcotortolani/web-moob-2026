@@ -5,7 +5,7 @@ import { motion } from 'motion/react'
 
 export function MapSection() {
   return (
-    <section className="bg-surface py-14 md:py-18 lg:py-24 px-5 md:px-8 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden">
+    <section className="bg-surface py-14 md:py-18 lg:py-24 px-5 md:px-10 lg:px-16 xl:px-24 overflow-hidden">
       <div className="max-w-[1528px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

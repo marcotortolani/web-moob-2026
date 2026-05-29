@@ -66,7 +66,7 @@ export function ContactSection() {
 
   return (
     <section
-      className="bg-background pt-20 pb-14 md:py-20 lg:py-24 px-5 md:px-8 lg:px-16 xl:px-24 overflow-hidden"
+      className="bg-background pt-20 pb-14 md:py-20 lg:py-24 px-5 md:px-10 lg:px-16 xl:px-24 overflow-hidden"
       id="contact"
     >
       <div className="max-w-[1528px] mx-auto">
@@ -84,7 +84,7 @@ export function ContactSection() {
                 </>
               }
             />
-            <p className="text-white/50 text-base lg:text-lg leading-tight max-w-md">
+            <p className="text-white/70 text-base lg:text-lg leading-relaxed max-w-md">
               Contanos tu proyecto o idea. Nuestro equipo te responderá a la
               brevedad.
             </p>
@@ -139,7 +139,7 @@ export function ContactSection() {
 
           {/* Right: form card */}
           <motion.div {...fadeUp(0.15)} className=" max-w-2xl">
-            <div className="rounded-2xl border border-white/5 bg-surface p-6 lg:p-8">
+            <div className="rounded-xl border border-white/5 bg-surface p-6 lg:p-8">
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 noValidate
