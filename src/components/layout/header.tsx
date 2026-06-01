@@ -1,16 +1,33 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useState, useEffect, type ComponentProps } from 'react'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import NextLink from 'next/link'
+import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X } from 'lucide-react'
+import { Link, usePathname } from '@/i18n/navigation'
 import { InstagramIcon, LinkedinIcon } from '@/components/ui/social-icons'
+import { LanguageSwitcher } from '@/components/ui/language-switcher'
 import { navLinks } from '@/lib/data/navigation'
 import { cn } from '@/lib/utils'
 
+type LinkHref = ComponentProps<typeof Link>['href']
+
+/**
+ * `pathname` viene de `usePathname` de next-intl => ruta INTERNA canónica
+ * (`/somos-contenido`), sin prefijo de idioma ni slug traducida. Por eso se
+ * compara directo contra los `href` de `navLinks`, sirviendo para los 3 idiomas.
+ */
+function isActiveLink(pathname: string, href: string) {
+  if (href.includes('#')) return false
+  if (href === '/') return pathname === '/'
+  return pathname === href || pathname.startsWith(href + '/')
+}
+
 export function Header() {
+  const t = useTranslations('Nav')
+  const tHeader = useTranslations('Header')
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
@@ -37,55 +54,98 @@ export function Header() {
         )}
       >
         <div className="flex items-center justify-between px-5 py-4 max-w-[1728px] mx-auto">
-          <MediaMoobLogo />
+          <MediaMoobLogo alt={tHeader('Media Moob logo')} />
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-5 lg:gap-7">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href + link.label}
-                href={link.href}
-                className={cn(
-                  'text-sm font-medium transition-colors hover:text-mint',
-                  'highlight' in link && link.highlight
-                    ? 'text-mint font-semibold'
+            <AnimatePresence mode="popLayout" initial={false}>
+              {pathname !== '/' && (
+                <motion.div
+                  layout="position"
+                  initial={{ opacity: 0, y: -16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                >
+                  <Link
+                    href="/"
+                    className="text-sm font-medium transition-colors hover:text-mint text-white/80"
+                  >
+                    {t('Home')}
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            {navLinks.map((link) => {
+              const active = isActiveLink(pathname, link.href)
+              const className = cn(
+                'relative z-10 text-sm font-medium transition-colors hover:text-mint',
+                'highlight' in link && link.highlight
+                  ? 'text-mint font-semibold'
+                  : active
+                    ? 'text-mint'
                     : 'text-white/80',
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
+              )
+              return (
+                <motion.div
+                  layout="position"
+                  key={link.href + link.key}
+                  className="relative"
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute -inset-x-3 -inset-y-1.5 rounded-full bg-mint/15"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 380,
+                        damping: 32,
+                      }}
+                    />
+                  )}
+                  {link.href.includes('#') ? (
+                    <NextLink href={link.href} className={className}>
+                      {t(link.key)}
+                    </NextLink>
+                  ) : (
+                    <Link href={link.href as LinkHref} className={className}>
+                      {t(link.key)}
+                    </Link>
+                  )}
+                </motion.div>
+              )
+            })}
           </nav>
 
           {/* Mobile Nav */}
           <div className=" flex gap-6 items-center">
             {/* Desktop Social Icons */}
             <div className=" flex items-center gap-4">
-              <Link
+              <a
                 href="https://www.instagram.com/mediamoob/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
+                className=" text-mint hover:text-white lg:text-white/80 lg:hover:text-mint transition-colors duration-300 ease-in-out"
               >
                 <InstagramIcon size={18} />
-              </Link>
-              <Link
+              </a>
+              <a
                 href="https://www.linkedin.com/company/media-moob/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" bg-mint p-px rounded-xs  hover:text-white lg:text-white/70 lg:hover:text-mint transition-colors"
+                className=" bg-mint p-px rounded-xs  hover:text-white lg:bg-white/80 lg:hover:bg-mint transition-colors duration-300 ease-in-out"
               >
                 <LinkedinIcon
                   size={18}
                   className="text-transparent fill-black"
                 />
-              </Link>
+              </a>
             </div>
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMenuOpen(true)}
               className="lg:hidden text-mint p-1"
-              aria-label="Abrir menú"
+              aria-label={tHeader('Open menu')}
             >
               <Menu size={24} />
             </button>
@@ -93,12 +153,28 @@ export function Header() {
         </div>
       </header>
 
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        pathname={pathname}
+      />
     </>
   )
 }
 
-function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+function MobileMenu({
+  open,
+  onClose,
+  pathname,
+}: {
+  open: boolean
+  onClose: () => void
+  pathname: string
+}) {
+  const t = useTranslations('Nav')
+  const tHeader = useTranslations('Header')
+  const links =
+    pathname === '/' ? navLinks : [{ key: 'Home', href: '/' }, ...navLinks]
   return (
     <AnimatePresence>
       {open && (
@@ -110,57 +186,96 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
           className="fixed inset-0 z-[1000] bg-black flex flex-col px-5 min-[375px]:px-8 pt-8 pb-12"
         >
           <div className="flex justify-between items-center mb-12">
-            <MediaMoobLogo />
+            <MediaMoobLogo alt={tHeader('Media Moob logo')} />
             <button
               onClick={onClose}
               className="text-white"
-              aria-label="Cerrar menú"
+              aria-label={tHeader('Close menu')}
             >
               <X size={28} />
             </button>
           </div>
 
           <nav className="flex flex-col gap-6 flex-1">
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.href + link.label}
-                initial={{ opacity: 0, x: 24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.06 }}
-              >
-                <Link
-                  href={link.href}
-                  onClick={onClose}
-                  className={cn(
-                    'text-2xl font-bold transition-colors',
-                    'highlight' in link && link.highlight
-                      ? 'text-mint'
-                      : 'text-white hover:text-mint',
-                  )}
+            {links.map((link, i) => {
+              const active = isActiveLink(pathname, link.href)
+              const className = cn(
+                'relative z-10 text-2xl font-bold transition-colors',
+                'highlight' in link && link.highlight
+                  ? 'text-mint'
+                  : active
+                    ? 'text-mint'
+                    : 'text-white hover:text-mint',
+              )
+              return (
+                <motion.div
+                  key={link.href + link.key}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06 }}
                 >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
+                  <span className="relative inline-block">
+                    {active && (
+                      <motion.span
+                        layoutId="nav-pill-mobile"
+                        className="absolute -inset-x-4 -inset-y-1.5 rounded-full bg-mint/15"
+                        transition={{
+                          type: 'spring',
+                          stiffness: 380,
+                          damping: 32,
+                        }}
+                      />
+                    )}
+                    {link.href.includes('#') ? (
+                      <NextLink
+                        href={link.href}
+                        onClick={onClose}
+                        className={className}
+                      >
+                        {t(link.key)}
+                      </NextLink>
+                    ) : (
+                      <Link
+                        href={link.href as LinkHref}
+                        onClick={onClose}
+                        className={className}
+                      >
+                        {t(link.key)}
+                      </Link>
+                    )}
+                  </span>
+                </motion.div>
+              )
+            })}
           </nav>
 
-          <div className="flex gap-4 mt-auto">
-            <Link
+          {/* Language switcher — dentro del sidebar, debajo de la nav */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: links.length * 0.06 }}
+            className="mt-6"
+          >
+            <LanguageSwitcher />
+          </motion.div>
+
+          <div className="flex gap-4 mt-6">
+            <a
               href="https://www.instagram.com/mediamoob/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/70 hover:text-mint"
             >
               <InstagramIcon size={22} />
-            </Link>
-            <Link
+            </a>
+            <a
               href="https://www.linkedin.com/company/media-moob/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/70 hover:text-mint"
             >
               <LinkedinIcon size={22} />
-            </Link>
+            </a>
           </div>
         </motion.div>
       )}
@@ -168,12 +283,12 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   )
 }
 
-function MediaMoobLogo() {
+function MediaMoobLogo({ alt }: { alt: string }) {
   return (
     <Link href="/">
       <Image
         src="/images/media-moob-logo-small.webp"
-        alt="Media Moob logo"
+        alt={alt}
         width={90}
         height={34}
         priority
