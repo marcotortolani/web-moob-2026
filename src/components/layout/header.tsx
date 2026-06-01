@@ -2,8 +2,7 @@
 
 import { useState, useEffect, type ComponentProps } from 'react'
 import Image from 'next/image'
-import NextLink from 'next/link'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 import { Link, usePathname } from '@/i18n/navigation'
@@ -13,6 +12,19 @@ import { navLinks } from '@/lib/data/navigation'
 import { cn } from '@/lib/utils'
 
 type LinkHref = ComponentProps<typeof Link>['href']
+
+/**
+ * Los links con hash (`/#contact`) siempre anclan al home. Construimos el href
+ * localizado a mano (`/en#contact`) y lo renderizamos como `<a>` nativo en vez de
+ * delegarlo al `Link` de next-intl: pasar el hash por el router de next-intl
+ * duplica el ancla en la navegación client-side (`/en#contact#contact`). Con un
+ * anchor normal el navegador resuelve el scroll/navegación sin duplicar y el link
+ * funciona desde cualquier página (p. ej. `/en/we-are-games`).
+ */
+function localizedHashHref(href: string, locale: string) {
+  const hash = href.slice(href.indexOf('#'))
+  return `/${locale}${hash}`
+}
 
 /**
  * `pathname` viene de `usePathname` de next-intl => ruta INTERNA canónica
@@ -28,6 +40,7 @@ function isActiveLink(pathname: string, href: string) {
 export function Header() {
   const t = useTranslations('Nav')
   const tHeader = useTranslations('Header')
+  const locale = useLocale()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
@@ -104,9 +117,12 @@ export function Header() {
                     />
                   )}
                   {link.href.includes('#') ? (
-                    <NextLink href={link.href} className={className}>
+                    <a
+                      href={localizedHashHref(link.href, locale)}
+                      className={className}
+                    >
                       {t(link.key)}
-                    </NextLink>
+                    </a>
                   ) : (
                     <Link href={link.href as LinkHref} className={className}>
                       {t(link.key)}
@@ -173,6 +189,7 @@ function MobileMenu({
 }) {
   const t = useTranslations('Nav')
   const tHeader = useTranslations('Header')
+  const locale = useLocale()
   const links =
     pathname === '/' ? navLinks : [{ key: 'Home', href: '/' }, ...navLinks]
   return (
@@ -227,13 +244,13 @@ function MobileMenu({
                       />
                     )}
                     {link.href.includes('#') ? (
-                      <NextLink
-                        href={link.href}
+                      <a
+                        href={localizedHashHref(link.href, locale)}
                         onClick={onClose}
                         className={className}
                       >
                         {t(link.key)}
-                      </NextLink>
+                      </a>
                     ) : (
                       <Link
                         href={link.href as LinkHref}
@@ -249,34 +266,33 @@ function MobileMenu({
             })}
           </nav>
 
-          {/* Language switcher — dentro del sidebar, debajo de la nav */}
+          {/* Footer del sidebar: redes a la izquierda, toggle de idioma a la derecha */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: links.length * 0.06 }}
-            className="mt-6"
+            className="mt-6 flex items-center justify-between"
           >
-            <LanguageSwitcher />
+            <div className="flex gap-4">
+              <a
+                href="https://www.instagram.com/mediamoob/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-mint"
+              >
+                <InstagramIcon size={22} />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/media-moob/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-mint"
+              >
+                <LinkedinIcon size={22} />
+              </a>
+            </div>
+            <LanguageSwitcher align="end" />
           </motion.div>
-
-          <div className="flex gap-4 mt-6">
-            <a
-              href="https://www.instagram.com/mediamoob/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-mint"
-            >
-              <InstagramIcon size={22} />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/media-moob/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-mint"
-            >
-              <LinkedinIcon size={22} />
-            </a>
-          </div>
         </motion.div>
       )}
     </AnimatePresence>
