@@ -12,7 +12,7 @@ import { MapHoverPreview } from '@/components/ui/map-hover-preview'
 
 type LinkHref = ComponentProps<typeof Link>['href']
 
-export function Footer() {
+export function Footer({ version }: { version?: string }) {
   const t = useTranslations('Nav')
   const tf = useTranslations('Footer')
   const pathname = usePathname()
@@ -123,6 +123,9 @@ export function Footer() {
             {tf('address')}
           </a>
           <p className="text-white/40 text-xs">{tf('rights', { year })}</p>
+          {version && (
+            <p className="text-white/20 text-xs">v{version}</p>
+          )}
         </div>
       </div>
     </footer>

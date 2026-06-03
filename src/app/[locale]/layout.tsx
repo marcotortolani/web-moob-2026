@@ -10,6 +10,7 @@ import { Footer } from '@/components/layout/footer'
 import { Toaster } from '@/components/ui/sonner'
 import { JsonLd } from '@/components/seo/json-ld'
 import { SITE_URL, getAlternates } from '@/lib/seo'
+import { version } from '../../../package.json'
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -106,7 +107,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <Header />
           {children}
-          <Footer />
+          <Footer version={version} />
           <Toaster theme="dark" position="bottom-right" richColors />
         </NextIntlClientProvider>
       </body>
