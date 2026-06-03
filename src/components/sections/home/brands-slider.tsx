@@ -67,8 +67,9 @@ export function BrandsSlider() {
             <Image
               src={brand.src}
               alt={brand.alt}
-              width={120}
-              height={60}
+              width={0}
+              height={0}
+              sizes="160px"
               draggable={false}
               className="h-8 md:h-9 lg:h-10 xl:h-12 w-auto object-contain select-none"
             />
