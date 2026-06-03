@@ -16,6 +16,9 @@ export function externalPath(
   slug?: string,
 ): string {
   const entry = (pathnames as Record<string, string | Record<string, string>>)[key]
+  if (!entry && process.env.NODE_ENV === 'development') {
+    console.warn(`[seo] unknown pathname key: "${key}" — canonical will default to "/"`)
+  }
   let ext: string = entry
     ? typeof entry === 'string'
       ? entry

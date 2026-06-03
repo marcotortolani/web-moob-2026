@@ -9,6 +9,7 @@ import { Link, usePathname } from '@/i18n/navigation'
 import { InstagramIcon, LinkedinIcon } from '@/components/ui/social-icons'
 import { LanguageSwitcher } from '@/components/ui/language-switcher'
 import { navLinks } from '@/lib/data/navigation'
+import { socialLinks } from '@/lib/data/social'
 import { cn } from '@/lib/utils'
 
 type LinkHref = ComponentProps<typeof Link>['href']
@@ -138,7 +139,7 @@ export function Header() {
             {/* Desktop Social Icons */}
             <div className=" flex items-center gap-4">
               <a
-                href="https://www.instagram.com/mediamoob/"
+                href="{socialLinks.instagram}"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" text-mint hover:text-white lg:text-white/80 lg:hover:text-mint transition-colors duration-300 ease-in-out"
@@ -146,7 +147,7 @@ export function Header() {
                 <InstagramIcon size={18} />
               </a>
               <a
-                href="https://www.linkedin.com/company/media-moob/"
+                href="{socialLinks.linkedin}"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" bg-mint p-px rounded-xs  hover:text-white lg:bg-white/80 lg:hover:bg-mint transition-colors duration-300 ease-in-out"
@@ -275,7 +276,7 @@ function MobileMenu({
           >
             <div className="flex gap-4">
               <a
-                href="https://www.instagram.com/mediamoob/"
+                href="{socialLinks.instagram}"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/70 hover:text-mint"
@@ -283,7 +284,7 @@ function MobileMenu({
                 <InstagramIcon size={22} />
               </a>
               <a
-                href="https://www.linkedin.com/company/media-moob/"
+                href="{socialLinks.linkedin}"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/70 hover:text-mint"

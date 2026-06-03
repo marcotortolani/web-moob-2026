@@ -16,6 +16,13 @@ const descriptions: Record<string, string> = {
   pt: ptMessages.Metadata.siteDescription,
 }
 
+// Loaded once per function instance — avoids repeated I/O on warm requests
+const logoData = readFileSync(join(process.cwd(), 'public/logo-moob.jpg'))
+const logoSrc = `data:image/jpeg;base64,${logoData.toString('base64')}`
+const bebasFont = readFileSync(
+  join(process.cwd(), 'public/fonts/bebas-neue-latin-400-normal.woff'),
+)
+
 export default async function OpengraphImage({
   params,
 }: {
@@ -23,13 +30,6 @@ export default async function OpengraphImage({
 }) {
   const { locale } = await params
   const description = descriptions[locale] ?? descriptions.es
-
-  const logoData = readFileSync(join(process.cwd(), 'public/logo-moob.jpg'))
-  const logoSrc = `data:image/jpeg;base64,${logoData.toString('base64')}`
-
-  const bebasFont = readFileSync(
-    join(process.cwd(), 'public/fonts/bebas-neue-latin-400-normal.woff'),
-  )
 
   return new ImageResponse(
     (

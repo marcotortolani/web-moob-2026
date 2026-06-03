@@ -8,6 +8,7 @@ import { Link, usePathname } from '@/i18n/navigation'
 import { InstagramIcon, LinkedinIcon } from '@/components/ui/social-icons'
 import { LanguageSwitcher } from '@/components/ui/language-switcher'
 import { navLinks } from '@/lib/data/navigation'
+import { socialLinks } from '@/lib/data/social'
 import { MapHoverPreview } from '@/components/ui/map-hover-preview'
 
 type LinkHref = ComponentProps<typeof Link>['href']
@@ -85,7 +86,7 @@ export function Footer({ version }: { version?: string }) {
             </p>
             <div className=" flex items-center gap-3">
               <a
-                href="https://www.instagram.com/mediamoob/"
+                href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint hover:scale-105 transition-all duration-300 ease-in-out"
@@ -93,7 +94,7 @@ export function Footer({ version }: { version?: string }) {
                 <InstagramIcon size={28} />
               </a>
               <a
-                href="https://www.linkedin.com/company/media-moob/"
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" bg-mint p-px rounded-xs  hover:text-white lg:text-white/70 lg:hover:text-mint hover:scale-105 transition-all duration-300 ease-in-out"

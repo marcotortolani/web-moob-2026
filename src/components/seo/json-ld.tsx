@@ -1,4 +1,5 @@
 import { SITE_URL } from '@/lib/seo'
+import { socialLinks } from '@/lib/data/social'
 
 interface JsonLdProps {
   locale: string
@@ -15,10 +16,7 @@ export function JsonLd({ locale }: JsonLdProps) {
     name: 'Media Moob',
     url: SITE_URL,
     logo: `${SITE_URL}/images/media-moob-logo-large.webp`,
-    sameAs: [
-      'https://www.instagram.com/mediamoob/',
-      'https://www.linkedin.com/company/media-moob/',
-    ],
+    sameAs: [socialLinks.instagram, socialLinks.linkedin],
   }
 
   const website = {

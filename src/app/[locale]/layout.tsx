@@ -9,7 +9,7 @@ import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { Toaster } from '@/components/ui/sonner'
 import { JsonLd } from '@/components/seo/json-ld'
-import { SITE_URL, getAlternates } from '@/lib/seo'
+import { SITE_URL } from '@/lib/seo'
 import { version } from '../../../package.json'
 
 const poppins = Poppins({
@@ -65,7 +65,6 @@ export async function generateMetadata({
       'África',
     ],
     authors: [{ name: 'Media Moob' }],
-    alternates: getAlternates('/', locale),
     openGraph: {
       type: 'website',
       locale: OG_LOCALE[locale],
