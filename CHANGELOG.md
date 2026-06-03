@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] — 2026-06-03
+
+### Fixed
+- **OG image — font en `public/fonts/`** — la fuente Bebas Neue se leía de `node_modules/` en runtime; movida a `public/fonts/` para garantizar su inclusión en el bundle serverless de Vercel
+- **`externalPath()` — warn para claves desconocidas** — en desarrollo, la función ahora emite `console.warn` si se pasa una clave que no existe en `pathnames`, evitando canonical/hreflang incorrectos silenciosos
+- **Imágenes del slider de marcas** — corregido warning de Next.js Image sobre aspect ratio (`width={0} height={0}` + `sizes` en lugar de dimensiones fijas)
+- **Dominio canónico** — corregido typo `mediamoob.com` → `memoob.com` en `src/lib/seo.ts`
+
+### Changed
+- **`src/lib/data/social.ts`** — URLs de Instagram y LinkedIn extraídas a fuente única; header, footer y JSON-LD las consumen desde este archivo
+- **`opengraph-image.tsx`** — `readFileSync` del logo y la fuente movidos al module scope; se ejecutan una sola vez por instancia de función en lugar de en cada request
+- **`src/lib/theme-page.tsx`** — helper compartido para los 8 pages de contenido temático (`generateThemeMetadata` + `ThemePage`); cada page reducido de ~55 a ~15 líneas
+- **`layout.tsx`** — eliminado `alternates` redundante sobreescrito por `page.tsx`
+
+---
+
 ## [1.0.0] — 2026-06-03
 
 ### Added
