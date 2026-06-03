@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] — 2026-06-03
+## [1.0.0] — 2026-06-03
 
 ### Added
 - **Internacionalización (i18n)** — migración completa a `next-intl` con locales es / en / pt
