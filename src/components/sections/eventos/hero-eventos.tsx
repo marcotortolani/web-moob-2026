@@ -2,9 +2,11 @@
 
 import { motion } from 'motion/react'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { SectionHeading } from '@/components/ui/section-heading'
 
 export function HeroEventos() {
+  const t = useTranslations('EventsPage')
   return (
     <section className="bg-black">
       {/* Banner — max-width constrained, overlays suavizan todos los bordes */}
@@ -12,7 +14,7 @@ export function HeroEventos() {
         <div className="relative h-[360px] md:h-[480px] lg:h-[560px] overflow-hidden">
           <Image
             src="/images/home/slider-eventos/cmf-evento.webp"
-            alt="Eventos"
+            alt={t('hero.imageAlt')}
             fill
             className="object-cover object-top"
             sizes="(max-width: 1528px) 100vw, 1528px"
@@ -39,16 +41,18 @@ export function HeroEventos() {
             className="flex flex-col xl:flex-row xl:items-end xl:gap-12"
           >
             <SectionHeading
-              label="SOMOS"
-              title="Eventos"
+              label={t('hero.label')}
+              title={t('hero.title')}
               align="left"
               className="flex-col justify-start gap-0 xl:min-w-64"
               titleClassName="text-5xl md:text-6xl xl:text-6xl 2xl:text-7xl xl:leading-14 2xl:leading-16"
             />
             <p className="text-white/80 text-pretty text-sm md:text-base xl:text-lg leading-5 mt-4 xl:mt-0 xl:mb-2 max-w-sm md:max-w-lg xl:max-w-xl">
-              <span className="font-bold text-mint">Creamos eventos</span> de
-              contenido en vivo, desde festivales hasta producciones de larga,
-              mediana y corta duración en más de 30 países.
+              {t.rich('hero.paragraph', {
+                b: (chunks) => (
+                  <span className="font-bold text-mint">{chunks}</span>
+                ),
+              })}
             </p>
           </motion.div>
         </div>

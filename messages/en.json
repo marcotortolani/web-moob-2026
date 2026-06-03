@@ -1,0 +1,118 @@
+{
+  "_convention": "Keys are the real English source text. Avoid '.' inside keys (next-intl uses it as a namespace separator). Rich tags: <b>, <white>, <mint>.",
+  "Metadata": {
+    "siteTitle": "Media Moob — Content, Technology and Experiences",
+    "siteDescription": "We are creative, we are curious, we are Media Moob. Content, technology and experiences in more than 30 countries.",
+    "homeTitle": "Media Moob — We Are Creative, We Are Curious",
+    "homeDescription": "We create unique content, technology and experiences for more than 30 countries. 1200 HS of exclusive content, 550K subscribers and 15 years of experience."
+  },
+  "Nav": {
+    "Home": "Home",
+    "Content": "Content",
+    "Technology": "Technology",
+    "Events": "Events",
+    "Experiences": "Experiences",
+    "Games": "Games",
+    "Work with us": "Work with us",
+    "Let's talk!": "Let's talk!"
+  },
+  "Common": {
+    "We are": "WE ARE"
+  },
+  "Header": {
+    "Open menu": "Open menu",
+    "Close menu": "Close menu",
+    "Media Moob logo": "Media Moob logo"
+  },
+  "LanguageSwitcher": {
+    "Select language": "Select language"
+  },
+  "CountryCombobox": {
+    "selectCountry": "Select a country",
+    "searchPlaceholder": "Search country...",
+    "empty": "No country found"
+  },
+  "Footer": {
+    "Navigation": "Navigation",
+    "Contact": "Contact",
+    "Let's talk!": "Let's talk!",
+    "Work with us": "Work with us",
+    "Networks": "Networks",
+    "address": "Guatemala 5582, Buenos Aires City. Argentina.",
+    "rights": "© {year} Media Moob. All rights reserved."
+  },
+  "Hero": {
+    "we are": "we are",
+    "CREATIVE": "CREATIVE",
+    "CURIOUS": "CURIOUS",
+    "Watch our reel": "watch our reel",
+    "exclusive content": "exclusive content",
+    "technology": "technology",
+    "events and experiences": "events and experiences",
+    "own productions": "own productions",
+    "artists and influencers": "artists and influencers",
+    "we are in": "we are in",
+    "more than 30 countries": "more than 30 countries",
+    "here we arrive with": "here we arrive with",
+    "our operations": "our operations"
+  },
+  "Content": {
+    "title": "Content",
+    "description": "<b>We create content</b> in all formats, from live experiences to long, medium and short-form productions. Including films and documentaries.",
+    "cta": "MORE OF OUR CONTENT"
+  },
+  "Tech": {
+    "title": "Technology",
+    "description": "<b>We apply our own technology to amplify your reach and impact.</b> We have tools like MCP, Sat and Push Advertising that optimize the distribution and monetization of content.",
+    "cta": "SEE ALL TECHNOLOGY SOLUTIONS"
+  },
+  "Events": {
+    "title": "Events",
+    "description": "<b>We create content</b> in all formats, from live experiences to long, medium and short-form productions. Including films and documentaries.",
+    "cta": "MORE OF OUR EVENTS"
+  },
+  "Activations": {
+    "title": "Activations and experiences",
+    "description": "We unite the OFF world with the ON, generating <b>activations and experiences</b> for users and partners.",
+    "cta": "MORE ACTIVATIONS AND EXPERIENCES"
+  },
+  "Games": {
+    "title": "Games & Gamification",
+    "intro": "We develop different games based on our products, adapted to different themes with exclusive prizes for our users.",
+    "cta": "DISCOVER OUR GAMES",
+    "mockupAlt": "Trivia mockups on phones",
+    "wheelAlt": "Wheel"
+  },
+  "Stats": {
+    "exclusive content": "EXCLUSIVE CONTENT",
+    "subscribers": "SUBSCRIBERS ON OUR PORTALS",
+    "experience": "EXPERIENCE",
+    "years": " YEARS"
+  },
+  "Map": {
+    "heading": "We are in more than <b>30 countries</b>",
+    "subtitle": "Here we arrive with our operations",
+    "more": "+20 more"
+  },
+  "Brands": {
+    "title": "Brands that trust us"
+  },
+  "Contact": {
+    "heading": "Let's talk. <white>Let's build</white> <mint>something together.</mint>",
+    "subtitle": "Tell us about your project or idea. Our team will get back to you shortly.",
+    "Email": "Email",
+    "Office": "Office",
+    "officeValue": "Buenos Aires City, Argentina",
+    "Name": "Name",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@email.com",
+    "Country": "Country",
+    "optional": "(optional)",
+    "Message": "Message",
+    "messagePlaceholder": "Tell us about your project or inquiry...",
+    "Send message": "Send message",
+    "Sending": "Sending...",
+    "success": "Message sent! We'll contact you soon.",
+    "error": "There was an error sending. Please try again."
+  }
+}

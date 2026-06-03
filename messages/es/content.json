@@ -1,0 +1,142 @@
+{
+  "ContentHub": {
+    "ariaLabel": "Somos Contenido",
+    "label": "SOMOS",
+    "title": "Contenido",
+    "metaDescription": "Contenido vertical de Media Moob: cocina, gaming, viajes, fitness, kids, educación, música y lifestyle.",
+    "paragraph": "<b>Creamos contenido</b> en todos los formatos, desde experiencias en vivo hasta producciones de larga, mediana y corta duración. Incluyendo películas y documentales.",
+    "slideWeAre": "SOMOS",
+    "slideMore": "Más {title} aquí",
+    "callout": "Conocé nuestros productos de contenido exclusivo {label}",
+    "calloutNoLabel": "Conocé nuestros productos de contenido exclusivo",
+    "demoButton": "VER DEMO"
+  },
+  "ContentCats": {
+    "cocina": "COCINA",
+    "musica": "MÚSICA",
+    "lifestyle": "LIFESTYLE",
+    "fitness": "FITNESS",
+    "viajes": "VIAJES",
+    "gaming": "GAMING",
+    "kids": "KIDS",
+    "educacion": "EDUCACIÓN"
+  },
+  "ContentThemes": {
+    "cocina": {
+      "metaTitle": "SOMOS Cocina",
+      "heroTitle": "Cocina",
+      "heroDescription": "Recetas exclusivas, técnicas de chefs profesionales y secretos culinarios para transformar tus ingredientes cotidianos en platos extraordinarios.",
+      "statsLabel": "Contenido exclusivo",
+      "statsCaption": "Contenido de corta, mediana y larga duración",
+      "statsCta": "Conocé nuestros productos de contenido exclusivo de cocina",
+      "taglineLead": "Te llevamos a la cocina, a los chefs, a las recetas y mucho más.",
+      "taglineHighlight": "¡Llená tu vida de sabor!",
+      "productsLabel": "culinarios",
+      "products": {
+        "locoporlacocina": "Loco por la Cocina"
+      }
+    },
+    "educacion": {
+      "metaTitle": "SOMOS Educación",
+      "heroTitle": "Educación",
+      "heroDescription": "Enseñamos a dominar nuevas habilidades y potenciar tu crecimiento personal o profesional.",
+      "statsLabel": "Contenido exclusivo",
+      "statsCaption": "Contenido de corta, mediana y larga duración",
+      "statsCta": "Conocé nuestros productos de contenido exclusivo educativo",
+      "taglineLead": "",
+      "taglineHighlight": "",
+      "productsLabel": "educativos",
+      "products": {
+        "flexflix": "Flexflix"
+      }
+    },
+    "fitness": {
+      "metaTitle": "SOMOS Fitness",
+      "heroTitle": "Fitness",
+      "heroDescription": "Rutinas de entrenamiento personalizadas, planes de nutrición y consejos de bienestar diseñados para adaptarse a tu ritmo de vida y metas.",
+      "statsLabel": "Contenido exclusivo",
+      "statsCaption": "Contenido de corta, mediana y larga duración",
+      "statsCta": "Conocé nuestros productos de contenido exclusivo de fitness",
+      "taglineLead": "Te sumamos rutinas, energía, hábitos saludables y mucho más.",
+      "taglineHighlight": "¡Llená tu vida de energía!",
+      "productsLabel": "fitness",
+      "products": {
+        "totalfitness": "Total Fitness"
+      }
+    },
+    "gaming": {
+      "metaTitle": "SOMOS Gaming",
+      "heroTitle": "Gaming",
+      "heroDescription": "Videos exclusivos de referentes especializados y las últimas tendencias del mundo digital antes que nadie.",
+      "statsLabel": "Contenido exclusivo",
+      "statsCaption": "Contenido de corta, mediana y larga duración",
+      "statsCta": "Conocé nuestros productos de contenido exclusivo de gaming",
+      "taglineLead": "Te metemos en el juego, los referentes, las tendencias y mucho más.",
+      "taglineHighlight": "¡Llená tu vida de juego!",
+      "productsLabel": "gamers",
+      "products": {
+        "teamgamers": "Team Gamers",
+        "esportspace": "eSportSpace"
+      }
+    },
+    "kids": {
+      "metaTitle": "SOMOS Kids",
+      "heroTitle": "Kids",
+      "heroDescription": "Contenido seguro y creativo para los más pequeños, con actividades educativas, juegos interactivos y mucha imaginación.",
+      "statsLabel": "Contenido exclusivo",
+      "statsCaption": "Contenido de corta, mediana y larga duración",
+      "statsCta": "Conocé nuestros productos de contenido exclusivo para kids",
+      "taglineLead": "",
+      "taglineHighlight": "",
+      "productsLabel": "para kids",
+      "products": {
+        "elreinoinfantil": "El Reino Infantil"
+      }
+    },
+    "lifestyle": {
+      "metaTitle": "SOMOS Lifestyle",
+      "heroTitle": "Lifestyle",
+      "heroDescription": "Tendencias en diseño, bienestar mental y consejos prácticos para elevar tu día a día y encontrar el equilibrio perfecto.",
+      "statsLabel": "Contenido exclusivo",
+      "statsCaption": "Contenido de corta, mediana y larga duración",
+      "statsCta": "Conocé nuestros productos de contenido exclusivo de lifestyle",
+      "taglineLead": "Te conectamos con las tendencias, el bienestar y mucho más.",
+      "taglineHighlight": "¡Llená tu vida de estilo!",
+      "productsLabel": "de lifestyle",
+      "products": {
+        "epamujer": "Epa Mujer",
+        "allforher": "All For Her"
+      }
+    },
+    "musica": {
+      "metaTitle": "SOMOS Música",
+      "heroTitle": "Música",
+      "heroDescription": "Te acercamos a la música, a los artistas, a sus recitales y mucho más. ¡Llená tu vida de música!",
+      "statsLabel": "Contenido exclusivo",
+      "statsCaption": "Contenido de corta, mediana y larga duración",
+      "statsCta": "Conocé nuestros productos de contenido exclusivo musical",
+      "taglineLead": "Te acercamos a la música, a los artistas, a sus recitales y mucho más.",
+      "taglineHighlight": "¡Llená tu vida de música!",
+      "productsLabel": "musicales",
+      "products": {
+        "mundomusica": "Mundo Música",
+        "cdc": "Cruce de Campeones"
+      }
+    },
+    "viajes": {
+      "metaTitle": "SOMOS Viajes",
+      "heroTitle": "Viajes",
+      "heroDescription": "Acompañá a nuestra comunidad de viajeros globales en una travesía sin filtros. Descubrí la esencia de cada cultura, paisajes que quitan el aliento y los secretos mejor guardados de cada rincón del planeta, contados por quienes los viven en primera persona.",
+      "statsLabel": "Contenido exclusivo",
+      "statsCaption": "Contenido de corta, mediana y larga duración",
+      "statsCta": "Conocé nuestros productos de contenido exclusivo de viajes",
+      "taglineLead": "Te llevamos a destinos, culturas, paisajes y mucho más.",
+      "taglineHighlight": "¡Llená tu vida de aventuras!",
+      "productsLabel": "de viajes",
+      "products": {
+        "queguayviajes": "Que Guay Viajes",
+        "travelvlog": "TravelVlog"
+      }
+    }
+  }
+}

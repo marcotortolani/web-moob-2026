@@ -1,13 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useForm, type Resolver } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion, AnimatePresence } from 'motion/react'
+import { useLocale, useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Send, Mail, MapPin } from 'lucide-react'
 
-import { contactSchema, type ContactFormData } from '@/lib/schemas/contact'
+import { buildContactSchema, type ContactFormData } from '@/lib/schemas/contact'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -24,7 +25,12 @@ const fadeUp = (delay = 0) => ({
 })
 
 export function ContactSection() {
+  const t = useTranslations('Contact')
+  const tv = useTranslations('Validation')
+  const locale = useLocale()
   const [loading, setLoading] = useState(false)
+
+  const schema = useMemo(() => buildContactSchema(tv), [tv])
 
   const {
     register,
@@ -34,9 +40,7 @@ export function ContactSection() {
     watch,
     formState: { errors },
   } = useForm<ContactFormData>({
-    resolver: zodResolver(
-      contactSchema,
-    ) as unknown as Resolver<ContactFormData>,
+    resolver: zodResolver(schema) as unknown as Resolver<ContactFormData>,
   })
 
   const countryValue = watch('country')
@@ -50,15 +54,15 @@ export function ContactSection() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, locale }),
       })
 
       if (!res.ok) throw new Error()
 
-      toast.success('¡Mensaje enviado! Te contactaremos pronto.')
+      toast.success(t('success'))
       reset()
     } catch {
-      toast.error('Hubo un error al enviar. Intentá de nuevo.')
+      toast.error(t('error'))
     } finally {
       setLoading(false)
     }
@@ -76,26 +80,26 @@ export function ContactSection() {
             <SectionHeading
               label=""
               titleClassName="md:text-4xl lg:text-5xl xl:text-6xl leading-10 lg:leading-12 xl:leading-14"
-              title={
-                <>
-                  Hablemos.{' '}
-                  <span className="text-white italic">Construyamos</span>
-                  <span className="text-mint block italic">algo juntos.</span>
-                </>
-              }
+              title={t.rich('heading', {
+                white: (chunks) => (
+                  <span className="text-white italic">{chunks}</span>
+                ),
+                mint: (chunks) => (
+                  <span className="text-mint block italic">{chunks}</span>
+                ),
+              })}
             />
             <p className="text-white/70 text-base lg:text-lg leading-relaxed max-w-md">
-              Contanos tu proyecto o idea. Nuestro equipo te responderá a la
-              brevedad.
+              {t('subtitle')}
             </p>
 
             <div className="flex flex-col gap-5 mt-2">
               {[
-                { icon: Mail, label: 'Email', value: 'hola@memoob.com' },
+                { icon: Mail, label: t('Email'), value: 'hola@memoob.com' },
                 {
                   icon: MapPin,
-                  label: 'Sede',
-                  value: 'Ciudad de Buenos Aires, Argentina',
+                  label: t('Office'),
+                  value: t('officeValue'),
                   href: 'https://maps.app.goo.gl/cSKNi51Jtf57y7388',
                 },
               ].map(({ icon: Icon, label, value, href }, i) => {
@@ -152,11 +156,11 @@ export function ContactSection() {
                     className="flex flex-col gap-1.5"
                   >
                     <Label htmlFor="name" className="text-white/70">
-                      Nombre <span className="text-mint">*</span>
+                      {t('Name')} <span className="text-mint">*</span>
                     </Label>
                     <Input
                       id="name"
-                      placeholder="Tu nombre"
+                      placeholder={t('namePlaceholder')}
                       className="h-10 bg-surface-lighter border-white/10 focus-visible:border-mint focus-visible:ring-mint/30 placeholder:text-white/20"
                       aria-invalid={!!errors.name}
                       {...register('name')}
@@ -173,12 +177,12 @@ export function ContactSection() {
                     className="flex flex-col gap-1.5"
                   >
                     <Label htmlFor="email" className="text-white/70">
-                      Email <span className="text-mint">*</span>
+                      {t('Email')} <span className="text-mint">*</span>
                     </Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="tu@email.com"
+                      placeholder={t('emailPlaceholder')}
                       className="h-10 bg-surface-lighter border-white/10 focus-visible:border-mint focus-visible:ring-mint/30 placeholder:text-white/20"
                       aria-invalid={!!errors.email}
                       {...register('email')}
@@ -194,9 +198,9 @@ export function ContactSection() {
                 {/* País */}
                 <motion.div {...fadeUp(0.3)} className="flex flex-col gap-1.5">
                   <Label className="text-white/70">
-                    País
+                    {t('Country')}
                     <span className="text-white/30 font-normal ml-1 text-xs">
-                      (opcional)
+                      {t('optional')}
                     </span>
                   </Label>
                   <CountryCombobox
@@ -208,11 +212,11 @@ export function ContactSection() {
                 {/* Mensaje */}
                 <motion.div {...fadeUp(0.4)} className="flex flex-col gap-1.5">
                   <Label htmlFor="message" className="text-white/70">
-                    Mensaje <span className="text-mint">*</span>
+                    {t('Message')} <span className="text-mint">*</span>
                   </Label>
                   <Textarea
                     id="message"
-                    placeholder="Contanos sobre tu proyecto o consulta..."
+                    placeholder={t('messagePlaceholder')}
                     rows={5}
                     maxLength={MESSAGE_MAX}
                     className="bg-surface-lighter border-white/10 focus-visible:border-mint focus-visible:ring-mint/30 placeholder:text-white/20 resize-none"
@@ -264,12 +268,12 @@ export function ContactSection() {
                     {loading ? (
                       <span className="flex items-center gap-2 text-white">
                         <span className="size-4 rounded-full border-2 border-white border-t-white/30 animate-spin" />
-                        Enviando...
+                        {t('Sending')}
                       </span>
                     ) : (
                       <span className="flex items-center gap-2 text-white">
                         <Send className="size-4" />
-                        Enviar mensaje
+                        {t('Send message')}
                       </span>
                     )}
                   </Button>

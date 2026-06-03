@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { useLocale, useTranslations } from 'next-intl'
 import { ChevronDown, Search, X } from 'lucide-react'
 import { COUNTRIES, type Country } from '@/lib/countries'
 import { cn } from '@/lib/utils'
@@ -15,21 +16,50 @@ interface CountryComboboxProps {
 export function CountryCombobox({
   value,
   onChange,
-  placeholder = 'Seleccioná un país',
+  placeholder,
   disabled,
 }: CountryComboboxProps) {
+  const t = useTranslations('CountryCombobox')
+  const locale = useLocale()
   const [open, setOpen] = React.useState(false)
   const [search, setSearch] = React.useState('')
   const containerRef = React.useRef<HTMLDivElement>(null)
   const searchRef = React.useRef<HTMLInputElement>(null)
 
+  // Nombre del país localizado según el idioma activo (ISO alpha-2 -> nombre),
+  // con fallback al nombre en español del dataset.
+  const regionNames = React.useMemo(() => {
+    try {
+      return new Intl.DisplayNames([locale], { type: 'region' })
+    } catch {
+      return null
+    }
+  }, [locale])
+  const nameOf = React.useCallback(
+    (c: Country) => regionNames?.of(c.code) ?? c.name,
+    [regionNames],
+  )
+
+  // Lista ordenada alfabéticamente por el nombre localizado.
+  const localized = React.useMemo(
+    () =>
+      [...COUNTRIES]
+        .map((c) => ({ country: c, label: nameOf(c) }))
+        .sort((a, b) => a.label.localeCompare(b.label, locale)),
+    [nameOf, locale],
+  )
+
   const selected = COUNTRIES.find((c) => c.code === value)
 
   const filtered = React.useMemo(() => {
-    if (!search) return COUNTRIES
+    if (!search) return localized
     const q = search.toLowerCase()
-    return COUNTRIES.filter((c) => c.name.toLowerCase().includes(q))
-  }, [search])
+    return localized.filter(
+      ({ country, label }) =>
+        label.toLowerCase().includes(q) ||
+        country.name.toLowerCase().includes(q),
+    )
+  }, [search, localized])
 
   React.useEffect(() => {
     if (open) {
@@ -77,10 +107,12 @@ export function CountryCombobox({
           {selected ? (
             <>
               <span className="text-base leading-none">{selected.flag}</span>
-              <span className="truncate text-foreground">{selected.name}</span>
+              <span className="truncate text-foreground">
+                {nameOf(selected)}
+              </span>
             </>
           ) : (
-            <span>{placeholder}</span>
+            <span>{placeholder ?? t('selectCountry')}</span>
           )}
         </span>
         <span className="flex items-center gap-1 shrink-0 ml-2">
@@ -113,7 +145,7 @@ export function CountryCombobox({
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Buscar país..."
+              placeholder={t('searchPlaceholder')}
               className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
             />
             {search && (
@@ -129,10 +161,10 @@ export function CountryCombobox({
           <div className="max-h-56 overflow-y-auto scrollbar-none py-1">
             {filtered.length === 0 ? (
               <p className="px-3 py-4 text-center text-sm text-muted-foreground">
-                No se encontró ningún país
+                {t('empty')}
               </p>
             ) : (
-              filtered.map((country) => (
+              filtered.map(({ country, label }) => (
                 <button
                   key={country.code}
                   type="button"
@@ -143,7 +175,7 @@ export function CountryCombobox({
                   )}
                 >
                   <span className="text-base leading-none w-6 shrink-0">{country.flag}</span>
-                  <span className="truncate">{country.name}</span>
+                  <span className="truncate">{label}</span>
                 </button>
               ))
             )}

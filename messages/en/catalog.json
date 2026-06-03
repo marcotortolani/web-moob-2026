@@ -1,0 +1,130 @@
+{
+  "EventsPage": {
+    "meta": {
+      "title": "WE ARE Events",
+      "description": "We create content in every format, from live experiences to long, medium and short-form productions in more than 30 countries."
+    },
+    "hero": {
+      "label": "WE ARE",
+      "title": "Events",
+      "imageAlt": "Events",
+      "paragraph": "<b>We create</b> live content events, from festivals to long, medium and short-form productions in more than 30 countries."
+    },
+    "grid": {
+      "prevPage": "Previous page",
+      "nextPage": "Next page"
+    },
+    "detail": {
+      "label": "WE ARE"
+    }
+  },
+  "EventItems": {
+    "club-media-fest": {
+      "title": "Club Media Fest",
+      "shortTitle": "CLUB\nMEDIA FEST",
+      "description": "The first international festival showcasing youtubers/influencers. More than 30 artists on stage. 2 stages. Music sets, DJ sets, challenges, panels, meet & greet, fashion shows, comedy, beauty."
+    },
+    "cruce-de-campeones": {
+      "title": "Cruce de Campeones",
+      "shortTitle": "CRUCE DE\nCAMPEONES",
+      "description": "Cruce de Campeones brings together the leading figures of Spanish-language Freestyle in an event where artists compete to reach a grand final and be crowned champion."
+    },
+    "personal-fest": {
+      "title": "Personal Fest",
+      "shortTitle": "PERSONAL\nFEST",
+      "description": "Personal Fest was one of the most important music festivals in Argentina, held mainly in Buenos Aires. Organized by the telecom company Personal, it stood out for bringing together top-tier international artists (rock, pop, electronic) with local bands across multiple stages."
+    },
+    "copa-goals": {
+      "title": "Copa Goals",
+      "shortTitle": "COPA\nGOALS",
+      "description": "\"Goals\" is an event tied to amateur gaming, in which thousands of kids had the chance to play to fulfill a dream: to play alongside their idols on the day of the event."
+    },
+    "comic-con": {
+      "title": "Comic Con",
+      "shortTitle": "COMIC\nCON",
+      "description": "Comic Con is the leading pop culture convention, bringing together fans of comics, anime, film, video games and cosplay in a unique space."
+    },
+    "unkla-cup": {
+      "title": "Unkla Cup — Team Gamers",
+      "shortTitle": "UNKLA CUP\nTEAM GAMERS",
+      "description": "UNKLA Cup / Team Gamers. Planning, Development and Execution of a Gaming Tournament."
+    }
+  },
+  "ExperiencesPage": {
+    "meta": {
+      "title": "WE ARE Experiences",
+      "description": "We connect the OFF world with the ON, creating activations and experiences for users and partners in more than 30 countries."
+    },
+    "hero": {
+      "label": "WE ARE",
+      "title": "Activations<br></br>and experiences",
+      "imageAlt": "Activations and Experiences",
+      "paragraph": "<b>We connect the OFF world with the ON</b>, creating activations and experiences for users and partners in more than 30 countries."
+    },
+    "grid": {
+      "prevPage": "Previous page",
+      "nextPage": "Next page"
+    },
+    "detail": {
+      "label": "WE ARE"
+    }
+  },
+  "ActivationItems": {
+    "clinica-cocina-victor-moreno-movistar-venezuela": {
+      "title": "Cooking clinic with Victor Moreno — Movistar Venezuela",
+      "shortTitle": "COOKING CLINIC\nWITH VICTOR MORENO",
+      "description": "Service users took part in an exclusive trivia game to earn points and win their spot in an exclusive cooking clinic led by Victor Moreno."
+    },
+    "team-gamers-movistar-venezuela": {
+      "title": "FitelVen stand and activation — Team Gamers Movistar Venezuela",
+      "shortTitle": "FITELVEN STAND AND ACTIVATION\nTEAM GAMERS",
+      "description": "A stand was set up to promote the Team Gamers product. The two main actions were the creation of a totem featuring a trivia game for participants to win prizes, and the screening of a clinic."
+    },
+    "so-pra-elas-vodacom-mozambique": {
+      "title": "So Pra Elas — Women's Day Vodacom Mozambique",
+      "shortTitle": "WOMEN'S DAY ACTION\nVODACOM MOZAMBIQUE",
+      "description": ""
+    },
+    "que-guay-viajes-movistar-venezuela": {
+      "title": "Que Guay Viajes — Movistar Venezuela",
+      "shortTitle": "QUE GUAY VIAJES\nMOVISTAR VENEZUELA",
+      "description": ""
+    },
+    "mundo-musica-personal-paraguay": {
+      "title": "Mundo Música — Personal Paraguay",
+      "shortTitle": "MUNDO MÚSICA\nPERSONAL PARAGUAY",
+      "description": ""
+    },
+    "benja-torres-personal-paraguay": {
+      "title": "Activation at a shopping mall with Benja Torres — Personal Paraguay",
+      "shortTitle": "ACTIVATION AT A SHOPPING MALL\nWITH BENJA TORRES",
+      "description": "An unexpected and disruptive artistic intervention in which Benja Torres becomes the epicenter of an emotional experience inside the shopping mall. Through his lyrics and his art, the event humanized the associated brands, building a close bond with the audience."
+    }
+  },
+  "HomeActivationSlides": {
+    "vm-mov-ven": {
+      "eventName": "Victor Moreno - Movistar Venezuela",
+      "description": "Service users took part in an exclusive trivia game to earn points and win their spot in an exclusive cooking clinic led by Victor Moreno."
+    },
+    "tg-mov-ven": {
+      "eventName": "Team Gamers - Movistar Venezuela",
+      "description": "A stand was set up to promote the Team Gamers product. The two main actions were the creation of a totem featuring a trivia game for participants to win prizes, and the screening of a clinic"
+    },
+    "spe-vod-mz": {
+      "eventName": "So Pra Elas - VOD MZ",
+      "description": ""
+    },
+    "qgv-mov-ven": {
+      "eventName": "Que Guay Viajes - Movistar Venezuela",
+      "description": ""
+    },
+    "mm-per-py": {
+      "eventName": "Mundo Música - Personal Paraguay",
+      "description": ""
+    },
+    "bt-per-py": {
+      "eventName": "Benja Torres - Personal Paraguay",
+      "description": "An unexpected and disruptive artistic intervention in which Benja Torres becomes the epicenter of an emotional experience inside the shopping mall. Through his lyrics and his art, the event humanized the associated brands, building a close bond with the audience."
+    }
+  }
+}

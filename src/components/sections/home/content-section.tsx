@@ -1,8 +1,10 @@
 'use client'
 
+import { type ComponentProps } from 'react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, FreeMode } from 'swiper/modules'
 import 'swiper/css'
@@ -36,7 +38,12 @@ const GRID_ITEMS = {
   ],
 }
 
+type LinkHref = ComponentProps<typeof Link>['href']
+
 export function ContentSection() {
+  const t = useTranslations('Content')
+  const tc = useTranslations('Common')
+  const tCats = useTranslations('ContentCats')
   return (
     <section
       className="w-full max-w-[1930px] mx-auto bg-black py-8 md:py-12 lg:py-20 mt-10"
@@ -52,27 +59,29 @@ export function ContentSection() {
           className=" absolute top-0 xl:top-[unset] xl:bottom-0 xl:flex xl:items-end xl:justify-around xl:px-0 w-full py-4 2xl:py-10 z-50 -translate-y-14 bg-linear-to-b from-black via-black to-transparent xl:bg-linear-to-t xl:translate-y-10"
         >
           <SectionHeading
-            label="SOMOS"
-            title="Contenido"
+            label={tc('We are')}
+            title={t('title')}
             align="center"
             className="flex-col justify-center gap-0 lg:min-w-75 xl:items-start "
             titleClassName="text-[28px] min-[375px]:text-5xl md:text-6xl xl:text-5xl 2xl:text-6xl"
           />
           <p className=" hidden xl:block text-white/80 text-left text-pretty text-sm md:text-base xl:text-lg leading-4 xl:leading-5 max-w-2xl ">
-            <span className="font-bold text-mint">Creamos contenido</span> en
-            todos los formatos, desde experiencias en vivo hasta producciones de
-            larga, mediana y corta duración. Incluyendo películas y
-            documentales.
+            {t.rich('description', {
+              b: (chunks) => (
+                <span className="font-bold text-mint">{chunks}</span>
+              ),
+            })}
           </p>
         </motion.div>
         <BannerGridVideo items={GRID_ITEMS} videoPosition="bottom-right" />
 
         <div className="z-50 xl:hidden absolute -bottom-5 translate-y-4 w-full mx-auto px-5 md:px-10 lg:px-0 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
           <p className="mx-auto text-white/80 text-center text-pretty text-sm md:text-base xl:text-lg leading-4 xl:leading-5 mt-3 lg:mt-6 max-w-xl md:max-w-2xl xl:max-w-3xl">
-            <span className="font-bold text-mint">Creamos contenido</span> en
-            todos los formatos, desde experiencias en vivo hasta producciones de
-            larga, mediana y corta duración. Incluyendo películas y
-            documentales.
+            {t.rich('description', {
+              b: (chunks) => (
+                <span className="font-bold text-mint">{chunks}</span>
+              ),
+            })}
           </p>
         </div>
       </div>
@@ -110,15 +119,15 @@ export function ContentSection() {
           }}
           className="[&_.swiper-wrapper]:ease-linear! px-1 md:px-2 lg:px-4 xl:px-6"
         >
-          {contentCategories.map(({ label, id }) => (
+          {contentCategories.map(({ id }) => (
             <SwiperSlide key={id}>
               <Link
-                href={`/somos-contenido/${id}`}
+                href={`/somos-contenido/${id}` as LinkHref}
                 className="block relative aspect-square rounded-xs overflow-hidden group cursor-pointer"
               >
                 <Image
                   src={categoryImages[id]}
-                  alt={label}
+                  alt={tCats(id)}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 768px) 60vw, 20vw"
@@ -126,7 +135,7 @@ export function ContentSection() {
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-mint scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <span className="absolute bottom-0 left-0 right-0 text-white text-lg lg:text-xl font-display text-center tracking-wide uppercase group-hover:text-mint transition-colors">
-                  {label}
+                  {tCats(id)}
                 </span>
               </Link>
             </SwiperSlide>
@@ -138,7 +147,7 @@ export function ContentSection() {
             href="/somos-contenido"
             className=" text-white tracking-tight"
           >
-            MÁS DE NUESTRO CONTENIDO
+            {t('cta')}
           </DemoButton>
         </div>
       </div>

@@ -16,6 +16,15 @@ interface Props {
   email: string
   message: string
   country?: string
+  locale: string
+  preview: string
+  heading: string
+  labels: {
+    name: string
+    email: string
+    country: string
+    message: string
+  }
 }
 
 const styles = {
@@ -41,32 +50,41 @@ const styles = {
   link: { color: '#40b09d' },
 }
 
-export default function ContactNotificationEmail({ name, email, message, country }: Props) {
+export default function ContactNotificationEmail({
+  name,
+  email,
+  message,
+  country,
+  locale,
+  preview,
+  heading,
+  labels,
+}: Props) {
   const countryLabel = formatCountry(country)
   return (
-    <Html lang="es">
+    <Html lang={locale}>
       <Head />
-      <Preview>Nuevo mensaje de {name}</Preview>
+      <Preview>{preview}</Preview>
       <Body style={styles.main}>
         <Container style={styles.container}>
-          <Heading style={styles.heading}>Nuevo mensaje de contacto</Heading>
+          <Heading style={styles.heading}>{heading}</Heading>
 
-          <Text style={styles.label}>NOMBRE</Text>
+          <Text style={styles.label}>{labels.name}</Text>
           <Text style={styles.value}>{name}</Text>
 
-          <Text style={styles.label}>EMAIL</Text>
+          <Text style={styles.label}>{labels.email}</Text>
           <Text style={styles.value}>
             <Link href={`mailto:${email}`} style={styles.link}>{email}</Link>
           </Text>
 
           {countryLabel && (
             <>
-              <Text style={styles.label}>PAÍS</Text>
+              <Text style={styles.label}>{labels.country}</Text>
               <Text style={styles.value}>{countryLabel}</Text>
             </>
           )}
 
-          <Text style={styles.label}>MENSAJE</Text>
+          <Text style={styles.label}>{labels.message}</Text>
           <Section style={styles.messageBox}>
             <Text style={styles.messageText}>{message}</Text>
           </Section>

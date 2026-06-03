@@ -10,7 +10,12 @@ import {
 } from '@react-email/components'
 
 interface Props {
-  name: string
+  locale: string
+  preview: string
+  heading: string
+  body: string
+  accent: string
+  footer: string
 }
 
 const styles = {
@@ -35,28 +40,29 @@ const styles = {
   footer: { color: '#555555', fontSize: '12px', marginTop: '32px' },
 }
 
-export default function ContactConfirmationEmail({ name }: Props) {
+export default function ContactConfirmationEmail({
+  locale,
+  preview,
+  heading,
+  body,
+  accent,
+  footer,
+}: Props) {
   return (
-    <Html lang="es">
+    <Html lang={locale}>
       <Head />
-      <Preview>Recibimos tu mensaje, {name}</Preview>
+      <Preview>{preview}</Preview>
       <Body style={styles.main}>
         <Container style={styles.container}>
-          <Heading style={styles.heading}>¡Gracias por escribirnos!</Heading>
+          <Heading style={styles.heading}>{heading}</Heading>
 
-          <Text style={styles.text}>
-            Hola {name}, recibimos tu mensaje y te responderemos a la brevedad.
-          </Text>
+          <Text style={styles.text}>{body}</Text>
 
           <Section style={styles.accent}>
-            <Text style={styles.accentText}>
-              El equipo de Moob se pondrá en contacto con vos pronto.
-            </Text>
+            <Text style={styles.accentText}>{accent}</Text>
           </Section>
 
-          <Text style={styles.footer}>
-            Este es un mensaje automático. Por favor no respondas a este email.
-          </Text>
+          <Text style={styles.footer}>{footer}</Text>
         </Container>
       </Body>
     </Html>

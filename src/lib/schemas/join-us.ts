@@ -1,26 +1,45 @@
 import { z } from 'zod'
+import type { Translator } from './contact'
 
 const CV_MAX_SIZE = 5 * 1024 * 1024 // 5 MB
 
-export const joinUsClientSchema = z.object({
-  name: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
-  email: z.string().email('Ingresá un email válido'),
-  country: z.string().min(1, 'Seleccioná un país'),
-  cv: z
-    .instanceof(File, { message: 'Adjuntá tu CV en PDF' })
-    .refine((f) => f.type === 'application/pdf', 'El archivo debe ser un PDF')
-    .refine((f) => f.size <= CV_MAX_SIZE, 'El PDF no puede superar los 5 MB'),
-  linkedin: z
-    .string()
-    .url('Ingresá una URL válida de LinkedIn')
-    .or(z.literal(''))
-    .optional(),
-  portfolio: z
-    .string()
-    .url('Ingresá una URL válida')
-    .or(z.literal(''))
-    .optional(),
-})
+/** es fallback messages, used for server-side validation when no translator is provided. */
+const fallback: Translator = (key) =>
+  ({
+    nameMin: 'El nombre debe tener al menos 2 caracteres',
+    emailInvalid: 'Ingresá un email válido',
+    countryRequired: 'Seleccioná un país',
+    cvRequired: 'Adjuntá tu CV en PDF',
+    cvPdf: 'El archivo debe ser un PDF',
+    cvSize: 'El PDF no puede superar los 5 MB',
+    linkedinUrl: 'Ingresá una URL válida de LinkedIn',
+    portfolioUrl: 'Ingresá una URL válida',
+  })[key] ?? key
+
+export function buildJoinUsClientSchema(t: Translator) {
+  return z.object({
+    name: z.string().min(2, t('nameMin')),
+    email: z.string().email(t('emailInvalid')),
+    country: z.string().min(1, t('countryRequired')),
+    cv: z
+      .instanceof(File, { message: t('cvRequired') })
+      .refine((f) => f.type === 'application/pdf', t('cvPdf'))
+      .refine((f) => f.size <= CV_MAX_SIZE, t('cvSize')),
+    linkedin: z
+      .string()
+      .url(t('linkedinUrl'))
+      .or(z.literal(''))
+      .optional(),
+    portfolio: z
+      .string()
+      .url(t('portfolioUrl'))
+      .or(z.literal(''))
+      .optional(),
+  })
+}
+
+/** Default client schema with es fallback messages. */
+export const joinUsClientSchema = buildJoinUsClientSchema(fallback)
 
 export const joinUsServerSchema = z.object({
   name: z.string().min(2),

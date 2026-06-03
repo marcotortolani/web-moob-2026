@@ -1,14 +1,15 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useForm, type Resolver } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'motion/react'
+import { useLocale, useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Send, Mail, Paperclip, X } from 'lucide-react'
 
 import {
-  joinUsClientSchema,
+  buildJoinUsClientSchema,
   type JoinUsClientFormData,
 } from '@/lib/schemas/join-us'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -26,10 +27,15 @@ const fadeUp = (delay = 0) => ({
 })
 
 export function JoinUsSection() {
+  const t = useTranslations('JoinUs')
+  const tv = useTranslations('Validation')
+  const locale = useLocale()
   const [loading, setLoading] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const dragCounterRef = useRef(0)
+
+  const schema = useMemo(() => buildJoinUsClientSchema(tv), [tv])
 
   const {
     register,
@@ -40,7 +46,7 @@ export function JoinUsSection() {
     formState: { errors },
   } = useForm<JoinUsClientFormData>({
     resolver: zodResolver(
-      joinUsClientSchema,
+      schema,
     ) as unknown as Resolver<JoinUsClientFormData>,
   })
 
@@ -51,7 +57,7 @@ export function JoinUsSection() {
     const file = files?.[0]
     if (!file) return
     if (file.type !== 'application/pdf') {
-      toast.error('El CV debe ser un PDF')
+      toast.error(t('cvMustBePdf'))
       return
     }
     setValue('cv', file, { shouldValidate: true })
@@ -105,15 +111,16 @@ export function JoinUsSection() {
       fd.append('cv', data.cv)
       if (data.linkedin) fd.append('linkedin', data.linkedin)
       if (data.portfolio) fd.append('portfolio', data.portfolio)
+      fd.append('locale', locale)
 
       const res = await fetch('/api/join-us', { method: 'POST', body: fd })
       if (!res.ok) throw new Error()
 
-      toast.success('¡Postulación enviada! Te contactaremos pronto.')
+      toast.success(t('success'))
       reset()
       if (fileInputRef.current) fileInputRef.current.value = ''
     } catch {
-      toast.error('Hubo un error al enviar. Intentá de nuevo.')
+      toast.error(t('error'))
     } finally {
       setLoading(false)
     }
@@ -126,18 +133,19 @@ export function JoinUsSection() {
           {/* Left */}
           <motion.div {...fadeUp(0)} className="flex flex-col gap-8">
             <SectionHeading
-              label="Carreras"
+              label={t('label')}
               titleClassName="leading-tight md:leading-12 lg:leading-14 xl:leading-16"
-              title={
-                <>
-                  Sumate <span className="text-white italic">al</span>
-                  <span className="text-mint block italic"> equipo.</span>
-                </>
-              }
+              title={t.rich('heading', {
+                white: (chunks) => (
+                  <span className="text-white italic">{chunks}</span>
+                ),
+                mint: (chunks) => (
+                  <span className="text-mint block italic">{chunks}</span>
+                ),
+              })}
             />
             <p className="text-white/70 text-base lg:text-lg leading-relaxed max-w-md">
-              Somos un equipo apasionado por el entretenimiento, el contenido y
-              la tecnología. Si querés ser parte, mandanos tu postulación.
+              {t('subtitle')}
             </p>
 
             <motion.div
@@ -149,7 +157,7 @@ export function JoinUsSection() {
               </div>
               <div>
                 <p className="text-white/30 text-xs uppercase tracking-widest">
-                  Email
+                  {t('Email')}
                 </p>
                 <p className="text-white text-sm">hola@memoob.com</p>
               </div>
@@ -173,9 +181,9 @@ export function JoinUsSection() {
                   <div className="flex flex-col items-center gap-2 text-mint">
                     <Paperclip className="size-8" />
                     <p className="font-display text-lg uppercase tracking-widest">
-                      Soltá tu CV aquí
+                      {t('dragTitle')}
                     </p>
-                    <p className="text-xs text-white/50">Solo PDF, máx. 5 MB</p>
+                    <p className="text-xs text-white/50">{t('dragHint')}</p>
                   </div>
                 </div>
               )}
@@ -191,11 +199,11 @@ export function JoinUsSection() {
                     className="flex flex-col gap-1.5"
                   >
                     <Label htmlFor="name" className="text-white/70">
-                      Nombre <span className="text-mint">*</span>
+                      {t('Name')} <span className="text-mint">*</span>
                     </Label>
                     <Input
                       id="name"
-                      placeholder="Tu nombre"
+                      placeholder={t('namePlaceholder')}
                       className="h-10 bg-surface-lighter border-white/10 focus-visible:border-mint focus-visible:ring-mint/30 placeholder:text-white/20"
                       aria-invalid={!!errors.name}
                       {...register('name')}
@@ -212,12 +220,12 @@ export function JoinUsSection() {
                     className="flex flex-col gap-1.5"
                   >
                     <Label htmlFor="email" className="text-white/70">
-                      Email <span className="text-mint">*</span>
+                      {t('emailLabel')} <span className="text-mint">*</span>
                     </Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="tu@email.com"
+                      placeholder={t('emailPlaceholder')}
                       className="h-10 bg-surface-lighter border-white/10 focus-visible:border-mint focus-visible:ring-mint/30 placeholder:text-white/20"
                       aria-invalid={!!errors.email}
                       {...register('email')}
@@ -233,7 +241,7 @@ export function JoinUsSection() {
                 {/* País */}
                 <motion.div {...fadeUp(0.3)} className="flex flex-col gap-1.5">
                   <Label className="text-white/70">
-                    País <span className="text-mint">*</span>
+                    {t('Country')} <span className="text-mint">*</span>
                   </Label>
                   <CountryCombobox
                     value={countryValue}
@@ -251,9 +259,9 @@ export function JoinUsSection() {
                 {/* CV PDF */}
                 <motion.div {...fadeUp(0.35)} className="flex flex-col gap-1.5">
                   <Label className="text-white/70">
-                    CV <span className="text-mint">*</span>{' '}
+                    {t('cvLabel')} <span className="text-mint">*</span>{' '}
                     <span className="text-white/30 font-normal text-xs">
-                      (solo PDF, máx. 5 MB)
+                      {t('cvHelper')}
                     </span>
                   </Label>
 
@@ -280,7 +288,7 @@ export function JoinUsSection() {
                     >
                       <Paperclip className="size-4 shrink-0 text-white/30" />
                       <span className="text-sm text-white/30">
-                        Seleccioná tu CV en PDF
+                        {t('cvPlaceholder')}
                       </span>
                       <input
                         ref={fileInputRef}
@@ -302,15 +310,15 @@ export function JoinUsSection() {
                 {/* LinkedIn (opcional) */}
                 <motion.div {...fadeUp(0.4)} className="flex flex-col gap-1.5">
                   <Label htmlFor="linkedin" className="text-white/70">
-                    LinkedIn{' '}
+                    {t('linkedinLabel')}{' '}
                     <span className="text-white/30 font-normal text-xs">
-                      (opcional)
+                      {t('optional')}
                     </span>
                   </Label>
                   <Input
                     id="linkedin"
                     type="url"
-                    placeholder="https://www.linkedin.com/in/..."
+                    placeholder={t('linkedinPlaceholder')}
                     className="h-10 bg-surface-lighter border-white/10 focus-visible:border-mint focus-visible:ring-mint/30 placeholder:text-white/20"
                     aria-invalid={!!errors.linkedin}
                     {...register('linkedin')}
@@ -325,15 +333,15 @@ export function JoinUsSection() {
                 {/* Portfolio (opcional) */}
                 <motion.div {...fadeUp(0.45)} className="flex flex-col gap-1.5">
                   <Label htmlFor="portfolio" className="text-white/70">
-                    Portfolio{' '}
+                    {t('portfolioLabel')}{' '}
                     <span className="text-white/30 font-normal text-xs">
-                      (opcional)
+                      {t('optional')}
                     </span>
                   </Label>
                   <Input
                     id="portfolio"
                     type="url"
-                    placeholder="https://tuportfolio.com"
+                    placeholder={t('portfolioPlaceholder')}
                     className="h-10 bg-surface-lighter border-white/10 focus-visible:border-mint focus-visible:ring-mint/30 placeholder:text-white/20"
                     aria-invalid={!!errors.portfolio}
                     {...register('portfolio')}
@@ -359,12 +367,12 @@ export function JoinUsSection() {
                     {loading ? (
                       <span className="flex items-center gap-2 text-white">
                         <span className="size-4 rounded-full border-2 border-white border-t-white/30 animate-spin" />
-                        Enviando...
+                        {t('sending')}
                       </span>
                     ) : (
                       <span className="flex items-center gap-2 text-white">
                         <Send className="size-4" />
-                        Enviar postulación
+                        {t('submit')}
                       </span>
                     )}
                   </Button>

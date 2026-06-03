@@ -1,0 +1,118 @@
+{
+  "_convention": "Las keys son el texto fuente real en inglés. Evitar '.' dentro de las keys (next-intl lo usa como separador de namespaces). Tags rich: <b>, <white>, <mint>.",
+  "Metadata": {
+    "siteTitle": "Media Moob — Contenido, Tecnología y Experiencias",
+    "siteDescription": "Somos creativos, somos curiosos, somos Media Moob. Contenido, tecnología y experiencias en más de 30 países.",
+    "homeTitle": "Media Moob — Somos Creativos, Somos Curiosos",
+    "homeDescription": "Creamos contenido, tecnología y experiencias únicas para más de 30 países. 1200 HS de contenido exclusivo, 550K suscriptores y 15 años de experiencia."
+  },
+  "Nav": {
+    "Home": "Inicio",
+    "Content": "Contenido",
+    "Technology": "Tecnología",
+    "Events": "Eventos",
+    "Experiences": "Experiencias",
+    "Games": "Juegos",
+    "Work with us": "Trabaja con nosotros",
+    "Let's talk!": "Hablemos!"
+  },
+  "Common": {
+    "We are": "SOMOS"
+  },
+  "Header": {
+    "Open menu": "Abrir menú",
+    "Close menu": "Cerrar menú",
+    "Media Moob logo": "Logo de Media Moob"
+  },
+  "LanguageSwitcher": {
+    "Select language": "Seleccionar idioma"
+  },
+  "CountryCombobox": {
+    "selectCountry": "Seleccioná un país",
+    "searchPlaceholder": "Buscar país...",
+    "empty": "No se encontró ningún país"
+  },
+  "Footer": {
+    "Navigation": "Navegación",
+    "Contact": "Contacto",
+    "Let's talk!": "Hablemos!",
+    "Work with us": "Trabaja con nosotros",
+    "Networks": "Redes",
+    "address": "Guatemala 5582, Ciudad de Buenos Aires. República Argentina.",
+    "rights": "© {year} Media Moob. Todos los derechos reservados."
+  },
+  "Hero": {
+    "we are": "somos",
+    "CREATIVE": "CREATIVOS",
+    "CURIOUS": "CURIOSOS",
+    "Watch our reel": "mira nuestro reel",
+    "exclusive content": "contenido exclusivo",
+    "technology": "tecnología",
+    "events and experiences": "eventos y experiencias",
+    "own productions": "producciones propias",
+    "artists and influencers": "artistas e influencers",
+    "we are in": "estamos en",
+    "more than 30 countries": "más de 30 países",
+    "here we arrive with": "aquí llegamos con",
+    "our operations": "nuestras operaciones"
+  },
+  "Content": {
+    "title": "Contenido",
+    "description": "<b>Creamos contenido</b> en todos los formatos, desde experiencias en vivo hasta producciones de larga, mediana y corta duración. Incluyendo películas y documentales.",
+    "cta": "MÁS DE NUESTRO CONTENIDO"
+  },
+  "Tech": {
+    "title": "Tecnología",
+    "description": "<b>Aplicamos tecnología propia para amplificar su alcance e impacto.</b> Contamos con herramientas como MCP, Publicidad Sat y Push, que optimizan la distribución y monetización de los contenidos.",
+    "cta": "VER TODAS LAS SOLUCIONES DE TECNOLOGÍA"
+  },
+  "Events": {
+    "title": "Eventos",
+    "description": "<b>Creamos contenido</b> en todos los formatos, desde experiencias en vivo hasta producciones de larga, mediana y corta duración. Incluyendo películas y documentales.",
+    "cta": "MÁS DE NUESTROS EVENTOS"
+  },
+  "Activations": {
+    "title": "Activaciones y experiencias",
+    "description": "Unimos el mundo OFF con el ON generando <b>activaciones y experiencias</b> para usuarios y partners.",
+    "cta": "MÁS ACTIVACIONES Y EXPERIENCIAS"
+  },
+  "Games": {
+    "title": "Juegos & Gamificación",
+    "intro": "Desarrollamos diferentes juegos en base a nuestros productos, adaptados a diferentes temáticas con premios exclusivos para nuestros usuarios.",
+    "cta": "CONOCÉ NUESTROS JUEGOS",
+    "mockupAlt": "Mockups de trivias en teléfonos",
+    "wheelAlt": "Ruleta"
+  },
+  "Stats": {
+    "exclusive content": "CONTENIDO EXCLUSIVO",
+    "subscribers": "SUSCRIPTORES EN NUESTROS PORTALES",
+    "experience": "EXPERIENCIA",
+    "years": " AÑOS"
+  },
+  "Map": {
+    "heading": "Estamos en más de <b>30 países</b>",
+    "subtitle": "Aquí llegamos con nuestras operaciones",
+    "more": "+20 más"
+  },
+  "Brands": {
+    "title": "Marcas que confían en nosotros"
+  },
+  "Contact": {
+    "heading": "Hablemos. <white>Construyamos</white> <mint>algo juntos.</mint>",
+    "subtitle": "Contanos tu proyecto o idea. Nuestro equipo te responderá a la brevedad.",
+    "Email": "Email",
+    "Office": "Sede",
+    "officeValue": "Ciudad de Buenos Aires, Argentina",
+    "Name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@email.com",
+    "Country": "País",
+    "optional": "(opcional)",
+    "Message": "Mensaje",
+    "messagePlaceholder": "Contanos sobre tu proyecto o consulta...",
+    "Send message": "Enviar mensaje",
+    "Sending": "Enviando...",
+    "success": "¡Mensaje enviado! Te contactaremos pronto.",
+    "error": "Hubo un error al enviar. Intentá de nuevo."
+  }
+}

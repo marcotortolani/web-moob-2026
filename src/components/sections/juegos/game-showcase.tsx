@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'motion/react'
+import { useTranslations } from 'next-intl'
 import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { HelpCircle, Grid2X2, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -56,6 +57,7 @@ function GamePhoneMockup({
 }
 
 export function GameShowcase() {
+  const t = useTranslations('GamesPage')
   const [activeIndex, setActiveIndex] = useState(0)
   const swiperRef = useRef<SwiperType | null>(null)
 
@@ -87,7 +89,7 @@ export function GameShowcase() {
               {Icon && <Icon size={22} className="text-mint" />}
             </div>
             <p className="font-display text-4xl lg:text-5xl xl:text-6xl text-white tracking-wide">
-              {game.title}
+              {t(`items.${game.id}.title`)}
             </p>
           </motion.div>
         </AnimatePresence>
@@ -114,7 +116,7 @@ export function GameShowcase() {
               >
                 <GamePhoneMockup
                   mockupImage={g.mockupImage}
-                  gameTitle={g.title}
+                  gameTitle={t(`items.${g.id}.title`)}
                   isActive={i === activeIndex}
                 />
               </SwiperSlide>
@@ -133,7 +135,7 @@ export function GameShowcase() {
             >
               <div className="bg-white/95 rounded-xl p-5 lg:p-6 shadow-xl flex flex-col items-center gap-4">
                 <p className="text-black text-xs lg:text-sm leading-relaxed text-center">
-                  {game.description}
+                  {t(`items.${game.id}.description`)}
                 </p>
                 {game.demoUrl && game.demoUrl.length > 0 && (
                   <DemoButton
@@ -152,7 +154,7 @@ export function GameShowcase() {
           <button
             onClick={prev}
             className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-mint hover:text-mint transition-colors"
-            aria-label="Juego anterior"
+            aria-label={t('nav.prev')}
           >
             <ChevronLeft size={20} />
           </button>
@@ -162,7 +164,7 @@ export function GameShowcase() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                aria-label={`Juego ${i + 1}`}
+                aria-label={t('nav.goTo', { n: i + 1 })}
                 className={`rounded-full transition-all duration-300 ${
                   i === activeIndex
                     ? 'w-5 h-2 bg-mint'
@@ -175,7 +177,7 @@ export function GameShowcase() {
           <button
             onClick={next}
             className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-mint hover:text-mint transition-colors"
-            aria-label="Siguiente juego"
+            aria-label={t('nav.next')}
           >
             <ChevronRight size={20} />
           </button>

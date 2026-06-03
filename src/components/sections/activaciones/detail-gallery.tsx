@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
+import { useTranslations } from 'next-intl'
 import { BannerGridVideo } from '@/components/BannerGridVideo'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { ActiveVideoPlayer } from '@/components/ui/events-slider'
@@ -11,6 +12,10 @@ interface DetailGalleryProps {
 }
 
 export function DetailGallery({ activation }: DetailGalleryProps) {
+  const t = useTranslations('ExperiencesPage')
+  const ti = useTranslations('ActivationItems')
+  const title = ti(`${activation.slug}.title`)
+  const description = ti(`${activation.slug}.description`)
   const hasImages = activation.images.length >= 4
 
   return (
@@ -48,15 +53,15 @@ export function DetailGallery({ activation }: DetailGalleryProps) {
               className="flex flex-col xl:flex-row xl:items-end xl:gap-12"
             >
               <SectionHeading
-                label="SOMOS"
-                title={activation.title}
+                label={t('detail.label')}
+                title={title}
                 align="left"
                 className="flex-col justify-start gap-0 xl:min-w-64"
                 titleClassName="text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl xl:leading-14 2xl:leading-16"
               />
-              {activation.description && (
+              {description && (
                 <p className="text-white/80 text-pretty text-sm md:text-base xl:text-lg leading-5 mt-3 xl:mt-0 xl:mb-2 max-w-sm md:max-w-lg xl:max-w-xl">
-                  {activation.description}
+                  {description}
                 </p>
               )}
             </motion.div>

@@ -8,11 +8,30 @@ interface NotificationProps {
   country: string
   linkedin?: string
   portfolio?: string
-  cvFilename: string
+  locale: string
+  preview: string
+  heading: string
+  labels: {
+    name: string
+    email: string
+    country: string
+    linkedin: string
+    portfolio: string
+  }
+  cvAttached: string
+}
+
+interface ConfirmationProps {
+  locale: string
+  preview: string
+  heading: string
+  body: string
+  accent: string
+  footer: string
 }
 
 export const renderNotification = (props: NotificationProps) =>
   render(<JoinUsNotificationEmail {...props} />)
 
-export const renderConfirmation = (name: string) =>
-  render(<JoinUsConfirmationEmail name={name} />)
+export const renderConfirmation = (props: ConfirmationProps) =>
+  render(<JoinUsConfirmationEmail {...props} />)

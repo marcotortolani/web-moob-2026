@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import dynamic from 'next/dynamic'
 import { motion } from 'motion/react'
 import { ArrowRight, ChevronDown } from 'lucide-react'
@@ -18,6 +19,9 @@ interface Props {
 }
 
 export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
+  const t = useTranslations('ContentHub')
+  const tCats = useTranslations('ContentCats')
+  const tThemes = useTranslations('ContentThemes')
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [videoError, setVideoError] = useState(false)
   const showVideo = (isActive || isNear) && !videoError
@@ -45,7 +49,7 @@ export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
         {/* Frame fallback */}
         <Image
           src={data.frame}
-          alt={data.title}
+          alt={tCats(data.slug)}
           fill
           className="object-cover"
           priority={isFirst}
@@ -62,7 +66,7 @@ export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
             <div className="absolute inset-0 w-full h-full">
               <Image
                 src={data.frame}
-                alt={data.title}
+                alt={tCats(data.slug)}
                 fill
                 className="object-cover blur-[2px]"
                 priority={isFirst}
@@ -118,20 +122,24 @@ export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
         <div className="absolute bottom-14 left-5 right-5 md:bottom-20 md:left-10 md:right-10 lg:bottom-16">
           <div className="flex flex-col gap-0">
             <span className="text-white text-2xl md:text-3xl font-normal tracking-widest uppercase leading-4 lg:leading-none">
-              SOMOS
+              {t('slideWeAre')}
             </span>
             <h2 className="text-5xl md:text-6xl leading-tight font-extrabold text-mint">
-              {data.title.charAt(0) + data.title.slice(1).toLowerCase()}
+              {tThemes(`${data.slug}.heroTitle`)}
             </h2>
           </div>
           <p className="mt-3 text-sm md:text-base text-white leading-relaxed font-sans max-w-xs md:max-w-md lg:max-w-sm">
-            {data.description}
+            {tThemes(`${data.slug}.heroDescription`)}
           </p>
           <Link
-            href={`/somos-contenido/${data.slug}`}
+            href={
+              `/somos-contenido/${data.slug}` as React.ComponentProps<
+                typeof Link
+              >['href']
+            }
             className="inline-flex items-center gap-2 mt-6 bg-mint text-white font-display uppercase tracking-wider text-base md:text-lg rounded-full px-6 md:px-8 py-2 md:py-3 hover:bg-mint-dark transition-colors"
           >
-            Más {data.title} aquí
+            {t('slideMore', { title: tCats(data.slug) })}
             <ArrowRight size={16} />
           </Link>
         </div>

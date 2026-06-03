@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Keyboard, Autoplay } from 'swiper/modules'
 import 'swiper/css'
@@ -11,10 +12,19 @@ import type { ThemeProduct } from '@/lib/data/contenido/types'
 interface Props {
   products: ThemeProduct[]
   heading?: string
+  /** Theme slug used to resolve translated product names + demo label. */
+  themeSlug?: string
 }
 
-export function ThemeProductsSlider({ products, heading }: Props) {
+export function ThemeProductsSlider({ products, heading, themeSlug }: Props) {
+  const tHub = useTranslations('ContentHub')
+  const tThemes = useTranslations('ContentThemes')
   const single = products.length <= 1
+
+  const productName = (product: ThemeProduct) =>
+    themeSlug
+      ? tThemes(`${themeSlug}.products.${product.id}`)
+      : (product.alt ?? product.id)
   return (
     <section className="relative bg-black px-4 lg:px-6 pt-4 pb-16 lg:pb-24 overflow-x-hidden">
       {heading && (
@@ -59,7 +69,7 @@ export function ThemeProductsSlider({ products, heading }: Props) {
               <div className="relative h-24 lg:h-32 w-96 lg:w-[32rem] xl:h-48 z-10">
                 <Image
                   src={product.logo}
-                  alt={product.alt ?? product.id}
+                  alt={productName(product)}
                   fill
                   className="object-contain"
                   sizes="(max-width: 1024px) 384px, 512px"
@@ -72,7 +82,7 @@ export function ThemeProductsSlider({ products, heading }: Props) {
                 target="_blank"
                 className="text-white py-1 z-10"
               >
-                VER DEMO
+                {tHub('demoButton')}
               </DemoButton>
 
               {/* Mockup with mint stripe behind */}
@@ -81,7 +91,7 @@ export function ThemeProductsSlider({ products, heading }: Props) {
                 <div className="relative max-w-4xl mx-auto aspect-video z-10">
                   <Image
                     src={product.mockup}
-                    alt={`Mockup ${product.alt ?? product.id}`}
+                    alt={`Mockup ${productName(product)}`}
                     fill
                     className="object-contain"
                     sizes="(max-width: 1024px) 95vw, 896px"

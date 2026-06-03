@@ -2,10 +2,14 @@
 
 import { motion } from 'motion/react'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { DemoButton } from '@/components/ui/demo-button'
+import { LocalizedImage } from '@/components/ui/localized-image'
 
 export function GamesSection() {
+  const t = useTranslations('Games')
+  const tc = useTranslations('Common')
   return (
     <section
       id="juegos"
@@ -19,14 +23,8 @@ export function GamesSection() {
         transition={{ duration: 0.6 }}
       >
         <SectionHeading
-          label="SOMOS"
-          title={
-            <>
-              Juegos &amp;
-              <br />
-              Gamificación
-            </>
-          }
+          label={tc('We are')}
+          title={t('title')}
           align="center"
           className="justify-center gap-0"
           titleClassName="text-black text-[2.5rem] leading-[2.8rem] md:text-5xl md:leading-14 lg:text-6xl lg:leading-16 xl:text-7xl xl:leading-20 "
@@ -43,14 +41,14 @@ export function GamesSection() {
         >
           <Image
             src="/images/roullete-wheel.webp"
-            alt="Ruleta"
+            alt={t('wheelAlt')}
             width={800}
             height={800}
             className="z-0 w-full mx-auto opacity-100"
           />
-          <Image
-            src="/images/mockups-trivias-phones.webp"
-            alt="Mockups de trivias en teléfonos"
+          <LocalizedImage
+            imageKey="games-mockup"
+            alt={t('mockupAlt')}
             width={900}
             height={900}
             className="relative z-20 w-full mt-[-45%] object-contain"
@@ -64,9 +62,7 @@ export function GamesSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="relative z-20 text-white/80 text-center text-pretty text-sm lg:text-base leading-tight mt-10 sm:mt-14 md:mt-24 max-w-md mx-auto"
         >
-          Desarrollamos diferentes juegos en base a nuestros productos,
-          adaptados a diferentes temáticas con premios exclusivos para nuestros
-          usuarios.
+          {t('intro')}
         </motion.p>
 
         <motion.div
@@ -77,7 +73,7 @@ export function GamesSection() {
           className="relative z-10 mt-6"
         >
           <DemoButton href="/somos-juegos" className="text-white">
-            CONOCÉ NUESTROS JUEGOS
+            {t('cta')}
           </DemoButton>
         </motion.div>
       </div>

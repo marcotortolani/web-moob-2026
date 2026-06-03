@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
+import { useTranslations } from 'next-intl'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { BannerGridVideo } from '@/components/BannerGridVideo'
 
@@ -18,6 +19,7 @@ const GRID_ITEMS = {
 }
 
 export function HeroJuegos() {
+  const t = useTranslations('GamesPage')
   return (
     <section className="relative bg-black pt-14 lg:pt-20">
       <div className="relative max-w-[1528px] mx-auto">
@@ -39,21 +41,18 @@ export function HeroJuegos() {
             className="flex flex-col xl:flex-row xl:items-end xl:gap-12"
           >
             <SectionHeading
-              label="SOMOS"
-              title={
-                <>
-                  Juegos &<br />
-                  Gamificación
-                </>
-              }
+              label={t('label')}
+              title={t.rich('title', { br: () => <br /> })}
               align="left"
               className="flex-col justify-start gap-0 xl:min-w-64"
               titleClassName="text-[28px] min-[375px]:text-5xl md:text-6xl xl:text-6xl 2xl:text-7xl xl:leading-14 2xl:leading-16"
             />
             <p className="text-white/80 text-pretty text-sm md:text-base xl:text-lg leading-5 mt-3 xl:mt-0 xl:mb-2 max-w-sm md:max-w-lg xl:max-w-xl">
-              <span className="font-bold text-mint">Desarrollamos juegos</span> en
-              base a nuestros productos con premios exclusivos para nuestros
-              usuarios en más de 30 países.
+              {t.rich('intro', {
+                b: (chunks) => (
+                  <span className="font-bold text-mint">{chunks}</span>
+                ),
+              })}
             </p>
           </motion.div>
         </div>

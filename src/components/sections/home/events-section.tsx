@@ -2,22 +2,27 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { AnimatePresence, motion } from 'motion/react'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { DemoButton } from '@/components/ui/demo-button'
 import { EventsSlider, type EventSlide } from '@/components/ui/events-slider'
 import { events } from '@/lib/data/events'
 
-const eventSlides: EventSlide[] = events.map((e, i) => ({
-  id: ['cmf', 'cdc', 'pf', 'cg', 'cc', 'uc'][i] ?? e.slug,
-  eventName: e.title,
-  videoUrl: e.videoUrl,
-  description: e.description,
-  posterSrc: e.coverImage ?? '',
-  logoSrc: e.logoSrc ?? '',
-}))
-
 export function EventsSection() {
+  const t = useTranslations('Events')
+  const tc = useTranslations('Common')
+  const ti = useTranslations('EventItems')
+
+  const eventSlides: EventSlide[] = events.map((e, i) => ({
+    id: ['cmf', 'cdc', 'pf', 'cg', 'cc', 'uc'][i] ?? e.slug,
+    eventName: ti(`${e.slug}.title`),
+    videoUrl: e.videoUrl,
+    description: ti(`${e.slug}.description`),
+    posterSrc: e.coverImage ?? '',
+    logoSrc: e.logoSrc ?? '',
+  }))
+
   const [activeSlide, setActiveSlide] = useState<EventSlide>(eventSlides[0])
 
   return (
@@ -31,18 +36,19 @@ export function EventsSection() {
           className="z-40 absolute top-0 left-0 right-0 -translate-y-4 md:-translate-y-14 w-full xl:max-w-6xl xl:mx-auto flex flex-col items-center justify-center xl:gap-4 text-center px-4 md:px-8 lg:px-10 "
         >
           <SectionHeading
-            label="SOMOS"
-            title="Eventos"
+            label={tc('We are')}
+            title={t('title')}
             align="center"
             className="flex-col min-[375px]:flex-row items-center justify-center gap-1 min-[375px]:gap-3"
             titleClassName="text-[28px] min-[375px]:text-5xl lg:text-6xl xl:text-7xl"
           />
           <div className=" w-fit max-w-lg lg:max-w-xl px-2 lg:px-0">
             <p className="text-white/80 text-center text-balance text-xs md:text-base lg:text-lg leading-4 xl:leading-5 mt-3 lg:mt-6 xl:mt-0 max-w-xl">
-              <span className="font-bold text-mint">Creamos contenido</span> en
-              todos los formatos, desde experiencias en vivo hasta producciones
-              de larga, mediana y corta duración. Incluyendo películas y
-              documentales.
+              {t.rich('description', {
+                b: (chunks) => (
+                  <span className="font-bold text-mint">{chunks}</span>
+                ),
+              })}
             </p>
           </div>
         </motion.div>
@@ -100,7 +106,7 @@ export function EventsSection() {
             href="/somos-eventos"
             className="text-white tracking-tight"
           >
-            MÁS DE NUESTROS EVENTOS
+            {t('cta')}
           </DemoButton>
         </motion.div>
       </div>

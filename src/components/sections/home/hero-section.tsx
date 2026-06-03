@@ -4,10 +4,35 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, type Variants } from 'motion/react'
 import { Play, X } from 'lucide-react'
 import Image from 'next/image'
+import { useTranslations, useLocale } from 'next-intl'
 import { LazyDottedGlobe } from '@/components/ui/dotted-globe-lazy'
 import Link from 'next/link'
 
 type Locale = 'es' | 'en' | 'pt'
+
+// Posición (startOffset sobre el path circular) de cada frase del anillo de texto
+// que orbita el globo. Afinado a mano POR IDIOMA porque el largo del texto cambia
+// y los segmentos se pisarían con un valor único. `es` = referencia (no tocar).
+type OrbitOffsets = {
+  compact: { countries: string; arriveWith: string; operations: string }
+  full: { weAreIn: string; countries: string; arriveWith: string; operations: string }
+}
+
+const ORBIT_OFFSETS: Record<Locale, OrbitOffsets> = {
+  es: {
+    compact: { countries: '4.67%', arriveWith: '48.33%', operations: '58.5%' },
+    full: { weAreIn: '0.5%', countries: '10%', arriveWith: '68%', operations: '82%' },
+  },
+  en: {
+    compact: { countries: '2%', arriveWith: '46.5%', operations: '58.5%' },
+    full: { weAreIn: '96.5%', countries: '5.5%', arriveWith: '67%', operations: '83%' },
+  },
+  pt: {
+    // = es, con "operations" empujado un poco más tarde para separar "nossas" de "com".
+    compact: { countries: '4.67%', arriveWith: '48.33%', operations: '60%' },
+    full: { weAreIn: '0.5%', countries: '10%', arriveWith: '68%', operations: '85%' },
+  },
+}
 
 const REEL_BY_LOCALE: Record<Locale, string> = {
   es: 'https://dkbzmqzjgfwxoqoe.public.blob.vercel-storage.com/videos/reel-es-argentino.mp4',
@@ -16,10 +41,10 @@ const REEL_BY_LOCALE: Record<Locale, string> = {
 }
 
 const heroLines = [
-  { prefix: 'somos', word: 'CREATIVOS', highlight: false },
-  { prefix: 'somos', word: 'CURIOSOS', highlight: false },
-  { prefix: 'somos', word: 'MEDIA MOOB', highlight: true },
-]
+  { wordKey: 'CREATIVE', highlight: false },
+  { wordKey: 'CURIOUS', highlight: false },
+  { word: 'MEDIA MOOB', highlight: true },
+] as const
 
 const containerVariants: Variants = {
   hidden: {},
@@ -37,6 +62,7 @@ const lineVariants: Variants = {
 }
 
 export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
+  const t = useTranslations('Hero')
   const [videoReady, setVideoReady] = useState(false)
   const [reelOpen, setReelOpen] = useState(false)
 
@@ -81,26 +107,29 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
               initial="hidden"
               animate="visible"
             >
-              {heroLines.map(({ prefix, word, highlight }) => (
-                <motion.div
-                  key={word}
-                  variants={lineVariants}
-                  className="leading-none"
-                >
-                  <span className="text-white/80 text-3xl lg:text-4xl xl:text-5xl font-light block">
-                    {prefix}
-                  </span>
-                  <span
-                    className={
-                      highlight
-                        ? 'text-mint text-[2.6rem] md:text-6xl lg:text-7xl 2xl:text-8xl font-black italic block leading-none'
-                        : 'text-white text-[2.6rem] md:text-6xl lg:text-7xl 2xl:text-8xl font-black italic block leading-none'
-                    }
+              {heroLines.map((line) => {
+                const word = 'word' in line ? line.word : t(line.wordKey)
+                return (
+                  <motion.div
+                    key={word}
+                    variants={lineVariants}
+                    className="leading-none"
                   >
-                    {word}
-                  </span>
-                </motion.div>
-              ))}
+                    <span className="text-white/80 text-3xl lg:text-4xl xl:text-5xl font-light block">
+                      {t('we are')}
+                    </span>
+                    <span
+                      className={
+                        line.highlight
+                          ? 'text-mint text-[2.6rem] md:text-6xl lg:text-7xl 2xl:text-8xl font-black italic block leading-none'
+                          : 'text-white text-[2.6rem] md:text-6xl lg:text-7xl 2xl:text-8xl font-black italic block leading-none'
+                      }
+                    >
+                      {word}
+                    </span>
+                  </motion.div>
+                )
+              })}
             </motion.div>
 
             {/* CTA "mira nuestro reel" */}
@@ -112,13 +141,13 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
               whileTap={{ scale: 0.97 }}
               onClick={() => setReelOpen(true)}
               className="flex items-center gap-3 mt-10 self-start group"
-              aria-label="Mira nuestro reel"
+              aria-label={t('Watch our reel')}
             >
               <span className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white/60 flex items-center justify-center group-hover:border-mint group-hover:bg-mint/10 transition-all">
                 <Play size={14} className="text-white ml-0.5" fill="white" />
               </span>
               <span className="font-display text-white text-lg lg:text-xl tracking-widest uppercase group-hover:text-mint transition-colors">
-                mira nuestro reel
+                {t('Watch our reel')}
               </span>
             </motion.button>
 
@@ -228,29 +257,30 @@ function ReelModal({
 }
 
 function NavCategories() {
+  const t = useTranslations('Hero')
   const items = [
     {
-      label: 'contenido exclusivo',
+      label: t('exclusive content'),
       image: '/images/contenido-exclusivo-icon.webp',
       link: '#contenido',
     },
     {
-      label: 'tecnología',
+      label: t('technology'),
       image: '/images/tecnologia-icon.webp',
       link: '#tecnologia',
     },
     {
-      label: 'eventos y experiencias',
+      label: t('events and experiences'),
       image: '/images/eventos-experiencias-icon.webp',
       link: '#eventos',
     },
     {
-      label: 'producciones propias',
+      label: t('own productions'),
       image: '/images/producciones-propias-icon.webp',
       link: '#activaciones',
     },
     {
-      label: 'artistas e influencers',
+      label: t('artists and influencers'),
       image: '/images/artistas-influencers-icon.webp',
       link: '#artistas',
     },
@@ -349,6 +379,9 @@ function orbitPosition(t: number, radius = 170): { x: number; y: number } {
 }
 
 function GlobeDecoration() {
+  const t = useTranslations('Hero')
+  const locale = useLocale()
+  const off = ORBIT_OFFSETS[locale as Locale] ?? ORBIT_OFFSETS.es
   return (
     <div className="z-50 relative w-56 h-56 min-[320px]:w-64 min-[320px]:h-64 min-[375px]:w-72 min-[375px]:h-72 min-[400px]:w-88 min-[400px]:h-88 sm:w-92 sm:h-92 md:w-[650px] md:h-[650px] lg:w-[850px] lg:h-[850px] xl:w-150 xl:h-150 2xl:w-200 2xl:h-200 mt-4">
       <div className="hidden md:block absolute w-full h-full rounded-full bg-radial from-white/5 to-transparent backdrop-blur-xl " />
@@ -387,11 +420,11 @@ function GlobeDecoration() {
           >
             <textPath
               href="#outerCircleCompact"
-              startOffset="4.67%"
+              startOffset={off.compact.countries}
               className="uppercase font-bold"
             >
               {' '}
-              • más de 30 países •{' '}
+              • {t('more than 30 countries')} •{' '}
             </textPath>
           </text>
           <text
@@ -403,10 +436,10 @@ function GlobeDecoration() {
           >
             <textPath
               href="#outerCircleCompact"
-              startOffset="48.33%"
+              startOffset={off.compact.arriveWith}
               className="uppercase"
             >
-              aquí llegamos con
+              {t('here we arrive with')}
             </textPath>
           </text>
           <text
@@ -418,10 +451,10 @@ function GlobeDecoration() {
           >
             <textPath
               href="#outerCircleCompact"
-              startOffset="58.5%"
+              startOffset={off.compact.operations}
               className="uppercase font-bold"
             >
-              nuestras operaciones
+              {t('our operations')}
             </textPath>
           </text>
         </svg>
@@ -448,9 +481,9 @@ function GlobeDecoration() {
             <textPath
               href="#outerCircle"
               className="uppercase"
-              startOffset="0.5%"
+              startOffset={off.full.weAreIn}
             >
-              estamos en
+              {t('we are in')}
             </textPath>
           </text>
           <text
@@ -462,10 +495,10 @@ function GlobeDecoration() {
           >
             <textPath
               href="#outerCircle"
-              startOffset="10%"
+              startOffset={off.full.countries}
               className="uppercase font-bold"
             >
-              más de 30 países •{' '}
+              {t('more than 30 countries')} •{' '}
             </textPath>
           </text>
           <text
@@ -477,10 +510,10 @@ function GlobeDecoration() {
           >
             <textPath
               href="#outerCircle"
-              startOffset="68%"
+              startOffset={off.full.arriveWith}
               className="uppercase"
             >
-              aquí llegamos con
+              {t('here we arrive with')}
             </textPath>
           </text>
           <text
@@ -492,10 +525,10 @@ function GlobeDecoration() {
           >
             <textPath
               href="#outerCircle"
-              startOffset="82%"
+              startOffset={off.full.operations}
               className="uppercase font-bold"
             >
-              nuestras operaciones •{' '}
+              {t('our operations')} •{' '}
             </textPath>
           </text>
         </svg>

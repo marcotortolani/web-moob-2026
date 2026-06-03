@@ -1,16 +1,26 @@
 'use client'
 
-import Link from 'next/link'
+import { type ComponentProps } from 'react'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import NextLink from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link, usePathname } from '@/i18n/navigation'
 import { InstagramIcon, LinkedinIcon } from '@/components/ui/social-icons'
+import { LanguageSwitcher } from '@/components/ui/language-switcher'
 import { navLinks } from '@/lib/data/navigation'
 import { MapHoverPreview } from '@/components/ui/map-hover-preview'
 
+type LinkHref = ComponentProps<typeof Link>['href']
+
 export function Footer() {
+  const t = useTranslations('Nav')
+  const tf = useTranslations('Footer')
   const pathname = usePathname()
+  const year = new Date().getFullYear()
   return (
-    <footer className={`bg-black border-t border-white/10 py-10 md:py-12 lg:py-14 px-5 md:px-8 lg:px-16 xl:px-24 ${pathname === '/somos-contenido' ? 'hidden lg:block' : ''}`}>
+    <footer
+      className={`bg-black border-t border-white/10 py-10 md:py-12 lg:py-14 px-5 md:px-8 lg:px-16 xl:px-24 ${pathname === '/somos-contenido' ? 'hidden lg:block' : ''}`}
+    >
       <div className="max-w-[1528px] mx-auto">
         {/* Mobile: stacked centered, Desktop: horizontal columns */}
         <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:justify-between md:gap-8 lg:gap-12">
@@ -27,15 +37,15 @@ export function Footer() {
           {/* Navigation — tablet+ */}
           <nav className="hidden md:flex flex-col gap-2">
             <p className="text-white/40 text-xs uppercase tracking-widest mb-1">
-              Navegación
+              {tf('Navigation')}
             </p>
             {navLinks.slice(0, 5).map((link) => (
               <Link
-                key={link.href + link.label}
-                href={link.href}
+                key={link.href + link.key}
+                href={link.href as LinkHref}
                 className="text-white/60 text-sm hover:text-mint transition-colors"
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             ))}
           </nav>
@@ -43,7 +53,7 @@ export function Footer() {
           {/* Contact column — tablet+ */}
           <div className="hidden md:flex flex-col gap-2">
             <p className="text-white/40 text-xs uppercase tracking-widest mb-1">
-              Contacto
+              {tf('Contact')}
             </p>
             <MapHoverPreview
               href="https://maps.app.goo.gl/cSKNi51Jtf57y7388"
@@ -52,36 +62,37 @@ export function Footer() {
               side="top"
               align="start"
             >
-              Guatemala 5582, Ciudad de Buenos Aires.
-              <br />
-              República Argentina.
+              {tf('address')}
             </MapHoverPreview>
-            <Link
+            <NextLink
               href="/#contact"
               className="text-mint text-sm hover:underline"
             >
-              Hablemos!
-            </Link>
-            <Link href="/join-us" className="text-mint text-sm hover:underline">
-              Trabaja con nosotros
+              {tf("Let's talk!")}
+            </NextLink>
+            <Link
+              href="/join-us"
+              className="text-mint text-sm hover:underline"
+            >
+              {tf('Work with us')}
             </Link>
           </div>
 
-          {/* Social */}
+          {/* Social + Language */}
           <div className="flex flex-col items-center lg:items-start gap-3">
             <p className="hidden md:block text-white/40 text-xs uppercase tracking-widest mb-1">
-              Redes
+              {tf('Networks')}
             </p>
             <div className=" flex items-center gap-3">
-              <Link
+              <a
                 href="https://www.instagram.com/mediamoob/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <InstagramIcon size={28} />
-              </Link>
-              <Link
+              </a>
+              <a
                 href="https://www.linkedin.com/company/media-moob/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -91,7 +102,10 @@ export function Footer() {
                   size={24}
                   className="text-transparent fill-black"
                 />
-              </Link>
+              </a>
+            </div>
+            <div className="mt-4">
+              <LanguageSwitcher align="start" />
             </div>
           </div>
         </div>
@@ -103,15 +117,12 @@ export function Footer() {
             href="https://maps.app.goo.gl/cSKNi51Jtf57y7388"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Ver ubicación en Google Maps"
+            aria-label="Google Maps"
             className="text-white/80 text-sm text-center md:hidden hover:text-mint transition-colors"
           >
-            Guatemala 5582, Ciudad de Buenos Aires. <br /> República Argentina.
+            {tf('address')}
           </a>
-          <p className="text-white/40 text-xs">
-            © {new Date().getFullYear()} Media Moob. Todos los derechos
-            reservados.
-          </p>
+          <p className="text-white/40 text-xs">{tf('rights', { year })}</p>
         </div>
       </div>
     </footer>

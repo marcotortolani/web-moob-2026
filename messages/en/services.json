@@ -1,0 +1,102 @@
+{
+  "GamesPage": {
+    "metaTitle": "WE ARE Games & Gamification",
+    "metaDescription": "We develop games based on our products with exclusive prizes for our users.",
+    "label": "WE ARE",
+    "title": "Games &<br></br>Gamification",
+    "intro": "<b>We develop games</b> based on our products with exclusive prizes for our users in more than 30 countries.",
+    "nav": {
+      "prev": "Previous game",
+      "next": "Next game",
+      "goTo": "Game {n}"
+    },
+    "items": {
+      "trivias": {
+        "title": "TRIVIA",
+        "description": "Knowledge competitions across multiple categories. Users answer questions and accumulate points to win exclusive prizes from their carrier."
+      },
+      "memotest": {
+        "title": "MEMORY GAME",
+        "description": "A classic memory game reimagined with branded content. Find the pairs and unlock special benefits for subscribers."
+      }
+    }
+  },
+  "TechPage": {
+    "metaTitle": "WE ARE Technology",
+    "metaDescription": "We apply our own technology to amplify your reach and impact. MCP, SAT and Push Advertising that optimize the distribution and monetization of content.",
+    "label": "WE ARE",
+    "title": "Technology",
+    "intro": "<b>We apply our own technology to amplify your reach and impact.</b> We have tools such as MCP, SAT and Push Advertising that optimize the distribution and monetization of content.",
+    "navHeading": "Browse and explore our technology services",
+    "dataFinished": "YOU HAVE RUN OUT OF DATA!",
+    "nav": {
+      "prev": "Previous service",
+      "next": "Next service",
+      "goTo": "Service {n}"
+    },
+    "items": {
+      "sat-push": {
+        "label": "SAT PUSH",
+        "title": "SAT PUSH",
+        "description": "An interactive messaging platform for sending mass, personalized push notifications directly to mobile phones, enabling alerts, surveys and direct links (click-to-call, click-to-browse), proactively driving brand engagement and visibility.",
+        "mockup": {
+          "body": "Discover the world with Que Guay, log in now to watch the best travel content",
+          "cancelLabel": "CANCEL",
+          "confirmLabel": "ACCEPT"
+        }
+      },
+      "sms": {
+        "label": "SMS",
+        "title": "SMS",
+        "description": "The use of SMS for marketing purposes to advertise products or services, announce discounts, send special offers or promote events. These messages are easily recognized by their clear call to action, such as \"Use the code\" or \"Buy now\".",
+        "mockup": {
+          "message": "Discover the best gaming content at: bit.ly/3yJH0vv"
+        }
+      },
+      "publicidad": {
+        "label": "ADVERTISING",
+        "title": "ADVERTISING",
+        "description": "Ads designed specifically for smartphones and tablets, optimized to engage users across apps, social media and websites. It includes banner, video and native ad formats, which are key tools for boosting sales.",
+        "mockup": {
+          "label": "WATCH NOW!"
+        }
+      },
+      "bundle": {
+        "label": "BUNDLE",
+        "title": "BUNDLE",
+        "description": "A data bundle in technology and mobile refers to a predefined package or set of internet connection services (megabytes or gigabytes) that mobile carriers offer their users. These packages allow access to the internet without relying on a Wi-Fi network, using the provider's network.",
+        "mockup": {
+          "items": [
+            {
+              "title": "BUNDLE 50 GB",
+              "lines": ["Includes unlimited calls and SMS", "YouTube & Instagram Free!"],
+              "cta": "Subscribe"
+            },
+            {
+              "title": "BUNDLE 100 GB",
+              "lines": ["Includes unlimited calls and SMS", "IG - YouTube and Netflix Free!"],
+              "cta": "Subscribe"
+            }
+          ]
+        }
+      },
+      "data-rewards": {
+        "label": "DATA REWARDS",
+        "title": "DATA REWARDS",
+        "description": "\"Data Rewards\" is a concept that covers different solutions designed to benefit users in exchange for their engagement, ad viewing or mobile data usage, connecting brands with consumers.",
+        "mockup": {
+          "body": "You've run out of data, watch an ad and get 50MB to keep browsing",
+          "cancelLabel": "CANCEL",
+          "confirmLabel": "CONTINUE"
+        }
+      }
+    }
+  },
+  "TechServices": {
+    "sat-push": { "label": "SAT PUSH" },
+    "sms": { "label": "SMS" },
+    "publicidad": { "label": "ADVERTISING" },
+    "bundle": { "label": "BUNDLE" },
+    "data-rewards": { "label": "DATA REWARDS" }
+  }
+}

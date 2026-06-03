@@ -1,0 +1,142 @@
+{
+  "ContentHub": {
+    "ariaLabel": "We Are Content",
+    "label": "WE ARE",
+    "title": "Content",
+    "metaDescription": "Vertical content by Media Moob: cooking, gaming, travel, fitness, kids, education, music and lifestyle.",
+    "paragraph": "<b>We create content</b> in every format, from live experiences to long-, medium- and short-form productions. Including films and documentaries.",
+    "slideWeAre": "WE ARE",
+    "slideMore": "More {title} here",
+    "callout": "Discover our exclusive {label} content products",
+    "calloutNoLabel": "Discover our exclusive content products",
+    "demoButton": "WATCH DEMO"
+  },
+  "ContentCats": {
+    "cocina": "COOKING",
+    "musica": "MUSIC",
+    "lifestyle": "LIFESTYLE",
+    "fitness": "FITNESS",
+    "viajes": "TRAVEL",
+    "gaming": "GAMING",
+    "kids": "KIDS",
+    "educacion": "EDUCATION"
+  },
+  "ContentThemes": {
+    "cocina": {
+      "metaTitle": "WE ARE Cooking",
+      "heroTitle": "Cooking",
+      "heroDescription": "Exclusive recipes, professional chef techniques and culinary secrets to turn your everyday ingredients into extraordinary dishes.",
+      "statsLabel": "Exclusive content",
+      "statsCaption": "Short, medium and long-form content",
+      "statsCta": "Discover our exclusive cooking content products",
+      "taglineLead": "We take you into the kitchen, to the chefs, the recipes and much more.",
+      "taglineHighlight": "Fill your life with flavor!",
+      "productsLabel": "cooking",
+      "products": {
+        "locoporlacocina": "Loco por la Cocina"
+      }
+    },
+    "educacion": {
+      "metaTitle": "WE ARE Education",
+      "heroTitle": "Education",
+      "heroDescription": "We teach you to master new skills and boost your personal or professional growth.",
+      "statsLabel": "Exclusive content",
+      "statsCaption": "Short, medium and long-form content",
+      "statsCta": "Discover our exclusive educational content products",
+      "taglineLead": "",
+      "taglineHighlight": "",
+      "productsLabel": "educational",
+      "products": {
+        "flexflix": "Flexflix"
+      }
+    },
+    "fitness": {
+      "metaTitle": "WE ARE Fitness",
+      "heroTitle": "Fitness",
+      "heroDescription": "Personalized workout routines, nutrition plans and wellness tips designed to fit your lifestyle and goals.",
+      "statsLabel": "Exclusive content",
+      "statsCaption": "Short, medium and long-form content",
+      "statsCta": "Discover our exclusive fitness content products",
+      "taglineLead": "We add routines, energy, healthy habits and much more.",
+      "taglineHighlight": "Fill your life with energy!",
+      "productsLabel": "fitness",
+      "products": {
+        "totalfitness": "Total Fitness"
+      }
+    },
+    "gaming": {
+      "metaTitle": "WE ARE Gaming",
+      "heroTitle": "Gaming",
+      "heroDescription": "Exclusive videos from specialized creators and the latest trends from the digital world before anyone else.",
+      "statsLabel": "Exclusive content",
+      "statsCaption": "Short, medium and long-form content",
+      "statsCta": "Discover our exclusive gaming content products",
+      "taglineLead": "We get you into the game, the creators, the trends and much more.",
+      "taglineHighlight": "Fill your life with play!",
+      "productsLabel": "gaming",
+      "products": {
+        "teamgamers": "Team Gamers",
+        "esportspace": "eSportSpace"
+      }
+    },
+    "kids": {
+      "metaTitle": "WE ARE Kids",
+      "heroTitle": "Kids",
+      "heroDescription": "Safe and creative content for the little ones, with educational activities, interactive games and lots of imagination.",
+      "statsLabel": "Exclusive content",
+      "statsCaption": "Short, medium and long-form content",
+      "statsCta": "Discover our exclusive content products for kids",
+      "taglineLead": "",
+      "taglineHighlight": "",
+      "productsLabel": "for kids",
+      "products": {
+        "elreinoinfantil": "El Reino Infantil"
+      }
+    },
+    "lifestyle": {
+      "metaTitle": "WE ARE Lifestyle",
+      "heroTitle": "Lifestyle",
+      "heroDescription": "Trends in design, mental wellness and practical tips to elevate your day to day and find the perfect balance.",
+      "statsLabel": "Exclusive content",
+      "statsCaption": "Short, medium and long-form content",
+      "statsCta": "Discover our exclusive lifestyle content products",
+      "taglineLead": "We connect you with trends, wellness and much more.",
+      "taglineHighlight": "Fill your life with style!",
+      "productsLabel": "lifestyle",
+      "products": {
+        "epamujer": "Epa Mujer",
+        "allforher": "All For Her"
+      }
+    },
+    "musica": {
+      "metaTitle": "WE ARE Music",
+      "heroTitle": "Music",
+      "heroDescription": "We bring you closer to music, to the artists, to their concerts and much more. Fill your life with music!",
+      "statsLabel": "Exclusive content",
+      "statsCaption": "Short, medium and long-form content",
+      "statsCta": "Discover our exclusive music content products",
+      "taglineLead": "We bring you closer to music, to the artists, to their concerts and much more.",
+      "taglineHighlight": "Fill your life with music!",
+      "productsLabel": "music",
+      "products": {
+        "mundomusica": "Mundo Música",
+        "cdc": "Cruce de Campeones"
+      }
+    },
+    "viajes": {
+      "metaTitle": "WE ARE Travel",
+      "heroTitle": "Travel",
+      "heroDescription": "Join our community of global travelers on an unfiltered journey. Discover the essence of every culture, breathtaking landscapes and the best-kept secrets of every corner of the planet, told by those who live them firsthand.",
+      "statsLabel": "Exclusive content",
+      "statsCaption": "Short, medium and long-form content",
+      "statsCta": "Discover our exclusive travel content products",
+      "taglineLead": "We take you to destinations, cultures, landscapes and much more.",
+      "taglineHighlight": "Fill your life with adventure!",
+      "productsLabel": "travel",
+      "products": {
+        "queguayviajes": "Que Guay Viajes",
+        "travelvlog": "TravelVlog"
+      }
+    }
+  }
+}

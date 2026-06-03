@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { BannerGridVideo } from '@/components/BannerGridVideo'
 import { DemoButton } from '@/components/ui/demo-button'
@@ -41,6 +42,9 @@ const services = [
 ]
 
 export function TechSection() {
+  const t = useTranslations('Tech')
+  const tc = useTranslations('Common')
+  const ts = useTranslations('TechServices')
   return (
     <section
       className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20"
@@ -55,18 +59,18 @@ export function TechSection() {
           className="z-50 absolute top-0 xl:top-[unset] xl:bottom-0 xl:flex xl:items-end xl:justify-around xl:px-0 w-full py-4 2xl:py-10 -translate-y-14 bg-linear-to-b from-black via-black to-transparent xl:bg-linear-to-t xl:translate-y-10"
         >
           <SectionHeading
-            label="SOMOS"
-            title="Tecnología"
+            label={tc('We are')}
+            title={t('title')}
             align="center"
             className="flex-col justify-center gap-0 lg:min-w-75 xl:items-start "
             titleClassName="text-5xl md:text-6xl xl:text-5xl 2xl:text-6xl"
           />
           <p className=" hidden xl:block text-white/80 text-left text-pretty xl:text-lg leading-4 xl:leading-5 max-w-2xl ">
-            <span className="font-bold text-mint">
-              Aplicamos tecnología propia para amplificar su alcance e impacto.
-            </span>{' '}
-            Contamos con herramientas como MCP, Publicidad Sat y Push, que
-            optimizan la distribución y monetización de los contenidos.
+            {t.rich('description', {
+              b: (chunks) => (
+                <span className="font-bold text-mint">{chunks}</span>
+              ),
+            })}
           </p>
         </motion.div>
 
@@ -74,18 +78,20 @@ export function TechSection() {
 
         <div className="xl:hidden z-50 absolute -bottom-5 translate-y-4 w-full mx-auto px-5 lg:px-16 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
           <p className="text-white/80 text-pretty text-xs md:text-base lg:text-lg leading-4 mt-3 lg:mt-6 max-w-xl md:max-w-2xl xl:max-w-3xl mx-auto">
-            <span className="font-bold text-mint">
-              Aplicamos tecnología propia para amplificar su alcance e impacto.
-            </span>{' '}
-            Contamos con herramientas como MCP, Publicidad Sat y Push, que
-            optimizan la distribución y monetización de los contenidos.
+            {t.rich('description', {
+              b: (chunks) => (
+                <span className="font-bold text-mint">{chunks}</span>
+              ),
+            })}
           </p>
         </div>
       </div>
 
       <div className="relative mt-20 px-5 lg:px-16 xl:px-24">
         <div className="w-full xl:max-w-6xl xl:mx-auto flex justify-between gap-2 md:gap-4 lg:gap-6">
-          {services.map(({ id, label, icon }, i) => (
+          {services.map(({ id, icon }, i) => {
+            const label = ts(`${id}.label`)
+            return (
             <motion.div
               key={id}
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -111,7 +117,8 @@ export function TechSection() {
                 {label}
               </span>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
 
         <div className="mt-8 lg:mt-14 xl:mt-20 flex justify-center">
@@ -119,7 +126,7 @@ export function TechSection() {
             href="/somos-tecnologia"
             className="text-white tracking-tight"
           >
-            VER TODAS LAS SOLUCIONES DE TECNOLOGÍA
+            {t('cta')}
           </DemoButton>
         </div>
       </div>

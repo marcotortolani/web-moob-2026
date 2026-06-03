@@ -7,10 +7,28 @@ interface NotificationProps {
   email: string
   message: string
   country?: string
+  locale: string
+  preview: string
+  heading: string
+  labels: {
+    name: string
+    email: string
+    country: string
+    message: string
+  }
+}
+
+interface ConfirmationProps {
+  locale: string
+  preview: string
+  heading: string
+  body: string
+  accent: string
+  footer: string
 }
 
 export const renderNotification = (props: NotificationProps) =>
   render(<ContactNotificationEmail {...props} />)
 
-export const renderConfirmation = (name: string) =>
-  render(<ContactConfirmationEmail name={name} />)
+export const renderConfirmation = (props: ConfirmationProps) =>
+  render(<ContactConfirmationEmail {...props} />)

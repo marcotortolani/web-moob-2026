@@ -5,7 +5,13 @@ import { SectionHeading } from '@/components/ui/section-heading'
 import { BannerGridVideo } from '@/components/BannerGridVideo'
 import type { ThemeHeroData } from '@/lib/data/contenido/types'
 
-export function ThemeHero({ title, description, banner, videoPosition = 'bottom-right' }: ThemeHeroData) {
+export function ThemeHero({
+  title,
+  description,
+  banner,
+  videoPosition = 'bottom-right',
+  label = 'SOMOS',
+}: ThemeHeroData & { label?: string }) {
   return (
     <section className="w-full max-w-[1728px] mx-auto bg-black py-8 lg:py-20 mt-10">
       <div className="relative w-full">
@@ -17,7 +23,7 @@ export function ThemeHero({ title, description, banner, videoPosition = 'bottom-
           className="absolute top-0 w-full py-4 z-50 -translate-y-14 bg-linear-to-b from-black via-black to-transparent"
         >
           <SectionHeading
-            label="SOMOS"
+            label={label}
             title={title}
             align="center"
             className="flex-col justify-center gap-0 lg:min-w-75"

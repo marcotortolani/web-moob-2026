@@ -1,0 +1,102 @@
+{
+  "GamesPage": {
+    "metaTitle": "NOSSOS Jogos & Gamificação",
+    "metaDescription": "Desenvolvemos jogos com base nos nossos produtos, com prêmios exclusivos para os nossos usuários.",
+    "label": "NOSSOS",
+    "title": "Jogos &<br></br>Gamificação",
+    "intro": "<b>Desenvolvemos jogos</b> com base nos nossos produtos, com prêmios exclusivos para os nossos usuários em mais de 30 países.",
+    "nav": {
+      "prev": "Jogo anterior",
+      "next": "Próximo jogo",
+      "goTo": "Jogo {n}"
+    },
+    "items": {
+      "trivias": {
+        "title": "QUIZ",
+        "description": "Competições de conhecimento em diversas categorias. Os usuários respondem perguntas e acumulam pontos para ganhar prêmios exclusivos da sua operadora."
+      },
+      "memotest": {
+        "title": "JOGO DA MEMÓRIA",
+        "description": "Jogo da memória clássico reinventado com conteúdo de marca. Encontre os pares e desbloqueie benefícios especiais para assinantes."
+      }
+    }
+  },
+  "TechPage": {
+    "metaTitle": "NOSSA Tecnologia",
+    "metaDescription": "Aplicamos tecnologia própria para ampliar seu alcance e impacto. MCP, Publicidade SAT e Push, que otimizam a distribuição e a monetização dos conteúdos.",
+    "label": "NOSSA",
+    "title": "Tecnologia",
+    "intro": "<b>Aplicamos tecnologia própria para ampliar seu alcance e impacto.</b> Contamos com ferramentas como MCP, Publicidade SAT e Push, que otimizam a distribuição e a monetização dos conteúdos.",
+    "navHeading": "Percorra e conheça nossos serviços de tecnologia",
+    "dataFinished": "VOCÊ ESGOTOU SEU PACOTE DE DADOS!",
+    "nav": {
+      "prev": "Serviço anterior",
+      "next": "Próximo serviço",
+      "goTo": "Serviço {n}"
+    },
+    "items": {
+      "sat-push": {
+        "label": "SAT PUSH",
+        "title": "SAT PUSH",
+        "description": "Plataforma de mensagens interativas para enviar notificações push em massa e personalizadas diretamente para celulares, permitindo alertas, pesquisas e links diretos (click-to-call, click-to-browse), impulsionando a interação e a visibilidade das marcas de forma proativa.",
+        "mockup": {
+          "body": "Descubra o mundo com a Que Guay, acesse agora para ver o melhor conteúdo de viagens",
+          "cancelLabel": "CANCELAR",
+          "confirmLabel": "ACEITAR"
+        }
+      },
+      "sms": {
+        "label": "SMS",
+        "title": "SMS",
+        "description": "O uso de SMS para fins de marketing para anunciar produtos ou serviços, divulgar descontos, enviar ofertas especiais ou promover eventos. Essas mensagens são facilmente reconhecidas por sua clara chamada para ação, como «Use o código» ou «Compre agora».",
+        "mockup": {
+          "message": "Descubra o melhor conteúdo de gaming em: bit.ly/3yJH0vv"
+        }
+      },
+      "publicidad": {
+        "label": "PUBLICIDADE",
+        "title": "PUBLICIDADE",
+        "description": "Anúncios projetados especificamente para smartphones e tablets, otimizados para interagir com usuários em apps, redes sociais e sites. Inclui formatos de banner, vídeo e anúncios nativos, sendo ferramentas-chave para aumentar as vendas.",
+        "mockup": {
+          "label": "WATCH NOW!"
+        }
+      },
+      "bundle": {
+        "label": "BUNDLE",
+        "title": "BUNDLE",
+        "description": "Um bundle de dados em tecnologia e celulares refere-se a um pacote ou conjunto predefinido de serviços de conexão à internet (megabytes ou gigabytes) que as operadoras de telefonia móvel oferecem aos seus usuários. Esses pacotes permitem acessar a internet sem depender de uma rede Wi-Fi, utilizando a rede da operadora.",
+        "mockup": {
+          "items": [
+            {
+              "title": "BUNDLE 50 GB",
+              "lines": ["Inclui chamadas e SMS ilimitados", "YouTube & Instagram Grátis!"],
+              "cta": "Contratar"
+            },
+            {
+              "title": "BUNDLE 100 GB",
+              "lines": ["Inclui chamadas e SMS ilimitados", "IG - YouTube e Netflix Grátis!"],
+              "cta": "Contratar"
+            }
+          ]
+        }
+      },
+      "data-rewards": {
+        "label": "DATA REWARDS",
+        "title": "DATA REWARDS",
+        "description": "\"Data Rewards\" (recompensas de dados) é um conceito que abrange diferentes soluções projetadas para beneficiar os usuários em troca de sua interação, visualização de publicidade ou uso de dados móveis, conectando marcas e consumidores.",
+        "mockup": {
+          "body": "Você ficou sem dados, assista a uma publicidade e ganhe 50MB para continuar navegando",
+          "cancelLabel": "CANCELAR",
+          "confirmLabel": "CONTINUAR"
+        }
+      }
+    }
+  },
+  "TechServices": {
+    "sat-push": { "label": "SAT PUSH" },
+    "sms": { "label": "SMS" },
+    "publicidad": { "label": "PUBLICIDADE" },
+    "bundle": { "label": "BUNDLE" },
+    "data-rewards": { "label": "DATA REWARDS" }
+  }
+}

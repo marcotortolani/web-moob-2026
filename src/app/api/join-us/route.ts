@@ -1,11 +1,22 @@
+import { getTranslations } from 'next-intl/server'
 import { getFromAddress, sendEmail } from '@/lib/email/sender'
 import { joinUsServerSchema } from '@/lib/schemas/join-us'
 import { renderConfirmation, renderNotification } from './render-emails'
 
 const CV_MAX_SIZE = 5 * 1024 * 1024
 
+const LOCALES = ['es', 'en', 'pt'] as const
+type AppLocale = (typeof LOCALES)[number]
+
+function resolveLocale(value: unknown): AppLocale {
+  return LOCALES.includes(value as AppLocale) ? (value as AppLocale) : 'es'
+}
+
 export async function POST(request: Request) {
   const formData = await request.formData()
+
+  const locale = resolveLocale(formData.get('locale'))
+  const t = await getTranslations({ locale, namespace: 'Emails' })
 
   const body = {
     name: formData.get('name'),
@@ -25,13 +36,22 @@ export async function POST(request: Request) {
 
   const cvFile = formData.get('cv')
   if (!(cvFile instanceof File) || cvFile.size === 0) {
-    return Response.json({ ok: false, error: 'CV requerido' }, { status: 400 })
+    return Response.json(
+      { ok: false, error: t('apiErrors.cvRequired') },
+      { status: 400 }
+    )
   }
   if (cvFile.type !== 'application/pdf') {
-    return Response.json({ ok: false, error: 'Solo PDF' }, { status: 400 })
+    return Response.json(
+      { ok: false, error: t('apiErrors.cvPdf') },
+      { status: 400 }
+    )
   }
   if (cvFile.size > CV_MAX_SIZE) {
-    return Response.json({ ok: false, error: 'PDF demasiado grande' }, { status: 400 })
+    return Response.json(
+      { ok: false, error: t('apiErrors.cvSize') },
+      { status: 400 }
+    )
   }
 
   const { name, email, country, linkedin, portfolio } = parsed.data
@@ -44,7 +64,7 @@ export async function POST(request: Request) {
       from,
       to: process.env.JOIN_US_TO_EMAIL ?? 'hola@memoob.com',
       replyTo: email,
-      subject: 'Nueva postulación Website Moob',
+      subject: t('subjects.joinNotify'),
       attachments: [{ filename: cvFilename, content: cvBuffer }],
       html: await renderNotification({
         name,
@@ -52,7 +72,17 @@ export async function POST(request: Request) {
         country,
         linkedin: linkedin || undefined,
         portfolio: portfolio || undefined,
-        cvFilename,
+        locale,
+        preview: t('joinNotify.preview', { name }),
+        heading: t('joinNotify.heading'),
+        labels: {
+          name: t('joinNotify.name'),
+          email: t('joinNotify.email'),
+          country: t('joinNotify.country'),
+          linkedin: t('joinNotify.linkedin'),
+          portfolio: t('joinNotify.portfolio'),
+        },
+        cvAttached: t('joinNotify.cvAttached', { filename: cvFilename }),
       }),
     })
   } catch (err) {
@@ -67,12 +97,19 @@ export async function POST(request: Request) {
     )
   }
 
-  renderConfirmation(name)
+  renderConfirmation({
+    locale,
+    preview: t('joinConfirm.preview', { name }),
+    heading: t('joinConfirm.heading'),
+    body: t('joinConfirm.body', { name }),
+    accent: t('joinConfirm.accent'),
+    footer: t('joinConfirm.footer'),
+  })
     .then((html) =>
       sendEmail({
         from,
         to: email,
-        subject: 'Recibimos tu postulación — Moob',
+        subject: t('subjects.joinConfirm'),
         html,
       })
     )

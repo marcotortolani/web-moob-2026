@@ -1,0 +1,130 @@
+{
+  "EventsPage": {
+    "meta": {
+      "title": "NOSSOS Eventos",
+      "description": "Criamos conteúdo em todos os formatos, desde experiências ao vivo até produções de longa, média e curta duração em mais de 30 países."
+    },
+    "hero": {
+      "label": "NOSSOS",
+      "title": "Eventos",
+      "imageAlt": "Eventos",
+      "paragraph": "<b>Criamos eventos</b> de conteúdo ao vivo, desde festivais até produções de longa, média e curta duração em mais de 30 países."
+    },
+    "grid": {
+      "prevPage": "Página anterior",
+      "nextPage": "Próxima página"
+    },
+    "detail": {
+      "label": "NOSSOS"
+    }
+  },
+  "EventItems": {
+    "club-media-fest": {
+      "title": "Club Media Fest",
+      "shortTitle": "CLUB\nMEDIA FEST",
+      "description": "Primeiro festival internacional que apresenta os youtubers/influencers. Mais de 30 artistas no palco. 2 palcos. Sets de música, dj set, desafios, painéis, meet & greet, desfiles, humor, beleza."
+    },
+    "cruce-de-campeones": {
+      "title": "Cruce de Campeones",
+      "shortTitle": "CRUCE DE\nCAMPEONES",
+      "description": "Cruce de Campeones reúne os maiores expoentes do Freestyle em Espanhol, em um evento onde os artistas competem para chegar a uma grande final, onde podem ser coroados."
+    },
+    "personal-fest": {
+      "title": "Personal Fest",
+      "shortTitle": "PERSONAL\nFEST",
+      "description": "O Personal Fest foi um dos festivais de música mais importantes da Argentina, realizado principalmente em Buenos Aires. Organizado pela empresa de telefonia Personal, destacou-se por reunir artistas internacionais de primeira linha (rock, pop, eletrônica) com bandas locais em múltiplos palcos."
+    },
+    "copa-goals": {
+      "title": "Copa Goals",
+      "shortTitle": "COPA\nGOALS",
+      "description": "\"Goals\" é um evento ligado ao gaming amador, no qual milhares de jovens tiveram a oportunidade de jogar para realizar um sonho: jogar ao lado de seus ídolos no dia do evento."
+    },
+    "comic-con": {
+      "title": "Comic Con",
+      "shortTitle": "COMIC\nCON",
+      "description": "A Comic Con é a principal convenção de cultura pop, que reúne fãs de quadrinhos, anime, cinema, videogames e cosplay em um espaço único."
+    },
+    "unkla-cup": {
+      "title": "Unkla Cup — Team Gamers",
+      "shortTitle": "UNKLA CUP\nTEAM GAMERS",
+      "description": "Copa UNKLA / Team Gamers. Planejamento, Desenvolvimento e Execução de Torneio de Gaming."
+    }
+  },
+  "ExperiencesPage": {
+    "meta": {
+      "title": "NOSSAS Experiências",
+      "description": "Unimos o mundo OFF com o ON, gerando ativações e experiências para usuários e parceiros em mais de 30 países."
+    },
+    "hero": {
+      "label": "NOSSAS",
+      "title": "Ativações<br></br>e experiências",
+      "imageAlt": "Ativações e Experiências",
+      "paragraph": "<b>Unimos o mundo OFF com o ON</b>, gerando ativações e experiências para usuários e parceiros em mais de 30 países."
+    },
+    "grid": {
+      "prevPage": "Página anterior",
+      "nextPage": "Próxima página"
+    },
+    "detail": {
+      "label": "NOSSAS"
+    }
+  },
+  "ActivationItems": {
+    "clinica-cocina-victor-moreno-movistar-venezuela": {
+      "title": "Clínica de cozinha com Victor Moreno — Movistar Venezuela",
+      "shortTitle": "CLÍNICA DE COZINHA\nCOM VICTOR MORENO",
+      "description": "Usuários do serviço que participaram de um quiz exclusivo para somar pontos e garantir seu lugar em uma clínica de cozinha exclusiva conduzida por Victor Moreno."
+    },
+    "team-gamers-movistar-venezuela": {
+      "title": "Stand e ativação FitelVen — Team Gamers Movistar Venezuela",
+      "shortTitle": "STAND E ATIVAÇÃO FITELVEN\nTEAM GAMERS",
+      "description": "Foi instalado um stand no qual se promoveu o produto Team Gamers. As duas ações principais foram a criação de um totem com um quiz para que os participantes ganhassem prêmios e a exibição de uma clínica."
+    },
+    "so-pra-elas-vodacom-mozambique": {
+      "title": "So Pra Elas — Dia da Mulher Vodacom Mozambique",
+      "shortTitle": "AÇÃO NO DIA DA MULHER\nVODACOM MOZAMBIQUE",
+      "description": ""
+    },
+    "que-guay-viajes-movistar-venezuela": {
+      "title": "Que Guay Viajes — Movistar Venezuela",
+      "shortTitle": "QUE GUAY VIAJES\nMOVISTAR VENEZUELA",
+      "description": ""
+    },
+    "mundo-musica-personal-paraguay": {
+      "title": "Mundo Música — Personal Paraguay",
+      "shortTitle": "MUNDO MÚSICA\nPERSONAL PARAGUAY",
+      "description": ""
+    },
+    "benja-torres-personal-paraguay": {
+      "title": "Ativação em shopping center com Benja Torres — Personal Paraguay",
+      "shortTitle": "ATIVAÇÃO EM SHOPPING CENTER\nCOM BENJA TORRES",
+      "description": "Uma intervenção artística inesperada e disruptiva, na qual Benja Torres se torna o epicentro de uma experiência emocional dentro do shopping center. Por meio de suas letras e de sua arte, o evento humanizou as marcas associadas, gerando um vínculo próximo com o público."
+    }
+  },
+  "HomeActivationSlides": {
+    "vm-mov-ven": {
+      "eventName": "Victor Moreno - Movistar Venezuela",
+      "description": "Usuários do serviço que participaram de um quiz exclusivo para somar pontos e garantir seu lugar em uma clínica de cozinha exclusiva conduzida por Victor Moreno."
+    },
+    "tg-mov-ven": {
+      "eventName": "Team Gamers - Movistar Venezuela",
+      "description": "Foi instalado um stand no qual se promoveu o produto Team Gamers. As duas ações principais foram a criação de um totem com um quiz para que os participantes ganhassem prêmios e a exibição de uma clínica"
+    },
+    "spe-vod-mz": {
+      "eventName": "So Pra Elas - VOD MZ",
+      "description": ""
+    },
+    "qgv-mov-ven": {
+      "eventName": "Que Guay Viajes - Movistar Venezuela",
+      "description": ""
+    },
+    "mm-per-py": {
+      "eventName": "Mundo Música - Personal Paraguay",
+      "description": ""
+    },
+    "bt-per-py": {
+      "eventName": "Benja Torres - Personal Paraguay",
+      "description": "Uma intervenção artística inesperada e disruptiva, na qual Benja Torres se torna o epicentro de uma experiência emocional dentro do shopping center. Por meio de suas letras e de sua arte, o evento humanizou as marcas associadas, gerando um vínculo próximo com o público."
+    }
+  }
+}

@@ -3,11 +3,14 @@
 import { motion, AnimatePresence } from 'motion/react'
 import { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
 import { events, EVENTS_PER_PAGE } from '@/lib/data/events'
 
 export function EventsGrid() {
+  const t = useTranslations('EventsPage')
+  const ti = useTranslations('EventItems')
   const [page, setPage] = useState(0)
   const totalPages = Math.ceil(events.length / EVENTS_PER_PAGE)
   const start = page * EVENTS_PER_PAGE
@@ -28,7 +31,9 @@ export function EventsGrid() {
             transition={{ duration: 0.35 }}
             className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-5"
           >
-            {current.map(({ slug, shortTitle, coverImage }, i) => (
+            {current.map(({ slug, coverImage }, i) => {
+              const shortTitle = ti(`${slug}.shortTitle`)
+              return (
               <motion.div
                 key={slug}
                 initial={{ opacity: 0, scale: 0.96 }}
@@ -36,7 +41,11 @@ export function EventsGrid() {
                 transition={{ duration: 0.35, delay: i * 0.05 }}
               >
                 <Link
-                  href={`/somos-eventos/${slug}`}
+                  href={
+                    `/somos-eventos/${slug}` as React.ComponentProps<
+                      typeof Link
+                    >['href']
+                  }
                   className="block relative aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] rounded-xl overflow-hidden group"
                 >
                   {coverImage ? (
@@ -64,7 +73,8 @@ export function EventsGrid() {
                   </div>
                 </Link>
               </motion.div>
-            ))}
+              )
+            })}
           </motion.div>
         </AnimatePresence>
 
@@ -74,7 +84,7 @@ export function EventsGrid() {
               onClick={prev}
               disabled={page === 0}
               className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-mint hover:text-mint transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-              aria-label="Página anterior"
+              aria-label={t('grid.prevPage')}
             >
               <ChevronLeft size={20} />
             </button>
@@ -85,7 +95,7 @@ export function EventsGrid() {
               onClick={next}
               disabled={page === totalPages - 1}
               className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-mint hover:text-mint transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-              aria-label="Página siguiente"
+              aria-label={t('grid.nextPage')}
             >
               <ChevronRight size={20} />
             </button>

@@ -1,0 +1,87 @@
+{
+  "JoinUs": {
+    "metaTitle": "Sumate | Media Moob",
+    "metaDescription": "Postulate para trabajar con nosotros.",
+    "label": "Carreras",
+    "heading": "Sumate <white>al</white> <mint>equipo.</mint>",
+    "subtitle": "Somos un equipo apasionado por el entretenimiento, el contenido y la tecnología. Si querés ser parte, mandanos tu postulación.",
+    "Email": "Email",
+    "dragTitle": "Soltá tu CV aquí",
+    "dragHint": "Solo PDF, máx. 5 MB",
+    "Name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailLabel": "Email",
+    "emailPlaceholder": "tu@email.com",
+    "Country": "País",
+    "cvLabel": "CV",
+    "cvHelper": "(solo PDF, máx. 5 MB)",
+    "cvPlaceholder": "Seleccioná tu CV en PDF",
+    "linkedinLabel": "LinkedIn",
+    "linkedinPlaceholder": "https://www.linkedin.com/in/...",
+    "portfolioLabel": "Portfolio",
+    "portfolioPlaceholder": "https://tuportfolio.com",
+    "optional": "(opcional)",
+    "submit": "Enviar postulación",
+    "sending": "Enviando...",
+    "cvMustBePdf": "El CV debe ser un PDF",
+    "success": "¡Postulación enviada! Te contactaremos pronto.",
+    "error": "Hubo un error al enviar. Intentá de nuevo."
+  },
+  "Validation": {
+    "nameMin": "El nombre debe tener al menos 2 caracteres",
+    "emailInvalid": "Ingresá un email válido",
+    "messageMin": "El mensaje debe tener al menos 10 caracteres",
+    "messageMax": "El mensaje no puede superar los 500 caracteres",
+    "countryRequired": "Seleccioná un país",
+    "cvRequired": "Adjuntá tu CV en PDF",
+    "cvPdf": "El archivo debe ser un PDF",
+    "cvSize": "El PDF no puede superar los 5 MB",
+    "linkedinUrl": "Ingresá una URL válida de LinkedIn",
+    "portfolioUrl": "Ingresá una URL válida"
+  },
+  "Emails": {
+    "contactConfirm": {
+      "preview": "Recibimos tu mensaje, {name}",
+      "heading": "¡Gracias por escribirnos!",
+      "body": "Hola {name}, recibimos tu mensaje y te responderemos a la brevedad.",
+      "accent": "El equipo de Moob se pondrá en contacto con vos pronto.",
+      "footer": "Este es un mensaje automático. Por favor no respondas a este email."
+    },
+    "contactNotify": {
+      "preview": "Nuevo mensaje de {name}",
+      "heading": "Nuevo mensaje de contacto",
+      "name": "NOMBRE",
+      "email": "EMAIL",
+      "country": "PAÍS",
+      "message": "MENSAJE"
+    },
+    "joinConfirm": {
+      "preview": "Recibimos tu postulación, {name}",
+      "heading": "¡Gracias por postularte!",
+      "body": "Hola {name}, recibimos tu postulación y tu CV. Nos pondremos en contacto si tu perfil encaja con lo que buscamos.",
+      "accent": "El equipo de Moob revisará tu perfil y te contactará a la brevedad.",
+      "footer": "Este es un mensaje automático. Por favor no respondas a este email."
+    },
+    "joinNotify": {
+      "preview": "Nueva postulación de {name}",
+      "heading": "Nueva postulación",
+      "name": "NOMBRE",
+      "email": "EMAIL",
+      "country": "PAÍS",
+      "linkedin": "LINKEDIN",
+      "portfolio": "PORTFOLIO",
+      "cvAttached": "CV adjunto: {filename}"
+    },
+    "subjects": {
+      "contactNotify": "Formulario Contacto Website Moob",
+      "contactConfirm": "Recibimos tu mensaje — Moob",
+      "joinNotify": "Nueva postulación Website Moob",
+      "joinConfirm": "Recibimos tu postulación — Moob"
+    },
+    "apiErrors": {
+      "cvRequired": "CV requerido",
+      "cvPdf": "Solo PDF",
+      "cvSize": "PDF demasiado grande"
+    }
+  }
+}

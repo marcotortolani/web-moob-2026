@@ -1,0 +1,87 @@
+{
+  "JoinUs": {
+    "metaTitle": "Join Us | Media Moob",
+    "metaDescription": "Apply to work with us.",
+    "label": "Careers",
+    "heading": "Join <white>the</white> <mint>team.</mint>",
+    "subtitle": "We're a team passionate about entertainment, content and technology. If you want to be part of it, send us your application.",
+    "Email": "Email",
+    "dragTitle": "Drop your CV here",
+    "dragHint": "PDF only, max. 5 MB",
+    "Name": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@email.com",
+    "Country": "Country",
+    "cvLabel": "CV",
+    "cvHelper": "(PDF only, max. 5 MB)",
+    "cvPlaceholder": "Select your CV in PDF",
+    "linkedinLabel": "LinkedIn",
+    "linkedinPlaceholder": "https://www.linkedin.com/in/...",
+    "portfolioLabel": "Portfolio",
+    "portfolioPlaceholder": "https://yourportfolio.com",
+    "optional": "(optional)",
+    "submit": "Send application",
+    "sending": "Sending...",
+    "cvMustBePdf": "The CV must be a PDF",
+    "success": "Application sent! We'll contact you soon.",
+    "error": "There was an error sending. Please try again."
+  },
+  "Validation": {
+    "nameMin": "Name must be at least 2 characters",
+    "emailInvalid": "Enter a valid email",
+    "messageMin": "Message must be at least 10 characters",
+    "messageMax": "Message cannot exceed 500 characters",
+    "countryRequired": "Select a country",
+    "cvRequired": "Attach your CV in PDF",
+    "cvPdf": "The file must be a PDF",
+    "cvSize": "The PDF cannot exceed 5 MB",
+    "linkedinUrl": "Enter a valid LinkedIn URL",
+    "portfolioUrl": "Enter a valid URL"
+  },
+  "Emails": {
+    "contactConfirm": {
+      "preview": "We received your message, {name}",
+      "heading": "Thanks for reaching out!",
+      "body": "Hi {name}, we received your message and will get back to you shortly.",
+      "accent": "The Moob team will get in touch with you soon.",
+      "footer": "This is an automated message. Please do not reply to this email."
+    },
+    "contactNotify": {
+      "preview": "New message from {name}",
+      "heading": "New contact message",
+      "name": "NAME",
+      "email": "EMAIL",
+      "country": "COUNTRY",
+      "message": "MESSAGE"
+    },
+    "joinConfirm": {
+      "preview": "We received your application, {name}",
+      "heading": "Thanks for applying!",
+      "body": "Hi {name}, we received your application and your CV. We'll get in touch if your profile matches what we're looking for.",
+      "accent": "The Moob team will review your profile and contact you shortly.",
+      "footer": "This is an automated message. Please do not reply to this email."
+    },
+    "joinNotify": {
+      "preview": "New application from {name}",
+      "heading": "New application",
+      "name": "NAME",
+      "email": "EMAIL",
+      "country": "COUNTRY",
+      "linkedin": "LINKEDIN",
+      "portfolio": "PORTFOLIO",
+      "cvAttached": "CV attached: {filename}"
+    },
+    "subjects": {
+      "contactNotify": "Contact Form Moob Website",
+      "contactConfirm": "We received your message — Moob",
+      "joinNotify": "New application Moob Website",
+      "joinConfirm": "We received your application — Moob"
+    },
+    "apiErrors": {
+      "cvRequired": "CV required",
+      "cvPdf": "PDF only",
+      "cvSize": "PDF too large"
+    }
+  }
+}

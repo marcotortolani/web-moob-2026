@@ -2,10 +2,12 @@
 
 import { motion } from 'motion/react'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { ActiveVideoPlayer } from '@/components/ui/events-slider'
 
 export function HeroTech() {
+  const t = useTranslations('TechPage')
   return (
     <section className="bg-black">
       {/* Hero image — max-width constrained, heading overlaid */}
@@ -13,7 +15,7 @@ export function HeroTech() {
         <div className="relative h-[420px] md:h-[520px] lg:h-[620px] overflow-hidden">
           <Image
             src="/images/grid/tecnologia/home-somostecnologia-grilla-vertical02.webp"
-            alt="SOMOS Tecnología"
+            alt={`${t('label')} ${t('title')}`}
             fill
             className="object-cover object-right scale-150"
             sizes="(max-width: 1528px) 100vw, 1528px"
@@ -39,18 +41,18 @@ export function HeroTech() {
               className="flex flex-col xl:flex-row xl:items-end xl:gap-12"
             >
               <SectionHeading
-                label="SOMOS"
-                title="Tecnología"
+                label={t('label')}
+                title={t('title')}
                 align="left"
                 className="flex-col justify-start gap-0 xl:min-w-64"
                 titleClassName="text-[28px] min-[375px]:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight xl:leading-none"
               />
               <p className="text-white/80 text-pretty text-sm md:text-base xl:text-lg leading-5 mt-4 xl:mt-0 xl:mb-2 max-w-sm md:max-w-lg xl:max-w-xl">
-                <span className="font-bold text-mint">
-                  Aplicamos tecnología propia para amplificar su alcance e impacto.
-                </span>{' '}
-                Contamos con herramientas como MCP, Publicidad Sat y Push, que
-                optimizan la distribución y monetización de los contenidos.
+                {t.rich('intro', {
+                  b: (chunks) => (
+                    <span className="font-bold text-mint">{chunks}</span>
+                  ),
+                })}
               </p>
             </motion.div>
           </div>

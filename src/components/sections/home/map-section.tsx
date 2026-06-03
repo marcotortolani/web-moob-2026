@@ -2,8 +2,10 @@
 
 import { LazyDottedGlobe } from '@/components/ui/dotted-globe-lazy'
 import { motion } from 'motion/react'
+import { useTranslations } from 'next-intl'
 
 export function MapSection() {
+  const t = useTranslations('Map')
   return (
     <section className="bg-surface py-14 md:py-18 lg:py-24 px-5 md:px-10 lg:px-16 xl:px-24 overflow-hidden">
       <div className="max-w-[1528px] mx-auto">
@@ -23,10 +25,12 @@ export function MapSection() {
           {/* Text */}
           <div className="text-center md:text-left max-w-sm md:max-w-md lg:max-w-lg 2xl:max-w-xl">
             <h3 className="text-white text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-extrabold italic leading-tight text-balance">
-              Estamos en más de <span className="text-mint ">30 países</span>
+              {t.rich('heading', {
+                b: (chunks) => <span className="text-mint ">{chunks}</span>,
+              })}
             </h3>
             <p className="text-white/40 text-base lg:text-lg mt-4">
-              Aquí llegamos con nuestras operaciones
+              {t('subtitle')}
             </p>
             {/* Country grid teaser */}
             <div className="flex flex-wrap gap-2 mt-6 justify-center md:justify-start">
@@ -44,7 +48,9 @@ export function MapSection() {
                   </motion.span>
                 ),
               )}
-              <span className="text-white/40 text-sm self-center">+20 más</span>
+              <span className="text-white/40 text-sm self-center">
+                {t('more')}
+              </span>
             </div>
           </div>
         </motion.div>

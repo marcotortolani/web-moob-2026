@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Keyboard } from 'swiper/modules'
 import 'swiper/css'
@@ -9,6 +10,7 @@ import { ContenidoSlideItem } from './contenido-slide'
 import { cn } from '@/lib/utils'
 
 export function ContenidoReels() {
+  const t = useTranslations('ContentHub')
   const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export function ContenidoReels() {
     <div
       className="relative h-dvh w-full overflow-hidden"
       aria-roledescription="carousel"
-      aria-label="Somos Contenido"
+      aria-label={t('ariaLabel')}
     >
       {/* Header Gradient overlay */}
       <div className="absolute inset-0 z-40 pointer-events-none flex items-start">

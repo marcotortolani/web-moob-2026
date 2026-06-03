@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'motion/react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
@@ -28,6 +29,9 @@ const heroProducts: Record<string, ThemeProduct[]> = {
 }
 
 export function ContenidoHero() {
+  const t = useTranslations('ContentHub')
+  const tCats = useTranslations('ContentCats')
+  const tThemes = useTranslations('ContentThemes')
   const [activeSlug, setActiveSlug] = useState(heroCategories[1].slug) // musica default
   const [videoLoaded, setVideoLoaded] = useState(false)
 
@@ -45,14 +49,14 @@ export function ContenidoHero() {
       {/* ── Hero viewport ── */}
       <section
         className="relative h-dvh w-full overflow-hidden flex flex-col max-w-[1528px] mx-auto"
-        aria-label="Somos Contenido"
+        aria-label={t('ariaLabel')}
       >
         {/* Background video / frame */}
         <div className="absolute inset-0">
           <Image
             key={`frame-${activeSlug}`}
             src={active.heroFrame ?? active.frame}
-            alt={active.title}
+            alt={tCats(active.slug)}
             fill
             priority
             sizes="100vw"
@@ -120,17 +124,18 @@ export function ContenidoHero() {
           <div className="flex-1 flex items-end px-10 xl:px-16 pb-6">
             <div className="flex flex-col xl:flex-row xl:items-end xl:gap-12">
               <SectionHeading
-                label="SOMOS"
-                title="Contenido"
+                label={t('label')}
+                title={t('title')}
                 align="left"
                 className="flex-col justify-start gap-0 lg:min-w-64"
                 titleClassName="text-5xl xl:text-6xl 2xl:text-7xl xl:leading-14 2xl:leading-16"
               />
               <p className="hidden lg:block text-white/80 text-pretty text-base xl:text-lg leading-5 max-w-md xl:max-w-xl mb-2">
-                <span className="font-bold text-mint">Creamos contenido</span>{' '}
-                en todos los formatos, desde experiencias en vivo hasta
-                producciones de larga, mediana y corta duración. Incluyendo
-                películas y documentales.
+                {t.rich('paragraph', {
+                  b: (chunks) => (
+                    <span className="font-bold text-mint">{chunks}</span>
+                  ),
+                })}
               </p>
             </div>
           </div>
@@ -150,13 +155,13 @@ export function ContenidoHero() {
                       isActive && 'ring-2 ring-mint',
                     )}
                     aria-pressed={isActive}
-                    aria-label={slide.title}
+                    aria-label={tCats(slide.slug)}
                   >
                     {/* Image container — clips the image */}
                     <div className="relative w-full h-full overflow-hidden rounded-xs">
                       <Image
                         src={slide.card!}
-                        alt={slide.title}
+                        alt={tCats(slide.slug)}
                         fill
                         className={cn(
                           'object-cover transition-transform duration-500',
@@ -177,7 +182,7 @@ export function ContenidoHero() {
                           : 'text-white group-hover:text-mint',
                       )}
                     >
-                      {slide.title}
+                      {tCats(slide.slug)}
                     </span>
                   </button>
                 )
@@ -200,14 +205,14 @@ export function ContenidoHero() {
               >
                 {active.tagline ? (
                   <p className="text-white text-lg xl:text-xl leading-relaxed font-sans">
-                    {active.tagline.lead}{' '}
+                    {tThemes(`${active.slug}.taglineLead`)}{' '}
                     <span className="font-bold text-mint">
-                      {active.tagline.highlight}
+                      {tThemes(`${active.slug}.taglineHighlight`)}
                     </span>
                   </p>
                 ) : (
                   <p className="text-white/70 text-base leading-relaxed font-sans">
-                    {active.description}
+                    {tThemes(`${active.slug}.heroDescription`)}
                   </p>
                 )}
               </motion.div>
@@ -233,8 +238,10 @@ export function ContenidoHero() {
                 <div className="bg-mint px-10 py-6 max-w-sm lg:max-w-md text-center">
                   <p className="text-white font-sans text-base lg:text-lg leading-snug">
                     {active.productsLabel
-                      ? `Conocé nuestros productos de contenido exclusivo ${active.productsLabel}`
-                      : 'Conocé nuestros productos de contenido exclusivo'}
+                      ? t('callout', {
+                          label: tThemes(`${active.slug}.productsLabel`),
+                        })
+                      : t('calloutNoLabel')}
                   </p>
                 </div>
                 {/* Triangle pointing down */}
@@ -252,7 +259,7 @@ export function ContenidoHero() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: 'easeInOut' }}
             >
-              <ThemeProductsSlider products={products} />
+              <ThemeProductsSlider products={products} themeSlug={activeSlug} />
             </motion.div>
           </AnimatePresence>
         </div>

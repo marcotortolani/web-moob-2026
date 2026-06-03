@@ -6,7 +6,6 @@ import {
   Html,
   Link,
   Preview,
-  Section,
   Text,
 } from '@react-email/components'
 import { formatCountry } from '@/lib/countries'
@@ -17,7 +16,17 @@ interface Props {
   country: string
   linkedin?: string
   portfolio?: string
-  cvFilename: string
+  locale: string
+  preview: string
+  heading: string
+  labels: {
+    name: string
+    email: string
+    country: string
+    linkedin: string
+    portfolio: string
+  }
+  cvAttached: string
 }
 
 const styles = {
@@ -48,30 +57,34 @@ export default function JoinUsNotificationEmail({
   country,
   linkedin,
   portfolio,
-  cvFilename,
+  locale,
+  preview,
+  heading,
+  labels,
+  cvAttached,
 }: Props) {
   return (
-    <Html lang="es">
+    <Html lang={locale}>
       <Head />
-      <Preview>Nueva postulación de {name}</Preview>
+      <Preview>{preview}</Preview>
       <Body style={styles.main}>
         <Container style={styles.container}>
-          <Heading style={styles.heading}>Nueva postulación</Heading>
+          <Heading style={styles.heading}>{heading}</Heading>
 
-          <Text style={styles.label}>NOMBRE</Text>
+          <Text style={styles.label}>{labels.name}</Text>
           <Text style={styles.value}>{name}</Text>
 
-          <Text style={styles.label}>EMAIL</Text>
+          <Text style={styles.label}>{labels.email}</Text>
           <Text style={styles.value}>
             <Link href={`mailto:${email}`} style={styles.link}>{email}</Link>
           </Text>
 
-          <Text style={styles.label}>PAÍS</Text>
+          <Text style={styles.label}>{labels.country}</Text>
           <Text style={styles.value}>{formatCountry(country) ?? country}</Text>
 
           {linkedin && (
             <>
-              <Text style={styles.label}>LINKEDIN</Text>
+              <Text style={styles.label}>{labels.linkedin}</Text>
               <Text style={styles.value}>
                 <Link href={linkedin} style={styles.link}>{linkedin}</Link>
               </Text>
@@ -80,14 +93,14 @@ export default function JoinUsNotificationEmail({
 
           {portfolio && (
             <>
-              <Text style={styles.label}>PORTFOLIO</Text>
+              <Text style={styles.label}>{labels.portfolio}</Text>
               <Text style={styles.value}>
                 <Link href={portfolio} style={styles.link}>{portfolio}</Link>
               </Text>
             </>
           )}
 
-          <Text style={styles.note}>CV adjunto: {cvFilename}</Text>
+          <Text style={styles.note}>{cvAttached}</Text>
         </Container>
       </Body>
     </Html>
