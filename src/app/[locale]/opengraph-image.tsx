@@ -28,10 +28,7 @@ export default async function OpengraphImage({
   const logoSrc = `data:image/jpeg;base64,${logoData.toString('base64')}`
 
   const bebasFont = readFileSync(
-    join(
-      process.cwd(),
-      'node_modules/@fontsource/bebas-neue/files/bebas-neue-latin-400-normal.woff',
-    ),
+    join(process.cwd(), 'public/fonts/bebas-neue-latin-400-normal.woff'),
   )
 
   return new ImageResponse(

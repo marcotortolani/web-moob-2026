@@ -3,12 +3,12 @@ import { pathnames, routing } from '@/i18n/routing'
 
 /** Canonical domain — single source of truth. */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mediamoob.com'
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://memoob.com'
 
 /**
  * Builds a fully-qualified URL for a given pathname key, locale, and optional
  * dynamic slug. E.g. '/somos-eventos/[slug]' + 'en' + 'moob-fest' →
- * 'https://mediamoob.com/en/we-are-events/moob-fest'
+ * 'https://memoob.com/en/we-are-events/moob-fest'
  */
 export function externalPath(
   key: string,
