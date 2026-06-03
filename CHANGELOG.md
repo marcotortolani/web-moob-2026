@@ -7,12 +7,14 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [1.0.1] — 2026-06-03
 
 ### Fixed
+
 - **OG image — font en `public/fonts/`** — la fuente Bebas Neue se leía de `node_modules/` en runtime; movida a `public/fonts/` para garantizar su inclusión en el bundle serverless de Vercel
 - **`externalPath()` — warn para claves desconocidas** — en desarrollo, la función ahora emite `console.warn` si se pasa una clave que no existe en `pathnames`, evitando canonical/hreflang incorrectos silenciosos
 - **Imágenes del slider de marcas** — corregido warning de Next.js Image sobre aspect ratio (`width={0} height={0}` + `sizes` en lugar de dimensiones fijas)
 - **Dominio canónico** — corregido typo `mediamoob.com` → `memoob.com` en `src/lib/seo.ts`
 
 ### Changed
+
 - **`src/lib/data/social.ts`** — URLs de Instagram y LinkedIn extraídas a fuente única; header, footer y JSON-LD las consumen desde este archivo
 - **`opengraph-image.tsx`** — `readFileSync` del logo y la fuente movidos al module scope; se ejecutan una sola vez por instancia de función en lugar de en cada request
 - **`src/lib/theme-page.tsx`** — helper compartido para los 8 pages de contenido temático (`generateThemeMetadata` + `ThemePage`); cada page reducido de ~55 a ~15 líneas
@@ -23,6 +25,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [1.0.0] — 2026-06-03
 
 ### Added
+
 - **Internacionalización (i18n)** — migración completa a `next-intl` con locales es / en / pt
   - Rutas localizadas bajo `src/app/[locale]/` con slugs traducidas por idioma (`/es/somos-contenido`, `/en/we-are-content`, `/pt/nosso-conteudo`)
   - Middleware en `src/proxy.ts` con detección automática y cookie `NEXT_LOCALE`
@@ -41,12 +44,14 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Galerías de detalle para eventos y experiencias
 
 ### Changed
+
 - `src/app/robots.ts` y `src/app/sitemap.ts` refactorizados para usar `SITE_URL` de `@/lib/seo` (sin dominio hardcodeado)
 - Emails transaccionales de contacto y join-us rediseñados
 - Esquemas de validación `contact` y `join-us` actualizados
 - Ajustes responsive generales en hero, stats, events, activations, games, tech, map, contact y footer
 
 ### Removed
+
 - `public/og-image.jpg` — era un SVG de 443 bytes con extensión errónea que rompía las tarjetas en redes sociales
 - Rutas planas `src/app/*` reemplazadas por `src/app/[locale]/*`
 
@@ -55,6 +60,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [0.1.0] — 2026-04-01
 
 ### Added
+
 - Setup inicial del proyecto Next.js con Tailwind CSS y shadcn/ui
 - Estructura base de secciones: home, contenido, tecnología, eventos, experiencias, juegos
 - Formularios de contacto y join-us con envío de emails vía Resend
