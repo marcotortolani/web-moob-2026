@@ -34,21 +34,23 @@ export function LazyDottedGlobe() {
       ) => number
       cancelIdleCallback?: (id: number) => void
     }
-    // requestIdleCallback no dispara hasta que el hilo principal está libre tras
-    // el render crítico, así que el montaje cae naturalmente después del LCP. El
-    // timeout es un tope por si nunca hay idle. (Esperar a `window.load` sería
-    // demasiado tarde en mobile: ese evento aguarda a los videos pesados.)
+    // Piso de ~1.5s antes de montar: requestIdleCallback solo dispara en el primer
+    // hueco de idle (que en mobile cae ANTES del LCP, ~800ms), así que sin el piso
+    // el bundle de Three.js seguía evaluándose dentro de la ventana crítica. Con el
+    // piso, el globo entra después del LCP; su animación de aparición disimula el
+    // retraso. (No esperamos `window.load`: ese evento aguarda a los videos pesados.)
     let idleId: number | undefined
-    let timeoutId: number | undefined
-    if (w.requestIdleCallback) {
-      idleId = w.requestIdleCallback(() => setMount(true), { timeout: 2500 })
-    } else {
-      timeoutId = window.setTimeout(() => setMount(true), 1500)
-    }
+    const floorId = window.setTimeout(() => {
+      if (w.requestIdleCallback) {
+        idleId = w.requestIdleCallback(() => setMount(true), { timeout: 1500 })
+      } else {
+        setMount(true)
+      }
+    }, 1500)
     return () => {
+      window.clearTimeout(floorId)
       if (idleId !== undefined && w.cancelIdleCallback)
         w.cancelIdleCallback(idleId)
-      if (timeoutId !== undefined) window.clearTimeout(timeoutId)
     }
   }, [])
 

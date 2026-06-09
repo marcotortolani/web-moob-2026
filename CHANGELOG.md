@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.6] — 2026-06-09
+
+Segunda pasada de performance mobile. La auditoría reveló que **el elemento LCP es el `<video>` de fondo del hero**: la `<Image>` pinta rápido (24KB) pero el video, al hacer fade-in encima, se vuelve el LCP, y su pintado dependía de la descarga del mp4 (2.4MB → LCP simulado ~5.9s).
+
+### Changed
+
+- **Hero — poster liviano en el `<video>`** — se agregó `poster="/images/hero-bg-poster.jpg"` (768×432, 38KB, generado desde `hero-bg.webp`). El video pinta el poster apenas se monta, **desacoplando el LCP de la descarga del mp4** (de ~5.9s a ~1s). Se mantiene la `<Image priority>` para el FCP y como fallback
+- **Globo 3D — piso de delay en el diferido** — `requestIdleCallback` disparaba en el primer hueco de idle (~800ms, antes del LCP), así que el bundle de Three.js seguía evaluándose en la ventana crítica. Se añadió un piso de 1.5s antes de programarlo, para que entre después del LCP
+
+### Added
+
+- **`public/images/hero-bg-poster.jpg`** — poster optimizado del hero para el `<video>` de fondo
+
 ## [1.0.5] — 2026-06-09
 
 Optimización de performance **mobile** (Lighthouse mobile: LCP 8.2s, TBT 260ms → el throttling de CPU de mobile exponía el costo del JS y de las imágenes).

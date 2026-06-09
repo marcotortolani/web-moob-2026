@@ -97,7 +97,9 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
             priority
             sizes="100vw"
           />
-          {/* Background video — montado en idle y con fade-in una vez listo */}
+          {/* Background video — montado en idle y con fade-in una vez listo.
+              El poster (frame liviano) es lo que pinta primero: así el LCP del
+              <video> se desacopla de la descarga del mp4 (2.4MB) y ocurre temprano. */}
           {showVideo && (
             <video
               src="/videos/home-hero.mp4"
@@ -106,6 +108,7 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
               muted
               playsInline
               preload="metadata"
+              poster="/images/hero-bg-poster.jpg"
               aria-hidden="true"
               onCanPlay={() => setVideoReady(true)}
               className={`absolute inset-0 h-full w-full object-cover object-left md:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
