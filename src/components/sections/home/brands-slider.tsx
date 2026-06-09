@@ -41,7 +41,7 @@ export function BrandsSlider() {
   const t = useTranslations('Brands')
   return (
     <section className="bg-mint py-6 md:py-7 lg:py-8 overflow-hidden border-y border-white/5 mt-2.5">
-      <p className="font-sans text-center text-white text-xs lg:text-sm uppercase tracking-widest mb-4 lg:mb-6 px-5">
+      <p className="font-sans text-center text-black text-xs lg:text-sm uppercase tracking-widest mb-4 lg:mb-6 px-5">
         {t('title')}
       </p>
       <Swiper

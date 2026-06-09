@@ -35,7 +35,6 @@ export function MapHoverPreview({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Ver ubicación en Google Maps"
         className={className}
       >
         {children}

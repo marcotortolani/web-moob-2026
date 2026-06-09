@@ -141,7 +141,7 @@ export function GameShowcase() {
                   <DemoButton
                     href={game.demoUrl}
                     target="_blank"
-                    className="bg-mint hover:bg-mint/90 text-white px-6 py-1"
+                    className="bg-mint hover:bg-mint/90 text-black px-6 py-1"
                   />
                 )}
               </div>

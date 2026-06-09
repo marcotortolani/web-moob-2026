@@ -104,7 +104,7 @@ export function EventsSection() {
         >
           <DemoButton
             href="/somos-eventos"
-            className="text-white tracking-tight"
+            className="tracking-tight"
           >
             {t('cta')}
           </DemoButton>

@@ -42,6 +42,8 @@ next-env.d.ts
 
 # Videos pesados
 public/videos/reel-*.mp4
+public/videos/home-hero-hq.mp4
 .env*.local
 
 /docs
+/analytics

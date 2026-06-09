@@ -37,7 +37,7 @@ export function Footer({ version }: { version?: string }) {
 
           {/* Navigation — tablet+ */}
           <nav className="hidden md:flex flex-col gap-2">
-            <p className="text-white/40 text-xs uppercase tracking-widest mb-1">
+            <p className="text-white/50 text-xs uppercase tracking-widest mb-1">
               {tf('Navigation')}
             </p>
             {navLinks.slice(0, 5).map((link) => (
@@ -53,7 +53,7 @@ export function Footer({ version }: { version?: string }) {
 
           {/* Contact column — tablet+ */}
           <div className="hidden md:flex flex-col gap-2">
-            <p className="text-white/40 text-xs uppercase tracking-widest mb-1">
+            <p className="text-white/50 text-xs uppercase tracking-widest mb-1">
               {tf('Contact')}
             </p>
             <MapHoverPreview
@@ -71,17 +71,14 @@ export function Footer({ version }: { version?: string }) {
             >
               {tf("Let's talk!")}
             </NextLink>
-            <Link
-              href="/join-us"
-              className="text-mint text-sm hover:underline"
-            >
+            <Link href="/join-us" className="text-mint text-sm hover:underline">
               {tf('Work with us')}
             </Link>
           </div>
 
           {/* Social + Language */}
           <div className="flex flex-col items-center lg:items-start gap-3">
-            <p className="hidden md:block text-white/40 text-xs uppercase tracking-widest mb-1">
+            <p className="hidden md:block text-white/50 text-xs uppercase tracking-widest mb-1">
               {tf('Networks')}
             </p>
             <div className=" flex items-center gap-3">
@@ -89,6 +86,7 @@ export function Footer({ version }: { version?: string }) {
                 href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Instagram"
                 className=" text-mint hover:text-white lg:text-white/70 lg:hover:text-mint hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <InstagramIcon size={28} />
@@ -97,7 +95,8 @@ export function Footer({ version }: { version?: string }) {
                 href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" bg-mint p-px rounded-xs  hover:text-white lg:text-white/70 lg:hover:text-mint hover:scale-105 transition-all duration-300 ease-in-out"
+                aria-label="LinkedIn"
+                className=" bg-mint p-px rounded-xs  hover:bg-white lg:bg-white/70 lg:hover:bg-mint hover:scale-105 transition-all duration-300 ease-in-out"
               >
                 <LinkedinIcon
                   size={24}
@@ -118,15 +117,12 @@ export function Footer({ version }: { version?: string }) {
             href="https://maps.app.goo.gl/cSKNi51Jtf57y7388"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Google Maps"
             className="text-white/80 text-sm text-center md:hidden hover:text-mint transition-colors"
           >
             {tf('address')}
           </a>
-          <p className="text-white/40 text-xs">{tf('rights', { year })}</p>
-          {version && (
-            <p className="text-white/20 text-xs">v{version}</p>
-          )}
+          <p className="text-white/50 text-xs">{tf('rights', { year })}</p>
+          {version && <p className="text-white/50 text-xs">v{version}</p>}
         </div>
       </div>
     </footer>

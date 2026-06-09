@@ -109,7 +109,7 @@ export function ContactSection() {
                       <Icon className="size-4 text-white/50 group-hover:text-mint transition-colors duration-300" />
                     </div>
                     <div>
-                      <p className="text-white/30 text-xs uppercase tracking-widest">
+                      <p className="text-white/50 text-xs uppercase tracking-widest">
                         {label}
                       </p>
                       <p className="text-white text-sm">{value}</p>
@@ -199,7 +199,7 @@ export function ContactSection() {
                 <motion.div {...fadeUp(0.3)} className="flex flex-col gap-1.5">
                   <Label className="text-white/70">
                     {t('Country')}
-                    <span className="text-white/30 font-normal ml-1 text-xs">
+                    <span className="text-white/50 font-normal ml-1 text-xs">
                       {t('optional')}
                     </span>
                   </Label>
@@ -244,7 +244,7 @@ export function ContactSection() {
                               ? 'text-xs text-destructive'
                               : messageCount > 450
                                 ? 'text-xs text-mint'
-                                : 'text-xs text-white/30'
+                                : 'text-xs text-white/50'
                           }
                         >
                           {messageCount}/{MESSAGE_MAX}

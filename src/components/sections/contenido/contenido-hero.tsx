@@ -178,7 +178,7 @@ export function ContenidoHero() {
                         'absolute bottom-0 left-0 right-0 py-1.5 text-base xl:text-lg font-display text-center tracking-wide uppercase',
                         'transition-all duration-300 ease-out',
                         isActive
-                          ? 'translate-y-full bg-mint outline-2 outline-mint text-white'
+                          ? 'translate-y-full bg-mint outline-2 outline-mint text-black'
                           : 'text-white group-hover:text-mint',
                       )}
                     >

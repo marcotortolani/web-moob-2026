@@ -124,7 +124,7 @@ export function TechSection() {
         <div className="mt-8 lg:mt-14 xl:mt-20 flex justify-center">
           <DemoButton
             href="/somos-tecnologia"
-            className="text-white tracking-tight"
+            className="tracking-tight"
           >
             {t('cta')}
           </DemoButton>

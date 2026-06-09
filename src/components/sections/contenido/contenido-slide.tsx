@@ -137,7 +137,7 @@ export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
                 typeof Link
               >['href']
             }
-            className="inline-flex items-center gap-2 mt-6 bg-mint text-white font-display uppercase tracking-wider text-base md:text-lg rounded-full px-6 md:px-8 py-2 md:py-3 hover:bg-mint-dark transition-colors"
+            className="inline-flex items-center gap-2 mt-6 bg-mint text-black font-display uppercase tracking-wider text-base md:text-lg rounded-full px-6 md:px-8 py-2 md:py-3 hover:bg-mint-dark transition-colors"
           >
             {t('slideMore', { title: tCats(data.slug) })}
             <ArrowRight size={16} />
@@ -147,7 +147,7 @@ export function ContenidoSlideItem({ data, isActive, isFirst, isNear }: Props) {
         {/* Swipe hint — first slide only */}
         {isFirst && (
           <motion.div
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 pointer-events-none"
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 pointer-events-none"
             animate={{ y: [0, 7, 0] }}
             transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
             aria-hidden

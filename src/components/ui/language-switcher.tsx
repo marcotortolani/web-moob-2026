@@ -59,7 +59,7 @@ export function LanguageSwitcher({
         type="button"
         onClick={() => setOpen((v) => !v)}
         disabled={isPending}
-        aria-label={t('Select language')}
+        aria-label={`${t('Select language')} (${LOCALE_LABELS[activeLocale].short})`}
         aria-haspopup="listbox"
         aria-expanded={open}
         className={cn(
@@ -104,7 +104,7 @@ export function LanguageSwitcher({
                   )}
                 >
                   <span className="flex items-center gap-2">
-                    <span className="font-display tracking-widest text-xs text-white/40 w-6">
+                    <span className="font-display tracking-widest text-xs text-white/50 w-6">
                       {LOCALE_LABELS[locale].short}
                     </span>
                     {LOCALE_LABELS[locale].name}

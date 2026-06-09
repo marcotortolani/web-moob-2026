@@ -80,7 +80,7 @@ export function ThemeProductsSlider({ products, heading, themeSlug }: Props) {
               <DemoButton
                 href={product.demoUrl}
                 target="_blank"
-                className="text-white py-1 z-10"
+                className="py-1 z-10"
               >
                 {tHub('demoButton')}
               </DemoButton>

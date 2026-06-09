@@ -73,7 +73,7 @@ export function ContentSection() {
             })}
           </p>
         </motion.div>
-        <BannerGridVideo items={GRID_ITEMS} videoPosition="bottom-right" />
+        <BannerGridVideo items={GRID_ITEMS} videoPosition="bottom-right" priority />
 
         <div className="z-50 xl:hidden absolute -bottom-5 translate-y-4 w-full mx-auto px-5 md:px-10 lg:px-0 xl:px-24 bg-linear-to-t from-black via-black to-transparent">
           <p className="mx-auto text-white/80 text-center text-pretty text-sm md:text-base xl:text-lg leading-4 xl:leading-5 mt-3 lg:mt-6 max-w-xl md:max-w-2xl xl:max-w-3xl">
@@ -145,7 +145,7 @@ export function ContentSection() {
         <div className="mt-8 lg:mt-10 flex justify-center">
           <DemoButton
             href="/somos-contenido"
-            className=" text-white tracking-tight"
+            className=" tracking-tight"
           >
             {t('cta')}
           </DemoButton>

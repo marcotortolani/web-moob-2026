@@ -156,7 +156,7 @@ export function JoinUsSection() {
                 <Mail className="size-4 text-white/50 group-hover:text-mint transition-colors duration-300" />
               </div>
               <div>
-                <p className="text-white/30 text-xs uppercase tracking-widest">
+                <p className="text-white/50 text-xs uppercase tracking-widest">
                   {t('Email')}
                 </p>
                 <p className="text-white text-sm">hola@memoob.com</p>
@@ -260,7 +260,7 @@ export function JoinUsSection() {
                 <motion.div {...fadeUp(0.35)} className="flex flex-col gap-1.5">
                   <Label className="text-white/70">
                     {t('cvLabel')} <span className="text-mint">*</span>{' '}
-                    <span className="text-white/30 font-normal text-xs">
+                    <span className="text-white/50 font-normal text-xs">
                       {t('cvHelper')}
                     </span>
                   </Label>
@@ -274,7 +274,7 @@ export function JoinUsSection() {
                       <button
                         type="button"
                         onClick={handleCvClear}
-                        className="rounded p-0.5 hover:bg-white/10 text-white/40 hover:text-white transition-colors"
+                        className="rounded p-0.5 hover:bg-white/10 text-white/50 hover:text-white transition-colors"
                       >
                         <X className="size-3.5" />
                       </button>
@@ -286,8 +286,8 @@ export function JoinUsSection() {
                         errors.cv && 'border-destructive/50',
                       )}
                     >
-                      <Paperclip className="size-4 shrink-0 text-white/30" />
-                      <span className="text-sm text-white/30">
+                      <Paperclip className="size-4 shrink-0 text-white/50" />
+                      <span className="text-sm text-white/50">
                         {t('cvPlaceholder')}
                       </span>
                       <input
@@ -311,7 +311,7 @@ export function JoinUsSection() {
                 <motion.div {...fadeUp(0.4)} className="flex flex-col gap-1.5">
                   <Label htmlFor="linkedin" className="text-white/70">
                     {t('linkedinLabel')}{' '}
-                    <span className="text-white/30 font-normal text-xs">
+                    <span className="text-white/50 font-normal text-xs">
                       {t('optional')}
                     </span>
                   </Label>
@@ -334,7 +334,7 @@ export function JoinUsSection() {
                 <motion.div {...fadeUp(0.45)} className="flex flex-col gap-1.5">
                   <Label htmlFor="portfolio" className="text-white/70">
                     {t('portfolioLabel')}{' '}
-                    <span className="text-white/30 font-normal text-xs">
+                    <span className="text-white/50 font-normal text-xs">
                       {t('optional')}
                     </span>
                   </Label>

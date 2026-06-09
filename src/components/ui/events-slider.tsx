@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { Play, Pause } from 'lucide-react'
@@ -97,16 +97,18 @@ export function ActiveVideoPlayer({
 function EventSlideContent({
   event,
   isActive,
+  inView,
   index,
 }: {
   event: EventSlide
   isActive: boolean
+  inView: boolean
   index: number
 }) {
   return (
     <div className="relative flex flex-col items-center gap-5 px-4 lg:px-10 pt-16 pb-28 lg:pb-20">
       <div className="z-50 relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border-white border-2">
-        {isActive && event.videoUrl && (
+        {isActive && inView && event.videoUrl && (
           <ActiveVideoPlayer url={event.videoUrl} />
         )}
         <div className="w-full h-full absolute left-0 top-0 z-10 brightness-75 grayscale-50">
@@ -166,8 +168,31 @@ export function EventsSlider({
   onActiveSlideChange?: (event: EventSlide, index: number) => void
 }) {
   const [activeIndex, setActiveIndex] = useState(0)
+  // No montamos el player de Vimeo del slide activo hasta que el slider entra al
+  // viewport (la sección de eventos está debajo del fold). Hasta entonces se ve
+  // el poster de cada slide.
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(
+    () => typeof IntersectionObserver === 'undefined',
+  )
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setInView(true)
+          obs.disconnect()
+        }
+      },
+      { rootMargin: '300px' },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
   return (
+    <div ref={containerRef}>
     <Swiper
       modules={[Pagination, Autoplay]}
       slidesPerView={1}
@@ -208,10 +233,12 @@ export function EventsSlider({
           <EventSlideContent
             event={event}
             isActive={activeIndex === i}
+            inView={inView}
             index={i}
           />
         </SwiperSlide>
       ))}
     </Swiper>
+    </div>
   )
 }

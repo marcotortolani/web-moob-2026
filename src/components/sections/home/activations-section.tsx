@@ -179,7 +179,7 @@ export function ActivationsSection() {
       >
         <DemoButton
           href="/somos-experiencias"
-          className="text-white tracking-tight"
+          className="tracking-tight"
         >
           {t('cta')}
         </DemoButton>

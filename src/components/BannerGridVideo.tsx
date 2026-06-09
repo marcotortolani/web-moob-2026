@@ -15,6 +15,9 @@ interface GridProps {
     imageV: string | string[]
   }
   videoPosition: VideoPosition
+  /** Solo true para el banner cercano al fold; el resto carga lazy (evita
+   *  que ~6 imágenes de grids bajo el fold compitan con el LCP del hero). */
+  priority?: boolean
   extraItems?: {
     imageH: string
     imageSquare: string
@@ -148,10 +151,33 @@ function SplitFlapImage({
 export const BannerGridVideo: React.FC<GridProps> = ({
   items,
   videoPosition,
+  priority = false,
 }) => {
   const playerRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const [isVideoReady, setIsVideoReady] = useState(false)
   const [hasError,     setHasError]     = useState(false)
+  // El ReactPlayer de Vimeo (~varios MB c/u) recién se monta cuando el grid
+  // entra al viewport. Sin esto, las 3 instancias del home buffereaban su video
+  // de entrada aunque estuvieran fuera de pantalla. Hasta entonces se ve el poster.
+  const [inView, setInView] = useState(
+    () => typeof IntersectionObserver === 'undefined',
+  )
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setInView(true)
+          obs.disconnect()
+        }
+      },
+      { rootMargin: '300px' },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
   // Normalise to arrays
   const imagesH = Array.isArray(items.imageH)
@@ -206,7 +232,10 @@ export const BannerGridVideo: React.FC<GridProps> = ({
 
   return (
     <AnimatePresence mode="wait">
-      <div className="relative w-full max-w-7xl mx-auto px-0 grid grid-cols-3 aspect-square lg:aspect-video grid-rows-3 gap-1 lg:gap-1.5">
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-7xl mx-auto px-0 grid grid-cols-3 aspect-square lg:aspect-video grid-rows-3 gap-1 lg:gap-1.5"
+      >
 
         {/* Video: 2x2 */}
         <motion.div
@@ -223,7 +252,7 @@ export const BannerGridVideo: React.FC<GridProps> = ({
               alt="Vista previa del video"
               fill
               sizes="(max-width: 1280px) 66vw, 853px"
-              priority
+              priority={priority}
             />
           )}
           <div
@@ -233,19 +262,21 @@ export const BannerGridVideo: React.FC<GridProps> = ({
                 : 'opacity-0 scale-0'
             }`}
           >
-            <ReactPlayer
-              ref={playerRef}
-              url={items.video}
-              width="100%"
-              height="100%"
-              playing={true}
-              muted
-              loop
-              playsinline
-              controls={false}
-              onReady={() => setIsVideoReady(true)}
-              onError={() => setHasError(true)}
-            />
+            {inView && (
+              <ReactPlayer
+                ref={playerRef}
+                url={items.video}
+                width="100%"
+                height="100%"
+                playing={true}
+                muted
+                loop
+                playsinline
+                controls={false}
+                onReady={() => setIsVideoReady(true)}
+                onError={() => setHasError(true)}
+              />
+            )}
           </div>
         </motion.div>
 
@@ -263,7 +294,7 @@ export const BannerGridVideo: React.FC<GridProps> = ({
             sizes="(max-width: 1280px) 66vw, 853px"
             flip={flipH}
             onFlipDone={handleFlipHDone}
-            priority
+            priority={priority}
             placeholder={
               <div className="w-full h-full bg-linear-to-b from-neutral-600 to-neutral-800 animate-pulse" />
             }
@@ -289,7 +320,7 @@ export const BannerGridVideo: React.FC<GridProps> = ({
             flip={flipV}
             onFlipDone={handleFlipVDone}
             axis="y"
-            priority
+            priority={priority}
             placeholder={
               <div className="w-full h-full bg-linear-to-r from-neutral-600 to-neutral-800 animate-pulse" />
             }

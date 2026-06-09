@@ -29,7 +29,7 @@ export function MapSection() {
                 b: (chunks) => <span className="text-mint ">{chunks}</span>,
               })}
             </h3>
-            <p className="text-white/40 text-base lg:text-lg mt-4">
+            <p className="text-white/50 text-base lg:text-lg mt-4">
               {t('subtitle')}
             </p>
             {/* Country grid teaser */}
@@ -48,7 +48,7 @@ export function MapSection() {
                   </motion.span>
                 ),
               )}
-              <span className="text-white/40 text-sm self-center">
+              <span className="text-white/50 text-sm self-center">
                 {t('more')}
               </span>
             </div>

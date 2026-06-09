@@ -139,17 +139,19 @@ export function Header() {
             {/* Desktop Social Icons */}
             <div className=" flex items-center gap-4">
               <a
-                href="{socialLinks.instagram}"
+                href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Instagram"
                 className=" text-mint hover:text-white lg:text-white/80 lg:hover:text-mint transition-colors duration-300 ease-in-out"
               >
                 <InstagramIcon size={18} />
               </a>
               <a
-                href="{socialLinks.linkedin}"
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn"
                 className=" bg-mint p-px rounded-xs  hover:text-white lg:bg-white/80 lg:hover:bg-mint transition-colors duration-300 ease-in-out"
               >
                 <LinkedinIcon
@@ -276,17 +278,19 @@ function MobileMenu({
           >
             <div className="flex gap-4">
               <a
-                href="{socialLinks.instagram}"
+                href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Instagram"
                 className="text-white/70 hover:text-mint"
               >
                 <InstagramIcon size={22} />
               </a>
               <a
-                href="{socialLinks.linkedin}"
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn"
                 className="text-white/70 hover:text-mint"
               >
                 <LinkedinIcon size={22} />

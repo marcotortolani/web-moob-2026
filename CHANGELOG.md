@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] — 2026-06-09
+
+Auditoría de Lighthouse (desktop, `memoob.com`): correcciones de accesibilidad y performance.
+
+### Fixed
+
+- **Accesibilidad — `link-name`** — los íconos sociales (Instagram/LinkedIn en header desktop, menú mobile y footer) no tenían nombre accesible; se agregó `aria-label`. De paso, los 4 `<a>` del header tenían `href="{socialLinks.x}"` **literal sin interpolar** (links rotos) → corregidos a `href={socialLinks.x}`
+- **Accesibilidad — `label-content-name-mismatch`** — se quitaron los `aria-label` hardcodeados que no coincidían con el texto visible: `map-hover-preview.tsx` y el link de dirección mobile del footer (estaban en español fijo en un sitio trilingüe) ahora usan la dirección visible; el botón de `language-switcher` incluye el código de idioma visible (`ES`/`EN`/`PT`) en su `aria-label`
+- **Accesibilidad — `color-contrast`** — los CTAs sobre fondo `mint` pasan a **texto negro** (7.91:1) en lugar de blanco (2.65:1, fallaba AA): `DemoButton` de contenido/tecnología/eventos/activaciones/juegos, banda de marcas y botones de `game-showcase`/`contenido-slide`/`contenido-hero`. El verde de marca `#40b09d` queda **intacto**. Los grises muteados (`text-white/20|30|40`) suben a `text-white/50` para cumplir AA (placeholders de inputs sin cambios)
+
+### Changed
+
+- **Hero video — peso y carga** — `public/videos/home-hero.mp4` recomprimido de **9.5 MB a 2.7 MB**; el `<video>` de fondo se monta en `requestIdleCallback` (post-hidratación) con `preload="metadata"` en vez de `auto`, para que su descarga no compita con el LCP (la imagen `priority` se pinta primero)
+- **Players de Vimeo — lazy-load** — `BannerGridVideo` (×3 en el home) y `EventsSlider` montaban `react-player` apenas se renderizaban, buffereando su video aunque estuvieran fuera de pantalla (~26 MB iniciales). Ahora se montan recién al entrar al viewport (`IntersectionObserver`); hasta entonces se ve el poster. Esto además **difiere las cookies de terceros** de Vimeo (Best Practices)
+- **`BannerGridVideo` — `priority` opt-in** — las imágenes del grid tenían `priority` hardcodeado en las 3 instancias del home; ahora es una prop activada solo en `content-section` (cercana al fold). Tech y activaciones cargan lazy, evitando que ~6 imágenes bajo el fold compitan con el LCP
+
 ## [1.0.2] — 2026-06-09
 
 ### Added

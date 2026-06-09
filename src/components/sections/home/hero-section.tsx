@@ -65,6 +65,23 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
   const t = useTranslations('Hero')
   const [videoReady, setVideoReady] = useState(false)
   const [reelOpen, setReelOpen] = useState(false)
+  // El video de fondo pesa ~9.5MB. Lo montamos recién cuando el navegador está
+  // idle (post-hidratación) para que su descarga no compita con el LCP: la
+  // imagen `priority` de fondo se pinta primero y el video hace fade-in después.
+  const [showVideo, setShowVideo] = useState(false)
+  useEffect(() => {
+    const w = window as typeof window & {
+      requestIdleCallback?: (cb: () => void) => number
+      cancelIdleCallback?: (id: number) => void
+    }
+    const schedule =
+      w.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 200))
+    const id = schedule(() => setShowVideo(true))
+    return () => {
+      if (w.cancelIdleCallback) w.cancelIdleCallback(id)
+      else window.clearTimeout(id)
+    }
+  }, [])
 
   return (
     <>
@@ -80,19 +97,21 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
             priority
             sizes="100vw"
           />
-          {/* Background video — fades in once ready */}
-          <video
-            src="/videos/home-hero.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            poster="/images/hero-bg.webp"
-            aria-hidden="true"
-            onCanPlay={() => setVideoReady(true)}
-            className={`absolute inset-0 h-full w-full object-cover object-left md:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
-          />
+          {/* Background video — montado en idle y con fade-in una vez listo */}
+          {showVideo && (
+            <video
+              src="/videos/home-hero.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster="/images/hero-bg.webp"
+              aria-hidden="true"
+              onCanPlay={() => setVideoReady(true)}
+              className={`absolute inset-0 h-full w-full object-cover object-left md:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+            />
+          )}
           <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/20 to-black" />
           <div className="absolute inset-0 bg-linear-to-r from-black via-black/50 to-transparent" />
         </div>

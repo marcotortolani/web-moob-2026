@@ -72,7 +72,7 @@ export function GamesSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="relative z-10 mt-6"
         >
-          <DemoButton href="/somos-juegos" className="text-white">
+          <DemoButton href="/somos-juegos">
             {t('cta')}
           </DemoButton>
         </motion.div>
