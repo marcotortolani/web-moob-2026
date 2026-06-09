@@ -171,10 +171,10 @@ export function EventsSlider({
   // No montamos el player de Vimeo del slide activo hasta que el slider entra al
   // viewport (la sección de eventos está debajo del fold). Hasta entonces se ve
   // el poster de cada slide.
+  // Inicial `false` en server y cliente para no romper la hidratación; el
+  // observer lo activa post-montaje.
   const containerRef = useRef<HTMLDivElement>(null)
-  const [inView, setInView] = useState(
-    () => typeof IntersectionObserver === 'undefined',
-  )
+  const [inView, setInView] = useState(false)
   useEffect(() => {
     const el = containerRef.current
     if (!el || typeof IntersectionObserver === 'undefined') return

@@ -160,9 +160,9 @@ export const BannerGridVideo: React.FC<GridProps> = ({
   // El ReactPlayer de Vimeo (~varios MB c/u) recién se monta cuando el grid
   // entra al viewport. Sin esto, las 3 instancias del home buffereaban su video
   // de entrada aunque estuvieran fuera de pantalla. Hasta entonces se ve el poster.
-  const [inView, setInView] = useState(
-    () => typeof IntersectionObserver === 'undefined',
-  )
+  // Inicial `false` en server y cliente (evita mismatch de hidratación); el
+  // observer lo activa post-montaje. Sin IntersectionObserver queda el poster.
+  const [inView, setInView] = useState(false)
   useEffect(() => {
     const el = containerRef.current
     if (!el || typeof IntersectionObserver === 'undefined') return

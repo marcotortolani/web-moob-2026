@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] — 2026-06-09
+
+### Fixed
+
+- **Hydration mismatch (React #418)** — el lazy-load de Vimeo introducido en 1.0.3 inicializaba el estado `inView` con `typeof IntersectionObserver === 'undefined'`, que da `true` en el server y `false` en el cliente. En `EventsSlider` esto renderizaba el `<div>` del player en el server pero no en el cliente, rompiendo la hidratación. Ahora `inView` arranca en `false` en ambos (`BannerGridVideo` y `EventsSlider`) y el `IntersectionObserver` lo activa post-montaje
+
 ## [1.0.3] — 2026-06-09
 
 Auditoría de Lighthouse (desktop, `memoob.com`): correcciones de accesibilidad y performance.
