@@ -88,22 +88,29 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
       <section className="relative min-h-screen 3xl:h-screen overflow-hidden bg-black xl:pb-40 ">
         {/* Background image & video */}
         <div className="absolute inset-0 h-1/2 md:h-full xl:h-screen">
-          {/* Fallback image — always mounted, acts as placeholder and error fallback */}
+          {/* Fallback image — always mounted, acts as placeholder and error fallback.
+              SIN pb-0.5 a propósito: debe pintar MÁS GRANDE que el <video> (que sí
+              lo lleva) para ser el candidato LCP definitivo — ver nota del video. */}
           <Image
             src="/images/hero-bg.webp"
             alt="Media Moob hero"
             fill
-            className="h-full object-cover object-left md:object-center pb-0.5"
+            className="h-full object-cover object-left md:object-center"
             priority
             sizes="100vw"
           />
           {/* Background video — montado en idle y con fade-in una vez listo.
               El poster cubre el caso de autoplay bloqueado (sin él, el video
               "listo" pero pausado taparía la imagen con un frame vacío).
-              OJO: el video lleva el mismo `pb-0.5` que la <Image> de arriba.
-              Si pintara 1px más grande que ella, Chrome lo tomaría como nuevo
-              candidato LCP al hacer fade-in (~5s) y descartaría a la imagen
-              que pintó a ~1.2s. Con cajas iguales, el LCP queda en la imagen. */}
+              OJO: el video usa `h-[calc(100%-4px)]` (caja más corta que la <Image>;
+              con `bottom-1` no alcanza: un replaced element con height auto ignora
+              `bottom` y usa su aspect ratio intrínseco).
+              Chrome solo reemplaza el candidato LCP por uno ESTRICTAMENTE más
+              grande: si el video pintara ≥ que la imagen, su fade-in (~5s en
+              mobile) se volvería el LCP y descartaría a la imagen que pintó a
+              ~1.2s. No sirve empatar ni achicarlo con padding (el tamaño LCP
+              de un <video> NO descuenta el padding, medido empíricamente);
+              hay que achicar el border box. El gradiente a negro tapa la junta. */}
           {showVideo && (
             <video
               src="/videos/home-hero.mp4"
@@ -115,7 +122,7 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
               poster="/images/hero-bg-poster.jpg"
               aria-hidden="true"
               onCanPlay={() => setVideoReady(true)}
-              className={`absolute inset-0 h-full w-full object-cover object-left md:object-center pb-0.5 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+              className={`absolute inset-x-0 top-0 w-full h-[calc(100%-4px)] object-cover object-left md:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
             />
           )}
           <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/20 to-black" />

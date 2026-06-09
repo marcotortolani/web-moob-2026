@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.8] — 2026-06-09
+
+Cuarta pasada de performance mobile. El análisis post-v1.0.7 (`mobile-4`, perf 80) mostró que igualar las cajas con `pb-0.5` no alcanzó: el LCP seguía en 4.9s sobre el `<video>`. Midiendo los candidatos LCP localmente con `PerformanceObserver` (build de producción + headless Chrome) se descubrió que **Chrome no descuenta el padding al calcular el tamaño LCP de un `<video>`** (sí lo hace para `<img>`): con `pb-0.5` en ambos, la imagen pintaba 196.515px² y el video 196.912px² — el video siempre quedaba más grande y se robaba el LCP al hacer fade-in.
+
+### Fixed
+
+- **Hero — el video ya no emite candidato LCP** — la caja del video pasa de `inset-0 h-full` + `pb-0.5` a `h-[calc(100%-4px)]`: achicar el **border box** (no el padding) es lo único que reduce su tamaño LCP. Con el video 4px más corto que la `<Image priority>`, ésta queda como candidato LCP definitivo (~1.2s) y el fade-in del video deja de contar. Verificado localmente: un solo candidato LCP (IMG a 224ms), video reproduciendo visible sin emitir candidato. Nota: `bottom-1` tampoco servía — un replaced element con `height: auto` ignora `bottom` y colapsa a su aspect ratio intrínseco. El gradiente a negro del pie tapa la junta de 4px
+
 ## [1.0.7] — 2026-06-09
 
 Tercera pasada de performance mobile. El análisis post-v1.0.6 (`mobile-3`, perf 80) mostró que el poster bajaba temprano (~700ms) pero el LCP seguía en 4.8s sobre el `<video>`: como el video está en `opacity-0` hasta `onCanPlay`, el poster nunca pinta visible; y al hacer fade-in el video pintaba **2px más alto** que la `<Image priority>` (que lleva `pb-0.5`), por lo que Chrome lo tomaba como nuevo candidato LCP más grande, descartando a la imagen que pintó a ~1.2s.
