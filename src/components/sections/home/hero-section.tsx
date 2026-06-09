@@ -98,8 +98,12 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
             sizes="100vw"
           />
           {/* Background video — montado en idle y con fade-in una vez listo.
-              El poster (frame liviano) es lo que pinta primero: así el LCP del
-              <video> se desacopla de la descarga del mp4 (2.4MB) y ocurre temprano. */}
+              El poster cubre el caso de autoplay bloqueado (sin él, el video
+              "listo" pero pausado taparía la imagen con un frame vacío).
+              OJO: el video lleva el mismo `pb-0.5` que la <Image> de arriba.
+              Si pintara 1px más grande que ella, Chrome lo tomaría como nuevo
+              candidato LCP al hacer fade-in (~5s) y descartaría a la imagen
+              que pintó a ~1.2s. Con cajas iguales, el LCP queda en la imagen. */}
           {showVideo && (
             <video
               src="/videos/home-hero.mp4"
@@ -111,7 +115,7 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
               poster="/images/hero-bg-poster.jpg"
               aria-hidden="true"
               onCanPlay={() => setVideoReady(true)}
-              className={`absolute inset-0 h-full w-full object-cover object-left md:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+              className={`absolute inset-0 h-full w-full object-cover object-left md:object-center pb-0.5 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
             />
           )}
           <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/20 to-black" />
@@ -331,7 +335,7 @@ function NavCategories() {
               src={image}
               alt=""
               fill
-              className="w-full h-full lg:p-2 object-center"
+              className="w-full h-full lg:p-2 object-contain object-center"
               priority
               sizes="25vw"
             />

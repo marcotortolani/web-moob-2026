@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.7] — 2026-06-09
+
+Tercera pasada de performance mobile. El análisis post-v1.0.6 (`mobile-3`, perf 80) mostró que el poster bajaba temprano (~700ms) pero el LCP seguía en 4.8s sobre el `<video>`: como el video está en `opacity-0` hasta `onCanPlay`, el poster nunca pinta visible; y al hacer fade-in el video pintaba **2px más alto** que la `<Image priority>` (que lleva `pb-0.5`), por lo que Chrome lo tomaba como nuevo candidato LCP más grande, descartando a la imagen que pintó a ~1.2s.
+
+### Fixed
+
+- **Hero — el video le "robaba" el LCP a la imagen** — se agregó el mismo `pb-0.5` al `<video>` para que su caja pintada nunca supere a la de la `<Image priority>`. Con áreas iguales, el candidato LCP definitivo es la imagen (~1.2s) y el fade-in del video deja de contar (LCP estimado: 4.8s → ~1.2s). El poster se mantiene para el caso de autoplay bloqueado
+- **Best Practices — `image-aspect-ratio`** — `producciones-propias-icon.webp` (77×73) se estiraba a 48×48; se agregó `object-contain` a los íconos de categorías del hero (todos casi cuadrados, sin cambio visual)
+
+### Changed
+
+- **Grid de banners — `quality={60}`** — las imágenes del split-flap (`BannerGridVideo`) pasan de q75 (default) a q60; el reporte marcaba ~64KB de desperdicio por compresión en las horizontales del home
+
 ## [1.0.6] — 2026-06-09
 
 Segunda pasada de performance mobile. La auditoría reveló que **el elemento LCP es el `<video>` de fondo del hero**: la `<Image>` pinta rápido (24KB) pero el video, al hacer fade-in encima, se vuelve el LCP, y su pintado dependía de la descarga del mp4 (2.4MB → LCP simulado ~5.9s).

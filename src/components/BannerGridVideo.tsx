@@ -104,6 +104,7 @@ function SplitFlapImage({
         alt={alt}
         fill
         sizes={sizes}
+        quality={60}
         priority={priority}
       />
     )
@@ -124,6 +125,7 @@ function SplitFlapImage({
             alt={alt}
             fill
             sizes={sizes}
+            quality={60}
             priority={priority}
           />
         </div>
@@ -138,6 +140,7 @@ function SplitFlapImage({
             alt={alt}
             fill
             sizes={sizes}
+            quality={60}
             priority={priority}
           />
         </div>
