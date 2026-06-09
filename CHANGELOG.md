@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] — 2026-06-09
+
+Optimización de performance **mobile** (Lighthouse mobile: LCP 8.2s, TBT 260ms → el throttling de CPU de mobile exponía el costo del JS y de las imágenes).
+
+### Changed
+
+- **Globo 3D (Three.js) — montaje diferido** — `LazyDottedGlobe` evaluaba ~1s de JS (bundle de 256KB) durante la hidratación, bloqueando el hilo principal y retrasando el LCP en mobile. Ahora se monta en `requestIdleCallback` (cuando el hilo está libre tras el render crítico, post-LCP); hasta entonces se ve el `GlobeFallback` y la animación de aparición del globo disimula la entrada tardía. El globo se mantiene en todas las plataformas
+- **Hero — `poster` redundante eliminado** — el `<video>` tenía `poster="/images/hero-bg.webp"`, que cargaba el archivo **crudo** (1618×1946, 384KB) sin pasar por `next/image`. Como ya hay un `<Image priority>` optimizado detrás del video como fallback, el poster era redundante; al quitarlo, el fallback es la imagen optimizada y se elimina la carga del crudo (≈ −1650ms de LCP en mobile)
+- **Carrusel de categorías — `sizes` corregido** — los íconos se servían a ~615px cuando se muestran a ~95px (`sizes="60vw"` en un slider de `slidesPerView: 4.2`); ajustado a `sizes="(max-width: 1024px) 31vw, 20vw"` para que `next/image` entregue una variante acorde
+
 ## [1.0.4] — 2026-06-09
 
 ### Fixed

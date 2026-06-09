@@ -130,7 +130,7 @@ export function ContentSection() {
                   alt={tCats(id)}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 768px) 60vw, 20vw"
+                  sizes="(max-width: 1024px) 31vw, 20vw"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-mint scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />

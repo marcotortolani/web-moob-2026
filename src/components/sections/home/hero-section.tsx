@@ -106,7 +106,6 @@ export function HeroSection({ locale = 'es' }: { locale?: Locale }) {
               muted
               playsInline
               preload="metadata"
-              poster="/images/hero-bg.webp"
               aria-hidden="true"
               onCanPlay={() => setVideoReady(true)}
               className={`absolute inset-0 h-full w-full object-cover object-left md:object-center transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
