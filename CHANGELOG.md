@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] — 2026-06-09
+
+### Added
+
+- **`src/app/icon.svg`** — ícono SVG vectorial del logo de Media Moob; Next.js lo registra como `<link rel="icon" type="image/svg+xml">` en el `<head>`, mejorando la calidad del favicon en Google Search y en tabs de alta resolución
+- **`src/app/apple-icon.tsx`** — ícono 180×180 generado con `ImageResponse`; Next.js emite `<link rel="apple-touch-icon">` para iOS y previews de compartido
+- **`src/app/manifest.ts`** — web manifest con nombre, colores de marca (`#000000`) e íconos; habilita "Agregar al inicio" y da contexto de marca a motores de búsqueda
+
 ## [1.0.1] — 2026-06-03
 
 ### Fixed
