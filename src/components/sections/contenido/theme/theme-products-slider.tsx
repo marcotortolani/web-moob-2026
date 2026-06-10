@@ -110,10 +110,10 @@ export function ThemeProductsSlider({ products, heading, themeSlug }: Props) {
         ))}
       </Swiper>
 
-      {/* Lateral nav arrows — desktop only, hint that slides can be swiped.
+      {/* Lateral nav arrows — hint that slides can be swiped.
           Centered vertically on the mint stripe (47%–72% → 59.5%), above the edge gradients. */}
       {!single && (
-        <div className="hidden lg:block absolute inset-0 z-50 pointer-events-none px-4">
+        <div className="absolute inset-0 z-50 pointer-events-none px-1">
           <div className="relative h-full max-w-6xl mx-auto">
             <button
               type="button"
@@ -121,7 +121,7 @@ export function ThemeProductsSlider({ products, heading, themeSlug }: Props) {
               onClick={() => swiperRef.current?.slidePrev()}
               className="pointer-events-auto absolute left-0 top-[59.5%] -translate-y-1/2 flex items-center justify-center p-2 rounded-full border-2 border-transparent text-white/90 hover:text-white hover:border-white/90 hover:scale-105 transition-all duration-300 cursor-pointer"
             >
-              <ChevronLeft className="h-10 w-10" strokeWidth={3} />
+              <ChevronLeft className="h-10 w-10" strokeWidth={2.25} />
             </button>
             <button
               type="button"
@@ -129,7 +129,7 @@ export function ThemeProductsSlider({ products, heading, themeSlug }: Props) {
               onClick={() => swiperRef.current?.slideNext()}
               className="pointer-events-auto absolute right-0 top-[59.5%] -translate-y-1/2 flex items-center justify-center p-2 rounded-full border-2 border-transparent text-white/90 hover:text-white hover:border-white/90 hover:scale-105 transition-all duration-300 cursor-pointer"
             >
-              <ChevronRight className="h-10 w-10" strokeWidth={3} />
+              <ChevronRight className="h-10 w-10" strokeWidth={2.25} />
             </button>
           </div>
         </div>
