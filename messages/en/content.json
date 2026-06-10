@@ -9,7 +9,9 @@
     "slideMore": "More {title} here",
     "callout": "Discover our exclusive {label} content products",
     "calloutNoLabel": "Discover our exclusive content products",
-    "demoButton": "WATCH DEMO"
+    "demoButton": "WATCH DEMO",
+    "prevSlide": "Previous",
+    "nextSlide": "Next"
   },
   "ContentCats": {
     "cocina": "COOKING",

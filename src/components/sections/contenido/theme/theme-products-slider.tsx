@@ -1,9 +1,12 @@
 'use client'
 
 import Image from 'next/image'
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import type { Swiper as SwiperType } from 'swiper'
 import { Pagination, Keyboard, Autoplay } from 'swiper/modules'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { DemoButton } from '@/components/ui/demo-button'
@@ -20,6 +23,7 @@ export function ThemeProductsSlider({ products, heading, themeSlug }: Props) {
   const tHub = useTranslations('ContentHub')
   const tThemes = useTranslations('ContentThemes')
   const single = products.length <= 1
+  const swiperRef = useRef<SwiperType | null>(null)
 
   const productName = (product: ThemeProduct) =>
     themeSlug
@@ -33,6 +37,9 @@ export function ThemeProductsSlider({ products, heading, themeSlug }: Props) {
         </h2>
       )}
       <Swiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper
+        }}
         modules={[Pagination, Keyboard, Autoplay]}
         keyboard={{ enabled: true }}
         pagination={single ? false : { clickable: true }}
@@ -102,6 +109,32 @@ export function ThemeProductsSlider({ products, heading, themeSlug }: Props) {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Lateral nav arrows — desktop only, hint that slides can be swiped.
+          Centered vertically on the mint stripe (47%–72% → 59.5%), above the edge gradients. */}
+      {!single && (
+        <div className="hidden lg:block absolute inset-0 z-50 pointer-events-none px-4">
+          <div className="relative h-full max-w-6xl mx-auto">
+            <button
+              type="button"
+              aria-label={tHub('prevSlide')}
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="pointer-events-auto absolute left-0 top-[59.5%] -translate-y-1/2 flex items-center justify-center p-2 rounded-full border-2 border-transparent text-white/90 hover:text-white hover:border-white/90 hover:scale-105 transition-all duration-300 cursor-pointer"
+            >
+              <ChevronLeft className="h-10 w-10" strokeWidth={3} />
+            </button>
+            <button
+              type="button"
+              aria-label={tHub('nextSlide')}
+              onClick={() => swiperRef.current?.slideNext()}
+              className="pointer-events-auto absolute right-0 top-[59.5%] -translate-y-1/2 flex items-center justify-center p-2 rounded-full border-2 border-transparent text-white/90 hover:text-white hover:border-white/90 hover:scale-105 transition-all duration-300 cursor-pointer"
+            >
+              <ChevronRight className="h-10 w-10" strokeWidth={3} />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Mint stripe — full viewport width, behind mockup */}
       <div className="z-0 absolute top-0 left-0 right-0 w-full h-full bg-red-400/0 ">
         <div className="z-0 absolute w-screen left-0 right-0 top-[47%] bottom-[28%] bg-mint" />

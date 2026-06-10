@@ -9,7 +9,9 @@
     "slideMore": "Mais {title} aqui",
     "callout": "Conheça nossos produtos de conteúdo exclusivo {label}",
     "calloutNoLabel": "Conheça nossos produtos de conteúdo exclusivo",
-    "demoButton": "VER DEMO"
+    "demoButton": "VER DEMO",
+    "prevSlide": "Anterior",
+    "nextSlide": "Próximo"
   },
   "ContentCats": {
     "cocina": "CULINÁRIA",
