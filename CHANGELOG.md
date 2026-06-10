@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.10] — 2026-06-10
+
+### Fixed
+
+- **Home — descripción del bloque "Somos Eventos" era la de "Somos Contenido"** — por error de copy/paste en el diseño, `Events.description` tenía el mismo texto que `Content.description`. Se corrigió en es/en/pt para usar el texto correcto: "Creamos eventos de contenido en vivo, desde festivales hasta producciones de larga, mediana y corta duración en más de 30 países." (equivalente al ya usado en la página `/somos-eventos`)
+
 ## [1.0.9] — 2026-06-10
 
 Ajuste del texto orbital del hero (anillo que gira alrededor del globo) en **inglés** y **portugués** a partir de revisión en tablet (md/lg). El inglés se veía claramente roto: la frase `we are in` se mostraba cortada como "WE A". Midiendo en el navegador se halló que el `<textPath>` arrancaba en posición angular ~96% del path de **1 vuelta** y terminaba en ~103%, así que **SVG clipaba los glifos sobrantes** (un `textPath` no envuelve más allá del largo del path). El anillo compacto de mobile ya evitaba esto usando un path de 1.5 vueltas; el completo seguía en 1 vuelta.
