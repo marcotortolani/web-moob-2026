@@ -4,15 +4,13 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.9] — 2026-06-10
+
+Ajuste del texto orbital del hero (anillo que gira alrededor del globo) en **inglés** y **portugués** a partir de revisión en tablet (md/lg). El inglés se veía claramente roto: la frase `we are in` se mostraba cortada como "WE A". Midiendo en el navegador se halló que el `<textPath>` arrancaba en posición angular ~96% del path de **1 vuelta** y terminaba en ~103%, así que **SVG clipaba los glifos sobrantes** (un `textPath` no envuelve más allá del largo del path). El anillo compacto de mobile ya evitaba esto usando un path de 1.5 vueltas; el completo seguía en 1 vuelta.
 
 ### Added
 
 - **Somos Contenido — flechas laterales en el slider de productos** — cuando una categoría tiene más de un producto, el slider (`ThemeProductsSlider`) muestra flechas `‹ ›` a los lados para indicar que se puede desplazar/swipe entre slides. Aparecen en todos los breakpoints: en el hub `/somos-contenido` (desktop, dentro de `ContenidoHero`) y en las páginas de categoría `/somos-contenido/[slug]` (mobile y desktop). Llaman a `slidePrev()`/`slideNext()` de Swiper y conviven con el autoplay (`disableOnInteraction: false`). Se agregaron las claves `ContentHub.prevSlide`/`nextSlide` (aria-labels) en es/en/pt. Flechas blancas al 90% de opacidad (contrastan tanto sobre el overlay negro lateral como sobre la franja mint), centradas verticalmente respecto de la franja mint, dentro de un container `max-w-6xl` por delante de los gradientes de borde (`z-50`); en hover aparece el borde circular que las contiene con `scale-105` y transición
-
-## [1.0.9] — 2026-06-10
-
-Ajuste del texto orbital del hero (anillo que gira alrededor del globo) en **inglés** y **portugués** a partir de revisión en tablet (md/lg). El inglés se veía claramente roto: la frase `we are in` se mostraba cortada como "WE A". Midiendo en el navegador se halló que el `<textPath>` arrancaba en posición angular ~96% del path de **1 vuelta** y terminaba en ~103%, así que **SVG clipaba los glifos sobrantes** (un `textPath` no envuelve más allá del largo del path). El anillo compacto de mobile ya evitaba esto usando un path de 1.5 vueltas; el completo seguía en 1 vuelta.
 
 ### Fixed
 
