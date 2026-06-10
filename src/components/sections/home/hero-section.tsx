@@ -20,17 +20,22 @@ type OrbitOffsets = {
 
 const ORBIT_OFFSETS: Record<Locale, OrbitOffsets> = {
   es: {
+    // full = path de 1.5 vueltas → offset% = posición_angular% / 1.5
+    // (angular es: weAreIn 0.5 / countries 10 / arriveWith 68 / operations 82)
     compact: { countries: '4.67%', arriveWith: '48.33%', operations: '58.5%' },
-    full: { weAreIn: '0.5%', countries: '10%', arriveWith: '68%', operations: '82%' },
+    full: { weAreIn: '0.33%', countries: '6.67%', arriveWith: '45.33%', operations: '54.67%' },
   },
   en: {
+    // angular: weAreIn 96.22 / countries 4.22 / arriveWith 67.67 / operations 82.67 (÷1.5)
+    // (márgenes inicial/final parejos ~5.6° + gap entre oraciones 3°)
     compact: { countries: '2%', arriveWith: '46.5%', operations: '58.5%' },
-    full: { weAreIn: '96.5%', countries: '5.5%', arriveWith: '67%', operations: '83%' },
+    full: { weAreIn: '64.15%', countries: '2.81%', arriveWith: '45.11%', operations: '55.11%' },
   },
   pt: {
     // = es, con "operations" empujado un poco más tarde para separar "nossas" de "com".
+    // angular: weAreIn 0.5 / countries 10 / arriveWith 68 / operations 83.5 (÷1.5)
     compact: { countries: '4.67%', arriveWith: '48.33%', operations: '60%' },
-    full: { weAreIn: '0.5%', countries: '10%', arriveWith: '68%', operations: '85%' },
+    full: { weAreIn: '0.33%', countries: '6.67%', arriveWith: '45.33%', operations: '55.67%' },
   },
 }
 
@@ -498,9 +503,13 @@ function GlobeDecoration() {
           aria-hidden="true"
         >
           <defs>
+            {/* Path = 1.5 vueltas (540°). El tercer arco retraza el mismo círculo
+                pero duplica la pista de path disponible para que un texto que
+                arranca "antes del 0" (p. ej. weAreIn en inglés) no se corte al
+                pasar el seam del path. Offsets = posición angular / 1.5. */}
             <path
               id="outerCircle"
-              d="M 200,200 m -170,0 a 170,170 0 1,1 340,0 a 170,170 0 1,1 -340,0"
+              d="M 200,200 m -170,0 a 170,170 0 1,1 340,0 a 170,170 0 1,1 -340,0 a 170,170 0 1,1 340,0"
             />
           </defs>
           <text

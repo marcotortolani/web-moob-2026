@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.9] — 2026-06-10
+
+Ajuste del texto orbital del hero (anillo que gira alrededor del globo) en **inglés** y **portugués** a partir de revisión en tablet (md/lg). El inglés se veía claramente roto: la frase `we are in` se mostraba cortada como "WE A". Midiendo en el navegador se halló que el `<textPath>` arrancaba en posición angular ~96% del path de **1 vuelta** y terminaba en ~103%, así que **SVG clipaba los glifos sobrantes** (un `textPath` no envuelve más allá del largo del path). El anillo compacto de mobile ya evitaba esto usando un path de 1.5 vueltas; el completo seguía en 1 vuelta.
+
+### Fixed
+
+- **Hero — el texto orbital en inglés se cortaba ("WE A")** — el path `#outerCircle` pasó de 1 a **1.5 vueltas** (un tercer arco retraza el mismo círculo y da pista de path extra), igual que el anillo compacto. Esto permite que `we are in` (que necesita arrancar "antes del 0" porque la oración A en inglés es más larga) renderice completo sin clip. Todos los offsets `full` se reescalaron **÷1.5** en es/en/pt: las posiciones **angulares no cambian** (mismo círculo), así que el español —la referencia afinada a mano— se ve idéntico
+- **Hero — solapamiento de texto con banderas en inglés** — `more than 30 countries` terminaba pegado a las banderas; ahora cierra con ~5.6° de margen. El bloque de texto quedó centrado respecto al arco de banderas (márgenes inicial/final parejos a 5.6°), con las dos oraciones unidas (gaps internos 2.6° y 2.0°) y un gap de 3.0° entre ellas
+
+### Changed
+
+- **Hero — texto orbital en portugués más unido** — se redujo el gap entre `aqui chegamos com` y `nossas operações` de ~9° a ~3.6° (queda ~1 espacio de palabra), para que se lea como una sola frase; el sobrante se movió al límite entre oraciones (donde va el "•")
+
 ## [1.0.8] — 2026-06-09
 
 Cuarta pasada de performance mobile. El análisis post-v1.0.7 (`mobile-4`, perf 80) mostró que igualar las cajas con `pb-0.5` no alcanzó: el LCP seguía en 4.9s sobre el `<video>`. Midiendo los candidatos LCP localmente con `PerformanceObserver` (build de producción + headless Chrome) se descubrió que **Chrome no descuenta el padding al calcular el tamaño LCP de un `<video>`** (sí lo hace para `<img>`): con `pb-0.5` en ambos, la imagen pintaba 196.515px² y el video 196.912px² — el video siempre quedaba más grande y se robaba el LCP al hacer fade-in.
