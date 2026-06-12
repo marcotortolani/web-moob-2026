@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.12] — 2026-06-12
+
+Centralización de todos los datos de estadísticas del sitio en `src/lib/stats.ts`. Los números ya no están hardcodeados en cada componente o archivo de datos — se calculan dinámicamente a partir de una fecha base y tasas de crecimiento configurables. El stat de suscriptores actualiza el número en pantalla en tiempo real cada ~12 segundos.
+
+### Added
+
+- **`src/lib/stats.ts` — utilidad central de estadísticas** — fuente única de verdad para los tres stats del sitio (`contentHours`, `subscribers`, `yearsExperience`). Cada stat tiene un `BASE` (valor al `GROWTH_START_MS`) y un `RATE_PER_MS` (tasa de crecimiento por milisegundo). `getStatValue(key)` devuelve el valor actual; `getTickInterval(key)` devuelve el intervalo en ms para el contador en vivo (o `null` si la tasa es demasiado lenta). `getContentThemeStats(ctaText)` es un helper de conveniencia para los 8 archivos de categoría de contenido
+- **`useStatValue(key)` hook en `stats-section.tsx`** — inicializa el estado con `getStatValue(key)` y arma un `setInterval` usando `getTickInterval(key)` para actualizar el número en vivo. Solo dispara interval para stats cuya tasa implica un tick ≤ 60 segundos
+- **`StatItem` component** — sub-componente que encapsula `useStatValue` por stat, permitiendo usarlo dentro del `.map` sin violar las reglas de hooks
+
+### Changed
+
+- **Stats del home (`stats-section.tsx`)** — los valores ya no son literales hardcodeados sino que vienen del hook `useStatValue`. El layout mobile se ajustó para apilar el label debajo del número (antes quedaba al lado)
+- **`src/lib/data/content.ts` — stats array** — valores derivados de `getStatValue()` en lugar de strings literales
+- **8 archivos de categoría de contenido** (`educacion`, `kids`, `viajes`, `fitness`, `lifestyle`, `cocina`, `gaming`, `musica`) — el bloque `stats: { value: 1200, unit: 'HS', ... }` reemplazado por `stats: getContentThemeStats(ctaText)` (7 líneas → 1 por archivo)
+- **Subscribers** — cambia de unidad `K` (550K) a número completo sin unidad (2.700.000+). Tasa: ~218.000/mes → tick en vivo cada ~12 segundos
+- **Tasas de crecimiento confirmadas** — `contentHours`: 1 HS cada 10 días (~3 HS/mes); `subscribers`: 218.000/mes (~7.267/día); `yearsExperience`: calculado automáticamente como `año actual − 2010`
+
 ## [1.0.11] — 2026-06-12
 
 Nuevo copy del texto orbital del hero en **inglés** y re-cálculo de sus offsets **midiendo en el navegador**. Los intentos anteriores de acomodar el texto estimando largos a mano empeoraban en cada iteración: con los offsets heredados, `our operations reach •` (más largo que `our operations`) terminaba en ~361° pisando a `we are in` (que arranca en ~346°), y dejaba un hueco de ~20° después de `this is where`. Esta vez se midió el largo real de cada frase con `getComputedTextLength()` y se posicionaron secuencialmente respetando el arco de banderas.

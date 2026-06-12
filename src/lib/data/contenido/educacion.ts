@@ -1,4 +1,5 @@
 import type { ThemeContent } from './types'
+import { getContentThemeStats } from '@/lib/stats'
 
 export const educacionContent: ThemeContent = {
   hero: {
@@ -20,13 +21,7 @@ export const educacionContent: ThemeContent = {
     },
     videoPosition: 'bottom-right',
   },
-  stats: {
-    value: 1200,
-    unit: 'HS',
-    label: 'Contenido exclusivo',
-    caption: 'Contenido de corta, mediana y larga duración',
-    ctaText: 'Conocé nuestros productos de contenido exclusivo educativo',
-  },
+  stats: getContentThemeStats('Conocé nuestros productos de contenido exclusivo educativo'),
   products: [
     {
       id: 'flexflix',

@@ -1,4 +1,5 @@
 import type { ThemeContent } from './types'
+import { getContentThemeStats } from '@/lib/stats'
 
 export const fitnessContent: ThemeContent = {
   hero: {
@@ -20,13 +21,7 @@ export const fitnessContent: ThemeContent = {
     },
     videoPosition: 'bottom-right',
   },
-  stats: {
-    value: 1200,
-    unit: 'HS',
-    label: 'Contenido exclusivo',
-    caption: 'Contenido de corta, mediana y larga duración',
-    ctaText: 'Conocé nuestros productos de contenido exclusivo de fitness',
-  },
+  stats: getContentThemeStats('Conocé nuestros productos de contenido exclusivo de fitness'),
   products: [
     {
       id: 'totalfitness',

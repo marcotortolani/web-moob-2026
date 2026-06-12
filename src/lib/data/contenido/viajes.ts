@@ -1,4 +1,5 @@
 import type { ThemeContent } from './types'
+import { getContentThemeStats } from '@/lib/stats'
 
 export const viajesContent: ThemeContent = {
   hero: {
@@ -19,13 +20,7 @@ export const viajesContent: ThemeContent = {
     },
     videoPosition: 'bottom-right',
   },
-  stats: {
-    value: 1200,
-    unit: 'HS',
-    label: 'Contenido exclusivo',
-    caption: 'Contenido de corta, mediana y larga duración',
-    ctaText: 'Conocé nuestros productos de contenido exclusivo de viajes',
-  },
+  stats: getContentThemeStats('Conocé nuestros productos de contenido exclusivo de viajes'),
   products: [
     {
       id: 'queguayviajes',

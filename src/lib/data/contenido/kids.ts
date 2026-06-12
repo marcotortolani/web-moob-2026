@@ -1,4 +1,5 @@
 import type { ThemeContent } from './types'
+import { getContentThemeStats } from '@/lib/stats'
 
 export const kidsContent: ThemeContent = {
   hero: {
@@ -19,13 +20,7 @@ export const kidsContent: ThemeContent = {
     },
     videoPosition: 'bottom-right',
   },
-  stats: {
-    value: 1200,
-    unit: 'HS',
-    label: 'Contenido exclusivo',
-    caption: 'Contenido de corta, mediana y larga duración',
-    ctaText: 'Conocé nuestros productos de contenido exclusivo para kids',
-  },
+  stats: getContentThemeStats('Conocé nuestros productos de contenido exclusivo para kids'),
   products: [
     {
       id: 'elreinoinfantil',
