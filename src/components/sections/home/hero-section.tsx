@@ -26,10 +26,20 @@ const ORBIT_OFFSETS: Record<Locale, OrbitOffsets> = {
     full: { weAreIn: '0.33%', countries: '6.67%', arriveWith: '45.33%', operations: '54.67%' },
   },
   en: {
-    // angular: weAreIn 96.22 / countries 4.22 / arriveWith 67.67 / operations 82.67 (÷1.5)
-    // (márgenes inicial/final parejos ~5.6° + gap entre oraciones 3°)
-    compact: { countries: '2%', arriveWith: '46.5%', operations: '58.5%' },
-    full: { weAreIn: '64.15%', countries: '2.81%', arriveWith: '45.11%', operations: '55.11%' },
+    // Offsets calculados con getComputedTextLength() REAL en el navegador
+    // (no estimar a mano: los textos EN son más largos que ES y los offsets
+    // heredados hacían que "our operations reach •" pisara a "we are in").
+    // Largos medidos (full, path r=170 ⇒ 1°=2.968u): weAreIn 79.5u=26.8° /
+    // countries 226.3u=76.3° / arriveWith 100.1u=33.7° / operations 188u=63.3°.
+    // Banderas ocupan ~[94.7°, 240.1°]. Secuencia angular (°): arriveWith 243.6
+    // → operations 280.3 (gap 3) → weAreIn 347.6 (gap 4) → countries 376.4
+    // (gap 2, cruza el seam vía path de 1.5 vueltas) y termina 452.7 = 92.7°.
+    // offset% = angular/5.4.
+    // compact (r=185 ⇒ 1°=3.229u): countries 258.4u=80° / arriveWith 113.7u=35.2°
+    // / operations 201u=62.3°. arriveWith 251.1 → operations 288.9 (gap 2.6)
+    // → countries 361.8=1.8° (gap 10.6) termina 81.8°; banderas desde ~92°.
+    compact: { countries: '0.33%', arriveWith: '46.5%', operations: '53.5%' },
+    full: { weAreIn: '64.37%', countries: '3.04%', arriveWith: '45.11%', operations: '51.91%' },
   },
   pt: {
     // = es, con "operations" empujado un poco más tarde para separar "nossas" de "com".

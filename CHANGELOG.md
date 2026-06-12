@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.10] — 2026-06-10
+## [1.0.11] — 2026-06-12
+
+Nuevo copy del texto orbital del hero en **inglés** y re-cálculo de sus offsets **midiendo en el navegador**. Los intentos anteriores de acomodar el texto estimando largos a mano empeoraban en cada iteración: con los offsets heredados, `our operations reach •` (más largo que `our operations`) terminaba en ~361° pisando a `we are in` (que arranca en ~346°), y dejaba un hueco de ~20° después de `this is where`. Esta vez se midió el largo real de cada frase con `getComputedTextLength()` y se posicionaron secuencialmente respetando el arco de banderas.
+
+### Changed
+
+- **Hero — copy del anillo orbital en inglés** — `here we arrive with our operations` → `this is where our operations reach` (también en `Map.subtitle` para mantener consistencia con la sección del mapa)
+
+### Fixed
+
+- **Hero — texto orbital en inglés: solapamientos y huecos (desktop y mobile)** — offsets `en` recalculados con las longitudes renderizadas reales (full r=170: weAreIn 26.8° / countries 76.3° / arriveWith 33.7° / operations 63.3°; compact r=185: countries 80° / arriveWith 35.2° / operations 62.3°). Secuencia full: `this is where` 243.6° → `our operations reach •` 280.3° (gap 3°) → `we are in` 347.6° (gap 4°) → `more than 30 countries •` 376.4° (gap 2°, cruza el seam vía path de 1.5 vueltas) terminando a ~2° del borde de banderas. Compact: arriveWith 251.1° → operations 288.9° (gap 2.6°) → countries 1.8° (gap 10.6°) con ~10° de margen a las banderas. Verificado con screenshots congelando la animación en 1440px y 390px. es/pt sin cambios
 
 ### Fixed
 

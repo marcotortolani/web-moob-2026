@@ -53,8 +53,8 @@
     "artists and influencers": "artists and influencers",
     "we are in": "we are in",
     "more than 30 countries": "more than 30 countries",
-    "here we arrive with": "here we arrive with",
-    "our operations": "our operations"
+    "here we arrive with": "this is where",
+    "our operations": "our operations reach"
   },
   "Content": {
     "title": "Content",
@@ -91,7 +91,7 @@
   },
   "Map": {
     "heading": "We are in more than <b>30 countries</b>",
-    "subtitle": "Here we arrive with our operations",
+    "subtitle": "This is where our operations reach",
     "more": "+20 more"
   },
   "Brands": {
