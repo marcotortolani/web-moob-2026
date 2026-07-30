@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.13] — 2026-07-30
+
+Nueva ruta `/co-tyc`: página de Términos y Condiciones para los servicios de suscripción SMS de Media Moob Colombia S.A. operados sobre Claro Colombia. No forma parte del sitio institucional — vive fuera del árbol `[locale]`, sin i18n ni navegación del sitio, y no se indexa.
+
+### Added
+
+- **`src/app/co-tyc/page.tsx` y `src/app/co-tyc/layout.tsx`** — nueva ruta legal standalone con root layout propio (`<html>`/`<body>` independientes, reutiliza `globals.css` y las fuentes Poppins/Bebas Neue de `[locale]/layout.tsx`). Sin `Header`/`Footer` del sitio ni `NextIntlClientProvider`. Metadata con `robots: { index: false, follow: false }` y canonical manual (no se agrega a `sitemap.ts`)
+- **Términos y condiciones de los 5 portales Claro Colombia** — bloques con disponibilidad, valor semanal, cargos de navegación, instrucción de baja (`SALIR` al short code) y contacto para `35022` (Loco por la cocina, $4.300), `35148` (Club Media Fest, $4.300), `35172` (Team Gamers, $4.300), `35158` (SOS Mujer, $4.000) y `35290` (Mundo Rock, $4.000)
+- **`.markdownlint.json`** — `MD013` en `false` y `MD024` con `siblings_only: true` para permitir encabezados repetidos (`### Added`, `### Changed`, etc.) entre distintas versiones del changelog
+
+### Changed
+
+- **`src/proxy.ts`** — el matcher del middleware de i18n excluye `co-tyc` además de `api`, para que la ruta no reciba el redirect a `/{locale}/co-tyc`
+
 ## [1.0.12] — 2026-06-12
 
 Centralización de todos los datos de estadísticas del sitio en `src/lib/stats.ts`. Los números ya no están hardcodeados en cada componente o archivo de datos — se calculan dinámicamente a partir de una fecha base y tasas de crecimiento configurables. El stat de suscriptores actualiza el número en pantalla en tiempo real cada ~12 segundos.
