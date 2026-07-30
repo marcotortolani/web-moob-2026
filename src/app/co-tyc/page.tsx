@@ -4,9 +4,9 @@ import { SITE_URL } from '@/lib/seo'
 import { Container } from '@/components/ui/container'
 
 export const metadata: Metadata = {
-  title: 'Términos y Condiciones — Media Moob Colombia',
+  title: 'Términos y Condiciones — Media Moob - Claro Colombia',
   description:
-    'Términos y condiciones de los servicios de suscripción de Media Moob Colombia S.A. para usuarios Claro Colombia.',
+    'Términos y condiciones de los servicios de suscripción de Media Moob para usuarios Claro Colombia.',
   robots: { index: false, follow: false },
   alternates: { canonical: `${SITE_URL}/co-tyc` },
 }
